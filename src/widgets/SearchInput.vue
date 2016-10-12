@@ -4,6 +4,8 @@
            autocapitalize="off"
            spellcheck="false"
 
+           class="search-input"
+
            @input="onInput"
 
            :value="query"
