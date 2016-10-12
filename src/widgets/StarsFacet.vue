@@ -5,8 +5,8 @@
         <div v-for="facet in facetValues" class="stars-facet__item"
              :class="{'stars-facet__item--active': facet.isRefined}" @click="toggleRefinement(facet)">
             <template v-for="n in max">
-                <span v-if="n <= facet.name">+</span>
-                <span v-else>-</span>
+                <span v-if="n <= facet.name" class="stars-facet__star"></span>
+                <span v-else class="stars-facet__star--empty"></span>
             </template>
             &amp; up <span>({{facet.count | formatNumber}})</span>
         </div>
@@ -109,5 +109,20 @@
 <style scoped>
     .stars-facet__item--active {
         font-weight: bold;
+    }
+
+    .stars-facet__star {
+        width: 1em;
+        height: 1em;
+    }
+
+    .stars-facet__star:before {
+        content: '\2605';
+        color: #FBAE00;
+    }
+
+    .stars-facet__star--empty:before {
+        content: '\2606';
+        color: #FBAE00;
     }
 </style>
