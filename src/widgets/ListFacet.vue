@@ -4,7 +4,7 @@
 
         <div v-for="facet in facetValues" class="list-facet__item"
              :class="{'list-facet__item--active': facet.isRefined}" @click="toggleRefinement(facet)">
-            <span class="list-facet__item__value">{{facet.name}}</span> <span class="list-facet__item__count">{{facet.count | formatNumber}}</span>
+            <span class="list-facet__item__value">{{facet.name}}</span> <span class="list-facet__item__count">({{facet.count | formatNumber}})</span>
         </div>
 
         <slot name="footer"></slot>
