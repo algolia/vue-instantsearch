@@ -8,7 +8,7 @@
                 <span v-if="n <= facet.name" class="stars-facet__star"></span>
                 <span v-else class="stars-facet__star--empty"></span>
             </template>
-            &amp; up <span>({{facet.count | formatNumber}})</span>
+            &amp; up <span class="stars-facet__item__count">({{facet.count | formatNumber}})</span>
         </div>
 
         <slot name="footer"></slot>
