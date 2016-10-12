@@ -4,7 +4,7 @@
   "author": "Raymond Rutjes <raymond.rutjes@gmail.com>",
   "private": true,
   "main": "dist/vue-algolia-search.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "dev": "webpack-dev-server --open --inline --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
