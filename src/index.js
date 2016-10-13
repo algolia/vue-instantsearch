@@ -8,6 +8,7 @@ import SearchInput from './widgets/SearchInput.vue'
 import SearchPagination from './widgets/SearchPagination.vue'
 import SearchResult from './widgets/SearchResult.vue'
 import SearchResults from './widgets/SearchResults.vue'
+import EmptySearchResults from './widgets/EmptySearchResults.vue'
 import SearchStats from './widgets/SearchStats.vue'
 import StarsFacet from './widgets/StarsFacet.vue'
 
@@ -15,7 +16,7 @@ module.exports = {
   Store,
   instance,
   FACET_CONJUNCTIVE,
-  FACET_DISJUNCTIVE, 
+  FACET_DISJUNCTIVE,
   FACET_HIERARCHICAL,
 
   ClearSearch,
@@ -26,6 +27,7 @@ module.exports = {
   SearchPagination,
   SearchResult,
   SearchResults,
+  EmptySearchResults,
   SearchStats,
   StarsFacet,
 
@@ -38,6 +40,7 @@ module.exports = {
     Vue.component('search-pagination', SearchPagination)
     Vue.component('search-result', SearchResult)
     Vue.component('search-results', SearchResults)
+    Vue.component('empty-search-results', EmptySearchResults)
     Vue.component('search-stats', SearchStats)
     Vue.component('stars-facet', StarsFacet)
   }
