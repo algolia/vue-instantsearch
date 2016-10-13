@@ -1,5 +1,5 @@
 <template>
-    <div class="search-stats">
+    <div class="search-stats" v-if="nbHits > 0">
         <slot>{{nbHits | formatNumber}} results found in {{processingTimeMS}}ms</slot>
     </div>
 </template>
