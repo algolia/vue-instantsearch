@@ -29,9 +29,6 @@
                 this.store.hitsPerPage = this.options[0]
             }
         },
-        watch: function () {
-            this.store.hitsPerPage
-        },
         methods: {
             changeHitsPerPage: function (event) {
                 this.store.hitsPerPage = Number(event.target.value)

@@ -58,7 +58,7 @@ export class Store {
   }
 
   get index() {
-    this._helper.getIndex()
+    return this._helper.getIndex()
   }
 
   set hitsPerPage(hitsPerPage) {

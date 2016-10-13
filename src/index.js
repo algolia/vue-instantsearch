@@ -1,4 +1,5 @@
 import {Store, instance, FACET_CONJUNCTIVE, FACET_DISJUNCTIVE, FACET_HIERARCHICAL} from './store'
+import widgetMixin from './mixins/widget'
 
 import ClearSearch from './widgets/ClearSearch.vue'
 import HitsPerPageSelector from './widgets/HitsPerPageSelector.vue'
@@ -18,6 +19,8 @@ module.exports = {
   FACET_CONJUNCTIVE,
   FACET_DISJUNCTIVE,
   FACET_HIERARCHICAL,
+
+  widgetMixin,
 
   ClearSearch,
   HitsPerPageSelector,
