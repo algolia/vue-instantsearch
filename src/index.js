@@ -13,6 +13,7 @@ import EmptySearchResults from './widgets/EmptySearchResults.vue'
 import SearchStats from './widgets/SearchStats.vue'
 import StarsFacet from './widgets/StarsFacet.vue'
 import SortBySelector from './widgets/SortBySelector.vue'
+import PriceRange from './widgets/PriceRange.vue'
 
 module.exports = {
   Store,
@@ -35,6 +36,7 @@ module.exports = {
   SearchStats,
   StarsFacet,
   SortBySelector,
+  PriceRange,
 
   install(Vue) {
     Vue.component('clear-search', ClearSearch)
@@ -49,5 +51,6 @@ module.exports = {
     Vue.component('search-stats', SearchStats)
     Vue.component('stars-facet', StarsFacet)
     Vue.component('sort-by-selector', SortBySelector)
+    Vue.component('price-range', PriceRange)
   }
 }

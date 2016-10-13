@@ -212,6 +212,13 @@ export class Store {
     return this._helper.lastResults.getRefinements()
   }
 
+  addNumericRefinement(attribute, operator, value) {
+    this._helper.addNumericRefinement(attribute, operator, value)
+  }
+
+  removeNumericRefinement(attribute, operator, value) {
+    this._helper.removeNumericRefinement(attribute, operator, value)
+  }
 
   set query(query) {
     if (this._helper.state.query === query) {
