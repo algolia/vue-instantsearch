@@ -1,14 +1,7 @@
 <template>
-    <div class="search-results">
-
-        <component v-for="hit in hits" :is="hitComponent" :hit="hit"></component>
-
-        <template v-if="hits.length === 0">
-            <slot name="no-results">
-                <div class="search-results__no-results">No results found for query "{{query}}"</div>
-            </slot>
-        </template>
-    </div>
+    <transition-group class="search-results" name="search-results-transition" tag="div">
+        <component v-for="hit in hits" :is="hitComponent" :hit="hit" :key="hit.objectID"></component>
+    </transition-group>
 </template>
 
 <script>
