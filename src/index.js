@@ -12,6 +12,7 @@ import SearchResults from './widgets/SearchResults.vue'
 import EmptySearchResults from './widgets/EmptySearchResults.vue'
 import SearchStats from './widgets/SearchStats.vue'
 import StarsFacet from './widgets/StarsFacet.vue'
+import SortBySelector from './widgets/SortBySelector.vue'
 
 module.exports = {
   Store,
@@ -33,6 +34,7 @@ module.exports = {
   EmptySearchResults,
   SearchStats,
   StarsFacet,
+  SortBySelector,
 
   install(Vue) {
     Vue.component('clear-search', ClearSearch)
@@ -46,5 +48,6 @@ module.exports = {
     Vue.component('empty-search-results', EmptySearchResults)
     Vue.component('search-stats', SearchStats)
     Vue.component('stars-facet', StarsFacet)
+    Vue.component('sort-by-selector', SortBySelector)
   }
 }
