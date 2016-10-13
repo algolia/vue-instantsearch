@@ -1,5 +1,5 @@
 <template>
-    <div class="stars-facet">
+    <div class="stars-facet" v-if="isVisible">
         <slot name="header"></slot>
 
         <div v-for="facet in facetValues" class="stars-facet__item"
@@ -42,6 +42,14 @@
             this.store.removeFacet(this.attribute)
         },
         computed: {
+            isVisible: function () {
+                for (let value of this.facetValues) {
+                    if (value.count > 0) {
+                        return true
+                    }
+                }
+                return false
+            },
             facetValues: function () {
                 const values = this.store.getFacetValues(this.attribute, ['name:asc'], this.max + 1)
 
