@@ -12,26 +12,30 @@
 
     export default {
         mixins: [widget],
-        computed: {
-            hits: function () {
-                return this.store.hits
-            },
-            query: function () {
-                return this.store.query
+        props: {
+            stack: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         },
-        methods: {
-            highlight: function (hit, attribute) {
-                if (typeof hit._highlightResult[attribute] === 'undefined') {
-                    util.warn('Attribute `' + attribute + '` has no highlight.', this)
+        computed: {
+            hits: function () {
+                if(this.stack === false) {
+                    return this.store.hits
                 }
-                return hit._highlightResult[attribute].value
-            },
-            snippet: function (attribute) {
-                if (typeof hit._snippetResult[attribute] === 'undefined') {
-                    util.warn('Attribute `' + attribute + '` has no snippet.', this)
+
+                if(typeof this.stackedHits === 'undefined') {
+                    this.stackedHits = []
                 }
-                return hit._snippetResult[attribute].value
+
+                if(this.store.page === 0) {
+                    this.stackedHits = []
+                }
+
+                this.stackedHits.push(...this.store.hits)
+
+                return this.stackedHits
             }
         },
         components: {
