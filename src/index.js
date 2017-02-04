@@ -15,7 +15,7 @@ import StarsFacet from './widgets/StarsFacet.vue'
 import SortBySelector from './widgets/SortBySelector.vue'
 import PriceRange from './widgets/PriceRange.vue'
 
-module.exports = {
+export default {
   Store,
   instance,
   FACET_CONJUNCTIVE,
