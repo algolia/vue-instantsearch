@@ -1,5 +1,5 @@
 <template>
-    <div class="search-result" :key="hit.objectID">
+    <div class="search-result">
         <div v-for="(attribute, key) in hit">{{key}}: {{attribute}}</div>
     </div>
 </template>
