@@ -15,7 +15,7 @@ import StarsFacet from './widgets/StarsFacet.vue'
 import SortBySelector from './widgets/SortBySelector.vue'
 import PriceRange from './widgets/PriceRange.vue'
 
-export default {
+export {
   Store,
   instance,
   FACET_CONJUNCTIVE,
@@ -36,7 +36,7 @@ export default {
   SearchStats,
   StarsFacet,
   SortBySelector,
-  PriceRange,
+  PriceRange/*,
 
   install(Vue) {
     Vue.component('clear-search', ClearSearch)
@@ -52,5 +52,5 @@ export default {
     Vue.component('stars-facet', StarsFacet)
     Vue.component('sort-by-selector', SortBySelector)
     Vue.component('price-range', PriceRange)
-  }
+  }*/
 }
