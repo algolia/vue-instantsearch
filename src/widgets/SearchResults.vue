@@ -1,34 +1,41 @@
 <template>
     <transition-group class="search-results" name="search-results-transition" tag="div">
-        <component v-for="hit in hits" :is="hitComponent" :hit="hit" :key="hit.objectID"></component>
+        <slot v-for="hit in hits" :hit="hit">
+            <search-result :hit="hit" :key="hit.objectID"></search-result>
+        </slot>
     </transition-group>
 </template>
 
 <script>
     import widget from '../mixins/widget'
-    import SearchResult from './SearchResult.vue'
+    import SearchResult from '../widgets/SearchResult.vue'
 
     export default {
         mixins: [widget],
         props: {
-            hitComponent: {
+            stack: {
+                type: Boolean,
                 required: false,
-                default: function () {
-                    return this.$options.components.SearchResult
-                }
-            }
-        },
-        filters: {
-            highlight: function (hit, attribute) {
-                return hit._highlightResult[attribute].value
+                default: false
             }
         },
         computed: {
             hits: function () {
-                return this.store.hits
-            },
-            query: function () {
-                return this.store.query
+                if(this.stack === false) {
+                    return this.store.hits
+                }
+
+                if(typeof this.stackedHits === 'undefined') {
+                    this.stackedHits = []
+                }
+
+                if(this.store.page === 0) {
+                    this.stackedHits = []
+                }
+
+                this.stackedHits.push(...this.store.hits)
+
+                return this.stackedHits
             }
         },
         components: {
