@@ -27,19 +27,22 @@
 
                 if(typeof this.stackedHits === 'undefined') {
                     this.stackedHits = []
-
                 }
 
                 if(this.store.page === 0) {
                     this.stackedHits = []
                 }
 
-                if(this.lastPage !== this.store.page) {
+                if(this.stackedHits.length === 0 || this.store.hits.length === 0) {
                     this.stackedHits.push(...this.store.hits)
+                } else {
+                    const lastStacked = this.stackedHits[this.stackedHits.length-1]
+                    const lastHit = this.store.hits[this.store.hits.length-1]
 
+                    if(lastStacked['objectID'] !== lastHit['objectID']) {
+                        this.stackedHits.push(...this.store.hits)
+                    }
                 }
-
-                this.lastPage = this.store.page
 
                 return this.stackedHits
             }
