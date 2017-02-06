@@ -27,13 +27,19 @@
 
                 if(typeof this.stackedHits === 'undefined') {
                     this.stackedHits = []
+
                 }
 
                 if(this.store.page === 0) {
                     this.stackedHits = []
                 }
 
-                this.stackedHits.push(...this.store.hits)
+                if(this.lastPage !== this.store.page) {
+                    this.stackedHits.push(...this.store.hits)
+
+                }
+
+                this.lastPage = this.store.page
 
                 return this.stackedHits
             }
