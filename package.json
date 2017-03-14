@@ -1,5 +1,8 @@
 {
   "private": true,
+  "scripts": {
+    "boot": "rm -rf ./packages/*/node_modules && lerna bootstrap --npm-client=yarn && lerna run build"
+  },
   "devDependencies": {
     "camelize": "^1.0.0",
     "lerna": "2.0.0-beta.38",
