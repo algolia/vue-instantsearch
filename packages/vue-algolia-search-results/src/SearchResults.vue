@@ -53,9 +53,9 @@
           this.stackedResults.push(...this.searchStore.results)
         } else {
           const lastStacked = this.stackedResults[this.stackedResults.length - 1]
-          const lastHit = this.searchStore.results[this.searchStore.results.length - 1]
+          const lastResult = this.searchStore.results[this.searchStore.results.length - 1]
 
-          if (lastStacked['objectID'] !== lastHit['objectID']) {
+          if (lastStacked['objectID'] !== lastResult['objectID']) {
             this.stackedResults.push(...this.searchStore.results)
           }
         }
