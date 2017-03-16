@@ -154,22 +154,6 @@ export class Store {
     return this._helper.lastResults.processingTimeMS
   }
 
-  goTofirstPage() {
-    this.page = 0
-  }
-
-  goToPreviousPage() {
-    this._helper.previousPage()
-  }
-
-  goToNextPage() {
-    this._helper.nextPage()
-  }
-
-  goToLastPage() {
-    this.page = this.nbPages - 1
-  }
-
   addFacet(attribute, type = FACET_CONJUNCTIVE) {
     assertValidFacetType(type)
 
