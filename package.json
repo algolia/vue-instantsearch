@@ -15,6 +15,6 @@
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^1.0.1",
-    "rollup-plugin-vue": "^2.2.21"
+    "rollup-plugin-vue": "^2.3.1"
   }
 }
