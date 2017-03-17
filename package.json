@@ -1,8 +1,11 @@
 {
   "private": true,
   "scripts": {
-    "boot": "lerna bootstrap",
-    "build": "lerna run build",
+    "boot": "lerna bootstrap --npm-client=yarn",
+    "build": "yarn run build:umd && yarn run build:es && yarn run build:cjs",
+    "build:umd": "lerna run build-umd",
+    "build:es": "lerna run build-es",
+    "build:cjs": "lerna run build-cjs",
     "reboot": "lerna clean && lerna bootstrap --npm-client=yarn",
     "test": "jest"
   },
