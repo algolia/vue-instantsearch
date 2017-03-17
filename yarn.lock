@@ -1935,9 +1935,9 @@ rollup-plugin-uglify@^1.0.1:
   dependencies:
     uglify-js "^2.6.1"
 
-rollup-plugin-vue@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-vue/-/rollup-plugin-vue-2.3.0.tgz#5019a2d28f8a5fa33056962888c9d2af4c165e5c"
+rollup-plugin-vue@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-vue/-/rollup-plugin-vue-2.3.1.tgz#73b30ff0c6d37d87cbd02b6555680cb5c31f3a9e"
   dependencies:
     babel-runtime "^6.22.0"
     camelcase "^4.0.0"
