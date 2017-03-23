@@ -1,6 +1,6 @@
-# e-commerce examplz
+# e-commerce example
 
-> Algolia + Vue.js in an e-commerce aite
+> Algolia + Vue.js in an e-commerce site
 
 ## Build Setup
 
