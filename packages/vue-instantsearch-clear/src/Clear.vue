@@ -16,12 +16,12 @@
   export default {
     mixins: [algoliaComponent],
     props: {
-      clearQuery: {
+      clearsQuery: {
         type: Boolean,
         required: false,
         default: true
       },
-      clearFacets: {
+      clearsFacets: {
         type: Boolean,
         required: false,
         default: true
@@ -34,11 +34,11 @@
     },
     computed: {
       disabled: function () {
-        if (this.clearQuery && this.searchStore.query.length > 0) {
+        if (this.clearsQuery && this.searchStore.query.length > 0) {
           return false
         }
 
-        if (this.clearFacets && this.searchStore.activeRefinements.length > 0) {
+        if (this.clearsFacets && this.searchStore.activeRefinements.length > 0) {
           return false
         }
 
@@ -48,11 +48,11 @@
     methods: {
       clear: function () {
         this.searchStore.stop()
-        if (this.clearQuery && this.searchStore.query.length > 0) {
+        if (this.clearsQuery && this.searchStore.query.length > 0) {
           this.searchStore.query = ''
         }
 
-        if (this.clearFacets && this.searchStore.activeRefinements.length > 0) {
+        if (this.clearsFacets && this.searchStore.activeRefinements.length > 0) {
           this.searchStore.clearRefinements()
         }
         this.searchStore.start()
