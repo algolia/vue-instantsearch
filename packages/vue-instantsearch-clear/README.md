@@ -35,8 +35,8 @@ Only clear the facet refinements:
 
 ## Props
 
-| Name        | Type    | Default | Description                                                                       |
-|:------------|:--------|:--------|:----------------------------------------------------------------------------------|
+| Name         | Type    | Default | Description                                                                       |
+|:-------------|:--------|:--------|:----------------------------------------------------------------------------------|
 | clearsQuery  | boolean | `true`  | If `true`, when the button is clicked, the `query` will be emptied.               |
 | clearsFacets | boolean | `true`  | If `true`, when the button is clicked, all the facet refinements will be removed. |
 

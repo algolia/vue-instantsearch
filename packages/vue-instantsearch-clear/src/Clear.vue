@@ -11,52 +11,52 @@
 </template>
 
 <script>
-  import algoliaComponent from 'vue-instantsearch-component'
+import algoliaComponent from 'vue-instantsearch-component';
 
-  export default {
-    mixins: [algoliaComponent],
-    props: {
-      clearsQuery: {
-        type: Boolean,
-        required: false,
-        default: true
-      },
-      clearsFacets: {
-        type: Boolean,
-        required: false,
-        default: true
-      }
+export default {
+  mixins: [algoliaComponent],
+  props: {
+    clearsQuery: {
+      type: Boolean,
+      required: false,
+      default: true
     },
-    data () {
-      return {
-        blockClassName: 'ais-clear'
+    clearsFacets: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
+  },
+  data() {
+    return {
+      blockClassName: 'ais-clear'
+    };
+  },
+  computed: {
+    disabled: function() {
+      if (this.clearsQuery && this.searchStore.query.length > 0) {
+        return false;
       }
-    },
-    computed: {
-      disabled: function () {
-        if (this.clearsQuery && this.searchStore.query.length > 0) {
-          return false
-        }
 
-        if (this.clearsFacets && this.searchStore.activeRefinements.length > 0) {
-          return false
-        }
-
-        return true
+      if (this.clearsFacets && this.searchStore.activeRefinements.length > 0) {
+        return false;
       }
-    },
-    methods: {
-      clear: function () {
-        this.searchStore.stop()
-        if (this.clearsQuery && this.searchStore.query.length > 0) {
-          this.searchStore.query = ''
-        }
 
-        if (this.clearsFacets && this.searchStore.activeRefinements.length > 0) {
-          this.searchStore.clearRefinements()
-        }
-        this.searchStore.start()
+      return true;
+    }
+  },
+  methods: {
+    clear: function() {
+      this.searchStore.stop();
+      if (this.clearsQuery && this.searchStore.query.length > 0) {
+        this.searchStore.query = '';
       }
+
+      if (this.clearsFacets && this.searchStore.activeRefinements.length > 0) {
+        this.searchStore.clearRefinements();
+      }
+      this.searchStore.start();
     }
   }
+};
 </script>
