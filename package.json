@@ -8,7 +8,7 @@
     "build:cjs": "lerna run build:cjs",
     "build:examples": "npm run boot && npm run build:es && lerna run build --scope example-*",
     "reboot": "lerna clean && lerna bootstrap",
-    "test": "jest --verbose",
+    "test": "npm run lint && jest --verbose",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
