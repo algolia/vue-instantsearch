@@ -9,6 +9,7 @@
     "build:examples": "npm run boot && npm run build:es && lerna run build --scope example-*",
     "reboot": "lerna clean && lerna bootstrap",
     "test": "npm run lint && jest --verbose",
+    "test:update": "jest --verbose --updateSnapshot",
     "lint": "eslint --ext .js,.vue .",
     "lint:fix": "eslint . --fix"
   },
