@@ -8,8 +8,8 @@
     "build:cjs": "lerna run build:cjs",
     "build:examples": "npm run boot && npm run build:es && lerna run build --scope example-*",
     "reboot": "lerna clean && lerna bootstrap",
-    "test": "jest --verbose",
-    "lint": "eslint .",
+    "test": "npm run lint && jest --verbose",
+    "lint": "eslint --ext .js,.vue .",
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
@@ -17,6 +17,7 @@
     "babel-preset-es2015": "^6.24.0",
     "camelize": "^1.0.0",
     "eslint": "^3.19.0",
+    "eslint-plugin-html": "^2.0.1",
     "eslint-plugin-prettier": "^2.0.1",
     "jest": "^19.0.2",
     "jest-serializer-html-string": "^1.0.0",
