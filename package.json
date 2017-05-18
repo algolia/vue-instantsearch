@@ -22,7 +22,7 @@
     "eslint-plugin-html": "^2.0.1",
     "eslint-plugin-prettier": "^2.0.1",
     "jest": "^19.0.2",
-    "jest-serializer-html": "^3.0.0",
+    "jest-serializer-html": "^4.0.0",
     "lerna": "2.0.0-rc.4",
     "prettier": "^0.22.0",
     "rollup": "^0.41.5",
