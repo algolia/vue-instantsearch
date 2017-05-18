@@ -9,6 +9,7 @@
     "build:cjs": "lerna run build:cjs",
     "build:examples": "yarn run boot && yarn run build:es && lerna run build --scope example-*",
     "reboot": "yarn run clean && yarn run boot",
+    "dev": "jest --verbose --watch --notify",
     "test": "yarn run lint && jest --verbose",
     "test:update": "jest --verbose --updateSnapshot",
     "lint": "eslint --ext .js,.vue .",
