@@ -15,7 +15,7 @@
     "build:es": "rollup -c ./build/rollup.es.config.js",
     "build:umd": "rollup -c ./build/rollup.umd.config.js",
     "watch": "concurrently --kill-others \"yarn run test:watch\" \"yarn run build:cjs:watch\"",
-    "test": "jest --verbose --coverage",
+    "test": "yarn run lint && jest --verbose --coverage",
     "test:update": "jest --verbose --updateSnapshot",
     "test:watch": "jest --verbose --watchAll --notify",
     "lint": "eslint --ext .js,.vue .",
