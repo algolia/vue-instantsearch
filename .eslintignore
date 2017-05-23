@@ -1,10 +1,6 @@
-packages/*/node_modules
-packages/*/dist
-packages/examples/*/node_modules
-packages/examples/*/dist
-packages/examples/*/build
-packages/examples/*/config
-packages/examples/*/webpack.config.js
-docs/*
-coverage/*
-_book/*
+node_modules
+dist
+docs
+coverage
+_book
+examples
