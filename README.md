@@ -9,6 +9,8 @@ InstantSearch projects: **Vue InstantSearch**
 
 ## Vue InstantSearch
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/algolia/vue-instantsearch.svg)](https://greenkeeper.io/)
+
 > ⚡ Lightning-fast search for Vue.js apps
 
 Built by [Algolia][algolia-website].
