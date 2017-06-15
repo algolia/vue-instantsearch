@@ -1,6 +1,4 @@
-node_modules
-dist
-docs
-coverage
-_book
-examples
+_book/
+docs/
+coverage/
+dist/
