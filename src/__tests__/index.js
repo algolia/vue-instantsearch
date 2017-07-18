@@ -7,8 +7,6 @@ test('Should register all components when installed', () => {
   InstantSearch.install(Vue);
 
   expect(component).toBeCalledWith('ais-index', expect.any(Object));
-  expect(component).toBeCalledWith('ais-highlight', expect.any(Object));
-  expect(component).toBeCalledWith('ais-snippet', expect.any(Object));
   expect(component).toBeCalledWith('ais-input', expect.any(Object));
   expect(component).toBeCalledWith('ais-results', expect.any(Object));
   expect(component).toBeCalledWith('ais-stats', expect.any(Object));
@@ -26,6 +24,4 @@ test('Should register all components when installed', () => {
   expect(component).toBeCalledWith('ais-refinement-list', expect.any(Object));
   expect(component).toBeCalledWith('ais-price-range', expect.any(Object));
   expect(component).toBeCalledWith('ais-powered-by', expect.any(Object));
-
-  expect(component).toHaveBeenCalledTimes(17);
 });

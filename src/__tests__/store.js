@@ -5,8 +5,6 @@ import {
   FACET_AND,
   FACET_OR,
   FACET_TREE,
-  HIGHLIGHT_PRE_TAG,
-  HIGHLIGHT_POST_TAG,
   assertValidFacetType,
   createFromAlgoliaCredentials,
   createFromAlgoliaClient,
@@ -30,14 +28,6 @@ test('FACET_OR should be "or"', () => {
 
 test('FACET_TREE should be "tree"', () => {
   expect(FACET_TREE).toBe('tree');
-});
-
-test('HIGHLIGHT_PRE_TAG should be "__ais-highlight__"', () => {
-  expect(HIGHLIGHT_PRE_TAG).toBe('__ais-highlight__');
-});
-
-test('HIGHLIGHT_POST_TAG should be "__/ais-highlight__"', () => {
-  expect(HIGHLIGHT_POST_TAG).toBe('__/ais-highlight__');
 });
 
 test('can assert that a facet type is valid', () => {
@@ -84,13 +74,6 @@ describe('Store', () => {
         'Store should be constructed with an AlgoliaSearchHelper instance as first parameter.'
       )
     );
-  });
-
-  test('should always use custom highlighting tags', () => {
-    const store = createStore();
-
-    expect(store.highlightPreTag).toEqual(HIGHLIGHT_PRE_TAG);
-    expect(store.highlightPostTag).toEqual(HIGHLIGHT_POST_TAG);
   });
 
   test('can retrieve index name', () => {
