@@ -2,8 +2,6 @@ import {
   FACET_AND,
   FACET_OR,
   FACET_TREE,
-  HIGHLIGHT_PRE_TAG,
-  HIGHLIGHT_POST_TAG,
   createFromAlgoliaCredentials,
   createFromAlgoliaClient,
   createFromSerialized,
@@ -13,8 +11,6 @@ import {
 import Component from './component';
 
 import Index from './components/Index.vue';
-import Highlight from './components/Highlight.vue';
-import Snippet from './components/Snippet.vue';
 import Input from './components/Input.vue';
 import Results from './components/Results.vue';
 import Stats from './components/Stats.vue';
@@ -32,8 +28,6 @@ import PoweredBy from './components/PoweredBy.vue';
 
 const InstantSearch = {
   Index,
-  Highlight,
-  Snippet,
   Input,
   Results,
   Stats,
@@ -51,8 +45,6 @@ const InstantSearch = {
 
   install(Vue) {
     Vue.component('ais-index', Index);
-    Vue.component('ais-highlight', Highlight);
-    Vue.component('ais-snippet', Snippet);
     Vue.component('ais-input', Input);
     Vue.component('ais-results', Results);
     Vue.component('ais-stats', Stats);
@@ -82,15 +74,11 @@ export {
   FACET_AND,
   FACET_OR,
   FACET_TREE,
-  HIGHLIGHT_PRE_TAG,
-  HIGHLIGHT_POST_TAG,
   createFromAlgoliaCredentials,
   createFromAlgoliaClient,
   createFromSerialized,
   Store,
   Index,
-  Highlight,
-  Snippet,
   Input,
   Results,
   Stats,

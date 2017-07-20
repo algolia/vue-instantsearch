@@ -27,8 +27,6 @@
   * [Refinement List](components/refinement-list.md)
   * [Pagination](components/pagination.md)
   * [Clear](components/clear.md)
-  * [Highlight](components/highlight.md)
-  * [Snippet](components/snippet.md)
   * [Stats](components/stats.md)
   * [Powered By](components/powered-by.md)
   * [Price Range](components/price-range.md)

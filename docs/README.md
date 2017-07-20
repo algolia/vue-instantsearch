@@ -83,7 +83,7 @@ Open the `src/App.vue` component. Then replace the whole beginning of the file, 
     <ais-search-box />
     <ais-results>
       <template scope="{ result }">
-        <h2><ais-highlight :result="result" attribute-name="name" /></h2>
+        <h2 v-html="result._snippetResult.name.value"></h2>
       </template>
     </ais-results>
   </ais-index>
