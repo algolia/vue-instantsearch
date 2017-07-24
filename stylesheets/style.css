@@ -5538,8 +5538,9 @@ div.cm-s-mdn-like span.CodeMirror-matchingbracket {
 
 .screen-mockup {
   top: -260px; }
-  .screen-mockup img {
-    max-width: 40%; }
+  @media (max-width: 1200px) {
+    .screen-mockup img {
+      width: 50vw !important; } }
   @media (max-height: 730px) {
     .screen-mockup {
       top: -120px; } }
