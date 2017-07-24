@@ -1,0 +1,105 @@
+<h2 id="welcome-to-vue-instantsearch">Welcome to Vue InstantSearch <a class="anchor" href="README.html#welcome-to-vue-instantsearch" aria-hidden="true"></a></h2>
+<p><strong>WARNING: This project is currently in BETA.</strong></p>
+<p>Vue InstantSearch is the ultimate toolbox for creating instant-search
+experiences using <a href="https://vuejs.org/">Vue.js</a> and <a href="https://www.algolia.com/">Algolia</a>.</p>
+<h2 id="setup-a-new-vue-project">Setup a new Vue project <a class="anchor" href="README.html#setup-a-new-vue-project" aria-hidden="true"></a></h2>
+<p>We will use the official <a href="https://vuejs.org/v2/guide/installation.html#CLI">vue-cli</a> to bootstrap a new Vue project, along with the <a href="https://github.com/vuejs/vue-cli#official-templates">webpack-simple template</a>.</p>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code>npm install --global vue-cli
+vue init webpack-simple vue-instantsearch-getting-started
+# Default settings are enough, hit `Enter ⏎` at every question
+</code></pre>
+<p>Then install the dependencies of your new project:</p>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code>cd vue-instantsearch-getting-started
+npm install
+</code></pre>
+<h2 id="install">Install <code>vue-instantsearch</code> <a class="anchor" href="README.html#install" aria-hidden="true"></a></h2>
+<p>Add Vue InstantSearch as a dependency, it’s published on <a href="https://www.npmjs.com">npm</a>:</p>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code>npm install --save vue-instantsearch
+</code></pre>
+<h2 id="run-the-development-environement">Run the development environement <a class="anchor" href="README.html#run-the-development-environement" aria-hidden="true"></a></h2>
+<p>When <code>vue-cli</code> bootstraped the project, it added some <a href="https://docs.npmjs.com/misc/scripts">npm scripts</a> to your project, like a <code>dev</code> one. Let’s use it:</p>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code>npm run dev
+</code></pre>
+<p>This should open a new tab in your browser with this inside:</p>
+<p><img src="images/getting-started-npm-run-dev.png" alt="Screenshot showing the new tab preview when npm run dev starts">.</p>
+<p>Leave the <code>dev</code> script running, we will update the code and it will reload your browser
+automatically.</p>
+<h2 id="use-the-instantsearch-plugin">Use the InstantSearch plugin <a class="anchor" href="README.html#use-the-instantsearch-plugin" aria-hidden="true"></a></h2>
+<p>Now we need to tell Vue to use the Vue InstantSearch plugin so that all search
+components are available in our templates.</p>
+<p>Open the <code>src/main.js</code> entry point and replace the existing content with the following:</p>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code>import Vue from &#39;vue&#39;;
+import App from &#39;./App.vue&#39;
+import InstantSearch from &#39;vue-instantsearch&#39;;
+
+Vue.use(InstantSearch);
+
+new Vue({
+  el: &#39;#app&#39;,
+  render: h =&gt; h(App)
+});
+</code></pre>
+<p>From now on, you can use all <a href="using-components.md">Vue InstantSearch components</a> in your templates throughout the whole application.</p>
+<h2 id="create-your-first-search-experience">Create your first search experience <a class="anchor" href="README.html#create-your-first-search-experience" aria-hidden="true"></a></h2>
+<p>Let’s bootstrap a small search interface.</p>
+<p>Open the <code>src/App.vue</code> component. Then replace the whole beginning of the file, between the <code>&lt;template&gt;&lt;/template&gt;</code> tags, with the following:</p>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span>
+  <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-index</span>
+    <span class="cm-attribute">appId</span>=<span class="cm-string">&quot;latency&quot;</span>
+    <span class="cm-attribute">apiKey</span>=<span class="cm-string">&quot;3d9875e51fbd20c7754e65422f7ce5e1&quot;</span>
+    <span class="cm-attribute">indexName</span>=<span class="cm-string">&quot;bestbuy&quot;</span>
+  <span class="cm-tag cm-bracket">&gt;</span>
+    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-search-box</span> <span class="cm-tag cm-bracket">/&gt;</span>
+    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-results</span><span class="cm-tag cm-bracket">&gt;</span>
+      <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span> <span class="cm-attribute">scope</span>=<span class="cm-string">&quot;{ result }&quot;</span><span class="cm-tag cm-bracket">&gt;</span>
+        <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h2</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-highlight</span> <span class="cm-attribute">:result</span>=<span class="cm-string">&quot;result&quot;</span> <span class="cm-attribute">attributeName</span>=<span class="cm-string">&quot;name&quot;</span> <span class="cm-tag cm-bracket">/&gt;</span><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">h2</span><span class="cm-tag cm-bracket">&gt;</span>
+      <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span>
+    <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">ais-results</span><span class="cm-tag cm-bracket">&gt;</span>
+  <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">ais-index</span><span class="cm-tag cm-bracket">&gt;</span>
+<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span>
+</code></pre>
+<p>Save, see the result in browser and play with it:</p>
+<p><img src="images/first-search-experience.gif" alt="Animated screenshot showing a first search experience">.</p>
+<h2 id="how-it-works">How it works <a class="anchor" href="README.html#how-it-works" aria-hidden="true"></a></h2>
+<p>In this section you will learn a bit more about what you just implemented.</p>
+<h3 id="the-index-component">The Index component <a class="anchor" href="README.html#the-index-component" aria-hidden="true"></a></h3>
+<p>All search components needs to be wrapped in an Index component.</p>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-index</span>
+  <span class="cm-attribute">appId</span>=<span class="cm-string">&quot;latency&quot;</span>
+  <span class="cm-attribute">apiKey</span>=<span class="cm-string">&quot;3d9875e51fbd20c7754e65422f7ce5e1&quot;</span>
+  <span class="cm-attribute">indexName</span>=<span class="cm-string">&quot;bestbuy&quot;</span>
+<span class="cm-tag cm-bracket">&gt;</span>
+  <span class="cm-comment">&lt;!-- Search components go here --&gt;</span>
+<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">ais-index</span><span class="cm-tag cm-bracket">&gt;</span>
+</code></pre>
+<p>You should configure the Index component with the application ID and API search only key.</p>
+<p>The job of the Index component is to hold the state of the search, and to provide it to child components.</p>
+<p><strong>Info: Alternatively you can <a href="search-store.md">manually inject a search store</a>, for example to support server-side rendering.</strong></p>
+<h3 id="algolia-demo-credentials">Algolia demo credentials <a class="anchor" href="README.html#algolia-demo-credentials" aria-hidden="true"></a></h3>
+<p>For the purpose of the demo, we provided you with some default Algolia credentials:</p>
+<ul>
+<li><code>appId</code>: <code>latency</code></li>
+<li><code>searchKey</code>: <code>3d9875e51fbd20c7754e65422f7ce5e1</code></li>
+<li><code>indexName</code>: <code>bestbuy</code></li>
+</ul>
+<p>When you will be ready to go further, you can <a href="https://www.algolia.com/users/sign_up">create your own Algolia account</a> and <a href="https://www.algolia.com/api-keys">find your credentials</a> in the Algolia dashboard.</p>
+<h3 id="the-search-box-component">The Search Box component <a class="anchor" href="README.html#the-search-box-component" aria-hidden="true"></a></h3>
+<p>The <a href="components/search-box.md">Search Box component</a> renders a text input.</p>
+<p>The text input value is bound to the query of the current search.</p>
+<p>Every time the query changes, the search store will contact Algolia to get the new results for the new query.</p>
+<p><strong>Info: The Search Box component is wrapped into a <code>&lt;form&gt;</code> element and provides a reset and submit button by default. These <a href="https://blog.algolia.com/mobile-search-ux-tips/">good search practices are explained here</a>.</strong></p>
+<h3 id="the-results-component">The Results component <a class="anchor" href="README.html#the-results-component" aria-hidden="true"></a></h3>
+<p>The <a href="components/results.md">Results component</a> will loop over all results returned
+by the Algolia response, and display them.</p>
+<p>The component has a <a href="https://vuejs.org/v2/guide/components.html#Single-Slot">default slot</a> so that you can easily define your custom template for the rendering of every single result.</p>
+<p><strong>Info: By default, if no slot is provided, the component will display every <code>objectID</code> of every result.</strong></p>
+<p>The slot provided by the Results components is <a href="https://vuejs.org/v2/guide/components.html#Scoped-Slots">scoped slot</a>.</p>
+<p>A scoped slot means that the template can access data passed to the slot.</p>
+<p>This is illustrated by this snippet:</p>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span> <span class="cm-attribute">scope</span>=<span class="cm-string">&quot;parameters.result&quot;</span><span class="cm-tag cm-bracket">&gt;</span>
+</code></pre>
+<p>or with an ES6 syntax:</p>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span> <span class="cm-attribute">scope</span>=<span class="cm-string">&quot;{ result }&quot;</span><span class="cm-tag cm-bracket">&gt;</span>
+</code></pre>
+<p>Now that <code>result</code> is available, we can customize the html inside the template.</p>
+<p>In the example we provided, we display the highlighted version of the name of the result.</p>
