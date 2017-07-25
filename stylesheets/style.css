@@ -5004,22 +5004,6 @@ figure figcaption {
         .documentation-section .documentation-container .struct-def .type p,
         .examples-section .documentation-container .struct-def .type p {
           margin-top: 0; }
-    .documentation-section .documentation-container .editThisPage,
-    .examples-section .documentation-container .editThisPage {
-      font-size: 12px;
-      float: right;
-      padding: 3px 6px;
-      border: 1px solid #276e4e;
-      color: #276e4e;
-      border-radius: 3px;
-      text-transform: uppercase;
-      opacity: .7; }
-      .documentation-section .documentation-container .editThisPage:hover,
-      .examples-section .documentation-container .editThisPage:hover {
-        background: #42b983;
-        color: white;
-        opacity: 1;
-        text-decoration: none; }
   @media (max-width: 768px) {
     .documentation-section,
     .examples-section {
@@ -5197,18 +5181,24 @@ figure figcaption {
 
 .sidebar {
   width: 260px;
-  height: calc(100vh - 56px - 60px);
-  margin-top: 60px;
+  height: calc(100vh - 60px);
+  margin-top: 0;
+  padding-top: 60px;
   padding-bottom: 30px;
   overflow-y: auto;
   overflow-x: visible; }
+  .sidebar .sidebar-container {
+    margin-bottom: 20px; }
+    .sidebar .sidebar-container .sidebar-header {
+      font-size: 17px;
+      margin-bottom: 0; }
   .sidebar.fixed {
     position: fixed;
     top: 60px; }
   .sidebar ul {
     list-style: none;
-    padding: 0 !important;
-    margin: 0 !important; }
+    padding: 0;
+    margin: 0; }
   .sidebar li {
     display: inline-block;
     margin: 0;
@@ -5695,6 +5685,9 @@ div.cm-s-mdn-like span.CodeMirror-matchingbracket {
     text-align: center; }
   .home .screen-mockup img {
     max-width: 600px; } }
+
+.algc-navigation .algc-navigation__container {
+  max-width: 1140px; }
 
 * {
   box-sizing: border-box;
