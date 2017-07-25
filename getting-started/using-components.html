@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><base href="/vue-instantsearch/"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta charset="utf-8"><meta content="width=device-width, initial-scale=1" name="viewport"><link rel="icon" href="assets/img/favicon.png"><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"><meta content="Vue InstantSearch - Build search into your Vue.js app" name="description"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><!-- / Twitter card--><meta content="summary_large_image" name="twitter:card"><meta content="https://community.algolia.com/vue-instantsearch/" name="twitter:site"><meta content="Algolia" name="twitter:creator"><meta content="Vue InstantSearch" name="twitter:title"><meta content="Build search into your Vue.js app" name="twitter:description"><meta content="https://res.cloudinary.com/hilnmyskv/image/upload/v1500902303/InstantSearch-Vue-OG.png" name="twitter:image"><!-- / OG meta--><meta content="https://community.algolia.com/vue-instantsearch/" property="og:url"><meta content="Vue InstantSearch" property="og:title"><meta content="https://res.cloudinary.com/hilnmyskv/image/upload/v1500902303/InstantSearch-Vue-OG.png" property="og:image"><meta content="website" property="og:type"><meta content="Vue InstantSearch - Build search into your Vue.js app" property="og:description"><meta content="Vue InstantSearch" property="og:site_name"><title>Using components | Vue InstantSearch</title><link rel="stylesheet" href="stylesheets/style.css?v=3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"></head></html><body class="documentation"><div><!-- Start community header -->
+<!DOCTYPE html><html><head><base href="/vue-instantsearch/"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta charset="utf-8"><meta content="width=device-width, initial-scale=1" name="viewport"><link rel="icon" href="assets/img/favicon.png"><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"><meta content="Vue InstantSearch - Build search into your Vue.js app" name="description"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><!-- / Twitter card--><meta content="summary_large_image" name="twitter:card"><meta content="https://community.algolia.com/vue-instantsearch/" name="twitter:site"><meta content="Algolia" name="twitter:creator"><meta content="Vue InstantSearch" name="twitter:title"><meta content="Build search into your Vue.js app" name="twitter:description"><meta content="https://res.cloudinary.com/hilnmyskv/image/upload/v1500902303/InstantSearch-Vue-OG.png" name="twitter:image"><!-- / OG meta--><meta content="https://community.algolia.com/vue-instantsearch/" property="og:url"><meta content="Vue InstantSearch" property="og:title"><meta content="https://res.cloudinary.com/hilnmyskv/image/upload/v1500902303/InstantSearch-Vue-OG.png" property="og:image"><meta content="website" property="og:type"><meta content="Vue InstantSearch - Build search into your Vue.js app" property="og:description"><meta content="Vue InstantSearch" property="og:site_name"><title>Using components | Vue InstantSearch</title><link rel="stylesheet" href="stylesheets/style.css?v=3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2.0.0-beta.1/dist/instantsearch.min.css"></head></html><body class="documentation"><div><!-- Start community header -->
     <nav class='algc-navigation'>
       <div class='algc-navigation__container'>
         <div class='algc-mainmenu'>
@@ -228,16 +228,16 @@
 <p>There are 2 ways of registering components, all at once or one by one.</p>
 <h3 id="all-components-at-once">All components at once <a class="anchor" href="getting-started/using-components.html#all-components-at-once" aria-hidden="true"></a></h3>
 <p>Vue InstantSearch is shipped as a Vue plugin.</p>
-<pre class="CodeMirror cm-s-mdn-like code-sample"><code>// src/main.js
-import Vue from &#39;vue&#39;;
-import App from &#39;./App.vue&#39;
-import InstantSearch from &#39;vue-instantsearch&#39;;
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-comment">// src/main.js</span>
+<span class="cm-keyword">import</span> <span class="cm-def">Vue</span> <span class="cm-keyword">from</span> <span class="cm-string">&#39;vue&#39;</span>;
+<span class="cm-keyword">import</span> <span class="cm-def">App</span> <span class="cm-keyword">from</span> <span class="cm-string">&#39;./App.vue&#39;</span>
+<span class="cm-keyword">import</span> <span class="cm-def">InstantSearch</span> <span class="cm-keyword">from</span> <span class="cm-string">&#39;vue-instantsearch&#39;</span>;
 
-Vue.use(InstantSearch);
+<span class="cm-variable">Vue</span>.<span class="cm-property">use</span>(<span class="cm-variable">InstantSearch</span>);
 
-new Vue({
-  el: &#39;#app&#39;,
-  render: h =&gt; h(App)
+<span class="cm-keyword">new</span> <span class="cm-variable">Vue</span>({
+  <span class="cm-property">el</span>: <span class="cm-string">&#39;#app&#39;</span>,
+  <span class="cm-property">render</span>: <span class="cm-def">h</span> <span class="cm-operator">=&gt;</span> <span class="cm-variable-2">h</span>(<span class="cm-variable">App</span>)
 });
 </code></pre>
 <p>The line <code>Vue.use(InstantSearch);</code> registers all components at once and make them available
@@ -246,19 +246,19 @@ in templates.</p>
 <h3 id="only-the-used-components">Only the used components <a class="anchor" href="getting-started/using-components.html#only-the-used-components" aria-hidden="true"></a></h3>
 <p>The previous approach is nice and easy, but it has the drawback of including code from components in the final application that we might not use.</p>
 <p>An alternative approach is to register components when we need them:</p>
-<pre class="CodeMirror cm-s-mdn-like code-sample"><code>// src/main.js
-import Vue from &#39;vue&#39;;
-import App from &#39;./App.vue&#39;
-import { Index, SearchBox, Results, Pagination } from &#39;vue-instantsearch&#39;;
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-comment">// src/main.js</span>
+<span class="cm-keyword">import</span> <span class="cm-def">Vue</span> <span class="cm-keyword">from</span> <span class="cm-string">&#39;vue&#39;</span>;
+<span class="cm-keyword">import</span> <span class="cm-def">App</span> <span class="cm-keyword">from</span> <span class="cm-string">&#39;./App.vue&#39;</span>
+<span class="cm-keyword">import</span> { <span class="cm-def">Index</span>, <span class="cm-def">SearchBox</span>, <span class="cm-def">Results</span>, <span class="cm-def">Pagination</span> } <span class="cm-keyword">from</span> <span class="cm-string">&#39;vue-instantsearch&#39;</span>;
 
-Vue.component(&#39;ais-index&#39;, Index);
-Vue.component(&#39;ais-search-box&#39;, SearchBox);
-Vue.component(&#39;ais-results&#39;, Results);
-Vue.component(&#39;ais-pagination&#39;, Pagination);
+<span class="cm-variable">Vue</span>.<span class="cm-property">component</span>(<span class="cm-string">&#39;ais-index&#39;</span>, <span class="cm-variable">Index</span>);
+<span class="cm-variable">Vue</span>.<span class="cm-property">component</span>(<span class="cm-string">&#39;ais-search-box&#39;</span>, <span class="cm-variable">SearchBox</span>);
+<span class="cm-variable">Vue</span>.<span class="cm-property">component</span>(<span class="cm-string">&#39;ais-results&#39;</span>, <span class="cm-variable">Results</span>);
+<span class="cm-variable">Vue</span>.<span class="cm-property">component</span>(<span class="cm-string">&#39;ais-pagination&#39;</span>, <span class="cm-variable">Pagination</span>);
 
-new Vue({
-  el: &#39;#app&#39;,
-  render: h =&gt; h(App)
+<span class="cm-keyword">new</span> <span class="cm-variable">Vue</span>({
+  <span class="cm-property">el</span>: <span class="cm-string">&#39;#app&#39;</span>,
+  <span class="cm-property">render</span>: <span class="cm-def">h</span> <span class="cm-operator">=&gt;</span> <span class="cm-variable-2">h</span>(<span class="cm-variable">App</span>)
 })
 </code></pre>
 <p>With this approach, only the four manually imported components will be part of your production build. The other components will be removed after <a href="https://webpack.js.org/guides/tree-shaking/">tree-shaking</a>.</p>
