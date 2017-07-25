@@ -297,14 +297,18 @@ components are available in our templates.</p>
 <p>The <a href="components/results.html">Results component</a> will loop over all results returned
 by the Algolia response, and display them.</p>
 <p>The component has a <a href="https://vuejs.org/v2/guide/components.html#Single-Slot">default slot</a> so that you can easily define your custom template for the rendering of every single result.</p>
-<p><strong>Info:</strong> By default, if no slot is provided, the component will display every <code>objectID</code> of every result.</p>
-<p>The slot provided by the Results components is <a href="https://vuejs.org/v2/guide/components.html#Scoped-Slots">scoped slot</a>.</p>
+<p><strong>Info:</strong> By default, if no slot is provided, the component will display the <code>objectID</code> of every result.</p>
+<p>The slot provided by the Results components is a <a href="https://vuejs.org/v2/guide/components.html#Scoped-Slots">scoped slot</a>.</p>
 <p>A scoped slot means that the template can access data passed to the slot.</p>
 <p>This is illustrated by this snippet:</p>
-<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span> <span class="cm-attribute">scope</span>=<span class="cm-string">&quot;parameters.result&quot;</span><span class="cm-tag cm-bracket">&gt;</span>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span> <span class="cm-attribute">scope</span>=<span class="cm-string">&quot;parameters&quot;</span><span class="cm-tag cm-bracket">&gt;</span>
+  <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h1</span><span class="cm-tag cm-bracket">&gt;</span>{{ parameters.result.name }}<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">h1</span><span class="cm-tag cm-bracket">&gt;</span>
+<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span>
 </code></pre>
 <p>or with an ES6 syntax:</p>
 <pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span> <span class="cm-attribute">scope</span>=<span class="cm-string">&quot;{ result }&quot;</span><span class="cm-tag cm-bracket">&gt;</span>
+  <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h1</span><span class="cm-tag cm-bracket">&gt;</span>{{ result.name }}<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">h1</span><span class="cm-tag cm-bracket">&gt;</span>
+<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span>
 </code></pre>
 <p>Now that <code>result</code> is available, we can customize the html inside the template.</p>
 <p>In the example we provided, we display the highlighted version of the name of the result.</p>
