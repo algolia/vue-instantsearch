@@ -4799,7 +4799,6 @@ figure figcaption {
   .examples-section h2 {
     font-size: 28px;
     padding-right: 1em;
-    margin-top: 32px;
     padding-bottom: 8px; }
     .documentation-section h2:first-of-type,
     .examples-section h2:first-of-type {
@@ -4810,7 +4809,6 @@ figure figcaption {
         font-size: 22px; } }
   .documentation-section h3,
   .examples-section h3 {
-    margin-top: 32px;
     font-size: 24px;
     color: #201c38;
     position: relative;
@@ -4818,8 +4816,7 @@ figure figcaption {
   .documentation-section h4,
   .examples-section h4 {
     font-size: 18px;
-    font-weight: normal;
-    margin-top: 2em; }
+    font-weight: normal; }
   .documentation-section .api tr td:first-child,
   .examples-section .api tr td:first-child {
     vertical-align: top; }
@@ -4845,6 +4842,9 @@ figure figcaption {
     min-height: 1000px;
     padding-left: 60px;
     padding-top: 60px; }
+    .documentation-section .documentation-container p img,
+    .examples-section .documentation-container p img {
+      max-width: 100%; }
     .documentation-section .documentation-container p, .documentation-section .documentation-container li,
     .examples-section .documentation-container p,
     .examples-section .documentation-container li {
@@ -4863,8 +4863,7 @@ figure figcaption {
       .documentation-section .documentation-container ol li,
       .examples-section .documentation-container ul li,
       .examples-section .documentation-container ol li {
-        clear: both;
-        margin-bottom: 10px; }
+        clear: both; }
       .documentation-section .documentation-container ul ul,
       .documentation-section .documentation-container ol ul,
       .examples-section .documentation-container ul ul,
@@ -4888,6 +4887,15 @@ figure figcaption {
     .documentation-section .documentation-container .content p:first-child,
     .examples-section .documentation-container .content p:first-child {
       margin-top: 0; }
+    .documentation-section .documentation-container .content h2:first-child,
+    .examples-section .documentation-container .content h2:first-child {
+      font-size: 35px; }
+      .documentation-section .documentation-container .content h2:first-child:before,
+      .examples-section .documentation-container .content h2:first-child:before {
+        height: 0; }
+    .documentation-section .documentation-container .content a,
+    .examples-section .documentation-container .content a {
+      color: #42b983; }
     .documentation-section .documentation-container .heading,
     .examples-section .documentation-container .heading {
       background: #fff;
@@ -4956,8 +4964,7 @@ figure figcaption {
     .examples-section .documentation-container .type:before {
       content: "";
       display: block;
-      height: 60px;
-      margin: -60px 0 0; }
+      height: 60px; }
     .documentation-section .documentation-container .anchor,
     .examples-section .documentation-container .anchor {
       margin-left: .2em;
@@ -4971,7 +4978,7 @@ figure figcaption {
     .examples-section .documentation-container h2 .anchor:after,
     .examples-section .documentation-container h3 .anchor:after {
       content: '#';
-      color: #5dcd99; }
+      color: #42b983; }
     .documentation-section .documentation-container h2:hover .anchor, .documentation-section .documentation-container h3:hover .anchor,
     .examples-section .documentation-container h2:hover .anchor,
     .examples-section .documentation-container h3:hover .anchor {
@@ -4999,19 +5006,17 @@ figure figcaption {
           margin-top: 0; }
     .documentation-section .documentation-container .editThisPage,
     .examples-section .documentation-container .editThisPage {
-      position: absolute;
       font-size: 12px;
-      right: 0;
-      top: 12px;
+      float: right;
       padding: 3px 6px;
-      border: 1px solid #2e9666;
-      color: #2e9666;
+      border: 1px solid #276e4e;
+      color: #276e4e;
       border-radius: 3px;
       text-transform: uppercase;
       opacity: .7; }
       .documentation-section .documentation-container .editThisPage:hover,
       .examples-section .documentation-container .editThisPage:hover {
-        background: #5dcd99;
+        background: #42b983;
         color: white;
         opacity: 1;
         text-decoration: none; }
@@ -5194,8 +5199,9 @@ figure figcaption {
   width: 260px;
   height: calc(100vh - 56px - 60px);
   margin-top: 60px;
-  padding-top: 30px;
-  padding-bottom: 30px; }
+  padding-bottom: 30px;
+  overflow-y: auto;
+  overflow-x: visible; }
   .sidebar.fixed {
     position: fixed;
     top: 60px; }
@@ -5205,43 +5211,35 @@ figure figcaption {
     margin: 0 !important; }
   .sidebar li {
     display: inline-block;
-    height: 40px;
     margin: 0;
     padding: 0;
     width: 100%; }
+    .sidebar li.navItem-active > a {
+      color: #42b983;
+      font-weight: 600; }
+    .sidebar li.level-h2 > a {
+      font-size: 15px; }
     .sidebar li ul {
       padding-left: 1em !important; }
     .sidebar li a {
-      height: 40px;
       display: inline-block;
       width: 100%;
-      line-height: 40px;
       text-decoration: none;
       font-weight: 300;
       color: rgba(32, 28, 56, 0.8);
       font-family: OpenSans, helvetica, sans-serif;
       transition: -webkit-transform .2s ease;
       transition: transform .2s ease;
-      transition: transform .2s ease, -webkit-transform .2s ease; }
-      .sidebar li a:before {
-        content: '';
-        display: block;
-        width: 10px;
-        height: 10px;
-        background: #5dcd99;
-        border-radius: 100%;
-        position: absolute;
-        top: 50%;
-        left: -20px;
-        opacity: 0;
-        -webkit-transform: translateY(-50%);
-                transform: translateY(-50%);
-        transition: opacity .2s ease 0.15s; }
+      transition: transform .2s ease, -webkit-transform .2s ease;
+      padding: 5px 0;
+      font-size: 13px; }
+      .sidebar li a:hover {
+        text-decoration: underline; }
       .sidebar li a.navItem-active {
-        color: #201c38;
+        color: #42b983;
         font-weight: 600;
-        -webkit-transform: translateX(20px);
-                transform: translateX(20px);
+        -webkit-transform: translateX(0px);
+                transform: translateX(0px);
         transition: -webkit-transform .2s ease;
         transition: transform .2s ease;
         transition: transform .2s ease, -webkit-transform .2s ease; }
@@ -5352,7 +5350,7 @@ figure figcaption {
       text-indent: 0;
       color: inherit;
       left: 0;
-      background: #59cc97;
+      background: #41b580;
       text-transform: uppercase;
       font-size: 1.6em;
       font-weight: bold;
