@@ -254,10 +254,12 @@ components are available in our templates.</p>
     <span class="cm-attribute">api-key</span>=<span class="cm-string">&quot;3d9875e51fbd20c7754e65422f7ce5e1&quot;</span>
     <span class="cm-attribute">index-name</span>=<span class="cm-string">&quot;bestbuy&quot;</span>
   <span class="cm-tag cm-bracket">&gt;</span>
-    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-search-box</span> <span class="cm-tag cm-bracket">/&gt;</span>
+    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-search-box</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">ais-search-box</span><span class="cm-tag cm-bracket">&gt;</span>
     <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-results</span><span class="cm-tag cm-bracket">&gt;</span>
       <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span> <span class="cm-attribute">scope</span>=<span class="cm-string">&quot;{ result }&quot;</span><span class="cm-tag cm-bracket">&gt;</span>
-        <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h2</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-highlight</span> <span class="cm-attribute">:result</span>=<span class="cm-string">&quot;result&quot;</span> <span class="cm-attribute">attribute-name</span>=<span class="cm-string">&quot;name&quot;</span> <span class="cm-tag cm-bracket">/&gt;</span><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">h2</span><span class="cm-tag cm-bracket">&gt;</span>
+        <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">h2</span><span class="cm-tag cm-bracket">&gt;</span>
+          <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-highlight</span> <span class="cm-attribute">:result</span>=<span class="cm-string">&quot;result&quot;</span> <span class="cm-attribute">attribute-name</span>=<span class="cm-string">&quot;name&quot;</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">ais-highlight</span><span class="cm-tag cm-bracket">&gt;</span>
+        <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">h2</span><span class="cm-tag cm-bracket">&gt;</span>
       <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span>
     <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">ais-results</span><span class="cm-tag cm-bracket">&gt;</span>
   <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">ais-index</span><span class="cm-tag cm-bracket">&gt;</span>
