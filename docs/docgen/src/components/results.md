@@ -28,18 +28,40 @@ Basic usage:
 </ais-results>
 ```
 
+Display results in a table:
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <ais-results tag-name="tbody">
+    <template scope="{ result }">
+      <tr>
+        <td>{{ result.name }}</td>
+        <td>{{ result.description }}</td>
+      </tr>
+    </template>
+  </ais-results>
+</table>
+```
+
 ## Props
 
 | Name             | Type    | Default | Description                                                                    |
-|:-----------------|:--------|:--------|:-------------------------------------------------------------------------------|
+|------------------|---------|---------|--------------------------------------------------------------------------------|
 | stack            | Boolean | `false` | If true, will append results of next page to current results when page changes |
 | results-per-page | Number  | ``      | The number of results to display                                               |
+| tag-name         | String  | `div`   | The wrapper tag name                                                           |
 
 
 ## Slots
 
 | Name    | Props  | Default                                                                                         | Description     |
-|:--------|:-------|:------------------------------------------------------------------------------------------------|:----------------|
+|---------|--------|-------------------------------------------------------------------------------------------------|-----------------|
 | default | result | Displays the objectID                                                                           | First page text |
 | header  |        | Allows to add content at the top of the component which will be hidden when the component is    |                 |
 | footer  |        | Allows to add content at the bottom of the component which will be hidden when the component is |                 |
@@ -47,5 +69,5 @@ Basic usage:
 ## CSS Classes
 
 | ClassName   | Description     |
-|:------------|:----------------|
+|-------------|-----------------|
 | ais-results | Container class |

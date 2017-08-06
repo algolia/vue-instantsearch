@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Results from '../Results.vue';
+import Results from '../Results';
 
 test('renders proper HTML', () => {
   const searchStore = {
@@ -107,4 +107,21 @@ test('should not stack results by default', () => {
   vm.$nextTick(() => {
     expect(vm.$el.outerHTML).toMatchSnapshot();
   });
+});
+
+test('should allow to customize root wrapper tag name', () => {
+  const searchStore = {
+    page: 1,
+    results: [{ objectID: 1 }, { objectID: 2 }],
+  };
+  const Component = Vue.extend(Results);
+  const vm = new Component({
+    propsData: {
+      searchStore,
+      tagName: 'thead',
+    },
+  });
+  vm.$mount();
+
+  expect(vm.$el.outerHTML).toMatchSnapshot();
 });
