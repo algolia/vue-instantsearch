@@ -10,6 +10,10 @@ export default {
     resultsPerPage: {
       type: Number,
     },
+    tagName: {
+      type: String,
+      default: 'div',
+    },
   },
   data() {
     return {
@@ -38,7 +42,7 @@ export default {
       children.push(this.$slots.footer);
     }
 
-    return h('div', { class: this.bem() }, children);
+    return h(this.tagName, { class: this.bem() }, children);
   },
   mounted() {
     this.updateResultsPerPage();

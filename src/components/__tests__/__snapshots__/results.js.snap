@@ -51,6 +51,19 @@ exports[`renders proper HTML 1`] = `
 
 `;
 
+exports[`should allow to customize root wrapper tag name 1`] = `
+
+<thead class="ais-results">
+  <div>
+    'objectID': 1
+  </div>
+  <div>
+    'objectID': 2
+  </div>
+</thead>
+
+`;
+
 exports[`should allow to override result rendering 1`] = `
 
 <div class="ais-results">
