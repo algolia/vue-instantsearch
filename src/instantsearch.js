@@ -14,7 +14,7 @@ import Index from './components/Index.vue';
 import Highlight from './components/Highlight';
 import Snippet from './components/Snippet';
 import Input from './components/Input.vue';
-import Results from './components/Results.vue';
+import Results from './components/Results';
 import Stats from './components/Stats.vue';
 import Pagination from './components/Pagination.vue';
 import ResultsPerPageSelector from './components/ResultsPerPageSelector.vue';

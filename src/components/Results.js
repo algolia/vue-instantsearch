@@ -1,18 +1,4 @@
-<template>
-  <div :class="bem()" v-if="show">
-
-    <slot name="header"></slot>
-
-    <slot v-for="result in results" :result="result" :key="result.objectID">
-      Result 'objectID': {{ result.objectID }}
-    </slot>
-
-    <slot name="footer"></slot>
-
-  </div>
-</template>
-
-<script>import algoliaComponent from '../component';
+import algoliaComponent from '../component';
 
 export default {
   mixins: [algoliaComponent],
@@ -29,6 +15,30 @@ export default {
     return {
       blockClassName: 'ais-results',
     };
+  },
+  render(h) {
+    if (!this.show) {
+      return undefined;
+    }
+
+    const children = [];
+    if (this.$slots.header) {
+      children.push(this.$slots.header);
+    }
+
+    this.results.forEach(result => {
+      if (this.$scopedSlots.default) {
+        children.push(this.$scopedSlots.default({ result }));
+      } else {
+        children.push(h('div', `'objectID': ${result.objectID}`));
+      }
+    });
+
+    if (this.$slots.footer) {
+      children.push(this.$slots.footer);
+    }
+
+    return h('div', { class: this.bem() }, children);
   },
   mounted() {
     this.updateResultsPerPage();
@@ -82,4 +92,3 @@ export default {
     },
   },
 };
-</script>

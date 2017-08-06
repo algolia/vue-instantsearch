@@ -3,9 +3,12 @@
 exports[`can stack results 1`] = `
 
 <div class="ais-results">
-  Result 'objectID': 1
-  
-    Result 'objectID': 2
+  <div>
+    'objectID': 1
+  </div>
+  <div>
+    'objectID': 2
+  </div>
 </div>
 
 `;
@@ -13,13 +16,18 @@ exports[`can stack results 1`] = `
 exports[`can stack results 2`] = `
 
 <div class="ais-results">
-  Result 'objectID': 1
-  
-    Result 'objectID': 2
-  
-    Result 'objectID': 3
-  
-    Result 'objectID': 4
+  <div>
+    'objectID': 1
+  </div>
+  <div>
+    'objectID': 2
+  </div>
+  <div>
+    'objectID': 3
+  </div>
+  <div>
+    'objectID': 4
+  </div>
 </div>
 
 `;
@@ -27,13 +35,18 @@ exports[`can stack results 2`] = `
 exports[`renders proper HTML 1`] = `
 
 <div class="ais-results">
-  Result 'objectID': 1
-  
-    Result 'objectID': 2
-  
-    Result 'objectID': 3
-  
-    Result 'objectID': 4
+  <div>
+    'objectID': 1
+  </div>
+  <div>
+    'objectID': 2
+  </div>
+  <div>
+    'objectID': 3
+  </div>
+  <div>
+    'objectID': 4
+  </div>
 </div>
 
 `;
@@ -56,9 +69,12 @@ exports[`should be hidden if not results are yielded 1`] = `undefined`;
 exports[`should not stack results by default 1`] = `
 
 <div class="ais-results">
-  Result 'objectID': 1
-  
-    Result 'objectID': 2
+  <div>
+    'objectID': 1
+  </div>
+  <div>
+    'objectID': 2
+  </div>
 </div>
 
 `;
@@ -66,9 +82,12 @@ exports[`should not stack results by default 1`] = `
 exports[`should not stack results by default 2`] = `
 
 <div class="ais-results">
-  Result 'objectID': 3
-  
-    Result 'objectID': 4
+  <div>
+    'objectID': 3
+  </div>
+  <div>
+    'objectID': 4
+  </div>
 </div>
 
 `;

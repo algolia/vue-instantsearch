@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Results from '../Results.vue';
+import Results from '../Results';
 
 test('renders proper HTML', () => {
   const searchStore = {
