@@ -7,7 +7,7 @@ const md =
   new MarkdownIt('default', {
     highlight: (str, lang) => highlight(str, lang),
     linkify: true,
-    typographer: true,
+    typographer: false,
     html: true,
   })
   .use(markdownItAnchor, {
