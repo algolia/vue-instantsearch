@@ -268,12 +268,38 @@ export class Store {
     }
   }
 
+  removeFacetRefinement(attribute, value) {
+    if (this._helper.state.isConjunctiveFacet(attribute)) {
+      this._helper.removeFacetRefinement(attribute, value);
+    } else if (this._helper.state.isDisjunctiveFacet(attribute)) {
+      this._helper.removeDisjunctiveFacetRefinement(attribute, value);
+    } else if (this._helper.state.isHierarchicalFacet(attribute)) {
+      this._helper.removeHierarchicalFacetRefinement(attribute);
+    }
+  }
+
   toggleFacetRefinement(facet, value) {
     this._helper.toggleRefinement(facet, value);
   }
 
   clearRefinements(attribute) {
     this._helper.clearRefinements(attribute);
+  }
+
+  getFacetValue(attributeName, value) {
+    const values = this.getFacetValues(attributeName);
+    for (let i = 0; i < values.length; i++) {
+      const currentValue = values[i];
+      if (currentValue.name === value) {
+        return currentValue;
+      }
+    }
+
+    return {
+      name: value,
+      isRefined: false,
+      count: 0,
+    };
   }
 
   getFacetValues(attribute, sortBy, limit = -1) {

@@ -27,6 +27,7 @@ import NoResults from './components/NoResults.vue';
 import RefinementList from './components/RefinementList.vue';
 import PriceRange from './components/PriceRange.vue';
 import PoweredBy from './components/PoweredBy.vue';
+import Toggle from './components/Toggle.vue';
 
 const InstantSearch = {
   Index,
@@ -46,6 +47,7 @@ const InstantSearch = {
   RefinementList,
   PriceRange,
   PoweredBy,
+  Toggle,
 
   install(Vue) {
     Vue.component('ais-index', Index);
@@ -65,6 +67,7 @@ const InstantSearch = {
     Vue.component('ais-refinement-list', RefinementList);
     Vue.component('ais-price-range', PriceRange);
     Vue.component('ais-powered-by', PoweredBy);
+    Vue.component('ais-toggle', Toggle);
   },
 };
 
@@ -101,4 +104,5 @@ export {
   RefinementList,
   PriceRange,
   PoweredBy,
+  Toggle,
 };
