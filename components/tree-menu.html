@@ -207,14 +207,14 @@
 <p>Generally used to implement layered navigation.</p>
 <h2 id="usage">Usage <a class="anchor" href="components/tree-menu.html#usage" aria-hidden="true"></a></h2>
 <p>First, you need to ensure your data is structured correctly.
-Here is the example of a valid record:</p>
+Here is an example of a valid record:</p>
 <pre class="CodeMirror cm-s-mdn-like code-sample"><code>{
     &quot;name&quot;: &quot;T-shirt&quot;,
     &quot;lvl0&quot;: &quot;Men&#39;s&quot;,
     &quot;lvl1&quot;: &quot;Men&#39;s &gt; Summer&quot;
 }
 </code></pre>
-<p>Attributes <code>lvl0</code> and <code>lvl1</code> needs to be added as <code>attributesForFaceting</code>. You can do so by heading to the Algolia dashboard of your index, and configure the attributes for faceting under the <code>display</code> tab.</p>
+<p>Attributes <code>lvl0</code> and <code>lvl1</code> needs to be added as <code>attributesForFaceting</code>. You can do so by heading over to the Algolia dashboard of your index, and configuring the attributes for faceting under the <code>display</code> tab.</p>
 <p><strong>Info:</strong> The component can handle any amount of levels. You just need to make sure every attribute representing a level is correctly added to the <code>attributesForFaceting</code>.</p>
 <p>In the record example above, you can see that every level contains the full path to the value.
 The default delimiter used is <code>&gt;</code>. (surrounding spaces are important).</p>
@@ -236,7 +236,7 @@ The default delimiter used is <code>&gt;</code>. (surrounding spaces are importa
 <td>attribute</td>
 <td>String</td>
 <td><code>tree-menu</code></td>
-<td>The attribute name to refine on. This does only need to be changed if multiple tree-menu component are bound to the same search store</td>
+<td>The attribute name to refine on. This only needs to be changed if multiple tree-menu components are bound to the same search store</td>
 </tr>
 <tr>
 <td>attributes</td>
@@ -282,12 +282,12 @@ The default delimiter used is <code>&gt;</code>. (surrounding spaces are importa
 <tr>
 <td>header</td>
 <td></td>
-<td>Allows to add content at the top of the component which will be hidden when the component is</td>
+<td>Add content to the top of the component, which will be hidden when the component is hidden</td>
 </tr>
 <tr>
 <td>footer</td>
 <td></td>
-<td>Allows to add content at the bottom of the component which will be hidden when the component is</td>
+<td>Add content to the bottom of the component, which will be hidden when the component is hidden</td>
 </tr>
 </tbody>
 </table>
