@@ -226,7 +226,7 @@
 <li><a href="components/rating.html">Rating</a></li>
 </ul>
 <h2 id="registering-components">Registering components <a class="anchor" href="getting-started/using-components.html#registering-components" aria-hidden="true"></a></h2>
-<p>There are 2 ways of registering components, all at once or one by one.</p>
+<p>There are 2 ways to register components: all at once or one by one.</p>
 <h3 id="all-components-at-once">All components at once <a class="anchor" href="getting-started/using-components.html#all-components-at-once" aria-hidden="true"></a></h3>
 <p>Vue InstantSearch is shipped as a Vue plugin.</p>
 <pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-comment">// src/main.js</span>
@@ -241,7 +241,7 @@
   <span class="cm-property">render</span>: <span class="cm-def">h</span> <span class="cm-operator">=&gt;</span> <span class="cm-variable-2">h</span>(<span class="cm-variable">App</span>)
 });
 </code></pre>
-<p>The line <code>Vue.use(InstantSearch);</code> registers all components at once and make them available
+<p>The line <code>Vue.use(InstantSearch);</code> registers all components at once and makes them available
 in templates.</p>
 <p><strong>Info:</strong> When using the <a href="getting-started/installing.html#using-a-tag">standalone build</a>, all components are automatically imported.</p>
 <h3 id="only-the-used-components">Only the used components <a class="anchor" href="getting-started/using-components.html#only-the-used-components" aria-hidden="true"></a></h3>
@@ -265,7 +265,7 @@ in templates.</p>
 <p>With this approach, only the four manually imported components will be part of your production build. The other components will be removed after <a href="https://webpack.js.org/guides/tree-shaking/">tree-shaking</a>.</p>
 <h3 id="naming">Naming <a class="anchor" href="getting-started/using-components.html#naming" aria-hidden="true"></a></h3>
 <p>When using <code>Vue.use(InstantSearch);</code>, all components are registered with the <code>ais-</code> prefix, which stands for Algolia’s InstantSearch. Example: <code>ais-search-box</code>.</p>
-<p>When manually importing components, you can change that naming and assign a custom tag name.</p>
+<p>When manually importing components, you can change that naming convention and assign a custom tag name.</p>
 <h2 id="using-components">Using components <a class="anchor" href="getting-started/using-components.html#using-components" aria-hidden="true"></a></h2>
 <p>All search components must be wrapped in an <a href="components/index.html"><code>Index</code></a> component.</p>
 <pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span>
@@ -278,9 +278,9 @@ in templates.</p>
   <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">div</span><span class="cm-tag cm-bracket">&gt;</span>
 <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span>
 </code></pre>
-<p>To read why a search component needs to be wrapped into an Index component, have a look at the <a href="getting-started/custom-components.html">custom components</a> page.</p>
+<p>To read why a search component needs to be wrapped in an Index component, have a look at the <a href="getting-started/custom-components.html">custom components</a> page.</p>
 <h3 id="avoiding-the-use-of-an-component">Avoiding the use of an <code>Index</code> component <a class="anchor" href="getting-started/using-components.html#avoiding-the-use-of-an-component" aria-hidden="true"></a></h3>
-<p>You might not want to use a wrapping <code>Index</code> component or maybe you want to do some <a href="advanced/server-side-rendering.html">server-side rendering</a>.</p>
+<p>You might not want to use a wrapping <code>Index</code> component, or maybe you’ll want to do <a href="advanced/server-side-rendering.html">server-side rendering</a>.</p>
 <p>In those cases, you can manually tie components to a search store by passing a <code>searchStore</code> property to them:</p>
 <pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span>
   <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">id</span>=<span class="cm-string">&quot;app&quot;</span><span class="cm-tag cm-bracket">&gt;</span>
@@ -304,8 +304,8 @@ in templates.</p>
   }
 <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span>
 </code></pre>
-<p><strong>Info:</strong> The Index component also accepts the searchStore as parameter. Here we used that to avoid us to repeat the Algolia credentials.</p>
-<p><strong>Best practice:</strong> Wrapping your search components with an <code>Index</code> component makes it easier to reason about the code. All the logic is then declared inside of the template instead of being spread between templates and methods or objects. If you do not need to manually inject a search store, we recommend you stick with using the Index component.</p>
+<p><strong>Info:</strong> The Index component also accepts the searchStore as parameter. Here we used that to avoid repeating the Algolia credentials.</p>
+<p><strong>Best practice:</strong> Wrapping your search components with an <code>Index</code> component makes it easier to think about the code. All the logic is then declared inside of the template instead of being spread between templates and methods or objects. If you do not need to manually inject a search store, we recommend sticking with the Index component.</p>
 </div></div></div></section><section class="footer-new-cta footer-new h300 pos-rel"><div class="container color-white stellar-container vh-center"><div class="col-md-5"><div class="spacer120 hidden-sm"></div><div class="spacer32 visible-xs"></div><header><h2 class="text-normal m-t-none">Start creating stellar search,<span class="cf hidden-xs"></span>no strings attached.</h2><p>Dive into Algolia with our 14-day trial - No credit card required. Plenty of time to see how Algolia can change your business.</p></header></div><div class="col-md-7 pos-rel z-10"><div class="spacer120 inline hidden-sm"></div><div class="spacer32 inline hidden-sm"></div><div class="spacer16 visible-sm"></div><div class="button-holder h200 p-r-large"><div class="spacer16 hidden-md hidden-sm"></div><span class="inline pos-rel"><a class="btn btn-static-primary btn-static-shadow-dark" href="https://algolia.com/users/sign_up">Get Started<svg class="arrow-icon" width="22"><use xlink:href="#arrow-right"></use></svg></a><svg class="search-icon" width="22"><use xlink:href="#search-icon"></use></svg></span></div></div></div></section><div id="footer"><div class="credits"><div class="container pos-rel"><div class="row"><div class="col-md-12 text-center"><a data-no-turbolink="true" href="/"><img width="40" src="https://www.algolia.com/static_assets/images/flat2/algolia/algolia-logo_badge-598a1fe6.svg"></a></div></div><div class="spacer40"></div></div></div></div><svg style="display: none;"><symbol width="40" height="40" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" id="search-icon"><path d="M26.806 29.012a16.312 16.312 0 0 1-10.427 3.746C7.33 32.758 0 25.425 0 16.378 0 7.334 7.333 0 16.38 0c9.045 0 16.378 7.333 16.378 16.38 0 3.96-1.406 7.593-3.746 10.426L39.547 37.34c.607.608.61 1.59-.004 2.203a1.56 1.56 0 0 1-2.202.004L26.808 29.012zm-10.427.627c7.32 0 13.26-5.94 13.26-13.26 0-7.325-5.94-13.26-13.26-13.26-7.325 0-13.26 5.935-13.26 13.26 0 7.32 5.935 13.26 13.26 13.26z" fill-rule="evenodd"></path></symbol><symbol width="46" height="38" viewbox="0 0 46 38" xmlns="http://www.w3.org/2000/svg" id="arrow-right"><path d="M34.852 15.725l-8.624-9.908L24.385 3.7 28.62.014l1.84 2.116 13.1 15.05 1.606 1.846-1.61 1.844-13.1 15.002-1.845 2.114-4.23-3.692 1.85-2.114 9.465-10.84h-24.66v-5.615h23.817zm-26.774 0h-.002 2.96v5.614H0v-5.615h8.078z" fill-rule="evenodd"></path></symbol><symbol xmlns="http://www.w3.org/2000/svg" viewbox="0 0 708.8 717" id="icon-copy"><path d="M658.8 158H490.2c-13.3 0-26 5.3-35.4 14.6l-4.6 4.6V25c0-13.8-11.2-25-25-25H235.6c-6.6 0-13 2.6-17.7 7.3L7.3 218C2.6 222.6 0 229 0 235.6V541c0 13.8 11.2 25 25 25h227.8v101c0 27.6 22.4 50 50 50h356c27.6 0 50-22.4 50-50V208c0-27.6-22.4-50-50-50zm-204 85.4V360H338.2l116.6-116.6zm-253-149.2V209H87L201.8 94.2zM50 516V259h176.8c13.8 0 25-11.2 25-25V50h148.4v177.3L267.5 360c-9.4 9.4-14.6 22.1-14.6 35.4V516H50zm608.8 151h-356V410h177c13.8 0 25-11.2 25-25V208h154v459z"></path></symbol></svg><script src="/vue-instantsearch/js/main.fd76c6961379d55b1642-build.js"></script><!-- Google Tag Manager --><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N8JP8G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
