@@ -1,5 +1,5 @@
 <template>
-  <ul :class="bem()" v-show="totalResults > 0">
+  <ul :class="bem()" v-show="totalPages > 1">
     <li :class="[bem('item', 'first'), page === 1 ? bem('item', 'disabled') : '']">
       <a href="#" @click.prevent="goToFirstPage">
         <slot name="first">&lt;&lt;</slot>
