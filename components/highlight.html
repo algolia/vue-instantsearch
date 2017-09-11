@@ -222,6 +222,14 @@ but adds some sugar on top of it to prevent XSS attacks.</p>
 <p>You can access the highlighted version by specifying the path by separating levels with dots:</p>
 <pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-highlight</span> <span class="cm-attribute">:result</span>=<span class="cm-string">&quot;result&quot;</span> <span class="cm-attribute">attribute-name</span>=<span class="cm-string">&quot;meta.title&quot;</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">ais-highlight</span><span class="cm-tag cm-bracket">&gt;</span>
 </code></pre>
+<p><strong>Advanced use cases:</strong></p>
+<p>For more complex data structures, it will be necessary to leverage the <a href="https://www.algolia.com/doc/guides/searching/highlighting-snippeting/#response-information">_highlightResult</a> object directly. For example, consider the case of an array of keywords:</p>
+<pre class="CodeMirror cm-s-mdn-like code-sample"><code><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">ais-results</span><span class="cm-tag cm-bracket">&gt;</span>
+  <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">template</span> <span class="cm-attribute">scope</span>=<span class="cm-string">&quot;{ result }&quot;</span><span class="cm-tag cm-bracket">&gt;</span>
+    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">p</span> <span class="cm-attribute">v-for</span>=<span class="cm-string">&quot;keyword in result._highlightResult.keywords&quot;</span> <span class="cm-attribute">v-html</span>=<span class="cm-string">&quot;keyword.value&quot;</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">p</span><span class="cm-tag cm-bracket">&gt;</span>
+  <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">template</span><span class="cm-tag cm-bracket">&gt;</span>
+<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">ais-results</span><span class="cm-tag cm-bracket">&gt;</span>
+</code></pre>
 <h2 id="props">Props <a class="anchor" href="components/highlight.html#props" aria-hidden="true"></a></h2>
 <table>
 <thead>
