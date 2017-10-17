@@ -1,5 +1,5 @@
 <template>
-  <div :class="bem()" v-if="totalResults > 0">
+  <div :class="bem()" v-if="isVisible">
     <slot :totalResults="totalResults" :processingTime="processingTime" :query="query">
       {{ totalResults }} results found in {{ processingTime }}ms
     </slot>
@@ -25,6 +25,9 @@ export default {
     processingTime() {
       return this.searchStore.processingTimeMS;
     },
-  },
+    isVisible() {
+      return this.searchStore.totalResults > 0;
+    }
+  }
 };
 </script>
