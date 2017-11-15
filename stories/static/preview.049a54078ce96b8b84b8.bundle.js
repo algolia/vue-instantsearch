@@ -51295,7 +51295,7 @@ module.exports = mapValues;
 /* 906 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"vue-instantsearch","author":{"name":"Algolia, Inc.","url":"https://www.algolia.com"},"description":"👀 Lightning-fast Algolia search for Vue apps","keywords":["vue","algolia","search","instantsearch","components","ui","facet","autocomplete"],"license":"MIT","version":"1.3.1","files":["dist"],"main":"dist/vue-instantsearch.common.js","module":"dist/vue-instantsearch.esm.js","repository":"https://github.com/algolia/vue-instantsearch","scripts":{"build":"yarn run build:cjs && yarn run build:es && yarn run build:umd","build:cjs":"rollup -c ./build/rollup.cjs.config.js","build:es":"rollup -c ./build/rollup.es.config.js","build:umd":"rollup -c ./build/rollup.umd.config.js","storybook":"start-storybook -p 9001 -c .storybook","storybook:build":"build-storybook -c .storybook -o docs/dist/stories","docs:build":"cd docs && yarn && yarn build","docs:build:dev":"cd docs && yarn && yarn build:dev","docs:watch":"cd docs && yarn && yarn dev","docs:deploy":"cd docs && yarn && yarn deploy","test":"yarn run lint && jest --verbose --coverage","test:update":"jest --verbose --updateSnapshot","test:watch":"jest --verbose --watchAll --notify","lint":"eslint --ext .js,.vue .","lint:fix":"eslint --ext .js,.vue . --fix","changelog":"conventional-changelog --preset angular --infile CHANGELOG.md --same-file","changelog:unreleased":"conventional-changelog --preset angular --output-unreleased"},"dependencies":{"algoliasearch":"^3.18.1","algoliasearch-helper":"^2.21.1","escape-html":"^1.0.3"},"peerDependencies":{"vue":"^2.2.2"},"devDependencies":{"@storybook/vue":"^3.2.12","babel-eslint":"^7.2.3","babel-jest":"^19.0.0","babel-preset-es2015":"^6.24.0","concurrently":"^3.4.0","conventional-changelog-cli":"^1.3.1","eslint":"^4.0.0","eslint-config-algolia":"11.0.1-beta","eslint-config-prettier":"^2.1.1","eslint-plugin-html":"^3.0.0","eslint-plugin-import":"^2.3.0","eslint-plugin-jest":"^20.0.3","eslint-plugin-prettier":"^2.1.2","jest":"^20.0.3","jest-serializer-html":"^4.0.0","jest-vue-preprocessor":"^1.1.0","prettier":"^1.4.4","rollup":"^0.41.5","rollup-plugin-buble":"^0.15.0","rollup-plugin-commonjs":"^7.1.0","rollup-plugin-filesize":"^1.0.1","rollup-plugin-json":"^2.1.1","rollup-plugin-node-resolve":"^2.0.0","rollup-plugin-replace":"^1.1.1","rollup-plugin-uglify":"^1.0.1","rollup-plugin-vue":"^2.3.1","rollup-watch":"^3.2.2","vue":"^2.2.2"},"jest":{"setupFiles":["<rootDir>/jest.setup.js"],"moduleFileExtensions":["js","vue"],"snapshotSerializers":["jest-serializer-html"],"transform":{"^.+\\.js$":"<rootDir>/node_modules/babel-jest",".*\\.(vue)$":"<rootDir>/node_modules/jest-vue-preprocessor"}}}
+module.exports = {"name":"vue-instantsearch","author":{"name":"Algolia, Inc.","url":"https://www.algolia.com"},"description":"👀 Lightning-fast Algolia search for Vue apps","keywords":["vue","algolia","search","instantsearch","components","ui","facet","autocomplete"],"license":"MIT","version":"1.3.2","files":["dist"],"main":"dist/vue-instantsearch.common.js","module":"dist/vue-instantsearch.esm.js","repository":"https://github.com/algolia/vue-instantsearch","scripts":{"build":"yarn run build:cjs && yarn run build:es && yarn run build:umd","build:cjs":"rollup -c ./build/rollup.cjs.config.js","build:es":"rollup -c ./build/rollup.es.config.js","build:umd":"rollup -c ./build/rollup.umd.config.js","storybook":"start-storybook -p 9001 -c .storybook","storybook:build":"build-storybook -c .storybook -o docs/dist/stories","docs:build":"cd docs && yarn && yarn build","docs:build:dev":"cd docs && yarn && yarn build:dev","docs:watch":"cd docs && yarn && yarn dev","docs:deploy":"cd docs && yarn && yarn deploy","test":"yarn run lint && jest --verbose --coverage","test:update":"jest --verbose --updateSnapshot","test:watch":"jest --verbose --watchAll --notify","lint":"eslint --ext .js,.vue .","lint:fix":"eslint --ext .js,.vue . --fix","changelog":"conventional-changelog --preset angular --infile CHANGELOG.md --same-file","changelog:unreleased":"conventional-changelog --preset angular --output-unreleased"},"dependencies":{"algoliasearch":"^3.18.1","algoliasearch-helper":"^2.21.1","escape-html":"^1.0.3"},"peerDependencies":{"vue":"^2.2.2"},"devDependencies":{"@storybook/vue":"^3.2.12","babel-eslint":"^7.2.3","babel-jest":"^19.0.0","babel-preset-es2015":"^6.24.0","concurrently":"^3.4.0","conventional-changelog-cli":"^1.3.1","eslint":"^4.0.0","eslint-config-algolia":"11.0.1-beta","eslint-config-prettier":"^2.1.1","eslint-plugin-html":"^3.0.0","eslint-plugin-import":"^2.3.0","eslint-plugin-jest":"^20.0.3","eslint-plugin-prettier":"^2.1.2","jest":"^20.0.3","jest-serializer-html":"^4.0.0","jest-vue-preprocessor":"^1.1.0","prettier":"^1.4.4","rollup":"^0.41.5","rollup-plugin-buble":"^0.15.0","rollup-plugin-commonjs":"^7.1.0","rollup-plugin-filesize":"^1.0.1","rollup-plugin-json":"^2.1.1","rollup-plugin-node-resolve":"^2.0.0","rollup-plugin-replace":"^1.1.1","rollup-plugin-uglify":"^1.0.1","rollup-plugin-vue":"^2.3.1","rollup-watch":"^3.2.2","vue":"^2.2.2"},"jest":{"setupFiles":["<rootDir>/jest.setup.js"],"moduleFileExtensions":["js","vue"],"snapshotSerializers":["jest-serializer-html"],"transform":{"^.+\\.js$":"<rootDir>/node_modules/babel-jest",".*\\.(vue)$":"<rootDir>/node_modules/jest-vue-preprocessor"}}}
 
 /***/ }),
 /* 907 */
@@ -51580,6 +51580,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_1__component___default.a],
   props: {
@@ -51817,6 +51818,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_0__component___default.a],
   data() {
@@ -51920,6 +51922,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -52044,6 +52047,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_0__component___default.a],
   data() {
@@ -52139,6 +52143,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -52348,6 +52353,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_0__component___default.a],
   props: {
@@ -52450,6 +52456,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_1__component___default.a],
   props: {
@@ -52491,7 +52498,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     );
   },
   destroyed() {
+    this.searchStore.stop();
     this.searchStore.removeFacet(this.attribute);
+    this.searchStore.start();
   },
   computed: {
     facetValues() {
@@ -52669,71 +52678,74 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-  
 
-  /* harmony default export */ __webpack_exports__["default"] = ({
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__component___default.a],
 
-    props: {
-      attribute: {
-        type: String,
-        required: true,
-      },
-      limit: {
-        type: Number,
-        default: 10,
-      },
-      sortBy: {
-        default() {
-          return ['isRefined:desc', 'count:desc', 'name:asc'];
-        },
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__component___default.a],
+
+  props: {
+    attribute: {
+      type: String,
+      required: true,
+    },
+    limit: {
+      type: Number,
+      default: 10,
+    },
+    sortBy: {
+      default() {
+        return ['isRefined:desc', 'count:desc', 'name:asc'];
       },
     },
+  },
 
-    computed: {
-      facetValues() {
-        const { data = [] } = this.searchStore.getFacetValues(
-          this.attribute,
-          this.sortBy
-        );
-
-        return data;
-      },
-      show() {
-        return this.facetValues.length > 0;
-      },
-    },
-
-    methods: {
-      handleClick(path) {
-        this.searchStore.toggleFacetRefinement(this.attribute, path);
-      },
-    },
-
-    data() {
-      return {
-        blockClassName: 'ais-menu',
-      };
-    },
-
-    created() {
-      this.searchStore.stop();
-      this.searchStore.maxValuesPerFacet = this.limit;
-      this.searchStore.addFacet(
-        {
-          name: this.attribute,
-          attributes: [this.attribute],
-        },
-        __WEBPACK_IMPORTED_MODULE_1__store__["FACET_TREE"]
+  computed: {
+    facetValues() {
+      const { data = [] } = this.searchStore.getFacetValues(
+        this.attribute,
+        this.sortBy
       );
-      this.searchStore.start();
-      this.searchStore.refresh();
-    },
 
-    destroyed() {
-      this.searchStore.removeFacet(this.attribute);
+      return data;
     },
-  });
+    show() {
+      return this.facetValues.length > 0;
+    },
+  },
+
+  methods: {
+    handleClick(path) {
+      this.searchStore.toggleFacetRefinement(this.attribute, path);
+    },
+  },
+
+  data() {
+    return {
+      blockClassName: 'ais-menu',
+    };
+  },
+
+  created() {
+    this.searchStore.stop();
+    this.searchStore.maxValuesPerFacet = this.limit;
+    this.searchStore.addFacet(
+      {
+        name: this.attribute,
+        attributes: [this.attribute],
+      },
+      __WEBPACK_IMPORTED_MODULE_1__store__["FACET_TREE"]
+    );
+    this.searchStore.start();
+    this.searchStore.refresh();
+  },
+
+  destroyed() {
+    this.searchStore.stop();
+    this.searchStore.removeFacet(this.attribute);
+    this.searchStore.start();
+  },
+});
 
 
 /***/ }),
@@ -52802,6 +52814,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -52941,6 +52954,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_0__component___default.a],
   props: {
@@ -52999,6 +53013,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53192,6 +53207,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_1__component___default.a],
   props: {
@@ -53217,7 +53233,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.searchStore.addFacet(this.attributeName, __WEBPACK_IMPORTED_MODULE_0__store__["FACET_OR"]);
   },
   destroyed() {
+    this.searchStore.stop();
     this.searchStore.removeFacet(this.attributeName);
+    this.searchStore.start();
   },
   computed: {
     show() {
@@ -53507,7 +53525,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   destroyed() {
+    this.searchStore.stop();
     this.searchStore.removeFacet(this.attributeName);
+    this.searchStore.start();
   },
 
   computed: {
@@ -53753,6 +53773,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_0__component___default.a],
   data() {
@@ -53844,6 +53865,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_1__component___default.a],
   props: {
@@ -53879,7 +53901,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.searchStore.addFacet(this.attributeName, this.operator);
   },
   destroyed() {
+    this.searchStore.stop();
     this.searchStore.removeFacet(this.attributeName);
+    this.searchStore.start();
   },
   computed: {
     facetValues() {
@@ -54025,6 +54049,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -54249,6 +54274,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_0__component___default.a],
   props: {
@@ -54390,6 +54416,10 @@ var _vue = __webpack_require__(35);
   return {
     template: '<ais-clear></ais-clear>'
   };
+}).add('custom rendering', function () {
+  return {
+    template: '<ais-clear>\n      <template>\n        Clear search query\n      </template>\n    </ais-clear>'
+  };
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)(module)))
 
@@ -54412,6 +54442,10 @@ var _vue = __webpack_require__(35);
   return {
     template: '<ais-menu attribute="materials" :limit="3"></ais-menu>'
   };
+}).add('custom rendering', function () {
+  return {
+    template: '<ais-menu attribute="materials" :limit="3">\n      <h3 slot="header">Materials</h3>\n      <hr slot="footer" />\n    </ais-menu>'
+  };
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)(module)))
 
@@ -54433,6 +54467,13 @@ var _vue = __webpack_require__(35);
       this.$refs.child.searchStore.query = 'no results for this';
     }
   };
+}).add('custom rendering', function () {
+  return {
+    template: '<ais-no-results ref="child">\n      <span slot-scope="{query}">no results for "{{query}}"</span>\n    </ais-no-results>',
+    mounted: function mounted() {
+      this.$refs.child.searchStore.query = 'no results for this';
+    }
+  };
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)(module)))
 
@@ -54450,6 +54491,10 @@ var _vue = __webpack_require__(35);
 (0, _vue.storiesOf)('Pagination', module).addDecorator(_utils.previewWrapper).add('default', function () {
   return {
     template: '<ais-pagination></ais-pagination>'
+  };
+}).add('custom rendering', function () {
+  return {
+    template: '<ais-pagination>\n      <span slot="first">first</span>\n      <span slot="previous">previous</span>\n      <span slot="next">next</span>\n      <span slot="last">last</span>\n    </ais-pagination>'
   };
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)(module)))
@@ -54545,6 +54590,10 @@ var _vue = __webpack_require__(35);
   return {
     template: '<ais-refinement-list attribute-name="materials"></ais-refinement-list>'
   };
+}).add('custom rendering', function () {
+  return {
+    template: '<ais-refinement-list attribute-name="materials">\n      <h3 slot="header">Materials</h3>\n      <hr slot="footer" />\n    </ais-refinement-list>'
+  };
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)(module)))
 
@@ -54562,6 +54611,10 @@ var _vue = __webpack_require__(35);
 (0, _vue.storiesOf)('ResultsPerPageSelector', module).addDecorator(_utils.previewWrapper).add('default', function () {
   return {
     template: '<ais-results-per-page-selector></ais-results-per-page-selector>'
+  };
+}).add('with custom rendering', function () {
+  return {
+    template: '<ais-results-per-page-selector>\n      <template scope="{option}">{{option}} results per page</template>\n    </ais-results-per-page-selector>'
   };
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)(module)))
@@ -54655,4 +54708,4 @@ var _vue = __webpack_require__(35);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.cf8c37e8915337d97cdc.bundle.js.map
+//# sourceMappingURL=preview.049a54078ce96b8b84b8.bundle.js.map
