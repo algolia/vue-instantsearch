@@ -43,4 +43,4 @@
 
 **What is the version you are using? Always use the latest one before opening a bug issue.**
 
-<!-- Delete any HTML comment and non relevant questions -->
+<!-- Delete any non relevant questions -->
