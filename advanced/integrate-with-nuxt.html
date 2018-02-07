@@ -281,6 +281,7 @@ This adds a nice performance gain by first rendering the page while caching the 
 <span class="cm-keyword">export</span> <span class="cm-keyword">default</span> {
   <span class="cm-property">async</span> <span class="cm-property">asyncData</span> () {
     <span class="cm-variable">searchStore</span>.<span class="cm-property">start</span>()
+    <span class="cm-variable">searchStore</span>.<span class="cm-property">refresh</span>()
     <span class="cm-keyword">await</span> <span class="cm-variable">searchStore</span>.<span class="cm-property">waitUntilInSync</span>()
 
     <span class="cm-keyword">return</span> { <span class="cm-property">serializedSearchStore</span>: <span class="cm-variable">searchStore</span>.<span class="cm-property">serialize</span>() }
@@ -302,7 +303,7 @@ This adds a nice performance gain by first rendering the page while caching the 
 This allows you to have a better control over the lifecycle of the search.</p>
 <p>In the <code>asyncData</code> method, multiple things happen:</p>
 <ol>
-<li>you first manually start the store which will launch the first query to Algolia <code>searchStore.start()</code></li>
+<li>you first manually start &amp; refresh the store which will launch the first query to Algolia <code>searchStore.start()</code> &amp;&amp; <code>searchStore.refresh()</code></li>
 <li>you then wait for the query to be done so that you get all the results in the store with <code>store.waitUntilInSync()</code> method</li>
 <li>you return the serialized version of the store so that it can be passed to the frontend <code>return { serializedSearchStore: searchStore.serialize() }</code></li>
 </ol>
