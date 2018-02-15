@@ -108,11 +108,15 @@ test('it should emit a "page-change" event when page changes and pass in the pag
 
   vm.$mount();
 
-  expect(onPageChange).not.toHaveBeenCalledWith('page');
+  expect(onPageChange).not.toHaveBeenCalled();
 
   vm.$el
     .getElementsByTagName('li')[3]
     .getElementsByTagName('a')[0]
     .click();
   expect(onPageChange).toHaveBeenCalledTimes(1);
+
+  const page = searchStore.page;
+  expect(onPageChange).toHaveBeenCalledWith(page);
+  expect(page).toBe(2);
 });
