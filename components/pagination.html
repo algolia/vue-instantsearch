@@ -221,7 +221,7 @@
 <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span>
   <span class="cm-keyword">export</span> <span class="cm-keyword">default</span> {
     <span class="cm-property">methods</span>: {
-      <span class="cm-property">onPageChange</span>() {
+      <span class="cm-property">onPageChange</span>(<span class="cm-def">page</span>) {
         <span class="cm-variable">window</span>.<span class="cm-property">scrollTo</span>(<span class="cm-number">0</span>,<span class="cm-number">0</span>);
       }
     }
@@ -334,12 +334,14 @@
 <thead>
 <tr>
 <th>Event name</th>
+<th>Variables</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>page-change</td>
+<td>page</td>
 <td>Triggered right after a page was changed due to an action taken on the pagination component.</td>
 </tr>
 </tbody>

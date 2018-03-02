@@ -52279,7 +52279,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return;
       }
       this.searchStore.page = p;
-      this.$emit('page-change');
+      this.$emit('page-change', p);
     },
     goToFirstPage() {
       this.goToPage(1);
@@ -54880,4 +54880,4 @@ var _vue = __webpack_require__(24);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=preview.8603a50fab5152921304.bundle.js.map
+//# sourceMappingURL=preview.30ff33abd8dd60dfe381.bundle.js.map
