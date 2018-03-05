@@ -9,8 +9,8 @@
                :class="bem('checkbox')"
                v-model="facet.isRefined"
                @change="toggleRefinement(facet)"
-               :value="facet.name">
-        <slot :count="facet.count" :active="facet.isRefined" :value="facet.name">
+               :value="facet.name"
+        ><slot :count="facet.count" :active="facet.isRefined" :value="facet.name">
           <span :class="bem('value')">{{facet.name}}</span>
           <span :class="bem('count')">{{facet.count}}</span>
         </slot>
