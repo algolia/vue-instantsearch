@@ -1,3 +1,13 @@
+<a name="1.5.1"></a>
+## [1.5.1](https://github.com/algolia/vue-instantsearch/compare/v1.5.0...v1.5.1) (2018-03-06)
+
+
+### Bug Fixes
+
+* **refinementList:** avoid unwanted spacing ([#384](https://github.com/algolia/vue-instantsearch/issues/384)) ([8d12317](https://github.com/algolia/vue-instantsearch/commit/8d12317))
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/algolia/vue-instantsearch/compare/v1.4.0...v1.5.0) (2018-03-02)
 
