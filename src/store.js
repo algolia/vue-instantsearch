@@ -194,6 +194,14 @@ export class Store {
     return this._helper.lastResults.nbPages;
   }
 
+  get userData() {
+    if (!this._helper.lastResults) {
+      return undefined;
+    }
+
+    return this._helper.lastResults.userData;
+  }
+
   get totalResults() {
     if (!this._helper.lastResults) {
       return 0;
