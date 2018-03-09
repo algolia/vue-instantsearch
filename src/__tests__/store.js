@@ -116,6 +116,27 @@ describe('Store', () => {
     expect(store.page).toEqual(2);
   });
 
+  test('can retrieve userData if it exists', () => {
+    const store = createStore();
+    store._helper = {
+      lastResults: {
+        userData: ['a value'],
+      },
+    };
+
+    expect(store.userData).toEqual(['a value']);
+  });
+
+  test('returns undefined as userData if no last response is available', () => {
+    const store = createStore();
+    expect(store.userData).toEqual(undefined);
+  });
+
+  test('returns undefined if not userData is part of the last response', () => {
+    const store = createStore();
+    expect(store.userData).toEqual(undefined);
+  });
+
   test('should add "vue-instantsearch" User Agent to the client with the current version', () => {
     const addAlgoliaAgent = jest.fn();
     const client = {
