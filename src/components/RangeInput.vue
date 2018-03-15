@@ -1,6 +1,6 @@
 <template>
   <div :class="bem()">
-    <slot name="header" />
+    <slot name="header"></slot>
 
     <form @submit.prevent="onSubmit(refinement)">
       <input
