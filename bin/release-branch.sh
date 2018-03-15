@@ -52,4 +52,4 @@ git push origin HEAD
 
 echo "Your release branch 'chore/release-$PACKAGE_VERSION' is now ready for review..."
 
-git open > /dev/null 2>&1 || echo "Install https://github.com/paulirish/git-open so that next times it opens the browser at the repository URL."
+git open || git browse > /dev/null 2>&1 || echo "Install https://github.com/paulirish/git-open so that next times it opens the browser at the repository URL."
