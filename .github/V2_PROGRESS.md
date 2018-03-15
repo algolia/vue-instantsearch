@@ -14,63 +14,148 @@
 
 A checklist for all of the components which are completely done.
 
-* [ ] `ais-breadcrumb`
-* [ ] `ais-clear-refinements`
-* [x] `ais-configure`
-* [ ] `ais-current-refinements`
-* [ ] `ais-hierarchical-menu`
-* [ ] `ais-highlight`
-* [ ] `ais-hits-per-page`
-* [ ] `ais-hits`
-* [ ] `ais-index`
-* [ ] `ais-infinite-hits`
-* [ ] `ais-menu-select`
-* [ ] `ais-menu`
-* [ ] `ais-numeric-menu`
-* [ ] `ais-numeric-selector`
-* [ ] `ais-pagination`
-* [ ] `ais-panel`
-* [ ] `ais-powered-by`
-* [ ] `ais-range-input`
-* [ ] `ais-range-slider`
-* [ ] `ais-rating-menu`
-* [ ] `ais-refinement-list`
-* [ ] `ais-search-box`
-* [ ] `ais-snippet`
-* [ ] `ais-sort-by`
-* [ ] `ais-stats`
-* [ ] `ais-toggle-refinement`
-* [ ] `ais-index`
+* connectors
+  * [ ] `ais-breadcrumb`
+  * [ ] `ais-clear-refinements`
+  * [x] `ais-configure`
+  * [ ] `ais-current-refinements`
+  * [ ] `ais-hierarchical-menu`
+  * [ ] `ais-highlight`
+  * [ ] `ais-hits-per-page`
+  * [ ] `ais-hits`
+  * [ ] `ais-index`
+  * [ ] `ais-infinite-hits`
+  * [ ] `ais-menu-select`
+  * [ ] `ais-menu`
+  * [ ] `ais-numeric-menu`
+  * [ ] `ais-numeric-selector`
+  * [ ] `ais-pagination`
+  * [ ] `ais-panel`
+  * [ ] `ais-powered-by`
+  * [ ] `ais-range-input`
+  * [ ] `ais-range-slider`
+  * [ ] `ais-rating-menu`
+  * [ ] `ais-refinement-list`
+  * [ ] `ais-search-box`
+  * [ ] `ais-snippet`
+  * [ ] `ais-sort-by`
+  * [ ] `ais-stats`
+  * [ ] `ais-toggle-refinement`
+  * [ ] `ais-index`
+* DOM
+  * [ ] `ais-breadcrumb`
+  * [ ] `ais-clear-refinements`
+  * [x] `ais-configure`
+  * [ ] `ais-current-refinements`
+  * [ ] `ais-hierarchical-menu`
+  * [ ] `ais-highlight`
+  * [ ] `ais-hits-per-page`
+  * [ ] `ais-hits`
+  * [ ] `ais-index`
+  * [ ] `ais-infinite-hits`
+  * [ ] `ais-menu-select`
+  * [ ] `ais-menu`
+  * [ ] `ais-numeric-menu`
+  * [ ] `ais-numeric-selector`
+  * [ ] `ais-pagination`
+  * [ ] `ais-panel`
+  * [ ] `ais-powered-by`
+  * [ ] `ais-range-input`
+  * [ ] `ais-range-slider`
+  * [ ] `ais-rating-menu`
+  * [ ] `ais-refinement-list`
+  * [ ] `ais-search-box`
+  * [ ] `ais-snippet`
+  * [ ] `ais-sort-by`
+  * [ ] `ais-stats`
+  * [ ] `ais-toggle-refinement`
+  * [ ] `ais-index`
+* docs
+  * [ ] `ais-breadcrumb`
+  * [ ] `ais-clear-refinements`
+  * [x] `ais-configure`
+  * [ ] `ais-current-refinements`
+  * [ ] `ais-hierarchical-menu`
+  * [ ] `ais-highlight`
+  * [ ] `ais-hits-per-page`
+  * [ ] `ais-hits`
+  * [ ] `ais-index`
+  * [ ] `ais-infinite-hits`
+  * [ ] `ais-menu-select`
+  * [ ] `ais-menu`
+  * [ ] `ais-numeric-menu`
+  * [ ] `ais-numeric-selector`
+  * [ ] `ais-pagination`
+  * [ ] `ais-panel`
+  * [ ] `ais-powered-by`
+  * [ ] `ais-range-input`
+  * [ ] `ais-range-slider`
+  * [ ] `ais-rating-menu`
+  * [ ] `ais-refinement-list`
+  * [ ] `ais-search-box`
+  * [ ] `ais-snippet`
+  * [ ] `ais-sort-by`
+  * [ ] `ais-stats`
+  * [ ] `ais-toggle-refinement`
+  * [ ] `ais-index`
+* stories
+  * [ ] `ais-breadcrumb`
+  * [ ] `ais-clear-refinements`
+  * [x] `ais-configure`
+  * [ ] `ais-current-refinements`
+  * [ ] `ais-hierarchical-menu`
+  * [ ] `ais-highlight`
+  * [ ] `ais-hits-per-page`
+  * [ ] `ais-hits`
+  * [ ] `ais-index`
+  * [ ] `ais-infinite-hits`
+  * [ ] `ais-menu-select`
+  * [ ] `ais-menu`
+  * [ ] `ais-numeric-menu`
+  * [ ] `ais-numeric-selector`
+  * [ ] `ais-pagination`
+  * [ ] `ais-panel`
+  * [ ] `ais-powered-by`
+  * [ ] `ais-range-input`
+  * [ ] `ais-range-slider`
+  * [ ] `ais-rating-menu`
+  * [ ] `ais-refinement-list`
+  * [ ] `ais-search-box`
+  * [ ] `ais-snippet`
+  * [ ] `ais-sort-by`
+  * [ ] `ais-stats`
+  * [ ] `ais-toggle-refinement`
+  * [ ] `ais-index`
+* tests
+  * [ ] `ais-breadcrumb`
+  * [ ] `ais-clear-refinements`
+  * [ ] `ais-configure`
+  * [ ] `ais-current-refinements`
+  * [ ] `ais-hierarchical-menu`
+  * [ ] `ais-highlight`
+  * [ ] `ais-hits-per-page`
+  * [ ] `ais-hits`
+  * [ ] `ais-index`
+  * [ ] `ais-infinite-hits`
+  * [ ] `ais-menu-select`
+  * [ ] `ais-menu`
+  * [ ] `ais-numeric-menu`
+  * [ ] `ais-numeric-selector`
+  * [ ] `ais-pagination`
+  * [ ] `ais-panel`
+  * [ ] `ais-powered-by`
+  * [ ] `ais-range-input`
+  * [ ] `ais-range-slider`
+  * [ ] `ais-rating-menu`
+  * [ ] `ais-refinement-list`
+  * [ ] `ais-search-box`
+  * [ ] `ais-snippet`
+  * [ ] `ais-sort-by`
+  * [ ] `ais-stats`
+  * [ ] `ais-toggle-refinement`
+  * [ ] `ais-index`
 
 # Rounding up work
 
 * [ ] release plan
-* [ ] modifying tests
-    * [ ] `ais-breadcrumb`
-    * [ ] `ais-clear-refinements`
-    * [ ] `ais-configure`
-    * [ ] `ais-current-refinements`
-    * [ ] `ais-hierarchical-menu`
-    * [ ] `ais-highlight`
-    * [ ] `ais-hits-per-page`
-    * [ ] `ais-hits`
-    * [ ] `ais-index`
-    * [ ] `ais-infinite-hits`
-    * [ ] `ais-menu-select`
-    * [ ] `ais-menu`
-    * [ ] `ais-numeric-menu`
-    * [ ] `ais-numeric-selector`
-    * [ ] `ais-pagination`
-    * [ ] `ais-panel`
-    * [ ] `ais-powered-by`
-    * [ ] `ais-range-input`
-    * [ ] `ais-range-slider`
-    * [ ] `ais-rating-menu`
-    * [ ] `ais-refinement-list`
-    * [ ] `ais-search-box`
-    * [ ] `ais-snippet`
-    * [ ] `ais-sort-by`
-    * [ ] `ais-stats`
-    * [ ] `ais-toggle-refinement`
-    * [ ] `ais-index`
 * [ ] migration guide
