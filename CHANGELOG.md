@@ -1,3 +1,19 @@
+<a name="1.5.2"></a>
+## [1.5.2](https://github.com/algolia/vue-instantsearch/compare/v1.5.1...v1.5.2) (2018-03-15)
+
+
+### Bug Fixes
+
+* **RangeInput:** also update footer slot ([#407](https://github.com/algolia/vue-instantsearch/issues/407)) ([831de9a](https://github.com/algolia/vue-instantsearch/commit/831de9a))
+* **RangeInput:** make the header slot valid ([#406](https://github.com/algolia/vue-instantsearch/issues/406)) ([f43f19f](https://github.com/algolia/vue-instantsearch/commit/f43f19f)), closes [#405](https://github.com/algolia/vue-instantsearch/issues/405)
+
+
+### Features
+
+* **store:** expose userData through a new getter ([1d943d4](https://github.com/algolia/vue-instantsearch/commit/1d943d4))
+
+
+
 <a name="1.5.1"></a>
 ## [1.5.1](https://github.com/algolia/vue-instantsearch/compare/v1.5.0...v1.5.1) (2018-03-06)
 
