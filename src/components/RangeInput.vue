@@ -35,7 +35,7 @@
       </slot>
     </form>
 
-    <slot name="footer" />
+    <slot name="footer"></slot>
   </div>
 </template>
 
