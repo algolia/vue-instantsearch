@@ -8849,6 +8849,10 @@ vue-hot-reload-api@^2.2.0, vue-hot-reload-api@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.2.4.tgz#683bd1d026c0d3b3c937d5875679e9a87ec6cd8f"
 
+vue-json-tree@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/vue-json-tree/-/vue-json-tree-0.3.3.tgz#1d1be98d3127d4af1e6d98561c5dbcfd54d9b8c4"
+
 vue-loader@^14.2.1:
   version "14.2.1"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-14.2.1.tgz#3ace19f98187b1fa9e0709defa963a0a2396b6b3"
