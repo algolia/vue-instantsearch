@@ -1,3 +1,19 @@
+# Info
+
+How to convert a component to the new Vue InstantSearch architecture?
+
+1.  make the new file under `/src/components` by copying `/src/components/__template__.vue`.
+2.  import the connector in the file and add it to `beforeCreate`
+3.  check which props to add as an option in [InstantSearch specs](https://instantsearch-css.netlify.com)
+4.  add the props to the component
+5.  add the `widgetParams` based on the props (usually copy-paste)
+6.  copy `/stories/__template__.stories.js` into your own story
+7.  see if it works
+8.  ...
+9.  Profit!
+
+next steps are the DOM changes, which will be done after.
+
 # Prep work
 
 * [x] pass down an InstantSearch.js instance
@@ -15,11 +31,11 @@
 A checklist for all of the components which are completely done.
 
 * connectors
-  * [ ] `ais-breadcrumb`
-  * [ ] `ais-clear-refinements`
+  * [x] `ais-breadcrumb`
+  * [x] `ais-clear-refinements`
   * [x] `ais-configure`
-  * [ ] `ais-current-refinements`
-  * [ ] `ais-hierarchical-menu`
+  * [x] `ais-current-refinements`
+  * [x] `ais-hierarchical-menu`
   * [ ] `ais-highlight`
   * [ ] `ais-hits-per-page`
   * [ ] `ais-hits`
