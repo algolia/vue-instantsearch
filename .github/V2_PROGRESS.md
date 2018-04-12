@@ -80,5 +80,5 @@ x => done
 * [x] allow widgetFactories without connector (i.e. `configure`)
 * [x] define which options to use
 * [x] define which DOM to use
-* [ ] update `bem` function to `suit` (CSS)
+* [x] update `bem` function to `suit` (CSS)
 * [ ] change the way props are passed down with `$props` and filtering out mixin ones
