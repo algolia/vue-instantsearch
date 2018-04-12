@@ -11,8 +11,8 @@ How to convert a component to the new Vue InstantSearch architecture?
 7.  run `yarn jest --watch` to run the tests
 8.  copy `/stories/__template__.stories.js` into your own story
 9.  run `yarn storybook` to see if it works
-10.  ...
-11.  Profit!
+10. ...
+11. Profit!
 
 next steps are the DOM changes, which will be done after.
 
@@ -32,146 +32,33 @@ next steps are the DOM changes, which will be done after.
 
 A checklist for all of the components which are completely done.
 
-* connectors
-  * [x] `ais-breadcrumb`
-  * [x] `ais-clear-refinements`
-  * [x] `ais-configure`
-  * [x] `ais-current-refinements`
-  * [x] `ais-hierarchical-menu`
-  * [ ] `ais-highlight`
-  * [ ] `ais-hits-per-page`
-  * [ ] `ais-hits`
-  * [ ] `ais-index`
-  * [ ] `ais-infinite-hits`
-  * [ ] `ais-menu-select`
-  * [ ] `ais-menu`
-  * [ ] `ais-numeric-menu`
-  * [ ] `ais-numeric-selector`
-  * [ ] `ais-pagination`
-  * [ ] `ais-panel`
-  * [ ] `ais-powered-by`
-  * [ ] `ais-range-input`
-  * [ ] `ais-range-slider`
-  * [ ] `ais-rating-menu`
-  * [ ] `ais-refinement-list`
-  * [ ] `ais-search-box`
-  * [ ] `ais-snippet`
-  * [ ] `ais-sort-by`
-  * [ ] `ais-stats`
-  * [ ] `ais-toggle-refinement`
-  * [ ] `ais-index`
-* DOM
-  * [ ] `ais-breadcrumb`
-  * [ ] `ais-clear-refinements`
-  * [x] `ais-configure`
-  * [ ] `ais-current-refinements`
-  * [ ] `ais-hierarchical-menu`
-  * [ ] `ais-highlight`
-  * [ ] `ais-hits-per-page`
-  * [ ] `ais-hits`
-  * [ ] `ais-index`
-  * [ ] `ais-infinite-hits`
-  * [ ] `ais-menu-select`
-  * [ ] `ais-menu`
-  * [ ] `ais-numeric-menu`
-  * [ ] `ais-numeric-selector`
-  * [ ] `ais-pagination`
-  * [ ] `ais-panel`
-  * [ ] `ais-powered-by`
-  * [ ] `ais-range-input`
-  * [ ] `ais-range-slider`
-  * [ ] `ais-rating-menu`
-  * [ ] `ais-refinement-list`
-  * [ ] `ais-search-box`
-  * [ ] `ais-snippet`
-  * [ ] `ais-sort-by`
-  * [ ] `ais-stats`
-  * [ ] `ais-toggle-refinement`
-  * [ ] `ais-index`
-* docs
-  * [ ] `ais-breadcrumb`
-  * [ ] `ais-clear-refinements`
-  * [x] `ais-configure`
-  * [ ] `ais-current-refinements`
-  * [ ] `ais-hierarchical-menu`
-  * [ ] `ais-highlight`
-  * [ ] `ais-hits-per-page`
-  * [ ] `ais-hits`
-  * [ ] `ais-index`
-  * [ ] `ais-infinite-hits`
-  * [ ] `ais-menu-select`
-  * [ ] `ais-menu`
-  * [ ] `ais-numeric-menu`
-  * [ ] `ais-numeric-selector`
-  * [ ] `ais-pagination`
-  * [ ] `ais-panel`
-  * [ ] `ais-powered-by`
-  * [ ] `ais-range-input`
-  * [ ] `ais-range-slider`
-  * [ ] `ais-rating-menu`
-  * [ ] `ais-refinement-list`
-  * [ ] `ais-search-box`
-  * [ ] `ais-snippet`
-  * [ ] `ais-sort-by`
-  * [ ] `ais-stats`
-  * [ ] `ais-toggle-refinement`
-  * [ ] `ais-index`
-* stories
-  * [ ] `ais-breadcrumb`
-  * [ ] `ais-clear-refinements`
-  * [x] `ais-configure`
-  * [ ] `ais-current-refinements`
-  * [ ] `ais-hierarchical-menu`
-  * [ ] `ais-highlight`
-  * [ ] `ais-hits-per-page`
-  * [ ] `ais-hits`
-  * [ ] `ais-index`
-  * [ ] `ais-infinite-hits`
-  * [ ] `ais-menu-select`
-  * [ ] `ais-menu`
-  * [ ] `ais-numeric-menu`
-  * [ ] `ais-numeric-selector`
-  * [ ] `ais-pagination`
-  * [ ] `ais-panel`
-  * [ ] `ais-powered-by`
-  * [ ] `ais-range-input`
-  * [ ] `ais-range-slider`
-  * [ ] `ais-rating-menu`
-  * [ ] `ais-refinement-list`
-  * [ ] `ais-search-box`
-  * [ ] `ais-snippet`
-  * [ ] `ais-sort-by`
-  * [ ] `ais-stats`
-  * [ ] `ais-toggle-refinement`
-  * [ ] `ais-index`
-* tests
-  * [ ] `ais-breadcrumb`
-  * [ ] `ais-clear-refinements`
-  * [ ] `ais-configure`
-  * [ ] `ais-current-refinements`
-  * [ ] `ais-hierarchical-menu`
-  * [ ] `ais-highlight`
-  * [ ] `ais-hits-per-page`
-  * [ ] `ais-hits`
-  * [ ] `ais-index`
-  * [ ] `ais-infinite-hits`
-  * [ ] `ais-menu-select`
-  * [ ] `ais-menu`
-  * [ ] `ais-numeric-menu`
-  * [ ] `ais-numeric-selector`
-  * [ ] `ais-pagination`
-  * [ ] `ais-panel`
-  * [ ] `ais-powered-by`
-  * [ ] `ais-range-input`
-  * [ ] `ais-range-slider`
-  * [ ] `ais-rating-menu`
-  * [ ] `ais-refinement-list`
-  * [ ] `ais-search-box`
-  * [ ] `ais-snippet`
-  * [ ] `ais-sort-by`
-  * [ ] `ais-stats`
-  * [ ] `ais-toggle-refinement`
-  * [ ] `ais-index`
+* [x] `ais-breadcrumb`
+* [x] `ais-clear-refinements`
+* [x] `ais-configure`
+* [x] `ais-current-refinements`
+* [x] `ais-hierarchical-menu`
+* [ ] `ais-highlight`
+* [ ] `ais-hits-per-page`
+* [ ] `ais-hits`
+* [ ] `ais-index`
+* [ ] `ais-infinite-hits`
+* [ ] `ais-menu-select`
+* [ ] `ais-menu`
+* [ ] `ais-numeric-menu`
+* [ ] `ais-numeric-selector`
+* [ ] `ais-pagination`
+* [ ] `ais-panel`
+* [ ] `ais-powered-by`
+* [ ] `ais-range-input`
+* [ ] `ais-range-slider`
+* [ ] `ais-rating-menu`
+* [ ] `ais-refinement-list`
+* [ ] `ais-search-box`
+* [ ] `ais-snippet`
+* [ ] `ais-sort-by`
+* [ ] `ais-stats`
+* [ ] `ais-toggle-refinement`
+* [ ] `ais-index`
 
 # Rounding up work
 
