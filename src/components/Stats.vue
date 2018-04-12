@@ -22,4 +22,9 @@ export default {
   beforeCreate() {
     this.connector = connectStats;
   },
+  computed: {
+    widgetParams() {
+      return {}
+    }
+  }
 };</script>
