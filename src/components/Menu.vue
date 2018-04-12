@@ -1,23 +1,29 @@
 <template>
   <div :class="suit()" v-if="show">
-    <slot name="header"></slot>
-
-    <div
-      v-for="item in state.items"
-      :key="item.label"
-      :class="item.isRefined ? suit('item', 'active') : suit('item')"
-    >
-      <a
-        href="#"
-        :class="suit('link')"
+    <ul :class="suit('list')">
+      <li
+        v-for="item in state.items"
+        :class="item.isRefined ? suit('item', 'active') : suit('item')"
         @click.prevent="state.refine(item.value)"
       >
-        {{item.isRefined ? "x" : ""}} {{item.label}}
-        <span :class="suit('count')">{{item.count}}</span>
-      </a>
-    </div>
+        <a
+          :href="state.createURL(item.value)"
+          :class="suit('link')"
+          @click.prevent="state.refine(item.value)"
+        >
+          <span :class="suit('label')">{{item.label}}</span>
+          <span :class="suit('count')">{{item.count}}</span>
+        </a>
+      </li>
+    </ul>
 
-    <slot name="footer"></slot>
+    <button
+      v-if="showMoreLimit && state.canToggleShowMore"
+      @click.prevent="state.canToggleShowMore()"
+      :class="state.canToggleShowMore ? suit('showMore') : suit('showMore', 'disabled')"
+    >
+      {{state.isShowingMore ? showLessLabel : showMoreLabel}}
+  </button>
   </div>
 </template>
 
@@ -44,6 +50,18 @@ export default {
         return ['isRefined:desc', 'count:desc', 'name:asc'];
       },
     },
+    showMoreLabel: {
+      type: String,
+      default() {
+        return 'Show more';
+      }
+    },
+    showLessLabel: {
+      type: String,
+      default() {
+        return 'Show less';
+      }
+    }
   },
   computed: {
     show() {
