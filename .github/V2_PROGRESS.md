@@ -16,8 +16,6 @@ How to convert a component to the new Vue InstantSearch architecture?
 12. ...
 13. Profit!
 
-next steps are the DOM changes, which will be done after.
-
 # Prep work
 
 * [x] pass down an InstantSearch.js instance
