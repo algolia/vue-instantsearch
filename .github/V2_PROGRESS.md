@@ -46,7 +46,7 @@ x => done
 * [ ] `ais-search-box`
 * [ ] `ais-snippet`
 * [ ] `ais-sort-by`
-* [ ] `ais-stats`
+* [x] `ais-stats`
 * [ ] `ais-toggle-refinement`
 * [ ] `ais-index`
 
@@ -62,6 +62,7 @@ x => done
       We can also do GitHub searches to see if people are using some named scopes + vue-instantsearch (to sense the usage)
 * [ ] remove any scope that is not a root scope for now
 * [x] can we do a manual mock for component in tests instead of having the mock copy pasted everywhere?
+* [ ] new doc must be on /v2/, old doc must still be accessible (same as InstantSearch.js)
 
 ---
 
