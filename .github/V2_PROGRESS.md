@@ -2,19 +2,18 @@
 
 How to convert a component to the new Vue InstantSearch architecture?
 
-1.  make the new file under `/src/components` by copying `/src/components/__template__.vue`
-2.  import the connector in the file and add it to `beforeCreate`
-3.  check which props to add as an option in [InstantSearch specs](https://instantsearch-css.netlify.com)
-4.  add the props to the component
-5.  add the `widgetParams` based on the props (usually copy-paste)
-6.  copy `components/__tests__/__template__-test.js` into your own test and edit to fit your usage
-7.  run `yarn jest --watch` to run the tests
-8.  copy `/stories/__template__.stories.js` into your own story
-9.  run `yarn storybook` to see if it works
-10. ...
-11. Profit!
-
-next steps are the DOM changes, which will be done after.
+1.  copy `/src/components/__Template.vue` to the new component name
+1.  follow instructions about modifications inside this file
+1.  add the props to the component
+1.  add the `widgetParams` based on the props (usually copy-paste)
+1.  copy `src/components/__tests__/__template__-test.js` into your own test and edit to fit your usage
+1.  run `yarn jest --watch` to run the tests
+1.  copy `/stories/__template__.stories.js` into your own story
+1.  run `yarn storybook` to see if it works
+1. Add docs in `docs/src/components/{name}.md`
+1. if it's a new component, also add it in `src/instantsearch.js` (three times)
+1. ...
+1. Profit!
 
 # Prep work
 
@@ -27,6 +26,7 @@ next steps are the DOM changes, which will be done after.
 * [x] define which options to use
 * [x] define which DOM to use
 * [ ] update `bem` function to `suit` (CSS)
+* [ ] change the way props are passed down with `$props` and filtering out mixin ones
 
 # Components
 
