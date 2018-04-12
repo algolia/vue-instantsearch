@@ -1,10 +1,10 @@
 <template>
-  <div class="ais-Stats">
-    <span class="ais-Stats-text">
-      <slot v-bind="state">
+  <div :class="suit()">
+    <slot v-bind="state">
+      <span :class="suit('text')">
         {{ state.nbHits.toLocaleString() }} results found in {{ state.processingTimeMS.toLocaleString() }}ms
-      </slot>
-    </span>
+      </span>
+    </slot>
   </div>
 </template>
 
@@ -14,17 +14,12 @@ import { connectStats } from 'instantsearch.js/es/connectors';
 
 export default {
   mixins: [algoliaComponent],
-  props: {
-  },
   data() {
     return {
-      widgetName: 'ais-stats',
+      widgetName: 'Stats',
     };
   },
   beforeCreate() {
     this.connector = connectStats;
-  },
-  computed: {
-    widgetParams() {},
   },
 };</script>
