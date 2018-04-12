@@ -5,7 +5,7 @@ How to convert a component to the new Vue InstantSearch architecture?
 1.  follow the conventions for the specific widget in https://instantsearch-css.netlify.com/ (naming, options...)
 1.  copy `src/components/__Template.vue` to new component name
 1.  **implement it**: follow instructions about modifications inside this file
-1.  if it's a new component, also add it in `src/instantsearch.js` (three times)
+1.  if it's a new component, also add it in `src/instantsearch.js` and `src/__tests__/instantsearch.js`
 1.  **create an example**: copy `stories/__Template.stories.js` into your own story
 1.  test your own story with `yarn storybook` and develop your component
 1.  copy `src/components/__tests__/__Template.js` to your own test
@@ -13,7 +13,7 @@ How to convert a component to the new Vue InstantSearch architecture?
 1.  run `yarn jest --watch` to run the tests
 1.  **document it**: copy `docs/src/components/__template.md`, use `npm run docs:watch`
 1.  remove any existing widget no more listed
-1.  do a pull request to feat/connectors branch
+1.  # do a pull request to feat/connectors branch
 
 # Components
 
@@ -52,16 +52,16 @@ x => done
 
 # Questions/next steps
 
-* [ ] Decides what is provided as state in every widget. Today we get everything without controlling it.
+* [ ] Decide what is provided as state in every widget. Today we get everything without controlling it.
       We need to be careful, everything inside state once released will be public API
 * [ ] align all filenames to the same convention: Widget.vue, **tests**/Widget.js, stories/Widget.stories.js
 * [ ] do we provide granular scopes for widgets or only a single big scope?
-      This needs to be aligned accross all libraries, for V2.0.0 we go for no scopes at all which
+      This needs to be aligned across all libraries, for V2.0.0 we go for no scopes at all which
       is our mantra since we created connectors: no more specific DOM options.
       We also need to ask vue-instantsearch users about their current scope usage.
       We can also do GitHub searches to see if people are using some named scopes + vue-instantsearch (to sense the usage)
 * [ ] remove any scope that is not a root scope for now
-* [ ] can we do a manual mock for component in tests instead of having the mock copy pasted everywhere?
+* [x] can we do a manual mock for component in tests instead of having the mock copy pasted everywhere?
 
 ---
 
