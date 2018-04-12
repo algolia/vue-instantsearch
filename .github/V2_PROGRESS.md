@@ -49,7 +49,7 @@ x => done
 * [ ] `ais-menu`
 * [ ] `ais-numeric-menu`
 * [ ] `ais-numeric-selector`
-* [ ] `ais-pagination`
+* [-] `ais-pagination`
 * [ ] `ais-panel`
 * [ ] `ais-powered-by`
 * [ ] `ais-range-input`
