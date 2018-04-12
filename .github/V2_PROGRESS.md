@@ -27,6 +27,7 @@ next steps are the DOM changes, which will be done after.
 * [x] define which options to use
 * [x] define which DOM to use
 * [ ] update `bem` function to `suit` (CSS)
+* [ ] change the way props are passed down with `$props` and filtering out mixin ones
 
 # Components
 
