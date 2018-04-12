@@ -2,7 +2,7 @@
 
 How to convert a component to the new Vue InstantSearch architecture?
 
-1.  make the new file under `/src/components` by copying `/src/components/__template__.vue`.
+1.  make the new file under `/src/components` by copying `/src/components/__template__.vue`
 2.  import the connector in the file and add it to `beforeCreate`
 3.  check which props to add as an option in [InstantSearch specs](https://instantsearch-css.netlify.com)
 4.  add the props to the component
@@ -67,3 +67,10 @@ x => done
 
 * [ ] release plan
 * [ ] migration guide
+
+# Questions/next steps
+
+* [ ] Decides what is provided as state in every widget. Today we get everything without controlling it.
+We need to be careful, everything inside state once released will be public API
+* [ ] align all filenames to the same convention: Widget.vue, __tests__/Widget.js, stories/Widget.stories.js
+
