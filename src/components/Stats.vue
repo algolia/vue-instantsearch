@@ -1,30 +1,34 @@
 <template>
-  <div :class="suit()" v-if="totalResults > 0">
-    <slot :totalResults="totalResults" :processingTime="processingTime" :query="query">
-      {{ totalResults.toLocaleString() }} results found in {{ processingTime.toLocaleString() }}ms
-    </slot>
+  <div class="ais-Stats">
+    <span class="ais-Stats-text">
+      <slot v-bind="state">
+        {{ state.nbHits.toLocaleString() }} results found in {{ state.processingTimeMS.toLocaleString() }}ms
+      </slot>
+    </span>
   </div>
 </template>
 
 <script>
 import algoliaComponent from '../component';
+import { connectStats } from 'instantsearch.js/es/connectors';
+const connect__Template = (renderFn, unmountFn) => ({ someProp }) => ({
+  render: () => renderFn(),
+});
 
 export default {
   mixins: [algoliaComponent],
+  props: {
+  },
   data() {
     return {
       widgetName: 'ais-stats',
     };
   },
-  computed: {
-    query() {
-      return this.searchStore.query;
-    },
-    totalResults() {
-      return this.searchStore.totalResults;
-    },
-    processingTime() {
-      return this.searchStore.processingTimeMS;
-    },
+  beforeCreate() {
+    this.connector = connectStats;
   },
-};</script>
+  computed: {
+    widgetParams() {},
+  },
+};
+</script>

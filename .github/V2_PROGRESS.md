@@ -46,7 +46,7 @@ x => done
 * [ ] `ais-search-box`
 * [ ] `ais-snippet`
 * [ ] `ais-sort-by`
-* [ ] `ais-stats`
+* [x] `ais-stats`
 * [ ] `ais-toggle-refinement`
 * [ ] `ais-index`
 

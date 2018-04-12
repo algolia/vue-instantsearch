@@ -1,32 +1,49 @@
-import Vue from 'vue';
-import Stats from '../Stats.vue';
+import { mount } from '@vue/test-utils';
 
-const searchStore = {
-  query: 'search query',
-  totalResults: 10000,
-  processingTimeMS: 1000,
-};
+import Template from '../Stats.vue';
 
-describe.skip('Stats', () => {
-  test('renders proper HTML', () => {
-    const Component = Vue.extend(Stats);
-    const vm = new Component({
-      propsData: {
-        searchStore,
+jest.mock('../../component', () => ({
+  data() {
+    return {
+      state: {
+        hitsPerPage: 50,
+        nbPages: 20,
+        nbHits: 1000,
+        page: 2,
+        processingTimeMS: 12,
+        query: 'ipho',
       },
-    }).$mount();
+    };
+  },
+}));
 
-    expect(vm.$el.outerHTML).toMatchSnapshot();
+describe('Template', () => {
+  describe('html', () => {
+    it('should render correctly', () => {
+      const wrapper = mount(Template);
+      expect(wrapper.html()).toMatchSnapshot();
+    });
   });
 
-  test('should not be displayed if there are no results', () => {
-    const Component = Vue.extend(Stats);
-    const vm = new Component({
-      propsData: {
-        searchStore: Object.assign({}, searchStore, { totalResults: 0 }),
-      },
-    }).$mount();
+  describe('widgetParams', () => {
+    it('correct defaults', () => {
+      const wrapper = mount(Template);
 
-    expect(vm.$el.outerHTML).toMatchSnapshot();
+      const { widgetParams } = wrapper.vm;
+
+      expect(widgetParams).toBe(undefined);
+    });
+
+    it('allows overriding', () => {
+      const wrapper = mount(Template, {
+        propsData: {
+          someProp: ['hi'],
+        },
+      });
+
+      const { widgetParams } = wrapper.vm;
+
+      expect(widgetParams).toBe(undefined);
+    });
   });
 });
