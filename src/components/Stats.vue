@@ -11,9 +11,6 @@
 <script>
 import algoliaComponent from '../component';
 import { connectStats } from 'instantsearch.js/es/connectors';
-const connect__Template = (renderFn, unmountFn) => ({ someProp }) => ({
-  render: () => renderFn(),
-});
 
 export default {
   mixins: [algoliaComponent],
@@ -30,5 +27,4 @@ export default {
   computed: {
     widgetParams() {},
   },
-};
-</script>
+};</script>
