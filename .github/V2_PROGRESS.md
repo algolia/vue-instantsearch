@@ -32,13 +32,16 @@ next steps are the DOM changes, which will be done after.
 
 A checklist for all of the components which are completely done.
 
+x => done
+~ => in progress
+
 * [x] `ais-breadcrumb`
 * [x] `ais-clear-refinements`
 * [x] `ais-configure`
 * [x] `ais-current-refinements`
 * [x] `ais-hierarchical-menu`
 * [ ] `ais-highlight`
-* [ ] `ais-hits-per-page`
+* [~] `ais-hits-per-page`
 * [ ] `ais-hits`
 * [ ] `ais-index`
 * [ ] `ais-infinite-hits`
