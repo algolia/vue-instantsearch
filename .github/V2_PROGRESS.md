@@ -20,11 +20,11 @@ A checklist for all of the components which are completely done.
 x => done
 ~ => in progress
 
-* [x] `ais-breadcrumb`
-* [x] `ais-clear-refinements`
-* [x] `ais-configure`
-* [x] `ais-current-refinements`
-* [x] `ais-hierarchical-menu`
+* [ ] `ais-breadcrumb`
+* [ ] `ais-clear-refinements`
+* [ ] `ais-configure`
+* [ ] `ais-current-refinements`
+* [ ] `ais-hierarchical-menu`
 * [ ] `ais-highlight`
 * [~] `ais-hits-per-page`
 * [ ] `ais-hits`
