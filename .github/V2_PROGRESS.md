@@ -22,14 +22,14 @@ A checklist for all of the components which are completely done.
 x => done
 ~ => in progress
 
-* [ ] `ais-breadcrumb`
+* [~] `ais-breadcrumb`
 * [ ] `ais-clear-refinements`
 * [ ] `ais-configure`
 * [ ] `ais-current-refinements`
-* [ ] `ais-hierarchical-menu`
+* [~] `ais-hierarchical-menu`
 * [ ] `ais-highlight`
-* [~] `ais-hits-per-page`
-* [ ] `ais-hits`
+* [x] `ais-hits-per-page`
+* [x] `ais-hits`
 * [ ] `ais-index`
 * [ ] `ais-infinite-hits`
 * [ ] `ais-menu-select`
