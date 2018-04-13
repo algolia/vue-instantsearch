@@ -19,14 +19,14 @@ const defaultState = {
   toggleShowMore: jest.fn(),
 };
 
-it('should render correctly', () => {
+it('renders correctly', () => {
   __setState(defaultState);
 
   const wrapper = mount(Menu, { propsData: { attribute: 'foo' } });
   expect(wrapper.html()).toMatchSnapshot();
 });
 
-it('should call `refine()` when click on an element', () => {
+it('calls `refine()` when click on an element', () => {
   __setState(defaultState);
 
   const wrapper = mount(Menu, { propsData: { attribute: 'foo' } });
@@ -36,7 +36,7 @@ it('should call `refine()` when click on an element', () => {
   expect(defaultState.refine).toHaveBeenCalledWith(defaultState.items[0].value);
 });
 
-it('should call `toggleShowMore()` when possible', () => {
+it('calls `toggleShowMore()` when possible', () => {
   __setState({ ...defaultState, canToggleShowMore: true });
 
   const wrapper = mount(Menu, {

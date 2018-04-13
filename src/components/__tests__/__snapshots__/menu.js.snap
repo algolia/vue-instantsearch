@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render correctly 1`] = `
+exports[`renders correctly 1`] = `
 
 <div class="ais-ais-menu">
   <ul class="ais-ais-menu-list">
