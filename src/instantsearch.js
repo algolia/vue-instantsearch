@@ -1,13 +1,3 @@
-import {
-  FACET_AND,
-  FACET_OR,
-  FACET_TREE,
-  createFromAlgoliaCredentials,
-  createFromAlgoliaClient,
-  createFromSerialized,
-  Store,
-} from './store';
-
 import Component from './component';
 
 import Index from './components/Index.vue';
@@ -90,13 +80,6 @@ export default InstantSearch;
 
 export {
   Component,
-  FACET_AND,
-  FACET_OR,
-  FACET_TREE,
-  createFromAlgoliaCredentials,
-  createFromAlgoliaClient,
-  createFromSerialized,
-  Store,
   Index,
   Highlight,
   Snippet,
