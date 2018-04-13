@@ -1,29 +1,31 @@
 <template>
   <div :class="suit()" v-if="show">
-    <ul :class="suit('list')">
-      <li
-        v-for="item in state.items"
-        :class="item.isRefined ? suit('item', 'active') : suit('item')"
-        @click.prevent="state.refine(item.value)"
-      >
-        <a
-          :href="state.createURL(item.value)"
-          :class="suit('link')"
+    <slot v-bind="state">
+      <ul :class="suit('list')">
+        <li
+          v-for="item in state.items"
+          :class="item.isRefined ? suit('item', 'active') : suit('item')"
           @click.prevent="state.refine(item.value)"
         >
-          <span :class="suit('label')">{{item.label}}</span>
-          <span :class="suit('count')">{{item.count}}</span>
-        </a>
-      </li>
-    </ul>
+          <a
+            :href="state.createURL(item.value)"
+            :class="suit('link')"
+            @click.prevent="state.refine(item.value)"
+          >
+            <span :class="suit('label')">{{item.label}}</span>
+            <span :class="suit('count')">{{item.count}}</span>
+          </a>
+        </li>
+      </ul>
 
-    <button
-      v-if="showMoreLimit && state.canToggleShowMore"
-      @click.prevent="state.toggleShowMore()"
-      :class="state.canToggleShowMore ? suit('showMore') : suit('showMore', 'disabled')"
-    >
-      {{state.isShowingMore ? showLessLabel : showMoreLabel}}
-  </button>
+      <button
+        v-if="showMoreLimit && state.canToggleShowMore"
+        @click.prevent="state.toggleShowMore()"
+        :class="state.canToggleShowMore ? suit('showMore') : suit('showMore', 'disabled')"
+      >
+        {{state.isShowingMore ? showLessLabel : showMoreLabel}}
+      </button>
+    </slot>
   </div>
 </template>
 
