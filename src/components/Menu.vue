@@ -19,7 +19,7 @@
 
     <button
       v-if="showMoreLimit && state.canToggleShowMore"
-      @click.prevent="state.canToggleShowMore()"
+      @click.prevent="state.toggleShowMore()"
       :class="state.canToggleShowMore ? suit('showMore') : suit('showMore', 'disabled')"
     >
       {{state.isShowingMore ? showLessLabel : showMoreLabel}}
