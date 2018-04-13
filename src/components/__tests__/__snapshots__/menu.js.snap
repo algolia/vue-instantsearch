@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+
+<div class="ais-ais-menu">
+  <ul class="ais-ais-menu-list">
+    <li class="ais-ais-menu-item--active">
+      <a class="ais-ais-menu-link">
+        <span class="ais-ais-menu-label">
+          foo
+        </span>
+        <span class="ais-ais-menu-count">
+          2
+        </span>
+      </a>
+    </li>
+    <li class="ais-ais-menu-item">
+      <a class="ais-ais-menu-link">
+        <span class="ais-ais-menu-label">
+          bar
+        </span>
+        <span class="ais-ais-menu-count">
+          3
+        </span>
+      </a>
+    </li>
+    <li class="ais-ais-menu-item">
+      <a class="ais-ais-menu-link">
+        <span class="ais-ais-menu-label">
+          foobar
+        </span>
+        <span class="ais-ais-menu-count">
+          4
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+`;
