@@ -159,9 +159,5 @@ export default {
       this.state.refine(p);
       this.$emit('page-change', p);
     },
-    log() {
-      console.log(this.state);
-    },
   },
-};
-</script>
+};</script>
