@@ -4,7 +4,7 @@ mainTitle: Components
 layout: main.pug
 category: Components
 withHeadings: true
-navWeight: 6
+navWeight: 7
 editable: true
 githubSource: docs/src/components/pagination.md
 ---
@@ -49,3 +49,9 @@ Class name | Description
 `.ais-Pagination-item--selected` | the selected pagination list item
 `.ais-Pagination-item--disabled` | the disabled pagination list item
 `.ais-Pagination-link` | the pagination clickable element
+
+## Events
+
+Event name | Variables | Description
+---|---|---
+page-change | page | Triggered right after a page was changed due to an action taken on the pagination component.
