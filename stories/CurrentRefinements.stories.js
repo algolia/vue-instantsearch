@@ -8,11 +8,4 @@ storiesOf('CurrentRefinements', module)
       <ais-current-refinements></ais-current-refinements>
       <ais-menu attribute="materials"></ais-menu>
     </div>`,
-  }))
-  .add('custom rendering', () => ({
-    template: `<ais-current-refinements>
-      <template>
-        Clear search query
-      </template>
-    </ais-current-refinements>`,
   }));

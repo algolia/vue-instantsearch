@@ -1,27 +1,48 @@
 <template>
-<pre>{{JSON.stringify(currentRefinedValues, null, 2)}}</pre>
+    <div class="selected-filters">
+        <p v-if="currentRefinedValues.length !== 0" class="selected-filters__title">Selected filters: </p>
+        <div
+                v-for="(item, index) in currentRefinedValues"
+                :key="index"
+                @click="removeCurrentFilter(item.attributeName, item.name)"
+                class="selected-filters__item"
+        >
+            <span v-if="item.attributeName === 'tree-menu'" class="selected-filters__name">Category: </span>
+            <span v-else-if="item.attributeName === 'shippingCost'" class="selected-filters__name">Shipping Cost: </span>
+            <span v-else-if="item.attributeName === 'unitPrice' && item.operator === '>'" class="selected-filters__name">Price(min): </span>
+            <span v-else-if="item.attributeName === 'unitPrice' && item.operator === '<'" class="selected-filters__name">Price(max): </span>
+            <span v-else class="selected-filters__name">{{ item.attributeName }}: </span>
+            <span class="selected-filters__value">{{ item.name }}</span>
+        </div>
+        <div> {{ searchStore._helper.facetsRefinements }} </div>
+    </div>
 </template>
 
 <script>
 import algoliaComponent from '../component';
-
+import getFilteredRefinements from './getFilteredRefinements.js';
 export default {
   mixins: [algoliaComponent],
-  data() {
-    return {
-      blockClassName: 'ais-current-refinements',
-    };
-  },
   computed: {
     currentRefinedValues() {
-      console.log(this.searchStore._helper.getRefinements());
-      return this.searchStore._helper.getRefinements();
+      const results = this.searchStore._helper.lastResults;
+      const state = this.searchStore._helper.state;
+      const attributeNames = [];
+      const onlyListedAttributes = false;
+      const clearsQuery = false;
+      const refinements = getFilteredRefinements(
+        results,
+        state,
+        attributeNames,
+        onlyListedAttributes,
+        clearsQuery
+      );
+      return refinements;
     },
   },
   methods: {
-    clear(attribute) {
-      this.searchStore.clearRefinements(attribute);
-      this.searchStore.refresh();
+    removeCurrentFilter(facet, value) {
+      return this.searchStore._helper.toggleRefinement(facet, value); // eslint-disable-line
     },
   },
 };
