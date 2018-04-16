@@ -8,8 +8,7 @@ export default {
         const tag = this.$options._componentTag;
         throw new TypeError(
           `It looks like you forgot to wrap your Algolia search component
-          "<${tag}>" inside of an "<ais-index>" component. You can also pass a
-          search store as a prop to your component.`
+          "<${tag}>" inside of an "<ais-index>" component.`
         );
       },
     },
