@@ -27,7 +27,7 @@ attribute | String | | The attribute | yes
 limit | Number | 10 | Number of items to show
 showMoreLimit | Number | 20 | Number of items to show when the user clicked on "show more items"
 showMore | Boolean | `false` | Whether or not to have the option to load more values
-sortBy | Array(string) or function | | array or function to sort the results by
+sortBy | Array(string) or function | `['isRefined:desc', 'count:desc', 'name:asc']` | array or function to sort the results by
 
 ## CSS classes
 
