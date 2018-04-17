@@ -54,14 +54,15 @@ x => done
 * [ ] Decide what is provided as state in every widget. Today we get everything without controlling it.
       We need to be careful, everything inside state once released will be public API
 * [ ] align all filenames to the same convention: Widget.vue, **tests**/Widget.js, stories/Widget.stories.js
+* [ ] remove any scope that is not a root scope for now
+* [x] can we do a manual mock for component in tests instead of having the mock copy pasted everywhere?
+* [ ] new doc must be on /v2/, old doc must still be accessible (same as InstantSearch.js)
+* [ ] unit test slots for each component
 * [ ] do we provide granular scopes for widgets or only a single big scope?
       This needs to be aligned across all libraries, for V2.0.0 we go for no scopes at all which
       is our mantra since we created connectors: no more specific DOM options.
       We also need to ask vue-instantsearch users about their current scope usage.
       We can also do GitHub searches to see if people are using some named scopes + vue-instantsearch (to sense the usage)
-* [ ] remove any scope that is not a root scope for now
-* [x] can we do a manual mock for component in tests instead of having the mock copy pasted everywhere?
-* [ ] new doc must be on /v2/, old doc must still be accessible (same as InstantSearch.js)
 
 ---
 
