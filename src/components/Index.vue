@@ -14,6 +14,8 @@ export default {
       appId: this.appId,
       apiKey: this.apiKey,
       indexName: this.indexName,
+      routing: this.routing,
+      stalledSearchDelay: this.stalledSearchDelay
     });
 
     return {
