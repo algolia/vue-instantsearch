@@ -1,5 +1,5 @@
 <template>
-  <div :class="suit()" v-if="show">
+  <div :class="suit()" v-if="state">
     <slot v-bind="state">
       <ul :class="suit('list')">
         <li
@@ -71,9 +71,6 @@ export default {
     },
   },
   computed: {
-    show() {
-      return this.state.items.length > 0;
-    },
     widgetParams() {
       return {
         attributeName: this.attribute,
