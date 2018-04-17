@@ -13,8 +13,8 @@ storiesOf('__template__', module)
   }))
   .add('custom rendering', () => ({
     template: `<ais-_template>
-      <template>
+      <div>
         Clear search query
-      </template>
+      </div>
     </ais-_template>`,
   }));

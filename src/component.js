@@ -2,8 +2,8 @@ import suit from './suit.js';
 
 export default {
   inject: {
-    _instantSearchInstance: {
-      name: '_instantSearchInstance',
+    instantSearchInstance: {
+      name: 'instantSearchInstance',
       default() {
         const tag = this.$options._componentTag;
         throw new TypeError(
@@ -21,17 +21,17 @@ export default {
   created() {
     this.widgetFactory = this.connector(this.updateData, () => {});
     this.widget = this.widgetFactory(this.widgetParams);
-    this._instantSearchInstance.addWidget(this.widget);
+    this.instantSearchInstance.addWidget(this.widget);
   },
   beforeDestroy() {
-    this._instantSearchInstance.removeWidget(this.widget);
+    this.instantSearchInstance.removeWidget(this.widget);
   },
   watch: {
     widgetParams(newVal) {
       const oldWidget = this.widget;
       this.widget = this.widgetFactory(newVal);
-      this._instantSearchInstance.addWidget(this.widget);
-      this._instantSearchInstance.removeWidget(oldWidget);
+      this.instantSearchInstance.addWidget(this.widget);
+      this.instantSearchInstance.removeWidget(oldWidget);
     },
   },
   methods: {

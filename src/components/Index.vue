@@ -1,4 +1,5 @@
 <template>
+  <!-- Index is an empty component that will hold other widgets -->
   <div>
     <slot></slot>
   </div>
@@ -9,14 +10,14 @@ import instantsearch from 'instantsearch.js/es/';
 
 export default {
   provide() {
-    this._instantSearchInstance = instantsearch({
+    this.instantSearchInstance = instantsearch({
       appId: this.appId,
       apiKey: this.apiKey,
       indexName: this.indexName,
     });
-    
+
     return {
-      _instantSearchInstance: this._instantSearchInstance
+      instantSearchInstance: this.instantSearchInstance
     };
   },
   props: {
@@ -31,6 +32,12 @@ export default {
     indexName: {
       type: String,
       required: true,
+    },
+    routing: {
+      type: [Boolean, Object]
+    },
+    stalledSearchDelay: {
+      type: Number
     }
   },
   data() {
@@ -43,7 +50,7 @@ export default {
     // "Note that mounted does not guarantee that all child components have also been mounted. If you want to
     // wait until the entire view has been rendered, you can use vm.$nextTick inside of mounted"
     this.$nextTick(() => {
-      this._instantSearchInstance.start();
+      this.instantSearchInstance.start();
     });
   },
 };</script>
