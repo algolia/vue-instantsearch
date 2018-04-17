@@ -27,7 +27,7 @@ x => done
 * [ ] `ais-configure`
 * [ ] `ais-current-refinements`
 * [ ] `ais-hierarchical-menu`
-* [ ] `ais-highlight`
+* [ ] `ais-highlight` (not simply a connector)
 * [~] `ais-hits-per-page`
 * [ ] `ais-hits`
 * [ ] `ais-index`
@@ -37,7 +37,7 @@ x => done
 * [ ] `ais-numeric-menu`
 * [ ] `ais-numeric-selector`
 * [x] `ais-pagination`
-* [ ] `ais-panel`
+* [ ] `ais-panel` (not simply a connector)
 * [ ] `ais-powered-by`
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
@@ -48,7 +48,7 @@ x => done
 * [ ] `ais-sort-by`
 * [x] `ais-stats`
 * [ ] `ais-toggle-refinement`
-* [ ] `ais-index`
+* [ ] `ais-index` (not simply a connector)
 
 # Questions/next steps
 
