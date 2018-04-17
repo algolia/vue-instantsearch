@@ -2,34 +2,34 @@
 
 exports[`renders correctly 1`] = `
 
-<div class="ais-ais-menu">
-  <ul class="ais-ais-menu-list">
-    <li class="ais-ais-menu-item--active">
-      <a class="ais-ais-menu-link">
-        <span class="ais-ais-menu-label">
+<div class="ais-Menu">
+  <ul class="ais-Menu-list">
+    <li class="ais-Menu-item--active">
+      <a class="ais-Menu-link">
+        <span class="ais-Menu-label">
           foo
         </span>
-        <span class="ais-ais-menu-count">
+        <span class="ais-Menu-count">
           2
         </span>
       </a>
     </li>
-    <li class="ais-ais-menu-item">
-      <a class="ais-ais-menu-link">
-        <span class="ais-ais-menu-label">
+    <li class="ais-Menu-item">
+      <a class="ais-Menu-link">
+        <span class="ais-Menu-label">
           bar
         </span>
-        <span class="ais-ais-menu-count">
+        <span class="ais-Menu-count">
           3
         </span>
       </a>
     </li>
-    <li class="ais-ais-menu-item">
-      <a class="ais-ais-menu-link">
-        <span class="ais-ais-menu-label">
+    <li class="ais-Menu-item">
+      <a class="ais-Menu-link">
+        <span class="ais-Menu-label">
           foobar
         </span>
-        <span class="ais-ais-menu-count">
+        <span class="ais-Menu-count">
           4
         </span>
       </a>
@@ -41,40 +41,40 @@ exports[`renders correctly 1`] = `
 
 exports[`renders correctly with showMore 1`] = `
 
-<div class="ais-ais-menu">
-  <ul class="ais-ais-menu-list">
-    <li class="ais-ais-menu-item--active">
-      <a class="ais-ais-menu-link">
-        <span class="ais-ais-menu-label">
+<div class="ais-Menu">
+  <ul class="ais-Menu-list">
+    <li class="ais-Menu-item--active">
+      <a class="ais-Menu-link">
+        <span class="ais-Menu-label">
           foo
         </span>
-        <span class="ais-ais-menu-count">
+        <span class="ais-Menu-count">
           2
         </span>
       </a>
     </li>
-    <li class="ais-ais-menu-item">
-      <a class="ais-ais-menu-link">
-        <span class="ais-ais-menu-label">
+    <li class="ais-Menu-item">
+      <a class="ais-Menu-link">
+        <span class="ais-Menu-label">
           bar
         </span>
-        <span class="ais-ais-menu-count">
+        <span class="ais-Menu-count">
           3
         </span>
       </a>
     </li>
-    <li class="ais-ais-menu-item">
-      <a class="ais-ais-menu-link">
-        <span class="ais-ais-menu-label">
+    <li class="ais-Menu-item">
+      <a class="ais-Menu-link">
+        <span class="ais-Menu-label">
           foobar
         </span>
-        <span class="ais-ais-menu-count">
+        <span class="ais-Menu-count">
           4
         </span>
       </a>
     </li>
   </ul>
-  <button class="ais-ais-menu-showMore">
+  <button class="ais-Menu-showMore">
     Show more
   </button>
 </div>

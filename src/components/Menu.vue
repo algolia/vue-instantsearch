@@ -82,7 +82,7 @@ export default {
   },
   data() {
     return {
-      widgetName: 'ais-menu',
+      widgetName: 'Menu',
     };
   },
   beforeCreate() {
