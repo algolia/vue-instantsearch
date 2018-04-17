@@ -5,6 +5,7 @@
         <li
           v-for="item in state.items"
           :class="item.isRefined ? suit('item', 'active') : suit('item')"
+          :key="item.value"
           @click.prevent="state.refine(item.value)"
         >
           <a
@@ -19,7 +20,7 @@
       </ul>
 
       <button
-        v-if="showMoreLimit && state.canToggleShowMore"
+        v-if="showMore && state.canToggleShowMore"
         @click.prevent="state.toggleShowMore()"
         :class="state.canToggleShowMore ? suit('showMore') : suit('showMore', 'disabled')"
       >
@@ -44,6 +45,10 @@ export default {
       type: Number,
       default: 10,
     },
+    showMore: {
+      type: Boolean,
+      default: false,
+    },
     showMoreLimit: {
       type: Number,
     },
@@ -56,14 +61,14 @@ export default {
       type: String,
       default() {
         return 'Show more';
-      }
+      },
     },
     showLessLabel: {
       type: String,
       default() {
         return 'Show less';
-      }
-    }
+      },
+    },
   },
   computed: {
     show() {
@@ -86,4 +91,5 @@ export default {
   beforeCreate() {
     this.connector = connectMenu;
   },
-};</script>
+};
+</script>

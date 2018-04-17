@@ -26,6 +26,15 @@ it('renders correctly', () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
+it('renders correctly with showMore', () => {
+  __setState({ ...defaultState, canToggleShowMore: true });
+
+  const wrapper = mount(Menu, {
+    propsData: { attribute: 'foo', showMore: true },
+  });
+  expect(wrapper.html()).toMatchSnapshot();
+});
+
 it('calls `refine()` when click on an element', () => {
   __setState(defaultState);
 
@@ -40,7 +49,7 @@ it('calls `toggleShowMore()` when possible', () => {
   __setState({ ...defaultState, canToggleShowMore: true });
 
   const wrapper = mount(Menu, {
-    propsData: { attribute: 'foo', showMoreLimit: 10 },
+    propsData: { attribute: 'foo', showMore: true },
   });
   wrapper.find('button').trigger('click');
 
