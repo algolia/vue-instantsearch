@@ -22,22 +22,22 @@ A checklist for all of the components which are completely done.
 x => done
 ~ => in progress
 
-* [ ] `ais-breadcrumb`
+* [~] `ais-breadcrumb` vvo
 * [ ] `ais-clear-refinements`
 * [ ] `ais-configure`
 * [ ] `ais-current-refinements`
-* [ ] `ais-hierarchical-menu`
-* [ ] `ais-highlight` (not simply a connector)
-* [~] `ais-hits-per-page`
-* [ ] `ais-hits`
-* [ ] `ais-index`
+* [~] `ais-hierarchical-menu` vvo
+* [ ] `ais-highlight` (there's no connector for this today)
+* [x] `ais-hits-per-page`
+* [x] `ais-hits`
+* [ ] `ais-index` (there's no connector for this today)
 * [ ] `ais-infinite-hits`
 * [ ] `ais-menu-select`
 * [ ] `ais-menu`
 * [ ] `ais-numeric-menu`
 * [ ] `ais-numeric-selector`
 * [x] `ais-pagination`
-* [ ] `ais-panel` (not simply a connector)
+* [ ] `ais-panel` (there's no connector for this today)
 * [ ] `ais-powered-by`
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
@@ -48,21 +48,21 @@ x => done
 * [ ] `ais-sort-by`
 * [x] `ais-stats`
 * [ ] `ais-toggle-refinement`
-* [ ] `ais-index` (not simply a connector)
 
 # Questions/next steps
 
 * [ ] Decide what is provided as state in every widget. Today we get everything without controlling it.
       We need to be careful, everything inside state once released will be public API
 * [ ] align all filenames to the same convention: Widget.vue, **tests**/Widget.js, stories/Widget.stories.js
+* [ ] remove any scope that is not a root scope for now
+* [x] can we do a manual mock for component in tests instead of having the mock copy pasted everywhere?
+* [ ] new doc must be on /v2/, old doc must still be accessible (same as InstantSearch.js)
+* [ ] unit test slots for each component
 * [ ] do we provide granular scopes for widgets or only a single big scope?
       This needs to be aligned across all libraries, for V2.0.0 we go for no scopes at all which
       is our mantra since we created connectors: no more specific DOM options.
       We also need to ask vue-instantsearch users about their current scope usage.
       We can also do GitHub searches to see if people are using some named scopes + vue-instantsearch (to sense the usage)
-* [ ] remove any scope that is not a root scope for now
-* [x] can we do a manual mock for component in tests instead of having the mock copy pasted everywhere?
-* [ ] new doc must be on /v2/, old doc must still be accessible (same as InstantSearch.js)
 
 ---
 

@@ -406,27 +406,7 @@ algoliasearch-helper@2.24.0, algoliasearch-helper@^2.24.0:
     qs "^6.2.1"
     util "^0.10.3"
 
-algoliasearch@3.24.9:
-  version "3.24.9"
-  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.24.9.tgz#19063470efe5b6779ec081394b1f7aa400438273"
-  dependencies:
-    agentkeepalive "^2.2.0"
-    debug "^2.6.8"
-    envify "^4.0.0"
-    es6-promise "^4.1.0"
-    events "^1.1.0"
-    foreach "^2.0.5"
-    global "^4.3.2"
-    inherits "^2.0.1"
-    isarray "^2.0.1"
-    load-script "^1.0.0"
-    object-keys "^1.0.11"
-    querystring-es3 "^0.2.1"
-    reduce "^1.0.1"
-    semver "^5.1.0"
-    tunnel-agent "^0.6.0"
-
-algoliasearch@^3.25.1:
+algoliasearch@3.25.1, algoliasearch@^3.25.1:
   version "3.25.1"
   resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.25.1.tgz#e543108b528e5c89338834473cb8fb082d13d11f"
   dependencies:
@@ -4607,20 +4587,21 @@ instantsearch.css@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.0.0.tgz#74fb9aa25ce64c80effc663fe92bc9ec785cc5e3"
 
-instantsearch.js@^2.4.1:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-2.6.0.tgz#446ddbf22d3459caafedc4d9f0b3398d91951f4d"
+instantsearch.js@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-2.7.1.tgz#df87e34e98fb67e7580e9c9cceb4245d8b4045ca"
   dependencies:
-    algoliasearch "3.24.9"
+    algoliasearch "3.25.1"
     algoliasearch-helper "2.24.0"
     classnames "2.2.5"
     events "1.1.0"
     hogan.js "3.0.2"
-    lodash "4.17.4"
-    preact "8.1.0"
-    preact-compat "3.17.0"
+    lodash "4.17.5"
+    preact "8.2.7"
+    preact-compat "3.18.0"
     preact-rheostat "2.1.1"
     prop-types "15.5.10"
+    qs "6.5.1"
     to-factory "1.0.0"
 
 interpret@^1.0.0:
@@ -5606,17 +5587,17 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@4.17.4, lodash@4.x.x, lodash@^4.0.0, lodash@^4.1.0, lodash@^4.14.0, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.5.1, lodash@~4.17.4:
+lodash@4.17.5, lodash@^4.13.1:
+  version "4.17.5"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
+
+lodash@4.x.x, lodash@^4.0.0, lodash@^4.1.0, lodash@^4.14.0, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.5.1, lodash@~4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
 lodash@^3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
-
-lodash@^4.13.1:
-  version "4.17.5"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
 longest@^1.0.1:
   version "1.0.1"
@@ -6826,17 +6807,7 @@ posthtml@^0.10.1:
     posthtml-parser "^0.3.0"
     posthtml-render "^1.0.5"
 
-preact-compat@3.17.0:
-  version "3.17.0"
-  resolved "https://registry.yarnpkg.com/preact-compat/-/preact-compat-3.17.0.tgz#528cfdfc301190c1a0f47567336be1f4be0266b3"
-  dependencies:
-    immutability-helper "^2.1.2"
-    preact-render-to-string "^3.6.0"
-    preact-transition-group "^1.1.0"
-    prop-types "^15.5.8"
-    standalone-react-addons-pure-render-mixin "^0.1.1"
-
-preact-compat@^3.17.0:
+preact-compat@3.18.0, preact-compat@^3.17.0:
   version "3.18.0"
   resolved "https://registry.yarnpkg.com/preact-compat/-/preact-compat-3.18.0.tgz#ca430cc1f67193fb9feaf7c510832957b2ebe701"
   dependencies:
@@ -6865,11 +6836,7 @@ preact-transition-group@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/preact-transition-group/-/preact-transition-group-1.1.1.tgz#f0a49327ea515ece34ea2be864c4a7d29e5d6e10"
 
-preact@8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-8.1.0.tgz#f035b808eebb74e46d56246b02ca0f190b6d6574"
-
-preact@^8.2.5:
+preact@8.2.7, preact@^8.2.5:
   version "8.2.7"
   resolved "https://registry.yarnpkg.com/preact/-/preact-8.2.7.tgz#316249fb678cd5e93e7cee63cea7bfb62dbd6814"
 
