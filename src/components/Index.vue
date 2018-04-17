@@ -1,11 +1,12 @@
 <template>
   <!-- Index is an empty component that will hold other widgets -->
-  <div>
+  <div :class="suit()">
     <slot></slot>
   </div>
 </template>
 
 <script>
+import suit from '../suit.js';
 import instantsearch from 'instantsearch.js/es/';
 
 export default {
@@ -55,4 +56,9 @@ export default {
       this.instantSearchInstance.start();
     });
   },
+  methods: {
+    suit(...args) {
+      return suit(this.widgetName, ...args);
+    },
+  }
 };</script>
