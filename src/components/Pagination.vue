@@ -76,7 +76,7 @@
             <span :class="suit('link')" aria-label="Next">›</span>
           </template>
         </li>
-        <li 
+        <li
           :class="{
             [suit('item')]:true,
             [suit('item','lastPage')]: true,
