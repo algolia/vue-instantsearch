@@ -36,7 +36,7 @@ x => done
 * [ ] `ais-menu`
 * [ ] `ais-numeric-menu`
 * [ ] `ais-numeric-selector`
-* [-] `ais-pagination`
+* [x] `ais-pagination`
 * [ ] `ais-panel`
 * [ ] `ais-powered-by`
 * [ ] `ais-range-input`
