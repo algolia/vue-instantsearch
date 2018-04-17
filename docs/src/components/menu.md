@@ -9,7 +9,7 @@ editable: true
 githubSource: docs/src/components/menu.md
 ---
 
-Refine a single item in a list of facets.
+Create a menu based on a facet. A menu displays a list of facet values and let the user selects only one value at a time.
 
 <a class="btn btn-static-theme" href="stories/?selectedKind=Menu">🕹 try out live</a>
 
