@@ -22,22 +22,22 @@ A checklist for all of the components which are completely done.
 x => done
 ~ => in progress
 
-* [~] `ais-breadcrumb`
+* [~] `ais-breadcrumb` vvo
 * [ ] `ais-clear-refinements`
 * [ ] `ais-configure`
 * [ ] `ais-current-refinements`
-* [~] `ais-hierarchical-menu`
-* [ ] `ais-highlight`
+* [~] `ais-hierarchical-menu` vvo
+* [ ] `ais-highlight` (there's no connector for this today)
 * [x] `ais-hits-per-page`
 * [x] `ais-hits`
-* [ ] `ais-index`
+* [ ] `ais-index` (there's no connector for this today)
 * [ ] `ais-infinite-hits`
 * [ ] `ais-menu-select`
 * [ ] `ais-menu`
 * [ ] `ais-numeric-menu`
 * [ ] `ais-numeric-selector`
-* [-] `ais-pagination`
-* [ ] `ais-panel`
+* [x] `ais-pagination`
+* [ ] `ais-panel` (there's no connector for this today)
 * [ ] `ais-powered-by`
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
@@ -48,7 +48,6 @@ x => done
 * [ ] `ais-sort-by`
 * [x] `ais-stats`
 * [ ] `ais-toggle-refinement`
-* [ ] `ais-index`
 
 # Questions/next steps
 
