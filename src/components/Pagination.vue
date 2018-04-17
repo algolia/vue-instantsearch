@@ -160,5 +160,4 @@ export default {
       this.$emit('page-change', p);
     },
   },
-};
-</script>
+};</script>
