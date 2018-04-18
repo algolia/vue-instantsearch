@@ -3,7 +3,43 @@ import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
 import { getRefinements } from 'instantsearch.js/es/lib/utils.js';
 
-export default function getFilteredRefinements(
+export function clearRefinementFromState(state, refinement) {
+  switch (refinement.type) {
+    case 'facet':
+      return state.removeFacetRefinement(
+        refinement.attributeName,
+        refinement.name
+      );
+    case 'disjunctive':
+      return state.removeDisjunctiveFacetRefinement(
+        refinement.attributeName,
+        refinement.name
+      );
+    case 'hierarchical':
+      return state.clearRefinements(refinement.attributeName);
+    case 'exclude':
+      return state.removeExcludeRefinement(
+        refinement.attributeName,
+        refinement.name
+      );
+    case 'numeric':
+      return state.removeNumericRefinement(
+        refinement.attributeName,
+        refinement.operator,
+        refinement.numericValue
+      );
+    case 'tag':
+      return state.removeTagRefinement(refinement.name);
+    case 'query':
+      return state.setQueryParameter('query', '');
+    default:
+      throw new Error(
+        `clearRefinement: type ${refinement.type} is not handled`
+      );
+  }
+}
+
+export function getFilteredRefinements(
   results,
   state,
   attributeNames,

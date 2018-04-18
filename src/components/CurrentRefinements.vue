@@ -4,7 +4,7 @@
         <div
                 v-for="(item, index) in currentRefinedValues"
                 :key="index"
-                @click="removeCurrentFilter(item.attributeName, item.name)"
+                @click="removeCurrentFilter(item)"
                 class="selected-filters__item"
         >
             <span v-if="item.attributeName === 'tree-menu'" class="selected-filters__name">Category: </span>
@@ -20,7 +20,11 @@
 
 <script>
 import algoliaComponent from '../component';
-import getFilteredRefinements from './getFilteredRefinements.js';
+import {
+  getFilteredRefinements,
+  clearRefinementFromState,
+} from './clearRefinements.js';
+
 export default {
   mixins: [algoliaComponent],
   computed: {
@@ -41,8 +45,12 @@ export default {
     },
   },
   methods: {
-    removeCurrentFilter(facet, value) {
-      return this.searchStore._helper.toggleRefinement(facet, value); // eslint-disable-line
+    removeCurrentFilter(refinement) {
+      this.searchStore._helper
+        .setState(
+          clearRefinementFromState(this.searchStore._helper.state, refinement)
+        )
+        .search();
     },
   },
 };
