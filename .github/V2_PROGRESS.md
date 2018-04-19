@@ -25,12 +25,12 @@ x => done
 * [~] `ais-breadcrumb` vvo
 * [ ] `ais-clear-refinements`
 * [ ] `ais-configure`
-* [ ] `ais-current-refinements`
+* [~] `ais-current-refinements` Haroenv
 * [~] `ais-hierarchical-menu` vvo
 * [ ] `ais-highlight` (there's no connector for this today)
 * [x] `ais-hits-per-page`
 * [x] `ais-hits`
-* [ ] `ais-index` (there's no connector for this today)
+* [x] `ais-index` (there's no connector for this today)
 * [ ] `ais-infinite-hits`
 * [ ] `ais-menu-select`
 * [ ] `ais-menu`
