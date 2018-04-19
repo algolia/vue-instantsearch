@@ -11,4 +11,11 @@ storiesOf('CurrentRefinements', module)
       <ais-current-refinements :clearsQuery="true"></ais-current-refinements>
       <ais-menu attribute="brand"></ais-menu>
     </div>`,
+  }))
+  .add('with multiple refinements to clear', () => ({
+    template: `<div>
+      <ais-current-refinements :clearsQuery="true"></ais-current-refinements>
+      <ais-menu attribute="brand"></ais-menu>
+      <ais-pagination></ais-pagination>
+    </div>`,
   }));
