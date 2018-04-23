@@ -19,7 +19,7 @@ When you want to override how a single item looks:
 
 ```html
 <ais-hits>
-  <template slot="item" slot-scope="result">
+  <template slot="item" slot-scope="{ result }">
     <h2>
       <a :href="result.url">
         {{ result.title }}
@@ -31,6 +31,21 @@ When you want to override how a single item looks:
 ```
 
 When you want to override the complete hits:
+
+```html
+<ais-hits>
+  <template slot="default" slot-scope="items">
+    <div v-for="(item, itemIndex) in items" :key="itemIndex">
+      <h2>
+        <a :href="item.url">
+          {{ item.title }}
+        </a>
+      </h2>
+      <p>{{ item.description }}</p>
+    </div>
+  </template>
+</ais-hits>
+```
 
 When you want to show something custom if there are no results:
 
