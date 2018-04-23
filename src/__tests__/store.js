@@ -544,7 +544,6 @@ describe('Store', () => {
 
       expect(client.search).toHaveBeenCalledTimes(1);
       // first results from Algolia
-      client.searchResultsResolvers[0]();
       return client.searchResultsPromises[0]
         .then(() => {
           expect(store.isSearchStalled).toBe(false);
@@ -555,7 +554,6 @@ describe('Store', () => {
 
           expect(store.isSearchStalled).toBe(true);
 
-          client.searchResultsResolvers[1]();
           return client.searchResultsPromises[1];
         })
         .then(() => {
@@ -566,20 +564,15 @@ describe('Store', () => {
 });
 
 function makeManagedClient() {
-  const searchResultsResolvers = [];
   const searchResultsPromises = [];
   const fakeClient = {
-    search: jest.fn((qs, cb) => {
-      const p = new Promise(resolve =>
-        searchResultsResolvers.push(resolve)
-      ).then(() => {
-        cb(null, defaultResponse());
-      });
-      searchResultsPromises.push(p);
+    search: jest.fn(() => {
+      const results = Promise.resolve(defaultResponse());
+      searchResultsPromises.push(results);
+      return results;
     }),
     addAlgoliaAgent: () => {},
     searchResultsPromises,
-    searchResultsResolvers,
   };
 
   return fakeClient;
