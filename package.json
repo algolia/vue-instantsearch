@@ -43,8 +43,8 @@
     "changelog:unreleased": "conventional-changelog --preset angular --output-unreleased"
   },
   "dependencies": {
-    "algoliasearch": "^3.18.1",
-    "algoliasearch-helper": "^2.21.1",
+    "algoliasearch": "^3.27.0",
+    "algoliasearch-helper": "^2.25.1",
     "escape-html": "^1.0.3"
   },
   "peerDependencies": {
