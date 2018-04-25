@@ -109,16 +109,14 @@ export default {
       }
 
       this._localSearchStore = createFromAlgoliaClient(this.searchClient);
+    } else if (!this.searchStore) {
+      this._localSearchStore = createFromAlgoliaCredentials(
+        this.appId,
+        this.apiKey,
+        { stalledSearchDelay: this.stalledSearchDelay }
+      );
     } else {
-      if (!this.searchStore) {
-        this._localSearchStore = createFromAlgoliaCredentials(
-          this.appId,
-          this.apiKey,
-          { stalledSearchDelay: this.stalledSearchDelay }
-        );
-      } else {
-        this._localSearchStore = this.searchStore;
-      }
+      this._localSearchStore = this.searchStore;
     }
 
     if (this.indexName) {
