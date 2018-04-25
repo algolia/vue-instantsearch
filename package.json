@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "algoliasearch": "^3.27.0",
-    "algoliasearch-helper": "^2.25.1",
+    "algoliasearch-helper": "^2.26.0",
     "escape-html": "^1.0.3"
   },
   "peerDependencies": {
