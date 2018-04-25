@@ -108,7 +108,7 @@ export default {
         );
       }
 
-      this._localSearchStore = createFromAlgoliaClient(Object.create(this.searchClient));
+      this._localSearchStore = createFromAlgoliaClient(this.searchClient);
     } else {
       if (!this.searchStore) {
         this._localSearchStore = createFromAlgoliaCredentials(
