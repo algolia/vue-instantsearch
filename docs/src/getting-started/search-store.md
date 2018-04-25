@@ -66,6 +66,42 @@ const searchStore = createFromAlgoliaClient(client);
 
 Note that there is no reason to provide your own client if you are not reusing it elsewhere.
 
+### Create a search store from a custom search client
+
+If you want to use the [official JavaScript API Client](https://github.com/algolia/algoliasearch-client-javascript) on your backend, or even a custom search client, you can create an object implementing the `search()` method (and `searchForFacetValues()` if needed).
+
+The search client can be passed to the [`search-client`](../components/index.html#props) prop of the [`Index`](../components/index.html):
+
+```html
+<template>
+  <ais-index
+    index-name="your_indexName"
+    :search-client="searchClient"
+  >
+    <!-- Add your InstantSearch components here. -->
+  </ais-index>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        searchClient: {
+          search(requests) {
+            // perform the requests
+            return response;
+          },
+          searchForFacetValues(requests) {
+            // perform the requests
+            return response;
+          },
+        },
+      },
+    },
+  };
+</script>
+```
+
 ### Create a search store from an Algolia helper instance
 
 The [Algolia helper](https://github.com/algolia/algoliasearch-helper-js) is a JavaScript library that is built on top of the Algolia API client. Its goal is to enable a simple API to achieve advanced queries while also providing utility methods and behavior like keeping track of the last result.
