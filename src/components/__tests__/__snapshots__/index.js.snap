@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search Client API collision and apiKey 1`] = `"vue-instantsearch: \`apiKey\` cannot be used with \`searchClient\`"`;
+
+exports[`Search Client API collision and appId 1`] = `"vue-instantsearch: \`appId\` cannot be used with \`searchClient\`"`;
+
+exports[`Search Client API collision and searchStore 1`] = `"\`searchStore\` cannot be used with \`searchClient\`"`;
+
+exports[`Search Client API collision without indexName 1`] = `"vue-instantsearch: \`indexName\` is required with \`searchClient\`"`;
+
+exports[`Search Client Properties throws if no \`search()\` method 1`] = `"vue-instantsearch: \`searchClient\` must implement a method \`search(requests)\`"`;
