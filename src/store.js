@@ -86,7 +86,11 @@ export class Store {
     this._helper.on('result', onHelperResult.bind(this));
     this._helper.on('search', onHelperSearch.bind(this));
 
-    this._helper.getClient().addAlgoliaAgent(`vue-instantsearch ${version}`);
+    const client = this._helper.getClient();
+
+    if (typeof client.addAlgoliaAgent === 'function') {
+      client.addAlgoliaAgent(`vue-instantsearch ${version}`);
+    }
 
     this._stalledSearchTimer = null;
     this.isSearchStalled = true;
