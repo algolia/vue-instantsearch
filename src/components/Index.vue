@@ -5,7 +5,10 @@
 </template>
 
 <script>
-import { createFromAlgoliaCredentials } from '../store';
+import {
+  createFromAlgoliaCredentials,
+  createFromAlgoliaClient,
+} from '../store';
 import algoliaComponent from '../component';
 
 export default {
@@ -16,6 +19,9 @@ export default {
       default() {
         return this._searchStore;
       },
+    },
+    searchClient: {
+      type: Object,
     },
     apiKey: {
       type: String,
@@ -73,14 +79,46 @@ export default {
     };
   },
   provide() {
-    if (!this.searchStore) {
-      this._localSearchStore = createFromAlgoliaCredentials(
-        this.appId,
-        this.apiKey,
-        { stalledSearchDelay: this.stalledSearchDelay }
-      );
+    if (this.searchClient) {
+      if (!this.indexName) {
+        throw new Error(
+          'vue-instantsearch: `indexName` is required with `searchClient`'
+        );
+      }
+
+      if (this.searchStore) {
+        throw new Error('`searchStore` cannot be used with `searchClient`');
+      }
+
+      if (this.appId) {
+        throw new Error(
+          'vue-instantsearch: `appId` cannot be used with `searchClient`'
+        );
+      }
+
+      if (this.apiKey) {
+        throw new Error(
+          'vue-instantsearch: `apiKey` cannot be used with `searchClient`'
+        );
+      }
+
+      if (typeof this.searchClient.search !== 'function') {
+        throw new Error(
+          'vue-instantsearch: `searchClient` must implement a method `search(requests)`'
+        );
+      }
+
+      this._localSearchStore = createFromAlgoliaClient(Object.create(this.searchClient));
     } else {
-      this._localSearchStore = this.searchStore;
+      if (!this.searchStore) {
+        this._localSearchStore = createFromAlgoliaCredentials(
+          this.appId,
+          this.apiKey,
+          { stalledSearchDelay: this.stalledSearchDelay }
+        );
+      } else {
+        this._localSearchStore = this.searchStore;
+      }
     }
 
     if (this.indexName) {
