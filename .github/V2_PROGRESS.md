@@ -32,7 +32,7 @@ x => done
 * [x] `ais-hits`
 * [x] `ais-index` (there's no connector for this today)
 * [~] `ais-infinite-hits` samouss
-* [ ] `ais-menu-select`
+* [~] `ais-menu-select` samouss
 * [ ] `ais-menu`
 * [ ] `ais-numeric-menu`
 * [ ] `ais-numeric-selector`
