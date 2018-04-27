@@ -55,5 +55,4 @@ export default {
       this.state.showMore();
     },
   },
-};
-</script>
+};</script>
