@@ -31,7 +31,7 @@ x => done
 * [x] `ais-hits-per-page`
 * [x] `ais-hits`
 * [x] `ais-index` (there's no connector for this today)
-* [ ] `ais-infinite-hits`
+* [~] `ais-infinite-hits` samouss
 * [ ] `ais-menu-select`
 * [ ] `ais-menu`
 * [ ] `ais-numeric-menu`
