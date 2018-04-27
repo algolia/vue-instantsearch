@@ -35,4 +35,12 @@ storiesOf('InfiniteHits', module)
         </div>
       </ais-infinite-hits>
     `,
+  }))
+  .add('disabled button', () => ({
+    template: `
+      <div>
+        <ais-configure query="dsdsds" />
+        <ais-infinite-hits />
+      </div>
+    `,
   }));
