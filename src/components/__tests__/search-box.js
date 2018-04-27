@@ -34,7 +34,9 @@ describe('SearchBox', () => {
       },
     });
 
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(wrapper.find('.ais-SearchBox-input').attributes().placeholder).toBe(
+      'Search placeholder'
+    );
   });
 
   test('with submit title', () => {
