@@ -38,6 +38,7 @@ export default {
       validator(val) {
         // TODO: make this work with the connector (IS.js doesn't expose it)
         if (Array.isArray(val) && val.length > 0) {
+          // eslint-disable-next-line no-console
           console.warn(
             '`excludedAttributes` is not implemented on CurrentRefinements'
           );
@@ -74,5 +75,4 @@ export default {
       );
     },
   },
-};
-</script>
+};</script>
