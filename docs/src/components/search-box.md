@@ -29,22 +29,23 @@ With autofocus:
 
 ## Props
 
-| Name         | Type    | Default    | Description                                               |
-|:-------------|:--------|:-----------|:----------------------------------------------------------|
-| placeholder  | String  | `''`       | The input placeholder                                     |
-| submit-title | String  | `'search'` | The submit button text                                    |
-| clear-title  | String  | `'clear'`  | The clear button text                                     |
-| autofocus    | Boolean | `false`    | Whether to automatically focus on the input when rendered |
+| Name                   | Type    | Default    | Description                                                                    |
+| :--------------------- | :------ | :--------- | :----------------------------------------------------------------------------- |
+| placeholder            | String  | `''`       | The input placeholder                                                          |
+| submit-title           | String  | `'Search'` | The submit button title                                                        |
+| clear-title            | String  | `'Clear'`  | The clear button title                                                         |
+| autofocus              | Boolean | `false`    | Whether to automatically focus on the input when rendered                      |
+| show-loading-indicator | Boolean | `false`    | Whether to indicate at beginning of the input that search is currently stalled |
 
 ## Slots
 
 | Name    | Props | Default                                                     | Description     |
-|:--------|:------|:------------------------------------------------------------|:----------------|
+| :------ | :---- | :---------------------------------------------------------- | :-------------- |
 | default |       | Contains the search input, and the clear and submit buttons | First page text |
 
 ## CSS Classes
 
 | ClassName                | Description       |
-|:-------------------------|:------------------|
+| :----------------------- | :---------------- |
 | `ais-search-box`         | Container class   |
 | `ais-search-box__submit` | The submit button |
