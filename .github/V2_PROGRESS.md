@@ -43,7 +43,7 @@ x => done
 * [ ] `ais-range-slider`
 * [ ] `ais-rating-menu`
 * [ ] `ais-refinement-list`
-* [ ] `ais-search-box`
+* [x] `ais-search-box`
 * [ ] `ais-snippet`
 * [ ] `ais-sort-by`
 * [x] `ais-stats`
