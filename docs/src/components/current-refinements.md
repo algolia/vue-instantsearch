@@ -16,15 +16,16 @@ Show the currently refined values and allow them to be unset.
 ## Usage
 
 ```html
-<ais-current-refinements :option="value"></ais-current-refinements>
+<ais-current-refinements :clears-query="true"></ais-current-refinements>
 ```
 
 ## Props
 
 Name | Type | Default | Description | Required
 ---|---|---|---|---
-option | Type | `defaultValue` | An option | yes
-optionTwo | Type | `defaultValue` | An option2 | no
+attributes | Array | | Allows you to format the attributes | no
+clearsQuery | Boolean | `false` | Should the 'clear all' button also clear the query? | no
+excludedAttributes | Array | `[]` | Attributes not to show or clear | no
 
 ## CSS classes
 

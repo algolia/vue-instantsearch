@@ -32,9 +32,19 @@ export default {
       default: false,
       required: false,
     },
-    transformItems: {
-      type: Function,
+    excludedAttributes: {
+      type: Array,
       required: false,
+      validator(val) {
+        // TODO: make this work with the connector (IS.js doesn't expose it)
+        if (Array.isArray(val) && val.length > 0) {
+          console.warn(
+            '`excludedAttributes` is not implemented on CurrentRefinements'
+          );
+          return false;
+        }
+        return true;
+      },
     },
   },
   data() {
@@ -50,11 +60,7 @@ export default {
       return {
         attributes: this.attributes,
         clearsQuery: this.clearsQuery,
-        onlyListedAttributes: this.listedAttributes,
       };
-    },
-    listedAttributes() {
-      return this.transformItems && this.transformItems(this.state.items);
     },
   },
   filters: {
