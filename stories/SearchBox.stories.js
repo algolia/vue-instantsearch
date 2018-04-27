@@ -9,9 +9,6 @@ storiesOf('SearchBox', module)
   .add('with loading indicator', () => ({
     template: '<ais-search-box showLoadingIndicator></ais-search-box>',
   }))
-  .add('with default query', () => ({
-    template: '<ais-search-box ref="child"></ais-search-box>',
-    mounted() {
-      this.$refs.child.searchStore.query = 'battery';
-    },
+  .add('with autofocus', () => ({
+    template: '<ais-search-box autofocus></ais-search-box>',
   }));
