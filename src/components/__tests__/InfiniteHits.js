@@ -4,25 +4,31 @@ import InfiniteHits from '../InfiniteHits.vue';
 
 jest.mock('../../component');
 
+const defaultState = {
+  hits: [
+    {
+      objectID: '00001',
+    },
+    {
+      objectID: '00002',
+    },
+    {
+      objectID: '00003',
+    },
+    {
+      objectID: '00004',
+    },
+    {
+      objectID: '00005',
+    },
+  ],
+  isLastPage: false,
+  showMore: () => {},
+};
+
 it('renders correctly', () => {
   __setState({
-    hits: [
-      {
-        objectID: '00001',
-      },
-      {
-        objectID: '00002',
-      },
-      {
-        objectID: '00003',
-      },
-      {
-        objectID: '00004',
-      },
-      {
-        objectID: '00005',
-      },
-    ],
+    ...defaultState,
   });
 
   const wrapper = mount(InfiniteHits);
@@ -32,23 +38,7 @@ it('renders correctly', () => {
 
 it('renders correctly with a custom rendering', () => {
   __setState({
-    hits: [
-      {
-        objectID: '00001',
-      },
-      {
-        objectID: '00002',
-      },
-      {
-        objectID: '00003',
-      },
-      {
-        objectID: '00004',
-      },
-      {
-        objectID: '00005',
-      },
-    ],
+    ...defaultState,
   });
 
   const wrapper = mount(InfiniteHits, {
@@ -68,23 +58,7 @@ it('renders correctly with a custom rendering', () => {
 
 it('renders correctly with a custom item rendering', () => {
   __setState({
-    hits: [
-      {
-        objectID: '00001',
-      },
-      {
-        objectID: '00002',
-      },
-      {
-        objectID: '00003',
-      },
-      {
-        objectID: '00004',
-      },
-      {
-        objectID: '00005',
-      },
-    ],
+    ...defaultState,
   });
 
   const wrapper = mount(InfiniteHits, {
@@ -102,24 +76,8 @@ it('renders correctly with a custom item rendering', () => {
 
 it('renders correctly on the last page', () => {
   __setState({
+    ...defaultState,
     isLastPage: true,
-    hits: [
-      {
-        objectID: '00001',
-      },
-      {
-        objectID: '00002',
-      },
-      {
-        objectID: '00003',
-      },
-      {
-        objectID: '00004',
-      },
-      {
-        objectID: '00005',
-      },
-    ],
   });
 
   const wrapper = mount(InfiniteHits);
@@ -131,6 +89,7 @@ it('expect to call showMore on click', () => {
   const showMore = jest.fn();
 
   __setState({
+    ...defaultState,
     showMore,
   });
 
