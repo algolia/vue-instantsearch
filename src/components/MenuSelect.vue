@@ -78,5 +78,4 @@ export default {
       this.state.refine(value);
     },
   },
-};
-</script>
+};</script>
