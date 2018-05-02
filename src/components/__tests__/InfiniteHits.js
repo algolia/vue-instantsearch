@@ -97,7 +97,7 @@ it('expect to call showMore on click', () => {
 
   expect(showMore).not.toHaveBeenCalled();
 
-  wrapper.find('button').trigger('click');
+  wrapper.find('.ais-InfiniteHits-loadMore').trigger('click');
 
   expect(showMore).toHaveBeenCalled();
 });
