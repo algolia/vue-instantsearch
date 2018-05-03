@@ -1,3 +1,14 @@
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/algolia/vue-instantsearch/compare/v1.5.2...v1.6.0) (2018-05-03)
+
+
+### Features
+
+* Update client and helper ([#429](https://github.com/algolia/vue-instantsearch/issues/429)) ([c533527](https://github.com/algolia/vue-instantsearch/commit/c533527))
+* **search-client:** Add support for Custom Search Clients ([#432](https://github.com/algolia/vue-instantsearch/issues/432)) ([c3d35bc](https://github.com/algolia/vue-instantsearch/commit/c3d35bc))
+
+
+
 <a name="1.5.2"></a>
 ## [1.5.2](https://github.com/algolia/vue-instantsearch/compare/v1.5.1...v1.5.2) (2018-03-15)
 
