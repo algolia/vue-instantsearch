@@ -1,18 +1,17 @@
 <template>
-  <div :class="suit()">
-    <form
-      v-if="state"
-      action=""
-      role="search"
-      novalidate
-      :class="suit('form')"
-      @submit.prevent="onFormSubmit"
-      @reset.prevent="onFormReset"
+  <div :class="suit()" v-if="state">
+    <slot
+      :currentRefinement="state.query"
+      :isSearchStalled="state.isSearchStalled"
+      :refine="state.refine"
     >
-      <slot
-        :currentRefinement="state.query"
-        :isSearchStalled="state.isSearchStalled"
-        :refine="state.refine"
+      <form
+        action=""
+        role="search"
+        novalidate
+        :class="suit('form')"
+        @submit.prevent="onFormSubmit"
+        @reset.prevent="onFormReset"
       >
         <input
           type="search"
@@ -100,8 +99,8 @@
             </svg>
           </slot>
         </span>
-      </slot>
-    </form>
+      </form>
+    </slot>
   </div>
 </template>
 
