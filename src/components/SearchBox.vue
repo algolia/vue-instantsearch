@@ -113,7 +113,7 @@ export default {
   props: {
     placeholder: {
       type: String,
-      default: 'Search',
+      default: 'Search here…',
     },
     autofocus: {
       type: Boolean,

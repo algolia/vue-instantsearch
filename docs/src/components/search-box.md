@@ -23,7 +23,7 @@ A search input with a clear and submit button.
 
 Name | Type | Default | Description | Required
 ---|---|---|---|---
-placeholder | String | `''` | The input placeholder | no
+placeholder | String | `'Search here…'` | The input placeholder | no
 submit-title | String | `'search'` | The submit button text | no
 clear-title | String | `'clear'` | The clear button text | no
 autofocus | Boolean | `false` | Whether to automatically focus on the input when rendered | no
