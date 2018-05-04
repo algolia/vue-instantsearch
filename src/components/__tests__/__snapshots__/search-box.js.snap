@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SearchBox renders HTML correctly 1`] = `
+exports[`renders HTML correctly 1`] = `
 
 <div class="ais-SearchBox">
   <form action
