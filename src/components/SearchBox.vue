@@ -163,8 +163,5 @@ export default {
         this.state.refine(value);
       },
     },
-    widgetParams() {
-      return {};
-    },
   },
 };</script>
