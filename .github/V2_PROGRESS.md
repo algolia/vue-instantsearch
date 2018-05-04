@@ -32,7 +32,7 @@ x => done
 * [x] `ais-hits`
 * [x] `ais-index` (there's no connector for this today)
 * [x] `ais-infinite-hits`
-* [~] `ais-menu-select` samouss
+* [x] `ais-menu-select`
 * [ ] `ais-menu`
 * [ ] `ais-numeric-menu`
 * [ ] `ais-numeric-selector`
@@ -43,7 +43,7 @@ x => done
 * [ ] `ais-range-slider`
 * [ ] `ais-rating-menu`
 * [ ] `ais-refinement-list`
-* [ ] `ais-search-box`
+* [x] `ais-search-box`
 * [ ] `ais-snippet`
 * [ ] `ais-sort-by`
 * [x] `ais-stats`
