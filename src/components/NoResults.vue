@@ -21,7 +21,7 @@ export default {
       return this.searchStore.totalResults;
     },
     processingTime(){
-      return this.searchStore.processingTimeMS
+      return this.searchStore.processingTimeMS;
     },
     query() {
       return this.searchStore.query;
