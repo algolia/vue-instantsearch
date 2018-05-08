@@ -20,7 +20,7 @@ export default {
     totalResults() {
       return this.searchStore.totalResults;
     },
-    processingTime(){
+    processingTime() {
       return this.searchStore.processingTimeMS;
     },
     query() {
