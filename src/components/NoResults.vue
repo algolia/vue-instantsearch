@@ -1,5 +1,5 @@
 <template>
-  <div :class="bem()" v-if="totalResults <= 0">
+  <div :class="bem()" v-if="totalResults <= 0 && processingTime > 0">
     <slot :query="query">
       No results matched your query <strong :class="bem('query')">{{query}}</strong>
     </slot>
@@ -19,6 +19,9 @@ export default {
   computed: {
     totalResults() {
       return this.searchStore.totalResults;
+    },
+    processingTime(){
+      return this.searchStore.processingTimeMS
     },
     query() {
       return this.searchStore.query;
