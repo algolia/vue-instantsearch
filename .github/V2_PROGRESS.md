@@ -24,7 +24,7 @@ x => done
 
 * [~] `ais-breadcrumb` vvo
 * [ ] `ais-clear-refinements`
-* [ ] `ais-configure`
+* [~] `ais-configure` Haroenv
 * [~] `ais-current-refinements` Haroenv
 * [~] `ais-hierarchical-menu` vvo
 * [ ] `ais-highlight` (there's no connector for this today)
@@ -38,13 +38,13 @@ x => done
 * [ ] `ais-numeric-selector`
 * [x] `ais-pagination`
 * [ ] `ais-panel` (there's no connector for this today)
-* [ ] `ais-powered-by`
+* [~] `ais-powered-by` Haroenv
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
-* [ ] `ais-rating-menu`
+* [~] `ais-rating-menu` francoischalifour
 * [ ] `ais-refinement-list`
 * [x] `ais-search-box`
 * [ ] `ais-snippet`
-* [ ] `ais-sort-by`
+* [~] `ais-sort-by` Haroenv
 * [x] `ais-stats`
 * [ ] `ais-toggle-refinement`
