@@ -1,8 +1,7 @@
 <template>
   <div :class="bem()" v-if="totalResults > 0">
     <slot :totalResults="totalResults" :processingTime="processingTime" :query="query" :resultStart="resultStart" :resultEnd="resultEnd">
-      Showing {{ resultStart.toLocaleString() }} - {{ resultEnd.toLocaleString() }} of {{ totalResults.toLocaleString() }},
-      took {{ processingTime.toLocaleString() }}ms
+      {{ totalResults.toLocaleString() }} results found in {{ processingTime.toLocaleString() }}ms
     </slot>
   </div>
 </template>
