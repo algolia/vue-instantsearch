@@ -45,6 +45,6 @@ x => done
 * [ ] `ais-refinement-list`
 * [x] `ais-search-box`
 * [ ] `ais-snippet`
-* [~] `ais-sort-by` Haroenv
+* [x] `ais-sort-by`
 * [x] `ais-stats`
 * [ ] `ais-toggle-refinement`
