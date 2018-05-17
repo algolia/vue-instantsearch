@@ -26,6 +26,12 @@ export default {
     processingTime() {
       return this.searchStore.processingTimeMS;
     },
+    resultStart() {
+      return (this.searchStore.page - 1) * this.searchStore.resultsPerPage + 1;
+    },
+    resultEnd() {
+      return this.resultsStart + this.searchStore.results.length - 1;
+    },
   },
 };
 </script>
