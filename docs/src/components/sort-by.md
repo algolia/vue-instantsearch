@@ -63,7 +63,7 @@ Customize the rendering:
 
 Name | Type | Default | Description | Required
 ---|---|---|---|---
-items | Array |  | An array of objects, each one containing a `value` and a `label` key.n | yes
+items | Array |  | An array of objects, each one containing a `value` and a `label` key. | yes
 
 ## CSS classes
 

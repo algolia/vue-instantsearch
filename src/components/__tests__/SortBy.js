@@ -27,12 +27,8 @@ it('renders correctly', () => {
 
   const wrapper = mount(SortBy, {
     propsData: {
-      items: [
-        { value: 'some_index', label: 'Relevance' },
-        { value: 'some_index_cool', label: 'Coolness ascending' },
-        { value: 'some_index_quality', label: 'Quality ascending' },
-      ],
-    }, // ok
+      ...defaultProps,
+    },
   });
   expect(wrapper.html()).toMatchSnapshot();
 });
@@ -70,7 +66,7 @@ it('renders with scoped slots', () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
-it('behaves correctly', () => {
+it('calls `refine` when the selection changes with the `value`', () => {
   const refine = jest.fn();
   __setState({
     ...defaultState,
