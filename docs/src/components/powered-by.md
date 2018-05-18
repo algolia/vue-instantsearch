@@ -29,7 +29,7 @@ Dark background:
 
 ## Props
 
-Name | Type | | Default | Description | Required
+Name | Type | Default | Description | Required
 ---|---|---|---|---
 theme | `"light" | "dark"` | `"light"` | Use a version of the logo legible on light or dark backgrounds | no
 

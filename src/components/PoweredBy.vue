@@ -49,5 +49,4 @@ export default {
       return this.theme === 'light' ? '#5468FF' : '#FFF';
     },
   },
-};
-</script>
+};</script>
