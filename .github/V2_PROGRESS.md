@@ -38,7 +38,7 @@ x => done
 * [ ] `ais-numeric-selector`
 * [x] `ais-pagination`
 * [ ] `ais-panel` (there's no connector for this today)
-* [~] `ais-powered-by` Haroenv
+* [x] `ais-powered-by`
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
 * [~] `ais-rating-menu` francoischalifour
