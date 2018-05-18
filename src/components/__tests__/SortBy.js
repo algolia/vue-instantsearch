@@ -82,7 +82,9 @@ it('calls `refine` when the selection changes with the `value`', () => {
   const select = wrapper.find('select');
   select.element.value = 'some_index_quality';
   select.trigger('change');
+  const selectedOption = wrapper.find('option[value=some_index_quality]');
 
   expect(refine).toHaveBeenCalledTimes(1);
   expect(refine).toHaveBeenLastCalledWith('some_index_quality');
+  expect(selectedOption.element.selected).toBe(true);
 });
