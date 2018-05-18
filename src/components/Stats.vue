@@ -27,12 +27,14 @@ export default {
       return this.searchStore.processingTimeMS;
     },
     resultStart() {
-      if(!this.searchStore || !this.searchStore.page || !this.searchStore.resultsPerPage) return undefined
+      if(!this.searchStore || !this.searchStore.page || !this.searchStore.resultsPerPage)
+        return undefined
       
       return (this.searchStore.page - 1) * this.searchStore.resultsPerPage + 1;
     },
     resultEnd() {
-      if(!this.resultStart || !this.searchStore || !this.searchStore.results) return undefined
+      if(!this.resultStart || !this.searchStore || !this.searchStore.results)
+        return undefined
       
       return this.resultStart + this.searchStore.results.length - 1;
     },
