@@ -4,6 +4,7 @@ exports[`SearchBox component can be autofocused 1`] = `
 
 <form role="search"
       action
+      class="ais-search-box__form"
 >
   <input type="search"
          autocorrect="off"
@@ -58,6 +59,7 @@ exports[`SearchBox component if search is not stalled, show the submit and hide 
 
 <form role="search"
       action
+      class="ais-search-box__form"
 >
   <input type="search"
          autocorrect="off"
@@ -146,6 +148,7 @@ exports[`SearchBox component if search is stalled, hide the submit and display t
 
 <form role="search"
       action
+      class="ais-search-box__form"
 >
   <input type="search"
          autocorrect="off"
@@ -233,6 +236,7 @@ exports[`SearchBox component renders proper HTML 1`] = `
 
 <form role="search"
       action
+      class="ais-search-box__form"
 >
   <input type="search"
          autocorrect="off"
