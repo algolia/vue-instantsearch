@@ -24,7 +24,7 @@ x => done
 
 * [~] `ais-breadcrumb` vvo
 * [ ] `ais-clear-refinements`
-* [~] `ais-configure` Haroenv
+* [x] `ais-configure`
 * [~] `ais-current-refinements` Haroenv
 * [~] `ais-hierarchical-menu` vvo
 * [ ] `ais-highlight` (there's no connector for this today)
