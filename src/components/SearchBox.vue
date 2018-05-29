@@ -1,7 +1,18 @@
 <template>
-  <form role="search" action="" @submit.prevent="onFormSubmit">
+  <form
+    role="search"
+    action=""
+    @submit.prevent="onFormSubmit"
+    :class="bem('form')"
+  >
     <slot>
-      <ais-input :search-store="searchStore" :placeholder="placeholder" :autofocus="autofocus"></ais-input>
+      <ais-input
+        :search-store="searchStore"
+        :placeholder="placeholder"
+        :autofocus="autofocus"
+        :class-names="classNames"
+      >
+      </ais-input>
       <div v-if="showLoadingIndicator" :hidden="!searchStore.isSearchStalled" :class="bem('loading-indicator')" >
         <slot name="loading-indicator" >
           <svg width="1em" height="1em" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#000">
@@ -31,7 +42,7 @@
           />
         </svg>
       </button>
-      <ais-clear :search-store="searchStore">
+      <ais-clear :search-store="searchStore" :class-names="classNames">
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20">
           <title>{{ clearTitle }}</title>
           <path
