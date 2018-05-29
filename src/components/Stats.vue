@@ -1,6 +1,6 @@
 <template>
   <div :class="bem()" v-if="totalResults > 0">
-    <slot :totalResults="totalResults" :processingTime="processingTime" :query="query">
+    <slot :totalResults="totalResults" :processingTime="processingTime" :query="query" :resultStart="resultStart" :resultEnd="resultEnd">
       {{ totalResults.toLocaleString() }} results found in {{ processingTime.toLocaleString() }}ms
     </slot>
   </div>
@@ -25,6 +25,12 @@ export default {
     },
     processingTime() {
       return this.searchStore.processingTimeMS;
+    },
+    resultStart() {
+      return (this.searchStore.page - 1) * this.searchStore.resultsPerPage + 1;
+    },
+    resultEnd() {
+      return this.resultStart + this.searchStore.results.length - 1;
     },
   },
 };

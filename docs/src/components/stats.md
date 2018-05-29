@@ -9,7 +9,7 @@ editable: true
 githubSource: docs/src/components/stats.md
 ---
 
-A component that displays the total number of results found and the processing time in milliseconds.
+A component that exposes result stats for display.
 
 <a class="btn btn-static-theme" href="stories/?selectedKind=Stats">🕹 try out live</a>
 
@@ -25,9 +25,8 @@ Custom text:
 
 ```html
 <ais-stats>
-  <template slot-scope="{ totalResults, processingTime, query }">
-    There are {{ totalResults }} matching your query: <b>{{ query }}</b>
-    - <small>{{ processingTime }}ms</small>
+  <template slot-scope="{ totalResults, processingTime, query, resultStart, resultEnd }">
+    Showing {{ resultStart }} - {{ resultEnd }} of {{ totalResults }} results. Your query: <b>{{ query }}</b> took {{ processingTime }}ms
   </template>
 </ais-stats>
 ```
@@ -36,7 +35,7 @@ Custom text:
 
 | Name    | Props                               | Default                                                        | Description        |
 |:--------|:------------------------------------|:---------------------------------------------------------------|:-------------------|
-| default | totalResults, processingTime, query | `'{{ totalResults }} results found in {{ processingTime }}ms'` | The text displayed |
+| default | totalResults, processingTime, query, resultStart, resultEnd | `'{{ totalResults }} results found in {{ processingTime }}ms'` | The text displayed |
 
 
 ## CSS Classes

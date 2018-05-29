@@ -5,6 +5,7 @@ const searchStore = {
   query: 'search query',
   totalResults: 10000,
   processingTimeMS: 1000,
+  results: [],
 };
 
 describe('Stats', () => {
