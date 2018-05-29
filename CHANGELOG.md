@@ -1,3 +1,17 @@
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/algolia/vue-instantsearch/compare/v1.6.0...v1.7.0) (2018-05-29)
+
+
+### Bug Fixes
+
+* **NoResults:** Stop false positives ([#444](https://github.com/algolia/vue-instantsearch/issues/444)) ([597e451](https://github.com/algolia/vue-instantsearch/commit/597e451))
+* **SearchBox:** propagate the classname overrides to children ([#454](https://github.com/algolia/vue-instantsearch/issues/454)) ([d38821f](https://github.com/algolia/vue-instantsearch/commit/d38821f))
+
+### Features
+
+* **Stats:** add more info to slot ([#451](https://github.com/algolia/vue-instantsearch/issues/451)) ([d529c8c](https://github.com/algolia/vue-instantsearch/commit/d529c8c))
+
+
 <a name="1.6.0"></a>
 # [1.6.0](https://github.com/algolia/vue-instantsearch/compare/v1.5.2...v1.6.0) (2018-05-03)
 
