@@ -23,7 +23,7 @@ The [search client](https://github.com/algolia/algoliasearch-client-javascript) 
 
 To create your own client, you will need to implement a given interface that receives and returns formatted data that InstantSearch can understand.
 
-## On the backend: create the necessary routes
+## On the backend: create the necessary route
 
 This guide assumes that you’ve got an existing server running on [http://localhost:3000](http://localhost:3000) with the route `POST /search` that takes the default Algolia query parameters as JSON. This backend could be using the [JavasScript API client](https://www.algolia.com/doc/api-client/javascript/getting-started/) to query Algolia, on top of any other operations you want to perform.
 
@@ -42,23 +42,9 @@ app.post('/search', async (req, res) => {
 });
 ```
 
-### Supporting *Search For Facet Values*
-
-Algolia offers the concept of [*Search For Facet Values*](https://www.algolia.com/doc/api-reference/api-methods/search-for-facet-values/?language=javascript). This enables your refinement lists to be searchable. If your frontend makes use of this feature, via a search box on top of refinement lists, you must create an endpoint `POST /sffv`. Add a new route to support that:
-
-```javascript
-app.post('/sffv', async (req, res) => {
-  const { requests } = req.body;
-  const results = await algoliaClient.searchForFacetValues(requests);
-  res.status(200).send(results);
-});
-```
-
 Once your new route is ready, we get back to the frontend and are going to create a search client able to communicate with this server.
 
-## On the frontend: call your new backend routes
-
-### Searching for results
+## On the frontend: call your new backend route
 
 A search client is an object which implements the method `search()`, called every time the user searches and refines results.
 
@@ -85,37 +71,6 @@ const customSearchClient = {
 We use the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) in this example to query the server; make sure to take note of the [browser compatibility](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API#Browser_compatibility) before using it in production.
 
 > If you want to transform the data to be passed to your server, you can learn more about all the parameters that the `search()` method supports in the [Algolia API reference](https://www.algolia.com/doc/api-reference/api-parameters/?language=javascript#parameters-list).
-
-### Searching for facet values
-
-If your server exposes a *Search For Facet Values* endpoint, you can implement this feature in a similar way as the `search()` method with the `searchForFacetValues()` method.
-
-```javascript
-searchForFacetValues?: (requests: SearchForFacetValuesRequest[]) => Promise<{ facetHits: SearchForFacetValuesResponse[] }>
-```
-
-The implementation is the same as the `search()` method, except that we target `POST /sffv`.
-
-```javascript
-const customSearchClient = {
-  search(requests) {
-    /* ... */
-  },
-  searchForFacetValues(requests) {
-    return fetch('http://localhost:3000/sffv', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ requests }),
-    }).then(res => res.json());
-  }
-};
-```
-
-You’ll be able to search within your refinement lists from your custom backend.
-
-> Note that you will need to set the option [`searchForFacetValues`](https://community.algolia.com/instantsearch.js/v2/widgets/refinementList.html#struct-RefinementListWidgetOptions-searchForFacetValues) to `true` in your refinement list to make it searchable.
 
 ## Using the search client with InstantSearch
 
