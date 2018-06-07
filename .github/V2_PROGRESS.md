@@ -41,7 +41,7 @@ x => done
 * [x] `ais-powered-by`
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
-* [~] `ais-rating-menu` francoischalifour
+* [x] `ais-rating-menu`
 * [ ] `ais-refinement-list`
 * [x] `ais-search-box`
 * [ ] `ais-snippet`
