@@ -1,8 +1,21 @@
-import { previewWrapper } from './utils';
+import { customPreviewWrapper } from './utils';
 import { storiesOf } from '@storybook/vue';
 
 storiesOf('RatingMenu', module)
-  .addDecorator(previewWrapper)
+  .addDecorator(
+    customPreviewWrapper({
+      hits: `
+        <div slot="item" slot-scope="{ item }">
+          <h2>rating: {{item.rating}}</h2>
+          <p>{{item.name}}</p>
+        </div>`,
+      indexName: 'instant_search_rating_asc',
+    })
+  )
   .add('default', () => ({
-    template: `<ais-rating-menu attributeName="rating"></ais-rating-menu>`,
+    template: `
+      <div>
+        <ais-rating-menu attribute="rating">
+        </ais-rating-menu>
+      </div>`,
   }));

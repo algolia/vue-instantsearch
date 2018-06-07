@@ -63,7 +63,7 @@ import { connectStarRating } from 'instantsearch.js/es/connectors';
 export default {
   mixins: [algoliaComponent],
   props: {
-    attributeName: {
+    attribute: {
       type: String,
       required: true,
     },
@@ -87,7 +87,7 @@ export default {
   computed: {
     widgetParams() {
       return {
-        attributeName: this.attributeName,
+        attributeName: this.attribute,
         min: this.min,
         max: this.max,
       };
