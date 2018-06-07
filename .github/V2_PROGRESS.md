@@ -24,27 +24,27 @@ x => done
 
 * [~] `ais-breadcrumb` vvo
 * [ ] `ais-clear-refinements`
-* [ ] `ais-configure`
+* [x] `ais-configure`
 * [~] `ais-current-refinements` Haroenv
 * [~] `ais-hierarchical-menu` vvo
 * [ ] `ais-highlight` (there's no connector for this today)
 * [x] `ais-hits-per-page`
 * [x] `ais-hits`
 * [x] `ais-index` (there's no connector for this today)
-* [~] `ais-infinite-hits` samouss
-* [~] `ais-menu-select` samouss
+* [x] `ais-infinite-hits`
+* [x] `ais-menu-select`
 * [ ] `ais-menu`
 * [ ] `ais-numeric-menu`
 * [ ] `ais-numeric-selector`
 * [x] `ais-pagination`
 * [ ] `ais-panel` (there's no connector for this today)
-* [ ] `ais-powered-by`
+* [x] `ais-powered-by`
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
-* [ ] `ais-rating-menu`
+* [~] `ais-rating-menu` francoischalifour
 * [ ] `ais-refinement-list`
-* [ ] `ais-search-box`
+* [x] `ais-search-box`
 * [ ] `ais-snippet`
-* [ ] `ais-sort-by`
+* [x] `ais-sort-by`
 * [x] `ais-stats`
 * [ ] `ais-toggle-refinement`
