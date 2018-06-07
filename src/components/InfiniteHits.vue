@@ -1,7 +1,7 @@
 <template>
   <div :class="suit()" v-if="state">
     <slot :items="items" :isLastPage="isLastPage" :refine="refine">
-      <ul :class="suit('list')">
+      <ol :class="suit('list')">
         <li
           v-for="(item, index) in items"
           :class="suit('item')"
@@ -11,7 +11,7 @@
             objectID: {{item.objectID}}, index: {{index}}
           </slot>
         </li>
-      </ul>
+      </ol>
 
       <button
         :class="[suit('loadMore'), isLastPage && suit('loadMore', 'disabled')]"

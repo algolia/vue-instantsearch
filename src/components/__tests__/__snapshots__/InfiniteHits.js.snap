@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 
 <div class="ais-InfiniteHits">
-  <ul class="ais-InfiniteHits-list">
+  <ol class="ais-InfiniteHits-list">
     <li class="ais-InfiniteHits-item">
       objectID: 00001, index: 0
     </li>
@@ -19,7 +19,7 @@ exports[`renders correctly 1`] = `
     <li class="ais-InfiniteHits-item">
       objectID: 00005, index: 4
     </li>
-  </ul>
+  </ol>
   <button class="ais-InfiniteHits-loadMore">
     Show more results
   </button>
@@ -30,7 +30,7 @@ exports[`renders correctly 1`] = `
 exports[`renders correctly on the last page 1`] = `
 
 <div class="ais-InfiniteHits">
-  <ul class="ais-InfiniteHits-list">
+  <ol class="ais-InfiniteHits-list">
     <li class="ais-InfiniteHits-item">
       objectID: 00001, index: 0
     </li>
@@ -46,7 +46,7 @@ exports[`renders correctly on the last page 1`] = `
     <li class="ais-InfiniteHits-item">
       objectID: 00005, index: 4
     </li>
-  </ul>
+  </ol>
   <button disabled="disabled"
           class="ais-InfiniteHits-loadMore ais-InfiniteHits-loadMore--disabled"
   >
@@ -59,7 +59,7 @@ exports[`renders correctly on the last page 1`] = `
 exports[`renders correctly with a custom item rendering 1`] = `
 
 <div class="ais-InfiniteHits">
-  <ul class="ais-InfiniteHits-list">
+  <ol class="ais-InfiniteHits-list">
     <li class="ais-InfiniteHits-item">
       <div>
         00001
@@ -85,7 +85,7 @@ exports[`renders correctly with a custom item rendering 1`] = `
         00005
       </div>
     </li>
-  </ul>
+  </ol>
   <button class="ais-InfiniteHits-loadMore">
     Show more results
   </button>
