@@ -83,7 +83,6 @@ export {
   MenuSelect,
   Pagination,
   PoweredBy,
-  HitsPerPage,
   RatingMenu,
   SearchBox,
   Snippet,
