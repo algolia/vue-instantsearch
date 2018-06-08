@@ -42,7 +42,7 @@ x => done
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
 * [x] `ais-rating-menu`
-* [ ] `ais-refinement-list`
+* [~] `ais-refinement-list` Haroenv
 * [x] `ais-search-box`
 * [ ] `ais-snippet`
 * [x] `ais-sort-by`
