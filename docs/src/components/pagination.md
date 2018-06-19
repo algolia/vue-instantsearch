@@ -54,13 +54,13 @@ Scroll to the top of the page after a page was changed:
 
 ## Slots
 
-| Name     | Props        | Default      | Description        |
-|----------|--------------|--------------|--------------------|
-| first    |              | `<<`         | First page text    |
-| previous |              | `<`          | Previous page text |
-| default  | active, item | `{{ item }}` | Page text          |
-| next     |              | `>`          | Next page text     |
-| last     |              | `>>`         | Last page text     |
+| Name     | Props         | Default       | Description        |
+|----------|---------------|---------------|--------------------|
+| first    |               | `<<`          | First page text    |
+| previous |               | `<`           | Previous page text |
+| default  | active, value | `{{ value }}` | Page text          |
+| next     |               | `>`           | Next page text     |
+| last     |               | `>>`          | Last page text     |
 
 ## CSS Classes
 
