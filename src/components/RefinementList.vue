@@ -1,32 +1,74 @@
 <template>
-  <div :class="suit()">
-    <slot v-bind="state">
-      <button @click="state.refine('hi')" :class="suit('button')">example refine</button>
-      <!-- ⬇ use this to dynamically debug the state, remove it when done -->
-      <json-tree :level="2" :data="state"></json-tree>
-    </slot>
+  <div :class="suit('')" v-if="state">
+    <div :class="suit('searchBox')" v-if="searchable">
+      <ais-search-input :refine="state.searchForItems"></ais-search-input>
+    </div>
+    <ul :class="suit('list')">
+      <li
+        :class="[suit('item'), {[suit('item', 'selected')]: item.isRefined}]"
+        v-for="item in state.items"
+        :key="item.value"
+      >
+        <label :class="suit('label')">
+          <input
+            :class="suit('checkbox')"
+            type="checkbox"
+            :value="item.value"
+            :checked="item.isRefined"
+            @change="state.refine(item.value)"
+          />
+          <span :class="suit('labelText')">{{item.value}}</span>
+          <span :class="suit('count')">746</span>
+        </label>
+      </li>
+    </ul>
+    <button
+      :class="suit('showMore')"
+      @click="state.toggleShowMore"
+      v-if="showMore"
+    >
+      Show {{state.isShowingMore ? 'less' : 'more'}}
+    </button>
   </div>
 </template>
 
 <script>
-import JsonTree from 'vue-json-tree'; // 👈 When done, remove this
 import algoliaComponent from '../component';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
-
+import AisSearchInput from './SearchInput';
 
 export default {
-  // ⬇️ this is to help you debugging what's in `state`
-  // remove it before pushing the component
-  components: { 'json-tree': JsonTree },
+  components: { AisSearchInput },
   mixins: [algoliaComponent],
-  // ⬇️ Those are all the options of your widget (attribute, items ...)
-  // You don't need to write down the props that will be forwarded by the connector on render,
-  // They are directly accessible in the state in template
   props: {
-    someProp: {
-      type: Array,
+    attribute: {
+      type: String,
+      required: true,
+    },
+    searchable: {
+      type: Boolean,
+      default: false,
+    },
+    operator: {
+      type: ['and', 'or'],
       required: false,
-      default: () => [],
+    },
+    limit: {
+      type: Number,
+      required: false,
+    },
+    showMoreLimit: {
+      type: Number,
+      default: 20,
+      required: false,
+    },
+    showMore: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    sortBy: {
+      required: false,
     },
   },
   data() {
@@ -38,11 +80,14 @@ export default {
     this.connector = connectRefinementList;
   },
   computed: {
-    // ⬇️ Those are all the options of your widget (attribute, items ...)
-    // Same as props, just do the mapping
     widgetParams() {
       return {
-        someProp: this.someProp,
+        attributeName: this.attribute,
+        operator: this.operator,
+        limit: this.limit,
+        showMoreLimit: this.showMore && this.showMoreLimit,
+        sortBy: this.sortBy,
+        escapeFacetValues: true,
       };
     },
   },
