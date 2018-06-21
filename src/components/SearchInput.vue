@@ -20,14 +20,13 @@
         :placeholder="placeholder"
         :autofocus="autofocus"
         :class="suit('input')"
-        v-model="query"
+        v-model="currentQuery"
       >
 
       <button
         type="submit"
         :title="submitTitle"
         :class="suit('submit')"
-        :hidden="showLoadingIndicator && shouldShowLoadingIndicator"
       >
         <svg
           role="img"
@@ -48,6 +47,7 @@
         type="reset"
         :title="clearTitle"
         :class="suit('reset')"
+        :hidden="showLoadingIndicator && shouldShowLoadingIndicator"
       >
         <svg
           role="img"
@@ -65,7 +65,7 @@
       </button>
 
       <span
-        v-if="shouldShowLoadingIndicator"
+        v-if="showLoadingIndicator"
         :hidden="!shouldShowLoadingIndicator"
         :class="suit('loadingIndicator')"
       >
@@ -103,7 +103,6 @@
 </template>
 
 <script>
-import { connectSearchBox } from 'instantsearch.js/es/connectors';
 import algoliaComponent from '../component';
 
 export default {
@@ -122,7 +121,7 @@ export default {
       default: false,
     },
     shouldShowLoadingIndicator: {
-      type: boolean,
+      type: Boolean,
       default: false,
     },
     submitTitle: {
@@ -140,6 +139,7 @@ export default {
   },
   data() {
     return {
+      query: '',
       widgetName: 'SearchBox',
     };
   },
@@ -153,11 +153,12 @@ export default {
     },
   },
   computed: {
-    query: {
+    currentQuery: {
       get() {
-        return this.state.query;
+        return this.query;
       },
       set(value) {
+        this.query = value;
         this.refine(value);
       },
     },
