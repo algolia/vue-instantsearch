@@ -31,7 +31,7 @@ x => done
 * [x] `ais-hits-per-page`
 * [x] `ais-hits`
 * [x] `ais-index` (there's no connector for this today)
-* [~] `ais-infinite-hits` samouss
+* [x] `ais-infinite-hits`
 * [x] `ais-menu-select`
 * [ ] `ais-menu`
 * [ ] `ais-numeric-menu`
@@ -41,8 +41,8 @@ x => done
 * [x] `ais-powered-by`
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
-* [~] `ais-rating-menu` francoischalifour
-* [ ] `ais-refinement-list`
+* [x] `ais-rating-menu`
+* [~] `ais-refinement-list` Haroenv
 * [x] `ais-search-box`
 * [ ] `ais-snippet`
 * [x] `ais-sort-by`
