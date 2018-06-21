@@ -25,6 +25,11 @@ Name | Type | Default | Description | Required
 ---|---|---|---|---
 attribute | string | | The attribute to refine on click | yes
 searchable | boolean | `false` | You can also search within the options of this | no
+operator | "or"/"and" | "or" | How to apply refinements | no
+limit | number | 10 | Number of items to show | no
+showMoreLimit | number | 20 | Number of items to show when the user clicked on “show more items” | no
+showMore | boolean | false | Whether or not to have the option to load more values | no
+sortBy | array\|sort function | `['isRefined:desc', 'count:desc', 'name:asc']` | array or function to sort the results by | no
 
 ## CSS classes
 
