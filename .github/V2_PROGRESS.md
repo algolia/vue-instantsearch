@@ -43,7 +43,7 @@ x => done
 * [~] `ais-range-input`
 * [~] `ais-range-slider` Alex
 * [x] `ais-rating-menu`
-* [~] `ais-refinement-list` Haroenv
+* [x] `ais-refinement-list`
 * [x] `ais-search-box`
 * [x] `ais-snippet`
   * Just a getter for \_snippetResult, doesn't set any parameters
