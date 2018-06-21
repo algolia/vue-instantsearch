@@ -3,7 +3,7 @@ import RefinementList from '../RefinementList.vue';
 import { __setState } from '../../component';
 jest.mock('../../component');
 
-it('renders correctly', () => {
+it.skip('renders correctly', () => {
   __setState({
     hits: ['yo', 'how', 'are', 'you', 'doing', '?'],
   });
@@ -11,7 +11,7 @@ it('renders correctly', () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
-it('behaves correctly', () => {
+it.skip('behaves correctly', () => {
   __setState({
     refine: jest.fn(),
   });
