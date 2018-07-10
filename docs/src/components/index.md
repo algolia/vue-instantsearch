@@ -33,8 +33,7 @@ Provide search query parameters:
            app-id="YourAppID"
            api-key="YourSearchAPIKey"
            :query-parameters="{
-             distinct: true,
-             attributeForDistinct: 'product_id'
+             distinct: true
            }"
 >
   <!-- Add your InstantSearch components here. -->
