@@ -16,7 +16,7 @@ Create a menu based on a facet. A menu displays facet values and let the user se
 ## Usage
 
 ```html
-<ais-menu :attribute="category"></ais-menu>
+<ais-menu attribute="category"></ais-menu>
 ```
 
 ## Props
