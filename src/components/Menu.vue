@@ -55,6 +55,11 @@ export default {
       type: String,
       required: true,
     },
+    // @TODO
+    // searchable: {
+    //   type: Boolean,
+    //   default: false,
+    // },
     limit: {
       type: Number,
       default: 10,
