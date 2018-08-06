@@ -102,5 +102,4 @@ export default {
       return this.state.canRefine && this.showMore;
     },
   },
-};
-</script>
+};</script>
