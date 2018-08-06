@@ -53,29 +53,29 @@ export default {
       type: Number,
       default: 10,
     },
+    showMoreLimit: {
+      type: Number,
+      default: 20,
+    },
     showMore: {
       type: Boolean,
       default: false,
     },
-    showMoreLimit: {
-      type: Number,
-    },
     sortBy: {
+      // type: Array || Function
       default() {
-        return ['isRefined:desc', 'count:desc', 'name:asc'];
+        return ['name:asc', 'count:desc'];
       },
     },
+
+    // How to implement those values?
     showMoreLabel: {
       type: String,
-      default() {
-        return 'Show more';
-      },
+      default: 'Show more',
     },
     showLessLabel: {
       type: String,
-      default() {
-        return 'Show less';
-      },
+      default: 'Show less',
     },
   },
   computed: {
