@@ -27,17 +27,19 @@ x => done
 * [x] `ais-configure`
 * [~] `ais-current-refinements` Haroenv
 * [~] `ais-hierarchical-menu` vvo
-* [ ] `ais-highlight` (there's no connector for this today)
+* [ ] `ais-highlight`
+  * Just a getter for \_highlightResult, doesn't set any parameters
 * [x] `ais-hits-per-page`
 * [x] `ais-hits`
-* [x] `ais-index` (there's no connector for this today)
+* [x] `ais-index`
 * [x] `ais-infinite-hits`
 * [x] `ais-menu-select`
 * [ ] `ais-menu`
 * [ ] `ais-numeric-menu`
 * [ ] `ais-numeric-selector`
 * [x] `ais-pagination`
-* [ ] `ais-panel` (there's no connector for this today)
+* [ ] `ais-panel`
+  * just header & footer slot, doesn't get any child info
 * [x] `ais-powered-by`
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
@@ -45,6 +47,12 @@ x => done
 * [~] `ais-refinement-list` Haroenv
 * [x] `ais-search-box`
 * [ ] `ais-snippet`
+  * Just a getter for \_snippetResult, doesn't set any parameters
 * [x] `ais-sort-by`
 * [x] `ais-stats`
 * [ ] `ais-toggle-refinement`
+
+## Which level of customization?
+
+1.  there's a slot at the top level (always)
+2.  every list as `item` as a slot (if makes sense, can be added after 2.0)
