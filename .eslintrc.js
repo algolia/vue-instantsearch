@@ -1,7 +1,8 @@
 module.exports = {
-  extends: ['algolia/jest', 'algolia/vue'],
+  extends: ['algolia/jest', 'algolia/vue', 'plugin:vue/base'],
   rules: {
     'no-warning-comments': 'warn', // we have many Todo:, this will remind us to deal with them
+    'no-unused-vars': ['error', { argsIgnorePattern: '^h$' }],
     'no-use-before-define': 'off',
   },
   overrides: {

@@ -1,5 +1,6 @@
 import { previewWrapper } from './utils';
 import { storiesOf } from '@storybook/vue';
+import MenuSelect from '../src/components/MenuSelect.vue';
 
 storiesOf('MenuSelect', module)
   .addDecorator(previewWrapper)
@@ -31,25 +32,29 @@ storiesOf('MenuSelect', module)
     `,
   }))
   .add('custom rendering', () => ({
-    template: `
-      <ais-menu-select attribute="brand">
-        <select
-          slot-scope="{ items, canRefine, refine }"
-          @change="refine($event.currentTarget.value)"
-          :disabled="!canRefine"
-        >
-          <option value="">
-            All
-          </option>
-          <option
-            v-for="item in items"
-            :key="item.value"
-            :value="item.value"
-            :selected="item.isRefined"
-          >
-            {{item.label}}
-          </option>
-        </select>
-      </ais-menu-select>
-    `,
+    render: h => (
+      <MenuSelect
+        attribute="brand"
+        scopedSlots={{
+          default: ({ items, canRefine, refine }) => (
+            <select
+              slot-scope="{ items, canRefine, refine }"
+              onChange={event => refine(event.currentTarget.value)}
+              disabled={!canRefine}
+            >
+              <option value="">All</option>
+              {items.map(item => (
+                <option
+                  key={item.value}
+                  value={item.value}
+                  selected={item.isRefined}
+                >
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          ),
+        }}
+      />
+    ),
   }));
