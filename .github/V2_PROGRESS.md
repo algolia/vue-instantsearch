@@ -35,7 +35,7 @@ x => done
 * [x] `ais-infinite-hits`
 * [x] `ais-menu-select`
 * [~] `ais-menu` Samuel
-* [ ] `ais-numeric-menu`
+* [~] `ais-numeric-menu` Samuel
 * [ ] `ais-numeric-selector`
 * [x] `ais-pagination`
 * [ ] `ais-panel`
