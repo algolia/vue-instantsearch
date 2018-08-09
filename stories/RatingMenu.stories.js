@@ -5,12 +5,6 @@ storiesOf('RatingMenu', module)
   .addDecorator(
     previewWrapper({
       indexName: 'instant_search_rating_asc',
-      hits: `
-        <div slot="item" slot-scope="{ item }">
-          <h2>rating: {{item.rating}}</h2>
-          <p>{{item.name}}</p>
-        </div>
-      `,
     })
   )
   .add('default', () => ({
