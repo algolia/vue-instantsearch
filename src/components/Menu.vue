@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="state"
-    :class="[suit(''), !state.canRefine && suit('', 'noRefinement')]"
-  >
+  <div v-if="state">
     <slot
       :items="state.items"
       :can-refine="state.canRefine"
@@ -12,33 +9,35 @@
       :create-URL="state.createURL"
       :toggle-show-more="state.toggleShowMore"
     >
-      <ul :class="suit('list')">
-        <li
-          v-for="item in state.items"
-          :key="item.value"
-          :class="[suit('item'), item.isRefined && suit('item', 'selected')]"
-        >
-          <a
-            :href="state.createURL(item.value)"
-            :class="suit('link')"
-            @click.prevent="state.refine(item.value)"
+      <div :class="[suit(''), !state.canRefine && suit('', 'noRefinement')]">
+        <ul :class="suit('list')">
+          <li
+            v-for="item in state.items"
+            :key="item.value"
+            :class="[suit('item'), item.isRefined && suit('item', 'selected')]"
           >
-            <span :class="suit('label')">{{item.label}}</span>
-            <span :class="suit('count')">{{item.count}}</span>
-          </a>
-        </li>
-      </ul>
+            <a
+              :href="state.createURL(item.value)"
+              :class="suit('link')"
+              @click.prevent="state.refine(item.value)"
+            >
+              <span :class="suit('label')">{{item.label}}</span>
+              <span :class="suit('count')">{{item.count}}</span>
+            </a>
+          </li>
+        </ul>
 
-      <button
-        v-if="showShowMoreButton"
-        :class="[suit('showMore'), !state.canToggleShowMore && suit('showMore', 'disabled')]"
-        :disabled="!state.canToggleShowMore"
-        @click.prevent="state.toggleShowMore()"
-      >
-        <slot name="showMoreLabel" :is-showing-more="state.isShowingMore">
-          {{state.isShowingMore ? 'Show less' : 'Show more'}}
-        </slot>
-      </button>
+        <button
+          v-if="showShowMoreButton"
+          :class="[suit('showMore'), !state.canToggleShowMore && suit('showMore', 'disabled')]"
+          :disabled="!state.canToggleShowMore"
+          @click.prevent="state.toggleShowMore()"
+        >
+          <slot name="showMoreLabel" :is-showing-more="state.isShowingMore">
+            {{state.isShowingMore ? 'Show less' : 'Show more'}}
+          </slot>
+        </button>
+      </div>
     </slot>
   </div>
 </template>
