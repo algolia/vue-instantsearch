@@ -1,41 +1,79 @@
 body {
   font-family: 'Raleway', Helvetica Neue, helvetica;
   font-size: 14px;
+  margin: 25px;
 }
 
-.result {
-  font-size: 16px;
+.container {
+  position: relative;
+  padding: 50px 40px 40px;
 }
 
-.result:after {
-  content: '';
-  display: block;
-  clear: both;
+.container::after {
+  font-size: 13px;
+  top: 0;
+  left: 0;
+  color: #999999;
+  padding: 4px 6px;
+  line-height: 1em;
+  position: absolute;
+  background-color: #f3f3f3;
+  border: solid 1px #e4e4e4;
+  border-width: 0 1px 1px 0;
 }
 
-.result-picture {
-  float: left;
-  margin-right: 10px;
+.container-preview {
+  border: solid 1px #e4e4e4;
+  border-radius: 5px 5px 0px 0px;
 }
 
-.result-content {
-  overflow: hidden;
+.container-preview::after {
+  content: 'Preview';
+  border-radius: 4px 0 0;
 }
 
-.result-content em {
-  font-style: normal;
-  background: #ccefff;
+.container-playground {
+  border-left: solid 1px #e4e4e4;
+  border-right: solid 1px #e4e4e4;
+  border-bottom: solid 1px #e4e4e4;
 }
 
-.result-name {
-  padding-top: 20px;
+.container-playground::after {
+  content: 'Playground';
 }
 
-.result-type {
-  color: #9d9dbd; /* East bay */
+.playground-hits {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
 }
 
-.result-description {
-  padding-top: 10px;
-  max-width: 400px;
+.playground-hits-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.playground-hits-item:last-child {
+  margin-bottom: 0;
+}
+
+.playground-hits-image {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.playground-hits-desc {
+  margin-left: 25px;
+}
+
+.playground-hits-desc > p {
+  margin: 0 0 10px;
+}
+
+.playground-hits-desc > p:last-child {
+  margin: 0;
 }
