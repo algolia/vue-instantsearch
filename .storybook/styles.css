@@ -1,6 +1,12 @@
+body {
+  font-family: 'Raleway', Helvetica Neue, helvetica;
+  font-size: 14px;
+}
+
 .result {
   font-size: 16px;
 }
+
 .result:after {
   content: '';
   display: block;
@@ -24,6 +30,7 @@
 .result-name {
   padding-top: 20px;
 }
+
 .result-type {
   color: #9d9dbd; /* East bay */
 }
