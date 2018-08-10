@@ -37,8 +37,8 @@ x => done
 * [~] `ais-menu` Samuel
 * [~] `ais-numeric-menu` Samuel
 * [x] `ais-pagination`
-* [ ] `ais-panel`
-  * just header & footer slot, doesn't get any child info
+* [~] `ais-panel`
+  * Just header & footer slot, doesn't get any child info
 * [x] `ais-powered-by`
 * [ ] `ais-range-input`
 * [ ] `ais-range-slider`
