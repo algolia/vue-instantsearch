@@ -36,7 +36,6 @@ x => done
 * [x] `ais-menu-select`
 * [~] `ais-menu` Samuel
 * [~] `ais-numeric-menu` Samuel
-* [~] `ais-numeric-selector` Samuel
 * [x] `ais-pagination`
 * [ ] `ais-panel`
   * just header & footer slot, doesn't get any child info
