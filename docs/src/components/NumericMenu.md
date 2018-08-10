@@ -9,42 +9,44 @@ editable: true
 githubSource: docs/src/components/NumericMenu.md
 ---
 
-Create a menu based on a facet. A menu displays a list of facet values and let the user selects only one value at a time.
+The numeric refinement list is a widget that displays a list of numeric filters in a list. Those numeric filters are pre-configured with creating the widget.
 
-<a class="btn btn-static-theme" href="stories/?selectedKind=Menu">🕹 try out live</a>
+<a class="btn btn-static-theme" href="stories/?selectedKind=NumericMenu">🕹 try out live</a>
 
 ## Usage
 
 ```html
-<ais-menu :attribute="category"></ais-menu>
+<ais-numeric-menu
+  attribute="price"
+  :items="[
+    { label: 'All' },
+    { label: '<= 10$', end: 10 },
+    { label: '10$ - 100$', start: 10, end: 100 },
+    { label: '100$ - 500$', start: 100, end: 500 },
+    { label: '>= 500$', start: 500 },
+  ]"
+/>
 ```
 
 ## Props
 
 Name | Type | Default | Description | Required
 ---|---|---|---|---
-attribute | String | | The attribute | yes
-limit | Number | 10 | Number of items to show
-showMoreLimit | Number | 20 | Number of items to show when the user clicked on "show more items"
-showMore | Boolean | `false` | Whether or not to have the option to load more values
-sortBy | Array(string) or function | `['isRefined:desc', 'count:desc', 'name:asc']` | array or function to sort the results by
+attribute | String | - | The attribute | Yes
+items | Array<{ label: string, start?: number, end?: number }> | - | Array of available options for the widget | Yes
+transformItems | (items: Array<{ label: string, value: string, isRefined: boolean }>) | x => x | Function to modify the items being displayed, e.g. for filtering or sorting them. Takes an items as parameter and expects it back in return. | -
 
 ## CSS classes
 
-Here's a list of CSS classes exposed by this widget. To better understand the underlying
-DOM structure, have a look at the generated DOM in your browser.
+Here's a list of CSS classes exposed by this widget. To better understand the underlying DOM structure, have a look at the generated DOM in your browser.
 
 Class name | Description
 ---|---
-`.ais-Menu` | the root div of the widget
-`.ais-Menu--noRefinement` | the root div of the widget with no refinement
-`.ais-Menu-searchBox` | the search box of the widget
-`.ais-Menu-list` | the list of all menu items
-`.ais-Menu-item` | the menu list item
-`.ais-Menu-item--selected` | the selected menu list item
-`.ais-Menu-link` | the clickable menu element
-`.ais-Menu-label` | the label of each item
-`.ais-Menu-count` | the count of values for each item
-`.ais-Menu-noResults` | the div displayed when there are no results
-`.ais-Menu-showMore` | the button used to display more categories
-`.ais-Menu-showMore--disabled` | the disabled button used to display more categories
+`.ais-NumericMenu` | the root div of the widget
+`.ais-NumericMenu--noRefinement` | the root div of the widget with no refinement
+`.ais-NumericMenu-list` | the list of all refinement items
+`.ais-NumericMenu-item` | the refinement list item
+`.ais-NumericMenu-item--selected` | the selected refinement list item
+`.ais-NumericMenu-label` | the label of each refinement item
+`.ais-NumericMenu-radio` | the radio input of each refinement item
+`.ais-NumericMenu-labelText` | the label text of each refinement item
