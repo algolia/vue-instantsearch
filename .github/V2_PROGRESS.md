@@ -23,7 +23,7 @@ x => done
 ~ => in progress
 
 * [~] `ais-breadcrumb` vvo
-* [ ] `ais-clear-refinements`
+* [x] `ais-clear-refinements`
 * [x] `ais-configure`
 * [~] `ais-current-refinements` Haroenv
 * [~] `ais-hierarchical-menu` vvo
