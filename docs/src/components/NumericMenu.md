@@ -9,7 +9,7 @@ editable: true
 githubSource: docs/src/components/NumericMenu.md
 ---
 
-The numeric refinement list is a widget that displays a list of numeric filters in a list. Those numeric filters are pre-configured with creating the widget.
+The numeric menu list is a widget that displays a list of numeric filters in a list. Those numeric filters are pre-configured when creating the widget.
 
 <a class="btn btn-static-theme" href="stories/?selectedKind=NumericMenu">🕹 try out live</a>
 
