@@ -1,2 +1,7 @@
-export const createPanelConsumerMixin = () => ({});
-export const createPanelProviderMixin = () => ({});
+export const createPanelProviderMixin = jest.fn(() => ({}));
+
+export const createPanelConsumerMixin = jest.fn(({ mapStateToCanRefine }) => ({
+  methods: {
+    mapStateToCanRefine,
+  },
+}));
