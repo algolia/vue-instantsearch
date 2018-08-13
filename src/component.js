@@ -27,11 +27,18 @@ export default {
     this.instantSearchInstance.removeWidget(this.widget);
   },
   watch: {
-    widgetParams(newVal) {
-      const oldWidget = this.widget;
-      this.widget = this.widgetFactory(newVal);
-      this.instantSearchInstance.addWidget(this.widget);
-      this.instantSearchInstance.removeWidget(oldWidget);
+    widgetParams(next, previous) {
+      const { widgetParams } = this.$options;
+
+      const shouldUpdate = Object.keys(widgetParams).some(name =>
+        widgetParams[name](previous[name], next[name])
+      );
+
+      if (shouldUpdate) {
+        this.instantSearchInstance.removeWidget(this.widget);
+        this.widget = this.widgetFactory(next);
+        this.instantSearchInstance.addWidget(this.widget);
+      }
     },
   },
   methods: {
