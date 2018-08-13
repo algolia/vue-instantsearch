@@ -86,13 +86,19 @@ describe('createPanelProviderMixin', () => {
 });
 
 describe('createPanelConsumerMixin', () => {
+  const mapStateToCanRefine = state => state.attributeName;
+
   it('emits PANEL_CHANGE_EVENT on `state.attributeName` change', () => {
     const localVue = createLocalVue();
     const emitter = createFakeEmitter();
     const Test = createFakeComponent(localVue);
 
     const wrapper = mount(Test, {
-      mixins: [createPanelConsumerMixin({ attribute: 'attributeName' })],
+      mixins: [
+        createPanelConsumerMixin({
+          mapStateToCanRefine,
+        }),
+      ],
       provide: {
         [PANEL_EMITTER_NAMESPACE]: emitter,
       },
@@ -121,7 +127,11 @@ describe('createPanelConsumerMixin', () => {
     const Test = createFakeComponent(localVue);
 
     const wrapper = mount(Test, {
-      mixins: [createPanelConsumerMixin({ attribute: 'attributeName' })],
+      mixins: [
+        createPanelConsumerMixin({
+          mapStateToCanRefine,
+        }),
+      ],
       provide: {
         [PANEL_EMITTER_NAMESPACE]: emitter,
       },
@@ -142,7 +152,11 @@ describe('createPanelConsumerMixin', () => {
     const Test = createFakeComponent(localVue);
 
     const wrapper = mount(Test, {
-      mixins: [createPanelConsumerMixin({ attribute: 'attributeName' })],
+      mixins: [
+        createPanelConsumerMixin({
+          mapStateToCanRefine,
+        }),
+      ],
       provide: {
         [PANEL_EMITTER_NAMESPACE]: emitter,
       },
@@ -169,7 +183,11 @@ describe('createPanelConsumerMixin', () => {
     const Test = createFakeComponent(localVue);
 
     const wrapper = mount(Test, {
-      mixins: [createPanelConsumerMixin({ attribute: 'attributeName' })],
+      mixins: [
+        createPanelConsumerMixin({
+          mapStateToCanRefine,
+        }),
+      ],
       provide: {
         [PANEL_EMITTER_NAMESPACE]: emitter,
       },

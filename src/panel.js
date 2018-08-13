@@ -38,7 +38,7 @@ export const createPanelProviderMixin = () => ({
   },
 });
 
-export const createPanelConsumerMixin = ({ attribute }) => ({
+export const createPanelConsumerMixin = ({ mapStateToCanRefine }) => ({
   inject: {
     emitter: {
       from: PANEL_EMITTER_NAMESPACE,
@@ -55,9 +55,16 @@ export const createPanelConsumerMixin = ({ attribute }) => ({
     };
   },
   watch: {
-    state(next, previous) {
-      if (previous && next && previous[attribute] !== next[attribute]) {
-        this.emitter.$emit(PANEL_CHANGE_EVENT, next[attribute]);
+    state(nextState, previousState) {
+      if (!previousState || !nextState) {
+        return;
+      }
+
+      const previousCanRefine = mapStateToCanRefine(previousState);
+      const nextCanRefine = mapStateToCanRefine(nextState);
+
+      if (previousCanRefine !== nextCanRefine) {
+        this.emitter.$emit(PANEL_CHANGE_EVENT, nextCanRefine);
       }
     },
   },
