@@ -29,7 +29,7 @@ export default {
 
     return h('span', {
       class: {
-        'ais-highlight': true,
+        'ais-Highlight': true,
       },
       domProps: {
         innerHTML: attributeValue,

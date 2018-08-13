@@ -2,7 +2,7 @@
 
 exports[`Snippet allows usage of dot delimited path to access nested attribute 1`] = `
 
-<span class="ais-snippet">
+<span class="ais-Snippet">
   nested
   <em>
     val
@@ -13,7 +13,7 @@ exports[`Snippet allows usage of dot delimited path to access nested attribute 1
 
 exports[`Snippet renders proper HTML 1`] = `
 
-<span class="ais-snippet">
+<span class="ais-Snippet">
   con
   <em>
     ten
@@ -25,7 +25,7 @@ exports[`Snippet renders proper HTML 1`] = `
 
 exports[`Snippet should render an empty string in production if attribute is not snippeted 1`] = `
 
-<span class="ais-snippet">
+<span class="ais-Snippet">
 </span>
 
 `;

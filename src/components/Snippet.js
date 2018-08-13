@@ -27,7 +27,7 @@ export default {
 
     return h('span', {
       class: {
-        'ais-snippet': true,
+        'ais-Snippet': true,
       },
       domProps: {
         innerHTML: attributeValue,
