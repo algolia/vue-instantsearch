@@ -3,6 +3,7 @@ import { __setState } from '../../component';
 import Menu from '../Menu.vue';
 
 jest.mock('../../component');
+jest.mock('../../panel');
 
 const apple = {
   value: 'Apple',
@@ -292,6 +293,27 @@ describe('default render', () => {
     wrapper.find('.ais-Menu-showMore').trigger('click');
 
     expect(toggleShowMore).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls the Panel mixin with `canRefine`', () => {
+    __setState(defaultState);
+
+    const wrapper = mount(Menu, {
+      propsData: defaultProps,
+    });
+
+    const mapStateToCanRefine = () =>
+      wrapper.vm.mapStateToCanRefine(wrapper.vm.state);
+
+    expect(mapStateToCanRefine()).toBe(true);
+
+    wrapper.setData({
+      state: {
+        canRefine: false,
+      },
+    });
+
+    expect(mapStateToCanRefine()).toBe(false);
   });
 });
 
