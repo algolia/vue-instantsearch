@@ -1,4 +1,6 @@
 import { getPropertyByPath } from '../util/object';
+import { warn } from '../util/warn';
+
 export default {
   functional: true,
   props: {
@@ -19,8 +21,8 @@ export default {
     const attributeValue = getPropertyByPath(result, attributePath);
 
     if (process.env.NODE_ENV !== 'production' && attributeValue === undefined) {
-      throw new Error(
-        `The "${attributeName}" attribute is currently not configured to be snippeted in Algolia.
+      warn(
+        `The "${attributeName}" attribute might currently not be configured to be snippeted in Algolia.
         See https://www.algolia.com/doc/api-reference/api-parameters/attributesToSnippet/.`
       );
     }
