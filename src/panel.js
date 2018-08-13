@@ -9,7 +9,9 @@ export const createPanelProviderMixin = () => ({
       type: Object,
       required: false,
       default() {
-        return new Vue();
+        return new Vue({
+          name: 'PanelProvider',
+        });
       },
     },
   },
