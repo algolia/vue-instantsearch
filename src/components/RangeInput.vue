@@ -1,12 +1,12 @@
 <template>
 <div v-if="state" :class="suit()">
-  <form :class="suit('form')">
+  <form :class="suit('form')" @submit.prevent="refine()">
     <label :class="suit('label')">
-      <input :class="[suit('input'), suit('input', 'min')]" type="number" />
+      <input :class="[suit('input'), suit('input', 'min')]" type="number" ref="minInput"/>
     </label>
     <span :class="suit('separator')">to</span>
     <label :class="suit('label')">
-      <input :class="[suit('input'), suit('input', 'max')]" type="number" />
+      <input :class="[suit('input'), suit('input', 'max')]" type="number" ref="maxInput"/>
     </label>
     <button :class="suit('submit')" type="submit">Go</button>
   </form>
@@ -14,26 +14,11 @@
 </template>
 
 <script>
-import JsonTree from 'vue-json-tree'; // 👈 When done, remove this
 import algoliaComponent from '../component';
-// Uncomment and change here ⬇️
 import { connectRange } from 'instantsearch.js/es/connectors';
 
-/* eslint-disable no-unused-vars */
-// Remove this part ⬇,️ only here for testing the template
-const connectorName = (renderFn, unmountFn) => ({ someProp }) => ({
-  render: () => renderFn(),
-});
-/* eslint-enable */
-
 export default {
-  // ⬇️ this is to help you debugging what's in `state`
-  // remove it before pushing the component
-  components: { 'json-tree': JsonTree },
   mixins: [algoliaComponent],
-  // ⬇️ Those are all the options of your widget (attribute, items ...)
-  // You don't need to write down the props that will be forwarded by the connector on render,
-  // They are directly accessible in the state in template
   props: {
     attributeName: {
       type: String,
@@ -61,8 +46,6 @@ export default {
     this.connector = connectRange;
   },
   computed: {
-    // ⬇️ Those are all the options of your widget (attribute, items ...)
-    // Same as props, just do the mapping
     widgetParams() {
       return {
         attributeName: this.attributeName,
@@ -71,5 +54,13 @@ export default {
         precision: this.precision,
       };
     },
+  },
+  methods: {
+    refine() {
+      const minValue = this.$refs.minInput.value && parseInt(this.$refs.minInput.value, 10);
+      const maxValue = this.$refs.maxInput.value && parseInt(this.$refs.maxInput.value, 10);
+
+      this.state.refine([minValue, maxValue]);
+    }
   },
 };</script>

@@ -1,8 +1,8 @@
-import { previewWrapper } from './utils';
 import { storiesOf } from '@storybook/vue';
+import { previewWrapper } from './utils';
 
 storiesOf('RangeInput', module)
-  .addDecorator(previewWrapper)
-  .add('simple usage', () => ({
-    template: `<div></div>`,
+  .addDecorator(previewWrapper())
+  .add('default', () => ({
+    template: `<ais-range-input attribute-name="price"></ais-range-input>`,
   }));
