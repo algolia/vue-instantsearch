@@ -44,12 +44,20 @@
 </template>
 
 <script>
-import isFunction from 'lodash/isFunction';
+import isEqual from 'lodash/isEqual';
 import { connectMenu } from 'instantsearch.js/es/connectors';
-import algoliaComponent from '../component';
+import { createWidgetMixin } from '../mixins/widget';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
-  mixins: [algoliaComponent],
+  mixins: [
+    createWidgetMixin({
+      connect: connectMenu,
+    }),
+    createSuitMixin({
+      widgetName: 'Menu',
+    }),
+  ],
   props: {
     attribute: {
       type: String,
@@ -73,31 +81,28 @@ export default {
       default: false,
     },
     sortBy: {
+      type: [Array, Function],
       default() {
-        return ['name:asc', 'count:desc'];
-      },
-      validator(value) {
-        return Array.isArray(value) || isFunction(value);
+        return ['count:desc', 'name:asc'];
       },
     },
   },
-  beforeCreate() {
-    this.connector = connectMenu;
-  },
-  data() {
-    return {
-      widgetName: 'Menu',
-    };
+  widgetParams: {
+    attributeName: {
+      getValue: vm => vm.attribute,
+    },
+    limit: {
+      getValue: vm => vm.limit,
+    },
+    showMoreLimit: {
+      getValue: vm => vm.showMoreLimit,
+    },
+    sortBy: {
+      getValue: vm => vm.sortBy,
+      shouldUpdate: (previous, next) => !isEqual(previous, next),
+    },
   },
   computed: {
-    widgetParams() {
-      return {
-        attributeName: this.attribute,
-        limit: this.limit,
-        showMoreLimit: this.showMoreLimit,
-        sortBy: this.sortBy,
-      };
-    },
     showShowMoreButton() {
       return this.state.canRefine && this.showMore;
     },

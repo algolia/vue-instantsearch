@@ -37,10 +37,18 @@
 <script>
 import isEqual from 'lodash/isEqual';
 import { connectNumericRefinementList } from 'instantsearch.js/es/connectors';
-import algoliaComponent from '../component';
+import { createWidgetMixin } from '../mixins/widget';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
-  mixins: [algoliaComponent],
+  mixins: [
+    createWidgetMixin({
+      connect: connectNumericRefinementList,
+    }),
+    createSuitMixin({
+      widgetName: 'NumericMenu',
+    }),
+  ],
   props: {
     attribute: {
       type: String,
@@ -50,51 +58,29 @@ export default {
       type: Array,
       required: true,
     },
-    // @TODO: use an external prop for common props
     transformItems: {
       type: Function,
       required: false,
       default: items => items,
     },
   },
-  shouldUpdateWidgetParams: {
-    attributeName: (previous, next) => previous !== next,
-    options: (previous, next) => !isEqual(previous, next),
-    transformItems: (previous, next) => previous !== next,
-  },
-  beforeCreate() {
-    this.connector = connectNumericRefinementList;
-  },
-  data() {
-    return {
-      widgetName: 'NumericMenu',
-    };
+  widgetParams: {
+    attributeName: {
+      getValue: vm => vm.attribute,
+    },
+    options: {
+      getValue: vm =>
+        vm.items.map(({ label, ...rest }) => ({
+          ...rest,
+          name: label,
+        })),
+      shouldUpdate: (previous, next) => !isEqual(previous, next),
+    },
+    transformItems: {
+      getValue: vm => vm.transformItems,
+    },
   },
   computed: {
-    widgetParams() {
-      return {
-        attributeName: this.attribute,
-        transformItems: this.transformItems,
-        // @TODO: replace with spread operator
-        options: this.items.map(({ label, start, end }) => {
-          const next = {};
-
-          if (label) {
-            next.name = label;
-          }
-
-          if (start) {
-            next.start = start;
-          }
-
-          if (end) {
-            next.end = end;
-          }
-
-          return next;
-        }),
-      };
-    },
     canRefine() {
       return !this.state.hasNoResults;
     },
