@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import isEqual from 'lodash/isEqual';
 import { connectNumericRefinementList } from 'instantsearch.js/es/connectors';
 import algoliaComponent from '../component';
 
@@ -55,6 +56,11 @@ export default {
       required: false,
       default: items => items,
     },
+  },
+  shouldUpdateWidgetParams: {
+    attributeName: (previous, next) => previous !== next,
+    options: (previous, next) => !isEqual(previous, next),
+    transformItems: (previous, next) => previous !== next,
   },
   beforeCreate() {
     this.connector = connectNumericRefinementList;
