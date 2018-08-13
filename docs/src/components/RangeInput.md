@@ -16,14 +16,14 @@ The range input widget allows a user to select a numeric range using a minimum a
 ## Usage
 
 ```html
-<ais-range-input :attributeName="attribute"></ais-range-input>
+<ais-range-input :attribute="attribute"></ais-range-input>
 ```
 
 ## Props
 
 Name | Type | Default | Description | Required
 ---|---|---|---|---
-attributeName | String | `defaultValue` | The name of the attribute in your record | yes
+attribute | String | `defaultValue` | The name of the attribute in your record | yes
 min | Number | - | Minimum value of the range | no
 max | Number | - | Maximum value of the range | no
 precision | Number | - | Number of digits after the decimal point to enforce | no

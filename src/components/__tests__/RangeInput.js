@@ -10,7 +10,7 @@ describe('rendering', () => {
     });
     const wrapper = mount(RangeInput, {
       propsData: {
-        attributeName: 'price',
+        attribute: 'price',
       },
     });
     expect(wrapper.html()).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe('rendering', () => {
     });
     const wrapper = mount(RangeInput, {
       propsData: {
-        attributeName: 'price',
+        attribute: 'price',
         min: 100,
       },
     });
@@ -35,7 +35,7 @@ describe('rendering', () => {
     });
     const wrapper = mount(RangeInput, {
       propsData: {
-        attributeName: 'price',
+        attribute: 'price',
         max: 100,
       },
     });
@@ -48,7 +48,7 @@ describe('rendering', () => {
     });
     const wrapper = mount(RangeInput, {
       propsData: {
-        attributeName: 'price',
+        attribute: 'price',
         min: 10,
         max: 37,
       },
@@ -65,7 +65,7 @@ describe('refinement', () => {
 
     const wrapper = mount(RangeInput, {
       propsData: {
-        attributeName: 'price',
+        attribute: 'price',
       },
     });
     const minInput = wrapper.find('.ais-RangeInput-input--min');

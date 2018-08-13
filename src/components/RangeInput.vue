@@ -20,7 +20,7 @@ import { connectRange } from 'instantsearch.js/es/connectors';
 export default {
   mixins: [algoliaComponent],
   props: {
-    attributeName: {
+    attribute: {
       type: String,
       required: true,
     },
@@ -48,7 +48,7 @@ export default {
   computed: {
     widgetParams() {
       return {
-        attributeName: this.attributeName,
+        attribute: this.attributeName,
         min: this.min,
         max: this.max,
         precision: this.precision,
