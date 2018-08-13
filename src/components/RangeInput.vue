@@ -2,11 +2,11 @@
 <div v-if="state" :class="suit()">
   <form :class="suit('form')" @submit.prevent="refine()">
     <label :class="suit('label')">
-      <input :class="[suit('input'), suit('input', 'min')]" type="number" ref="minInput"/>
+      <input :class="[suit('input'), suit('input', 'min')]" type="number" ref="minInput" :min="this.min" :placeholder="this.min"/>
     </label>
     <span :class="suit('separator')">to</span>
     <label :class="suit('label')">
-      <input :class="[suit('input'), suit('input', 'max')]" type="number" ref="maxInput"/>
+      <input :class="[suit('input'), suit('input', 'max')]" type="number" ref="maxInput" :max="this.max" :placeholder="this.max"/>
     </label>
     <button :class="suit('submit')" type="submit">Go</button>
   </form>
