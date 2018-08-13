@@ -6,7 +6,7 @@ afterEach(() => {
 });
 
 test('renders proper HTML', () => {
-  const result = {
+  const hit = {
     _highlightResult: {
       attr: {
         value: `con<em>ten</em>t`,
@@ -17,8 +17,8 @@ test('renders proper HTML', () => {
   const wrapper = mount(Highlight, {
     context: {
       props: {
-        attributeName: 'attr',
-        result,
+        attribute: 'attr',
+        hit,
       },
     },
   });
@@ -28,15 +28,15 @@ test('renders proper HTML', () => {
 
 test('should render an empty string in production if attribute is not highlighted', () => {
   process.env.NODE_ENV = 'production';
-  const result = {
+  const hit = {
     _highlightResult: {},
   };
 
   const wrapper = mount(Highlight, {
     context: {
       props: {
-        attributeName: 'attr',
-        result,
+        attribute: 'attr',
+        hit,
       },
     },
   });
@@ -47,15 +47,15 @@ test('should render an empty string in production if attribute is not highlighte
 test('should warn when not in production if attribute is not highlighted', () => {
   global.console.warn = jest.fn();
 
-  const result = {
+  const hit = {
     _highlightResult: {},
   };
 
   mount(Highlight, {
     context: {
       props: {
-        attributeName: 'attr',
-        result,
+        attribute: 'attr',
+        hit,
       },
     },
   });
@@ -64,7 +64,7 @@ test('should warn when not in production if attribute is not highlighted', () =>
 });
 
 test('allows usage of dot delimited path to access nested attribute', () => {
-  const result = {
+  const hit = {
     _highlightResult: {
       attr: {
         nested: {
@@ -77,8 +77,8 @@ test('allows usage of dot delimited path to access nested attribute', () => {
   const wrapper = mount(Highlight, {
     context: {
       props: {
-        attributeName: 'attr.nested',
-        result,
+        attribute: 'attr.nested',
+        hit,
       },
     },
   });

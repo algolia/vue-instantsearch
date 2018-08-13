@@ -6,7 +6,7 @@ afterEach(() => {
 });
 
 test('renders proper HTML', () => {
-  const result = {
+  const hit = {
     _snippetResult: {
       attr: {
         value: `con<em>ten</em>t`,
@@ -17,8 +17,8 @@ test('renders proper HTML', () => {
   const wrapper = mount(Snippet, {
     context: {
       props: {
-        attributeName: 'attr',
-        result,
+        attribute: 'attr',
+        hit,
       },
     },
   });
@@ -28,7 +28,7 @@ test('renders proper HTML', () => {
 
 test('should render an empty string in production if attribute is not snippeted', () => {
   process.env.NODE_ENV = 'production';
-  const result = {
+  const hit = {
     _snippetResult: {},
   };
   global.console.warn = jest.fn();
@@ -36,8 +36,8 @@ test('should render an empty string in production if attribute is not snippeted'
   const wrapper = mount(Snippet, {
     context: {
       props: {
-        attributeName: 'attr',
-        result,
+        attribute: 'attr',
+        hit,
       },
     },
   });
@@ -49,14 +49,14 @@ test('should render an empty string in production if attribute is not snippeted'
 test('should warn when not in production if attribute is not snippeted', () => {
   global.console.warn = jest.fn();
 
-  const result = {
+  const hit = {
     _snippetResult: {},
   };
   mount(Snippet, {
     context: {
       props: {
-        attributeName: 'attr',
-        result,
+        attribute: 'attr',
+        hit,
       },
     },
   });
@@ -65,7 +65,7 @@ test('should warn when not in production if attribute is not snippeted', () => {
 });
 
 test('allows usage of dot delimited path to access nested attribute', () => {
-  const result = {
+  const hit = {
     _snippetResult: {
       attr: {
         nested: {
@@ -78,8 +78,8 @@ test('allows usage of dot delimited path to access nested attribute', () => {
   const wrapper = mount(Snippet, {
     context: {
       props: {
-        attributeName: 'attr.nested',
-        result,
+        attribute: 'attr.nested',
+        hit,
       },
     },
   });
