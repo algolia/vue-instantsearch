@@ -42,6 +42,16 @@ You can access the snippeted version by specifying the path by separating levels
 <ais-snippet :hit="hit" attribute="meta.title"></ais-snippet>
 ```
 
+To have correct styling with InstantSearch's style, add the following settings:
+
+```html
+<ais-configure
+  highlightPreTag="<mark class='ais-Snippet-highlighted'>"
+  highlightPostTag="</mark>"
+>
+</ais-configure>
+```
+
 ## Props
 
 Name | Type | Default | Description | Required
