@@ -11,8 +11,7 @@ githubSource: docs/src/components/snippet.md
 
 Display snippeted attributes of your search results.
 
-This component leverages the [snippeting feature of Algolia](https://www.algolia.com/doc/faq/searching/what-is-attributes-to-snippet-how-does-it-work/#faq-section)
-but adds some sugar on top of it to prevent XSS attacks.
+This component leverages the [snippeting feature of Algolia](https://www.algolia.com/doc/faq/searching/what-is-attributes-to-snippet-how-does-it-work/#faq-section).
 
 
 ## Usage
