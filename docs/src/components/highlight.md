@@ -8,7 +8,8 @@ navWeight: 9
 editable: true
 githubSource: docs/src/components/highlight.md
 ---
-Safely displays highlighted attributes of your search results.
+
+Displays highlighted attributes of your search results.
 
 This component leverages the [highlighting feature of Algolia](https://www.algolia.com/doc/faq/searching/what-is-the-highlighting/#faq-section)
 but adds some sugar on top of it to prevent XSS attacks.
@@ -18,7 +19,7 @@ but adds some sugar on top of it to prevent XSS attacks.
 **Basic usage:**
 
 ```html
-<ais-highlight :result="result" attribute-name="description"></ais-highlight>
+<ais-highlight :hit="hit" attribute="description"></ais-highlight>
 ```
 
 **Access a nested property:**
@@ -37,7 +38,7 @@ Given an record like:
 You can access the highlighted version by specifying the path by separating levels with dots:
 
 ```html
-<ais-highlight :result="result" attribute-name="meta.title"></ais-highlight>
+<ais-highlight :hit="hit" attribute-name="meta.title"></ais-highlight>
 ```
 
 **Advanced use cases:**
@@ -46,21 +47,21 @@ For more complex data structures, it will be necessary to leverage the [_highlig
 
 ```html
 <ais-results>
-  <template slot-scope="{ result }">
-    <p v-for="keyword in result._highlightResult.keywords" v-html="keyword.value"></p>
+  <template name="item" slot-scope="{ item }">
+    <p v-for="keyword in item._highlightResult.keywords" v-html="keyword.value"></p>
   </template>
 </ais-results>
 ```
 
 ## Props
 
-| Name           | Required | Type   | Default | Description                                             |
-|:---------------|:---------|:-------|:--------|:--------------------------------------------------------|
-| result         | true     | Object |         | A single Algolia result as it is returned by the API.   |
-| attribute-name | true     | String |         | The attribute name to be highlighted.                 | |
+Name | Type | Default | Description | Required
+---|---|---|---|---
+hit | Object |  | A single Algolia result as it is returned by the API. | yes
+attribute | String |  | The attribute name to be highlighted. | yes
 
 ## CSS Classes
 
-| ClassName       | Description     |
-|:----------------|:----------------|
-| `ais-highlight` | Container class |
+Class name | Description
+---|---
+`ais-Highlight` | Container class
