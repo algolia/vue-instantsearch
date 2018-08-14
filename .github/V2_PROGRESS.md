@@ -40,7 +40,7 @@ x => done
 * [~] `ais-panel`
   * Just header & footer slot, doesn't get any child info
 * [x] `ais-powered-by`
-* [x] `ais-range-input`
+* [~] `ais-range-input`
 * [~] `ais-range-slider` Alex
 * [x] `ais-rating-menu`
 * [~] `ais-refinement-list` Haroenv
