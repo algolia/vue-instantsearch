@@ -1,21 +1,27 @@
 <template>
-  <div v-if="state" :class="suit()">
-    <slot :hasRefinements="state.hasRefinements" :refine="state.refine">
+  <div v-if="state" :class="suit('')">
+    <slot
+      :can-refine="canRefine"
+      :refine="state.refine"
+      :create-URL="state.createURL"
+    >
       <button
         type="reset"
-        :class="[suit(), disabled ? suit(null, 'disabled') : '']"
-        :disabled="disabled"
+        :class="[suit('button'), !canRefine && suit('button', 'disabled')]"
+        :disabled="!canRefine"
         @click.prevent="state.refine"
       >
-        <span :class="suit('label')">Clear</span>
+        <slot name="resetLabel">
+          Clear refinements
+        </slot>
       </button>
     </slot>
   </div>
 </template>
 
 <script>
-import algoliaComponent from '../component';
 import { connectClearAll } from 'instantsearch.js/es/connectors';
+import algoliaComponent from '../component';
 
 export default {
   mixins: [algoliaComponent],
@@ -33,21 +39,21 @@ export default {
   },
   data() {
     return {
-      widgetName: 'ais-clear-refinements',
+      widgetName: 'ClearRefinements',
     };
   },
   beforeCreate() {
     this.connector = connectClearAll;
   },
   computed: {
-    disabled() {
-      return !this.state.hasRefinements;
-    },
     widgetParams() {
       return {
         clearsQuery: this.clearsQuery,
         excludeAttributes: this.excludedAttributes,
       };
+    },
+    canRefine() {
+      return this.state.hasRefinements;
     },
   },
 };</script>
