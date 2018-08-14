@@ -51,6 +51,18 @@ To have correct styling with InstantSearch's style, add the following settings:
 </ais-configure>
 ```
 
+Note that you also need to set up the correct attributes to snippet, you can do this runtime as well: 
+
+```html
+<ais-configure
+  :attributesToSnippet="['name', 'description']"
+  snippetEllipsisText="[…]"
+  highlightPreTag="<mark class='ais-Snippet-highlighted'>"
+  highlightPostTag="</mark>"
+>
+</ais-configure>
+```
+
 ## Props
 
 Name | Type | Default | Description | Required
