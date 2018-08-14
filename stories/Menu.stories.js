@@ -50,7 +50,7 @@ storiesOf('Menu', module)
   .add('with a Panel', () => ({
     template: `
       <ais-panel>
-        <template slot="header">Brand</template>
+        <template slot="header">Menu</template>
         <ais-menu attribute="brand" />
         <template slot="footer">Footer</template>
       </ais-panel>
