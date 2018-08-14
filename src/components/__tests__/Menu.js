@@ -109,7 +109,7 @@ it('accepts a sortBy prop', () => {
 
 describe('default render', () => {
   it('renders correctly', () => {
-    __setState(defaultState);
+    __setState({ ...defaultState });
 
     const wrapper = mount(Menu, {
       propsData: defaultProps,
@@ -172,7 +172,7 @@ describe('default render', () => {
   });
 
   it('renders correctly with show more button', () => {
-    __setState(defaultState);
+    __setState({ ...defaultState });
 
     const wrapper = mount(Menu, {
       propsData: {
@@ -243,7 +243,7 @@ describe('default render', () => {
   });
 
   it('renders correctly without a show more button (showMore)', () => {
-    __setState(defaultState);
+    __setState({ ...defaultState });
 
     const wrapper = mount(Menu, {
       propsData: {
@@ -296,7 +296,7 @@ describe('default render', () => {
   });
 
   it('calls the Panel mixin with `canRefine`', () => {
-    __setState(defaultState);
+    __setState({ ...defaultState });
 
     const wrapper = mount(Menu, {
       propsData: defaultProps,
@@ -346,7 +346,7 @@ describe('custom default render', () => {
   `;
 
   it('renders correctly', () => {
-    __setState(defaultState);
+    __setState({ ...defaultState });
 
     const wrapper = mount(Menu, {
       propsData: defaultProps,
@@ -476,7 +476,7 @@ describe('custom showMoreLabel render', () => {
   `;
 
   it('renders correctly with a custom show more label', () => {
-    __setState(defaultState);
+    __setState({ ...defaultState });
 
     const wrapper = mount(Menu, {
       propsData: {
