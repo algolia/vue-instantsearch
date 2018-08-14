@@ -104,19 +104,15 @@ describe('createPanelConsumerMixin', () => {
       },
     });
 
-    wrapper.setData({
-      state: {
-        attributeName: false,
-      },
-    });
+    wrapper.vm.state = {
+      attributeName: false,
+    };
 
     expect(emitter.$emit).toHaveBeenCalledTimes(0);
 
-    wrapper.setData({
-      state: {
-        attributeName: true,
-      },
-    });
+    wrapper.vm.state = {
+      attributeName: true,
+    };
 
     expect(emitter.$emit).toHaveBeenCalledTimes(1);
   });
@@ -137,11 +133,9 @@ describe('createPanelConsumerMixin', () => {
       },
     });
 
-    wrapper.setData({
-      state: {
-        attributeName: true,
-      },
-    });
+    wrapper.vm.state = {
+      attributeName: true,
+    };
 
     expect(emitter.$emit).not.toHaveBeenCalled();
   });
@@ -162,17 +156,13 @@ describe('createPanelConsumerMixin', () => {
       },
     });
 
-    wrapper.setData({
-      state: {
-        attributeName: true,
-      },
-    });
+    wrapper.vm.state = {
+      attributeName: true,
+    };
 
     expect(emitter.$emit).not.toHaveBeenCalled();
 
-    wrapper.setData({
-      state: null,
-    });
+    wrapper.vm.state = null;
 
     expect(emitter.$emit).not.toHaveBeenCalled();
   });
@@ -193,19 +183,15 @@ describe('createPanelConsumerMixin', () => {
       },
     });
 
-    wrapper.setData({
-      state: {
-        attributeName: true,
-      },
-    });
+    wrapper.vm.state = {
+      attributeName: true,
+    };
 
     expect(emitter.$emit).not.toHaveBeenCalled();
 
-    wrapper.setData({
-      state: {
-        attributeName: true,
-      },
-    });
+    wrapper.vm.state = {
+      attributeName: true,
+    };
 
     expect(emitter.$emit).not.toHaveBeenCalled();
   });
