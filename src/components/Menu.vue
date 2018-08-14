@@ -45,6 +45,7 @@
 
 <script>
 import isEqual from 'lodash/isEqual';
+import isFunction from 'lodash/isFunction';
 import { connectMenu } from 'instantsearch.js/es/connectors';
 import { createWidgetMixin } from '../mixins/widget';
 import { createSuitMixin } from '../mixins/suit';
@@ -84,6 +85,9 @@ export default {
       type: [Array, Function],
       default() {
         return ['count:desc', 'name:asc'];
+      },
+      validator(value) {
+        return Array.isArray(value) || isFunction(value);
       },
     },
   },

@@ -262,9 +262,9 @@
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.3.0.tgz#3a129cda7c4e5df2409702626892cb4b96546dd5"
 
-"@vue/test-utils@^1.0.0-beta.15":
-  version "1.0.0-beta.15"
-  resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-1.0.0-beta.15.tgz#9f8d85b9f2312217c81d72eba97e176fba23da09"
+"@vue/test-utils@^1.0.0-beta.24":
+  version "1.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-1.0.0-beta.24.tgz#da7c3165f49f57f23fdb98caccba0f511effb76f"
   dependencies:
     lodash "^4.17.4"
 
