@@ -30,7 +30,7 @@ export const createPanelProviderMixin = () => ({
       this.updateCanRefine(value);
     });
   },
-  destroyed() {
+  beforeDestroy() {
     this.emitter.$destroy();
   },
   methods: {
