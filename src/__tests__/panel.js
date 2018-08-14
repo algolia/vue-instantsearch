@@ -117,6 +117,35 @@ describe('createPanelConsumerMixin', () => {
     expect(emitter.$emit).toHaveBeenCalledTimes(1);
   });
 
+  it('emits at least once when both values are set', () => {
+    const localVue = createLocalVue();
+    const emitter = createFakeEmitter();
+    const Test = createFakeComponent(localVue);
+
+    const wrapper = mount(Test, {
+      mixins: [
+        createPanelConsumerMixin({
+          mapStateToCanRefine,
+        }),
+      ],
+      provide: {
+        [PANEL_EMITTER_NAMESPACE]: emitter,
+      },
+    });
+
+    wrapper.vm.state = {
+      attributeName: false,
+    };
+
+    expect(emitter.$emit).toHaveBeenCalledTimes(0);
+
+    wrapper.vm.state = {
+      attributeName: false,
+    };
+
+    expect(emitter.$emit).toHaveBeenCalledTimes(1);
+  });
+
   it('do not emit when the previous value is not set', () => {
     const localVue = createLocalVue();
     const emitter = createFakeEmitter();
@@ -190,9 +219,15 @@ describe('createPanelConsumerMixin', () => {
     expect(emitter.$emit).not.toHaveBeenCalled();
 
     wrapper.vm.state = {
-      attributeName: true,
+      attributeName: false,
     };
 
-    expect(emitter.$emit).not.toHaveBeenCalled();
+    expect(emitter.$emit).toHaveBeenCalledTimes(1);
+
+    wrapper.vm.state = {
+      attributeName: false,
+    };
+
+    expect(emitter.$emit).toHaveBeenCalledTimes(1);
   });
 });
