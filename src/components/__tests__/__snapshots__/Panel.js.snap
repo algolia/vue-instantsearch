@@ -21,7 +21,9 @@ exports[`default render renders correctly with footer 1`] = `
     </p>
   </div>
   <div class="ais-Panel-footer">
-    Footer
+    <span>
+      Footer
+    </span>
   </div>
 </div>
 
@@ -31,7 +33,9 @@ exports[`default render renders correctly with header 1`] = `
 
 <div class="ais-Panel">
   <div class="ais-Panel-header">
-    Header
+    <span>
+      Header
+    </span>
   </div>
   <div class="ais-Panel-body">
     <p>

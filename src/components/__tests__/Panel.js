@@ -34,7 +34,7 @@ describe('default render', () => {
     const wrapper = mount(Panel, {
       slots: {
         default: defaultSlot,
-        header: `Header`,
+        header: `<span>Header</span>`,
       },
     });
 
@@ -45,7 +45,7 @@ describe('default render', () => {
     const wrapper = mount(Panel, {
       slots: {
         default: defaultSlot,
-        footer: `Footer`,
+        footer: `<span>Footer</span>`,
       },
     });
 
