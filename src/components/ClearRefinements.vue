@@ -36,6 +36,11 @@ export default {
       required: false,
       default: () => [],
     },
+    transformItems: {
+      type: Function,
+      required: false,
+      default: x => x,
+    },
   },
   data() {
     return {
@@ -50,6 +55,7 @@ export default {
       return {
         clearsQuery: this.clearsQuery,
         excludeAttributes: this.excludedAttributes,
+        transformItems: this.transformItems,
       };
     },
     canRefine() {
