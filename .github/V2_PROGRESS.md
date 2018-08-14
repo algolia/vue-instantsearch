@@ -49,7 +49,7 @@ x => done
   * Just a getter for \_snippetResult, doesn't set any parameters
 * [x] `ais-sort-by`
 * [x] `ais-stats`
-* [ ] `ais-toggle-refinement`
+* [~] `ais-toggle-refinement` Samuel
 
 ## Which level of customization?
 
