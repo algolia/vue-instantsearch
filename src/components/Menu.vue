@@ -75,7 +75,7 @@ export default {
     sortBy: {
       type: [Array, Function],
       default() {
-        return ['name:asc', 'count:desc'];
+        return ['count:desc', 'name:asc'];
       },
     },
   },
