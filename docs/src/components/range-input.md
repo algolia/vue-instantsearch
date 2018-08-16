@@ -25,7 +25,7 @@ Basic usage:
 
 | Name               | Required | Type                           | Default  | Description                                                                                                                  |
 |:-------------------|:---------|:-------------------------------|:---------|:-----------------------------------------------------------------------------------------------------------------------------|
-| attribute-name     | true     | `string`                       |          | The attribute to filter on.                                                                                                  |
+| attribute     | true     | `string`                       |          | The attribute to filter on.                                                                                                  |
 | default-refinement | false    | `{ min: number, max: number }` |          | Default state of the widget containing the start and the end of the range.                                                   |
 | min                | false    | `number`                       |          | Minimum value. When this isn’t set, the minimum value will be automatically computed by Algolia using the data in the index. |
 | max                | false    | `number`                       |          | Maximum value. When this isn’t set, the maximum value will be automatically computed by Algolia using the data in the index. |
