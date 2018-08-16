@@ -55,7 +55,7 @@ export default {
     off: {
       type: [String, Number, Boolean],
       required: false,
-      // explicit otherwise Vue coerce the default value
+      // explicit otherwise Vue coerces the default value
       // to false because of the `Boolean` prop type
       default: undefined,
     },
