@@ -22,11 +22,11 @@ A checklist for all of the components which are completely done.
 x => done
 ~ => in progress
 
-* [~] `ais-breadcrumb` vvo
+* [ ] `ais-breadcrumb`
 * [x] `ais-clear-refinements`
 * [x] `ais-configure`
 * [~] `ais-current-refinements` Haroenv
-* [~] `ais-hierarchical-menu` vvo
+* [ ] `ais-hierarchical-menu`
 * [~] `ais-highlight` Haroenv
   * Just a getter for \_highlightResult, doesn't set any parameters
 * [x] `ais-hits-per-page`
