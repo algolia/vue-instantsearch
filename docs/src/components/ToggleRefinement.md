@@ -12,7 +12,7 @@ githubSource: docs/src/components/ToggleRefinement.md
 The toggle widget lets the user either:
 
 * switch between two values for a single facetted attribute (free_shipping / not_free_shipping)
-* toggle a faceted value on and off (only ‘canon’ for brands)
+* toggle a faceted value on and off (only "Canon" for brands)
 
 This widget is particularly useful if you have a boolean value in the records.
 
