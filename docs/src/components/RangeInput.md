@@ -44,3 +44,9 @@ Class name | Description
 `ais-RangeInput-input--min` | The minimum bound of the range
 `ais-RangeInput-input--max` | The maximum bound of the range
 `ais-RangeInput-item--selected` | Selected item
+
+## Slots
+
+Name | Scope | Description
+---|---|---
+default | `{ refine: () => void, updateMin: (minValue: string) => void, updateMax(maxValue: string) => void, currentRefinements: [number, number]}` | Slot to override the DOM output. `refineMin` and `refineMax` are meant to update the values of the inputs, whereas `refine` takes the updated values, set them on the search state and then trigger the search. The `currentRefinements` contains the min and the max as set in the search state (and should be used to render the input values).
