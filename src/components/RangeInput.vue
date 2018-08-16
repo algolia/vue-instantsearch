@@ -2,11 +2,11 @@
 <div v-if="state" :class="suit()">
   <form :class="suit('form')" @submit.prevent="refine()">
     <label :class="suit('label')">
-      <input :class="[suit('input'), suit('input', 'min')]" type="number" ref="minInput" :min="this.min" :placeholder="this.min"/>
+      <input :class="[suit('input'), suit('input', 'min')]" type="number" v-model="minInput" :min="this.min" :max="this.maxInput" :placeholder="this.min"/>
     </label>
     <span :class="suit('separator')">to</span>
     <label :class="suit('label')">
-      <input :class="[suit('input'), suit('input', 'max')]" type="number" ref="maxInput" :max="this.max" :placeholder="this.max"/>
+      <input :class="[suit('input'), suit('input', 'max')]" type="number" v-model="maxInput" :max="this.max" :min="this.minInput" :placeholder="this.max"/>
     </label>
     <button :class="suit('submit')" type="submit">Go</button>
   </form>
@@ -40,6 +40,8 @@ export default {
   data() {
     return {
       widgetName: 'RangeInput',
+      minInput: undefined,
+      maxInput: undefined,
     };
   },
   beforeCreate() {
@@ -57,8 +59,8 @@ export default {
   },
   methods: {
     refine() {
-      const minValue = this.$refs.minInput.value && parseInt(this.$refs.minInput.value, 10);
-      const maxValue = this.$refs.maxInput.value && parseInt(this.$refs.maxInput.value, 10);
+      const minValue = this.minInput && parseInt(this.minInput, 10);
+      const maxValue = this.maxInput && parseInt(this.maxInput, 10);
 
       this.state.refine([minValue, maxValue]);
     }
