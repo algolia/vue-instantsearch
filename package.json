@@ -33,7 +33,7 @@
     "docs:deploy": "cd docs && yarn && yarn deploy",
     "test": "jest --verbose --coverage && yarn run lint",
     "test:update": "jest --verbose --updateSnapshot",
-    "test:watch": "jest --verbose --watchAll --notify",
+    "test:watch": "jest --verbose --watch",
     "lint": "eslint --ext .js,.vue .",
     "lint:fix": "eslint --ext .js,.vue . --fix",
     "format": "prettier --write '**/*.{js,md,vue,css}'",
