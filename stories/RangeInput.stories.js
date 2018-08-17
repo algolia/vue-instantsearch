@@ -18,18 +18,24 @@ storiesOf('RangeInput', module)
   .add('using the default slot', () => ({
     template: `
       <ais-range-input attribute="price">
-        <template slot-scope="{refine, updateMin, updateMax, currentRefinements}">
-          <form  @submit.prevent="refine()" >
+        <template slot-scope="{refine, currentRefinements}">
+          <form  @submit.prevent="refine(min, max)" >
             <label> 
-              <input type="number" :max="this.max"  :placeholder="this.max" :value="currentRefinements && currentRefinements[0]" @change="updateMin($event.currentTarget.value)"/>
+              <input type="number" :max="this.max"  :placeholder="this.max" :value="currentRefinements && currentRefinements[0]" @change="min = $event.currentTarget.value"/>
             </label>
             <span>to</span>
             <label >
-              <input type="number" :max="this.max"  :placeholder="this.max" :value="currentRefinements && currentRefinements[1]" @change="updateMax($event.currentTarget.value)"/>
+              <input type="number" :max="this.max"  :placeholder="this.max" :value="currentRefinements && currentRefinements[1]" @change="max = $event.currentTarget.value"/>
             </label>
             <button type="submit">Go</button>
           </form>
         </template>
       </ais-range-input>
     `,
+    data() {
+      return {
+        min: undefined,
+        max: undefined,
+      };
+    },
   }));

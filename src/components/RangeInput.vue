@@ -1,18 +1,16 @@
 <template>
 <div v-if="state" :class="suit()">
   <slot
-    :updateMin="this.updateMin"
-    :updateMax="this.updateMax"
     :currentRefinements="this.state.start"
     :refine="this.refine"
   >
-  <form :class="suit('form')" @submit.prevent="refine()">
+  <form :class="suit('form')" @submit.prevent="refine(minInput, maxInput)">
     <label :class="suit('label')">
-      <input :class="[suit('input'), suit('input', 'min')]" type="number" :min="this.min"  :placeholder="this.min" :value="this.state.start && this.state.start[0]" @change="updateMin($event.currentTarget.value)"/>
+      <input :class="[suit('input'), suit('input', 'min')]" type="number" :min="this.min"  :placeholder="this.min" :value="this.state.start && this.state.start[0]" @change="minInput = $event.currentTarget.value"/>
     </label>
     <span :class="suit('separator')">to</span>
     <label :class="suit('label')">
-      <input :class="[suit('input'), suit('input', 'max')]" type="number" :max="this.max"  :placeholder="this.max" :value="this.state.start && this.state.start[1]" @change="updateMax($event.currentTarget.value)"/>
+      <input :class="[suit('input'), suit('input', 'max')]" type="number" :max="this.max"  :placeholder="this.max" :value="this.state.start && this.state.start[1]" @change="maxInput = $event.currentTarget.value"/>
     </label>
     <button :class="suit('submit')" type="submit">Go</button>
   </form>
@@ -47,7 +45,8 @@ export default {
   data() {
     return {
       widgetName: 'RangeInput',
-      currentRefinements: [],
+      minInput: undefined,
+      maxInput: undefined,
     };
   },
   beforeCreate() {
@@ -64,19 +63,11 @@ export default {
     },
   },
   methods: {
-    refine() {
-      const minValue =
-        this.currentRefinements[0] && parseInt(this.currentRefinements[0], 10);
-      const maxValue =
-        this.currentRefinements[1] && parseInt(this.currentRefinements[1], 10);
+    refine(min, max) {
+      const minValue = min && parseInt(min, 10);
+      const maxValue = max && parseInt(max, 10);
 
       this.state.refine([minValue, maxValue]);
-    },
-    updateMin(v) {
-      this.currentRefinements[0] = v;
-    },
-    updateMax(v) {
-      this.currentRefinements[1] = v;
     },
   },
 };

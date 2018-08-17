@@ -49,4 +49,4 @@ Class name | Description
 
 Name | Scope | Description
 ---|---|---
-default | `{ refine: () => void, updateMin: (minValue: string) => void, updateMax(maxValue: string) => void, currentRefinements: [number, number]}` | Slot to override the DOM output. `refineMin` and `refineMax` are meant to update the values of the inputs, whereas `refine` takes the updated values, set them on the search state and then trigger the search. The `currentRefinements` contains the min and the max as set in the search state (and should be used to render the input values).
+default | `{ refine: (min, max) => void, currentRefinements: [number, number]}` | Slot to override the DOM output. `refine` takes the updated values and then trigger the search. The `currentRefinements` contains the min and the max as set in the search state (and should be used to render the input values).
