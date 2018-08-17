@@ -22,7 +22,7 @@ A checklist for all of the components which are completely done.
 x => done
 ~ => in progress
 
-* [~] `ais-breadcrumb` Samuel
+* [x] `ais-breadcrumb`
 * [x] `ais-clear-refinements`
 * [x] `ais-configure`
 * [~] `ais-current-refinements` Haroenv
