@@ -26,7 +26,7 @@ x => done
 * [x] `ais-clear-refinements`
 * [x] `ais-configure`
 * [~] `ais-current-refinements` Haroenv
-* [ ] `ais-hierarchical-menu`
+* [~] `ais-hierarchical-menu` Samuel
 * [~] `ais-highlight` Haroenv
   * Just a getter for \_highlightResult, doesn't set any parameters
 * [x] `ais-hits-per-page`
