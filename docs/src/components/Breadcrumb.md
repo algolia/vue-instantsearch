@@ -9,9 +9,7 @@ editable: true
 githubSource: docs/src/components/Breadcrumb.md
 ---
 
-Breadcrumb connector provides the logic to build a custom widget that will give the user the ability to see the current path in a hierarchical facet.
-
-This is commonly used in websites that have a large amount of content organized in a hierarchical manner (usually e-commerce websites).
+The breadcrumb widget allows you to visualise which level of a hierarchical facet is currently selected.
 
 <a class="btn btn-static-theme" href="stories/?selectedKind=Breadcrumb">🕹 try out live</a>
 
