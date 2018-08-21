@@ -24,7 +24,7 @@
         <span :class="props.suit('count')">{{ item.count }}</span>
       </a>
 
-      <ais-hierarchical-menu-list
+      <hierarchical-menu-list
         v-if="item.data"
         :items="item.data"
         :level="props.level + 1"

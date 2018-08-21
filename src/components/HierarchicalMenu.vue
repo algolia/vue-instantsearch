@@ -12,7 +12,7 @@
       :create-URL="state.createURL"
       :toggle-show-more="toggleShowMore"
     >
-      <ais-hierarchical-menu-list
+      <hierarchical-menu-list
         :items="items"
         :level="0"
         :suit="suit"
@@ -42,7 +42,7 @@ import HierarchicalMenuList from './HierarchicalMenuList.vue';
 export default {
   mixins: [algoliaComponent],
   components: {
-    'ais-hierarchical-menu-list': HierarchicalMenuList,
+    HierarchicalMenuList,
   },
   props: {
     attributes: {
