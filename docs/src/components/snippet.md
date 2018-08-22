@@ -41,24 +41,12 @@ You can access the snippeted version by specifying the path by separating levels
 <ais-snippet :hit="hit" attribute="meta.title"></ais-snippet>
 ```
 
-To have correct styling with InstantSearch's style, add the following settings:
-
-```html
-<ais-configure
-  highlightPreTag="<mark class='ais-Snippet-highlighted'>"
-  highlightPostTag="</mark>"
->
-</ais-configure>
-```
-
 Note that you also need to set up the correct attributes to snippet, you can do this runtime as well: 
 
 ```html
 <ais-configure
   :attributesToSnippet="['name', 'description']"
   snippetEllipsisText="[…]"
-  highlightPreTag="<mark class='ais-Snippet-highlighted'>"
-  highlightPostTag="</mark>"
 >
 </ais-configure>
 ```
@@ -69,9 +57,11 @@ Name | Type | Default | Description | Required
 ---|---|---|---|---
 hit | Object |  | A single Algolia result as it is returned by the API. | yes
 attribute | String |  | The attribute name to be snippeted. | yes
+tagName | String |  | The tag name to use on the highlighted items. | yes
 
 ## CSS Classes
 
 Class name | Description
 ---|---
 `ais-Snippet` | Container class
+`ais-Snippet-highlighted` | parts of the string matching the query

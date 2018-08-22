@@ -40,26 +40,16 @@ You can access the highlighted version by specifying the path by separating leve
 <ais-highlight :hit="hit" attribute-name="meta.title"></ais-highlight>
 ```
 
-To have correct styling with InstantSearch's style, add the following settings:
-
-```html
-<ais-configure
-  highlightPreTag="<mark class='ais-Highlight-highlighted'>"
-  highlightPostTag="</mark>"
->
-</ais-configure>
-```
-
 **Advanced use cases:**
 
 For more complex data structures, it will be necessary to leverage the [_highlightResult](https://www.algolia.com/doc/guides/searching/highlighting-snippeting/#response-information) object directly. For example, consider the case of an array of keywords:
 
 ```html
-<ais-results>
+<ais-hits>
   <template name="item" slot-scope="{ item }">
     <p v-for="keyword in item._highlightResult.keywords" v-html="keyword.value"></p>
   </template>
-</ais-results>
+</ais-hits>
 ```
 
 ## Props
@@ -74,3 +64,4 @@ attribute | String |  | The attribute name to be highlighted. | yes
 Class name | Description
 ---|---
 `ais-Highlight` | Container class
+`ais-Highlight-highlighted` | parts of the string matching the query
