@@ -6,7 +6,7 @@ storiesOf('Snippet', module)
   .add('Existing items', () => ({
     template: `
     <div>
-      <ais-hits>
+      <ais-hits :escape-HTML="true">
         <div slot="item" slot-scope="{ item }">
           <h2><ais-snippet attribute="name" :hit="item"></ais-snippet></h2>
           <small><ais-snippet attribute="description" :hit="item"></ais-snippet></small>
@@ -15,8 +15,6 @@ storiesOf('Snippet', module)
       <ais-configure
         :attributesToSnippet="['name', 'description']"
         snippetEllipsisText="[…]"
-        highlightPreTag="<mark class='ais-Snippet-highlighted'>"
-        highlightPostTag="</mark>"
       />
     </div>
   `,
@@ -24,7 +22,7 @@ storiesOf('Snippet', module)
   .add('Non-existing items', () => ({
     template: `
     <div>
-      <ais-hits>
+      <ais-hits :escape-HTML="true">
         <div slot="item" slot-scope="{ item }">
           <h2><ais-snippet attribute="name" :hit="item"></ais-snippet></h2>
           <p>nose: <ais-snippet attribute="nose" :hit="item"></ais-snippet></p>
@@ -34,8 +32,6 @@ storiesOf('Snippet', module)
       <ais-configure
         :attributesToSnippet="['name', 'description']"
         snippetEllipsisText="[…]"
-        highlightPreTag="<mark class='ais-Snippet-highlighted'>"
-        highlightPostTag="</mark>"
       />
     </div>
     `,
