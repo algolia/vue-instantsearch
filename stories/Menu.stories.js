@@ -5,8 +5,33 @@ storiesOf('Menu', module)
   .addDecorator(previewWrapper())
   .add('default', () => ({
     template: `
-      <ais-menu attribute="brand" />
+      <div>
+        <p>
+          <button @click="forceUpdate">Force update</button>
+          <button @click="updateAttribute">Update attribute to "{{ label }}"</button>
+        </p>
+        <ais-menu :attribute="attribute" />
+      </div>
     `,
+    data() {
+      return {
+        attribute: 'brand',
+      };
+    },
+    computed: {
+      label() {
+        return this.attribute === 'categories' ? 'brand' : 'categories';
+      },
+    },
+    methods: {
+      forceUpdate() {
+        this.$forceUpdate();
+      },
+      updateAttribute() {
+        this.attribute =
+          this.attribute === 'categories' ? 'brand' : 'categories';
+      },
+    },
   }))
   .add('with show more', () => ({
     template: `
