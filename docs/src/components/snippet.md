@@ -11,7 +11,7 @@ githubSource: docs/src/components/snippet.md
 
 Display snippeted attributes of your search results.
 
-This component leverages the [snippeting feature of Algolia](https://www.algolia.com/doc/faq/searching/what-is-attributes-to-snippet-how-does-it-work/#faq-section).
+This component leverages the [snippeting feature of Algolia](https://www.algolia.com/doc/faq/searching/what-is-attributes-to-snippet-how-does-it-work/#faq-section) and is designed to work with `escapeHTML` set to true in the surrounding `<ais-hits>`.
 
 
 ## Usage

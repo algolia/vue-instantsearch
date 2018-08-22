@@ -11,7 +11,7 @@ githubSource: docs/src/components/highlight.md
 
 Displays highlighted attributes of your search results.
 
-This component leverages the [highlighting feature of Algolia](https://www.algolia.com/doc/faq/searching/what-is-the-highlighting/#faq-section).
+This component leverages the [highlighting feature of Algolia](https://www.algolia.com/doc/faq/searching/what-is-the-highlighting/#faq-section) and is designed to work with `escapeHTML` set to true in the surrounding `<ais-hits>`.
 
 ## Usage
 
@@ -45,12 +45,14 @@ You can access the highlighted version by specifying the path by separating leve
 For more complex data structures, it will be necessary to leverage the [_highlightResult](https://www.algolia.com/doc/guides/searching/highlighting-snippeting/#response-information) object directly. For example, consider the case of an array of keywords:
 
 ```html
-<ais-hits>
+<ais-hits :escape-HTML="true">
   <template name="item" slot-scope="{ item }">
     <p v-for="keyword in item._highlightResult.keywords" v-html="keyword.value"></p>
   </template>
 </ais-hits>
 ```
+
+Note that if you used `escapeHTML: true` in your `ais-hits` props, the highlight tag will be `<em>`
 
 ## Props
 
