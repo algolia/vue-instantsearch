@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import Highlight from '../Highlight';
+import Highlight from '../Highlight.vue';
 
 afterEach(() => {
   process.env.NODE_ENV = 'test';
@@ -15,11 +15,9 @@ test('renders proper HTML', () => {
   };
 
   const wrapper = mount(Highlight, {
-    context: {
-      props: {
-        attribute: 'attr',
-        hit,
-      },
+    propsData: {
+      attribute: 'attr',
+      hit,
     },
   });
 
@@ -33,11 +31,9 @@ test('should render an empty string in production if attribute is not highlighte
   };
 
   const wrapper = mount(Highlight, {
-    context: {
-      props: {
-        attribute: 'attr',
-        hit,
-      },
+    propsData: {
+      attribute: 'attr',
+      hit,
     },
   });
 
@@ -52,11 +48,9 @@ test('should warn when not in production if attribute is not highlighted', () =>
   };
 
   mount(Highlight, {
-    context: {
-      props: {
-        attribute: 'attr',
-        hit,
-      },
+    propsData: {
+      attribute: 'attr',
+      hit,
     },
   });
 
@@ -75,11 +69,9 @@ test('allows usage of dot delimited path to access nested attribute', () => {
   };
 
   const wrapper = mount(Highlight, {
-    context: {
-      props: {
-        attribute: 'attr.nested',
-        hit,
-      },
+    propsData: {
+      attribute: 'attr.nested',
+      hit,
     },
   });
 

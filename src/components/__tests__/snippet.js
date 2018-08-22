@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import Snippet from '../Snippet';
+import Snippet from '../Snippet.vue';
 
 afterEach(() => {
   process.env.NODE_ENV = 'test';
@@ -15,11 +15,9 @@ test('renders proper HTML', () => {
   };
 
   const wrapper = mount(Snippet, {
-    context: {
-      props: {
-        attribute: 'attr',
-        hit,
-      },
+    propsData: {
+      attribute: 'attr',
+      hit,
     },
   });
 
@@ -34,11 +32,9 @@ test('should render an empty string in production if attribute is not snippeted'
   global.console.warn = jest.fn();
 
   const wrapper = mount(Snippet, {
-    context: {
-      props: {
-        attribute: 'attr',
-        hit,
-      },
+    propsData: {
+      attribute: 'attr',
+      hit,
     },
   });
 
@@ -53,11 +49,9 @@ test('should warn when not in production if attribute is not snippeted', () => {
     _snippetResult: {},
   };
   mount(Snippet, {
-    context: {
-      props: {
-        attribute: 'attr',
-        hit,
-      },
+    propsData: {
+      attribute: 'attr',
+      hit,
     },
   });
 
@@ -76,11 +70,9 @@ test('allows usage of dot delimited path to access nested attribute', () => {
   };
 
   const wrapper = mount(Snippet, {
-    context: {
-      props: {
-        attribute: 'attr.nested',
-        hit,
-      },
+    propsData: {
+      attribute: 'attr.nested',
+      hit,
     },
   });
 
