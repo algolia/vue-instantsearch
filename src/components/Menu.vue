@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import isFunction from 'lodash/isFunction';
+import isEqual from 'lodash/isEqual';
 import { connectMenu } from 'instantsearch.js/es/connectors';
 import algoliaComponent from '../component';
 
@@ -73,13 +73,17 @@ export default {
       default: false,
     },
     sortBy: {
+      type: [Array, Function],
       default() {
         return ['count:desc', 'name:asc'];
       },
-      validator(value) {
-        return Array.isArray(value) || isFunction(value);
-      },
     },
+  },
+  widgetParams: {
+    attributeName: (previous, next) => previous !== next,
+    limit: (previous, next) => previous !== next,
+    showMoreLimit: (previous, next) => previous !== next,
+    sortBy: (previous, next) => !isEqual(previous, next),
   },
   beforeCreate() {
     this.connector = connectMenu;
