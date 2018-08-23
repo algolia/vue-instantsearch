@@ -22,6 +22,10 @@ export const previewWrapper = ({
       </li>
     </ol>
   `,
+  filters = `
+    <!-- @TODO: replace with a RefinementList  -->
+    <ais-menu attribute="brand" />
+  `,
 } = {}) => () => ({
   template: `
     <ais-index
@@ -36,11 +40,11 @@ export const previewWrapper = ({
 
       <div class="container container-playground">
         <div class="panel-left">
-          <!-- @TODO: replace with a RefinementList  -->
-          <ais-menu attribute="brand" />
+          ${filters}
         </div>
         <div class="panel-right">
           <ais-search-box />
+          <ais-stats />
           <ais-hits>
             ${hits}
           </ais-hits>
