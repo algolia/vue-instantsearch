@@ -1,18 +1,22 @@
 <template>
 <div v-if="state" :class="{[suit()]: true, [suit(undefined, 'noRefinement')]: noRefinement}">
   <slot
-    :currentRefinements="this.state.start"
-    :refine="this.refine"
+    :currentRefinements="state.start"
+    :refine="refine"
+    :noRefinement="noRefinement"
+    :range="state.range"
   >
   <form :class="suit('form')" @submit.prevent="refine(minInput, maxInput)">
     <label :class="suit('label')">
-      <input :class="[suit('input'), suit('input', 'min')]" type="number" :min="this.min"  :placeholder="this.min" :value="this.state.start && this.state.start[0]" @change="minInput = $event.currentTarget.value"/>
+      <slot name="minLabel"></slot>
+      <input :class="[suit('input'), suit('input', 'min')]" type="number" :min="Math.max(min, state.range.min)" :max="Math.min(max, state.range.max)" :placeholder="Math.max(min, state.range.min)" :value="state.start && state.start[0]" @change="minInput = $event.currentTarget.value" :step="step"/>
     </label>
-    <span :class="suit('separator')">to</span>
+    <span :class="suit('separator')"><slot name="separator">to</slot></span>
     <label :class="suit('label')">
-      <input :class="[suit('input'), suit('input', 'max')]" type="number" :max="this.max"  :placeholder="this.max" :value="this.state.start && this.state.start[1]" @change="maxInput = $event.currentTarget.value"/>
+      <slot name="maxLabel"></slot>
+      <input :class="[suit('input'), suit('input', 'max')]" type="number" :max="Math.min(max, state.range.max)"  :min="Math.max(min, state.range.min)" :placeholder="Math.min(max, state.range.max)" :value="state.start && state.start[1]" @change="maxInput = $event.currentTarget.value" :step="step"/>
     </label>
-    <button :class="suit('submit')" type="submit">Go</button>
+    <button :class="suit('submit')" type="submit"><slot name="submitLabel">Go</slot></button>
   </form>
   </slot>
 </div>
@@ -32,14 +36,17 @@ export default {
     min: {
       type: Number,
       required: false,
+      default: -Infinity,
     },
     max: {
       type: Number,
       required: false,
+      default: Infinity,
     },
     precision: {
       type: Number,
       required: false,
+      default: 0,
     },
   },
   data() {
@@ -64,10 +71,13 @@ export default {
     noRefinement() {
       return Boolean(
         this.state &&
-        this.state.range &&
-        this.state.range.min === this.state.range.max
+          this.state.range &&
+          this.state.range.min === this.state.range.max
       );
     },
+    step() {
+      return 1 / Math.pow(10, this.precision);
+    }
   },
   methods: {
     refine(min, max) {
