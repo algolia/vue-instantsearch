@@ -3,20 +3,82 @@ import RefinementList from '../RefinementList.vue';
 import { __setState } from '../../component';
 jest.mock('../../component');
 
-it.skip('renders correctly', () => {
+const defaultState = {
+  items: [
+    {
+      value: 'yo',
+      label: 'yo',
+      highlighted: 'y<em>o</em>',
+      isRefined: false,
+      count: 20,
+    },
+    {
+      value: 'how',
+      label: 'how',
+      highlighted: 'how',
+      isRefined: false,
+      count: 10,
+    },
+    {
+      value: 'are',
+      label: 'are',
+      highlighted: 'are',
+      isRefined: false,
+      count: 8,
+    },
+    {
+      value: 'you',
+      label: 'you',
+      highlighted: 'you',
+      isRefined: false,
+      count: 9,
+    },
+    {
+      value: 'doing',
+      label: 'doing',
+      highlighted: 'doing',
+      isRefined: false,
+      count: 100,
+    },
+    { value: '?', label: '?', highlighted: '?', isRefined: false, count: 0 },
+  ],
+};
+it('renders correctly', () => {
   __setState({
-    hits: ['yo', 'how', 'are', 'you', 'doing', '?'],
+    ...defaultState,
   });
-  const wrapper = mount(RefinementList);
+  const wrapper = mount(RefinementList, {
+    propsData: {
+      attribute: 'something',
+    },
+  });
   expect(wrapper.html()).toMatchSnapshot();
 });
 
-it.skip('behaves correctly', () => {
+it("renders correctly when it's searchable", () => {
   __setState({
+    ...defaultState,
+    searchable: true,
+  });
+  const wrapper = mount(RefinementList, {
+    propsData: {
+      attribute: 'something',
+    },
+  });
+  expect(wrapper.html()).toMatchSnapshot();
+});
+
+it('behaves correctly', () => {
+  __setState({
+    ...defaultState,
     refine: jest.fn(),
   });
-  const wrapper = mount(RefinementList);
-  const button = wrapper.find('button');
+  const wrapper = mount(RefinementList, {
+    propsData: {
+      attribute: 'something',
+    },
+  });
+  const button = wrapper.find('input[type="checkbox"]');
   button.trigger('click');
-  expect(wrapper.vm.state.refine).toHaveBeenLastCalledWith('hi');
+  expect(wrapper.vm.state.refine).toHaveBeenLastCalledWith('yo');
 });
