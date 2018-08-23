@@ -1,5 +1,5 @@
 <template>
-<div v-if="state" :class="suit()">
+<div v-if="state" :class="{[suit()]: true, [suit(undefined, 'noRefinement')]: noRefinement}">
   <slot
     :currentRefinements="this.state.start"
     :refine="this.refine"
@@ -61,13 +61,17 @@ export default {
         precision: this.precision,
       };
     },
+    noRefinement() {
+      return Boolean(
+        this.state &&
+        this.state.range &&
+        this.state.range.min === this.state.range.max
+      );
+    },
   },
   methods: {
     refine(min, max) {
-      const minValue = min && parseInt(min, 10);
-      const maxValue = max && parseInt(max, 10);
-
-      this.state.refine([minValue, maxValue]);
+      this.state.refine([min, max]);
     },
   },
 };
