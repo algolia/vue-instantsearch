@@ -22,11 +22,11 @@ A checklist for all of the components which are completely done.
 x => done
 ~ => in progress
 
-* [~] `ais-breadcrumb` vvo
+* [x] `ais-breadcrumb`
 * [x] `ais-clear-refinements`
 * [x] `ais-configure`
 * [~] `ais-current-refinements` Haroenv
-* [~] `ais-hierarchical-menu` vvo
+* [x] `ais-hierarchical-menu`
 * [~] `ais-highlight` Haroenv
   * Just a getter for \_highlightResult, doesn't set any parameters
 * [x] `ais-hits-per-page`
@@ -40,7 +40,7 @@ x => done
 * [~] `ais-panel`
   * Just header & footer slot, doesn't get any child info
 * [x] `ais-powered-by`
-* [x] `ais-range-input`
+* [~] `ais-range-input`
 * [~] `ais-range-slider` Alex
 * [x] `ais-rating-menu`
 * [~] `ais-refinement-list` Haroenv
@@ -49,7 +49,7 @@ x => done
   * Just a getter for \_snippetResult, doesn't set any parameters
 * [x] `ais-sort-by`
 * [x] `ais-stats`
-* [~] `ais-toggle-refinement` Samuel
+* [x] `ais-toggle-refinement`
 
 ## Which level of customization?
 
