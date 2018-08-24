@@ -75,10 +75,12 @@ describe('refinement', () => {
     });
     const minInput = wrapper.find('.ais-RangeInput-input--min');
     minInput.element.value = 100;
+    minInput.trigger('change');
     const maxInput = wrapper.find('.ais-RangeInput-input--max');
     maxInput.element.value = 106;
+    maxInput.trigger('change');
     const form = wrapper.find('form');
     form.trigger('submit');
-    expect(wrapper.vm.state.refine).toHaveBeenLastCalledWith([100, 106]);
+    expect(wrapper.vm.state.refine).toHaveBeenLastCalledWith(['100', '106']);
   });
 });
