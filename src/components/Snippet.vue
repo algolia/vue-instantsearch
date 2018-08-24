@@ -18,7 +18,7 @@ export default {
       type: String,
       required: true,
     },
-    tagName: {
+    highlightedTagName: {
       type: String,
       default: 'mark',
     },
@@ -50,9 +50,9 @@ export default {
       return attributeValue
         .replace(
           new RegExp('<em>', 'g'),
-          `<${this.tagName} class="${this.suit('highlighted')}">`
+          `<${this.highlightedTagName} class="${this.suit('highlighted')}">`
         )
-        .replace(new RegExp('</em>', 'g'), `</${this.tagName}>`);
+        .replace(new RegExp('</em>', 'g'), `</${this.highlightedTagName}>`);
     },
   },
 };

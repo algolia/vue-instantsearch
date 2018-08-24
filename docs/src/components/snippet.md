@@ -57,7 +57,7 @@ Name | Type | Default | Description | Required
 ---|---|---|---|---
 hit | Object |  | A single Algolia result as it is returned by the API. | yes
 attribute | String |  | The attribute name to be snippeted. | yes
-tagName | String |  | The tag name to use on the highlighted items. | yes
+highlightedTagName | String |  | The tag name to use on the highlighted items. | no
 
 ## CSS Classes
 

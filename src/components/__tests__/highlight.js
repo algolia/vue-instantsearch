@@ -24,6 +24,26 @@ test('renders proper HTML', () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
+test('renders proper HTML with highlightTagName', () => {
+  const hit = {
+    _highlightResult: {
+      attr: {
+        value: `con<em>ten</em>t`,
+      },
+    },
+  };
+
+  const wrapper = mount(Highlight, {
+    propsData: {
+      attribute: 'attr',
+      highlightedTagName: 'marquee',
+      hit,
+    },
+  });
+
+  expect(wrapper.html()).toMatchSnapshot();
+});
+
 test('should render an empty string in production if attribute is not highlighted', () => {
   process.env.NODE_ENV = 'production';
   const hit = {

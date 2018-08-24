@@ -23,6 +23,18 @@ exports[`renders proper HTML 1`] = `
 
 `;
 
+exports[`renders proper HTML with highlightTagName 1`] = `
+
+<span class="ais-Highlight">
+  con
+  <marquee class="ais-Highlight-highlighted">
+    ten
+  </marquee>
+  t
+</span>
+
+`;
+
 exports[`should render an empty string in production if attribute is not highlighted 1`] = `
 
 <span class="ais-Highlight">
