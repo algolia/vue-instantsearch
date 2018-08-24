@@ -17,7 +17,9 @@ export const previewWrapper = ({
           :style="{ backgroundImage: 'url(' + item.image + ')' }"
         />
         <div class="playground-hits-desc">
-          <p>{{ item.name }}</p>
+          <p>
+            <ais-highlight attribute="name" :item="item">
+          </p>
           <p>Rating: {{ item.rating }}✭</p>
           <p>Price: {{ item.price }}$</p>
         </div>
