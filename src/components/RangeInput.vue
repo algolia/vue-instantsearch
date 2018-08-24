@@ -9,12 +9,30 @@
   <form :class="suit('form')" @submit.prevent="refine(minInput, maxInput)">
     <label :class="suit('label')">
       <slot name="minLabel"></slot>
-      <input :class="[suit('input'), suit('input', 'min')]" type="number" :min="Math.max(min, state.range.min)" :max="Math.min(max, state.range.max)" :placeholder="Math.max(min, state.range.min)" :value="state.start && state.start[0]" @change="minInput = $event.currentTarget.value" :step="step"/>
+      <input
+        type="number"
+        :class="[suit('input'), suit('input', 'min')]"
+        :max="maxPossibleValue"
+        :min="minPossibleValue"
+        :placeholder="minPossibleValue"
+        :step="step"
+        :value="state.start && state.start[0]"
+        @change="minInput = $event.currentTarget.value"
+      />
     </label>
     <span :class="suit('separator')"><slot name="separator">to</slot></span>
     <label :class="suit('label')">
       <slot name="maxLabel"></slot>
-      <input :class="[suit('input'), suit('input', 'max')]" type="number" :max="Math.min(max, state.range.max)"  :min="Math.max(min, state.range.min)" :placeholder="Math.min(max, state.range.max)" :value="state.start && state.start[1]" @change="maxInput = $event.currentTarget.value" :step="step"/>
+      <input
+        :class="[suit('input'), suit('input', 'max')]"
+        type="number"
+        :max="maxPossibleValue"
+        :min="minPossibleValue"
+        :placeholder="maxPossibleValue"
+        :step="step"
+        :value="state.start && state.start[1]"
+        @change="maxInput = $event.currentTarget.value"
+      />
     </label>
     <button :class="suit('submit')" type="submit"><slot name="submitLabel">Go</slot></button>
   </form>
@@ -77,6 +95,12 @@ export default {
     },
     step() {
       return 1 / Math.pow(10, this.precision);
+    },
+    minPossibleValue() {
+      return Math.max(this.min, this.state.range.min);
+    },
+    maxPossibleValue() {
+      return Math.min(this.max, this.state.range.max);
     }
   },
   methods: {
