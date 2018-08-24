@@ -101,7 +101,7 @@ export default {
     },
     maxPossibleValue() {
       return Math.min(this.max, this.state.range.max);
-    }
+    },
   },
   methods: {
     refine(min, max) {
