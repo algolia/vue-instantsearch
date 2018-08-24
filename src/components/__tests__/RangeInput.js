@@ -7,6 +7,7 @@ describe('rendering', () => {
   it('displays correctly with default values', () => {
     __setState({
       refine: jest.fn(),
+      range: { min: 0, max: 1000 },
     });
     const wrapper = mount(RangeInput, {
       propsData: {
@@ -19,6 +20,7 @@ describe('rendering', () => {
   it('displays correctly with a min', () => {
     __setState({
       refine: jest.fn(),
+      range: { min: 0, max: 1000 },
     });
     const wrapper = mount(RangeInput, {
       propsData: {
@@ -32,6 +34,7 @@ describe('rendering', () => {
   it('displays correctly with a max', () => {
     __setState({
       refine: jest.fn(),
+      range: { min: 0, max: 1000 },
     });
     const wrapper = mount(RangeInput, {
       propsData: {
@@ -45,6 +48,7 @@ describe('rendering', () => {
   it('displays correctly with a min and a max', () => {
     __setState({
       refine: jest.fn(),
+      range: { min: 0, max: 1000 },
     });
     const wrapper = mount(RangeInput, {
       propsData: {
@@ -61,6 +65,7 @@ describe('refinement', () => {
   it('uses the value of the inputs when the form is submited', () => {
     __setState({
       refine: jest.fn(),
+      range: { min: 0, max: 1000 },
     });
 
     const wrapper = mount(RangeInput, {
