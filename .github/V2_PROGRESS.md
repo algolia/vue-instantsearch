@@ -27,7 +27,7 @@ x => done
 * [x] `ais-configure`
 * [~] `ais-current-refinements` Haroenv
 * [x] `ais-hierarchical-menu`
-* [~] `ais-highlight` Haroenv
+* [x] `ais-highlight`
   * Just a getter for \_highlightResult, doesn't set any parameters
 * [x] `ais-hits-per-page`
 * [x] `ais-hits`
@@ -45,7 +45,7 @@ x => done
 * [x] `ais-rating-menu`
 * [~] `ais-refinement-list` Haroenv
 * [x] `ais-search-box`
-* [~] `ais-snippet` Haroenv
+* [x] `ais-snippet`
   * Just a getter for \_snippetResult, doesn't set any parameters
 * [x] `ais-sort-by`
 * [x] `ais-stats`
