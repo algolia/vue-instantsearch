@@ -108,5 +108,4 @@ export default {
       this.state.refine([min, max]);
     },
   },
-};
-</script>
+};</script>
