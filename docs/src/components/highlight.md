@@ -37,7 +37,7 @@ Given an record like:
 You can access the highlighted version by specifying the path by separating levels with dots:
 
 ```html
-<ais-highlight :hit="hit" attribute-name="meta.title"></ais-highlight>
+<ais-highlight :hit="hit" attribute="meta.title"></ais-highlight>
 ```
 
 **Advanced use cases:**
