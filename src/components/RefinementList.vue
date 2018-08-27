@@ -40,12 +40,12 @@
         </li>
       </ul>
       <button
-        :class="suit('showMore')"
+        :class="[suit('showMore'), { [suit('showMore', 'disabled')]: !state.canRefine }]"
         @click="toggleShowMore"
         v-if="showMore"
         :disabled="!state.canRefine"
       >
-        <slot name="showMoreTitle" :is-showing-more="isShowingMore">
+        <slot name="showMoreTitle" :is-showing-more="state.isShowingMore">
           Show {{state.isShowingMore ? 'less' : 'more'}}
         </slot>
       </button>

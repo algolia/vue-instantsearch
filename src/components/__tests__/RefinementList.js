@@ -80,14 +80,16 @@ it("disables show more if can't refine", () => {
     },
   });
 
-  expect(
-    wrapper.find('.ais-RefinementList-showMore').attributes().disabled
-  ).toBe('disabled');
+  const showMore = wrapper.find('.ais-RefinementList-showMore');
+
+  expect(showMore.attributes().disabled).toBe('disabled');
+  expect(showMore.classes()).toContain('ais-RefinementList-showMore--disabled');
 
   wrapper.setData({ state: { canRefine: true } });
-  expect(
-    wrapper.find('.ais-RefinementList-showMore').attributes().disabled
-  ).toBeUndefined();
+  expect(showMore.attributes().disabled).toBeUndefined();
+  expect(showMore.classes()).not.toContain(
+    'ais-RefinementList-showMore--disabled'
+  );
 });
 
 it('behaves correctly', () => {
