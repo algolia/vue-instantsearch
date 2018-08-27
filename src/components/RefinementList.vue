@@ -5,7 +5,6 @@
       :refine="state.refine"
       :searchable="searchable"
       :search-for-items="state.searchForItems"
-      :show-more="showMore"
       :toggle-show-more="toggleShowMore"
       :is-showing-more="state.isShowingMore"
     >

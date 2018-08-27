@@ -41,7 +41,6 @@ storiesOf('RefinementList', module)
         items,
         refine,
         searchForItems,
-        showMore,
         toggleShowMore,
         isShowingMore
       }">
