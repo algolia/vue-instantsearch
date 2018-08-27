@@ -7,6 +7,10 @@
       :search-for-items="state.searchForItems"
       :toggle-show-more="toggleShowMore"
       :is-showing-more="state.isShowingMore"
+      :createURL="state.createURL"
+      :is-from-search="state.isFromSearch"
+      :can-refine="state.canRefine"
+      :transform-Item-To-Hit="transformItemToHit"
     >
       <div :class="suit('searchBox')" v-if="searchable">
         <ais-search-input v-model="searchForFacetValues"></ais-search-input>
@@ -28,7 +32,7 @@
               />
               <template v-if="searchable">
                 <span :class="suit('labelText')">
-                  <ais-highlight attribute="item" :hit="transformIntoHit(item)"/>
+                  <ais-highlight attribute="item" :hit="transformItemToHit(item)"/>
                 </span>
               </template>
               <template v-else>
@@ -44,7 +48,9 @@
         @click="toggleShowMore"
         v-if="showMore"
       >
-        Show {{state.isShowingMore ? 'less' : 'more'}}
+        <slot name="showMoreTitle" :is-showing-more="isShowingMore">
+          Show {{state.isShowingMore ? 'less' : 'more'}}
+        </slot>
       </button>
     </slot>
   </div>
@@ -132,7 +138,7 @@ export default {
     },
   },
   methods: {
-    transformIntoHit(item) {
+    transformItemToHit(item) {
       return {
         _highlightResult: {
           item: {

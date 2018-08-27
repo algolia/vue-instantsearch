@@ -32,6 +32,14 @@ showMore | boolean | false | Whether or not to have the option to load more valu
 sortBy | array / sort function | `['isRefined:desc', 'count:desc', 'name:asc']` | array or function to sort the results by | no
 transformItems | `(items: object[]) => object[]` | | Function which receives the items, which will be called before displaying them. Should return a new array with the same shape as the original array. Useful for mapping over the items to transform, remove or reorder them | no
 
+## Slots
+
+Name | Scope | Description
+---|---|---
+default | `{ items: Array, refine: Function, searchable: Boolean, searchForItems: Function, isFromSearch: Boolean, toggleShowMore: Function, isShowingMore: Boolean, createURL: Function, canRefine: Boolean }` | Slot to override the DOM output
+item | `{ value: String, label: String, count: Number, isRefined: Boolean, highlighted }` | Slot to override the DOM of a single item in the list
+showMoreTitle | `{ isShowingMore: Boolean }` | Slot to override the text shown in the "show more" button
+
 ## CSS classes
 
 Here's a list of CSS classes exposed by this widget. To better understand the underlying
