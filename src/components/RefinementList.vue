@@ -10,7 +10,7 @@
       :is-showing-more="state.isShowingMore"
     >
       <div :class="suit('searchBox')" v-if="searchable">
-        <ais-search-input :refine="state.searchForItems"></ais-search-input>
+        <ais-search-input v-model="searchForFacetValues"></ais-search-input>
       </div>
       <ul :class="suit('list')">
         <li
@@ -95,12 +95,22 @@ export default {
   data() {
     return {
       widgetName: 'RefinementList',
+      searchForFacetValuesQuery: '',
     };
   },
   beforeCreate() {
     this.connector = connectRefinementList;
   },
   computed: {
+    searchForFacetValues: {
+      get() {
+        return this.searchForFacetValuesQuery;
+      },
+      set(value) {
+        state.searchForItems(value);
+        this.searchForFacetValuesQuery = value;
+      },
+    },
     items() {
       if (this.searchable) {
         return this.state.items.map(item => {

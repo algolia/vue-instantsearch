@@ -4,18 +4,18 @@
     :class="suit()"
   >
     <slot
-      :currentRefinement="currentRefinement"
-      :isSearchStalled="state.isSearchStalled"
+      :current-refinement="currentRefinement"
+      :is-search-stalled="state.isSearchStalled"
       :refine="state.refine"
     >
       <ais-search-input
-        :refine="state.refine"
         :placeholder="placeholder"
         :autofocus="autofocus"
         :show-loading-indicator="showLoadingIndicator"
         :should-show-loading-indicator="state.isSearchStalled"
         :submit-title="submitTitle"
         :clear-title="clearTitle"
+        v-model="currentRefinement"
       >
       </ais-search-input>
     </slot>
