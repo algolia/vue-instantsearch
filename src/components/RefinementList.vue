@@ -107,7 +107,7 @@ export default {
         return this.searchForFacetValuesQuery;
       },
       set(value) {
-        state.searchForItems(value);
+        this.state.searchForItems(value);
         this.searchForFacetValuesQuery = value;
       },
     },
