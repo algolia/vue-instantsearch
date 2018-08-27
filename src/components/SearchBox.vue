@@ -53,6 +53,7 @@
           type="reset"
           :title="clearTitle"
           :class="suit('reset')"
+          :hidden="!currentRefinement || state.isSearchStalled"
         >
           <svg
             role="img"
