@@ -19,7 +19,7 @@ export default {
     };
   },
   created() {
-    this.factory = this.connector(this.updateData, () => {});
+    this.factory = this.connector(this.updateState, () => {});
     this.widget = this.factory(this.widgetParams);
     this.instantSearchInstance.addWidget(this.widget);
   },
@@ -37,8 +37,13 @@ export default {
     suit(...args) {
       return suit(this.widgetName, ...args);
     },
-    updateData(state = {}) {
-      this.state = state;
+    updateState(state = {}, isFirstRender) {
+      if (!isFirstRender) {
+        // Avoid to update the state on first render
+        // otherwise we have a flash from empty state
+        // to the next state
+        this.state = state;
+      }
     },
   },
 };

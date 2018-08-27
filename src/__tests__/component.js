@@ -111,3 +111,44 @@ it('updates widget on widget params change', () => {
   expect(instance.addWidget).toHaveBeenCalledTimes(2);
   expect(instance.addWidget).toHaveBeenCalledWith(widget);
 });
+
+it('updates local state on connector render', () => {
+  const localVue = createLocalVue();
+  const instance = createFakeInstance();
+  const Test = createFakeComponent(localVue);
+
+  const widget = { render: () => {} };
+  const factory = jest.fn(() => widget);
+  const connector = jest.fn(() => factory);
+  const widgetParams = {
+    attribute: 'brand',
+  };
+
+  const state = {
+    items: [],
+  };
+
+  const wrapper = mount(Test, {
+    mixins: [mixin],
+    provide: {
+      instantSearchInstance: instance,
+    },
+    data: () => ({
+      connector,
+      widgetParams,
+    }),
+  });
+
+  // Simulate init
+  connector.mock.calls[0][0](state, true);
+
+  // Avoid to update the state on first render
+  // otherwise we have a flash from empty state
+  // to the next state
+  expect(wrapper.vm.state).toBe(null);
+
+  // Simulate render
+  connector.mock.calls[0][0](state, false);
+
+  expect(wrapper.vm.state).toBe(state);
+});
