@@ -68,6 +68,28 @@ it("renders correctly when it's searchable", () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
+it("disables show more if can't refine", () => {
+  __setState({
+    ...defaultState,
+    canRefine: false,
+  });
+  const wrapper = mount(RefinementList, {
+    propsData: {
+      attribute: 'something',
+      showMore: true,
+    },
+  });
+
+  expect(
+    wrapper.find('.ais-RefinementList-showMore').attributes().disabled
+  ).toBe('disabled');
+
+  wrapper.setData({ state: { canRefine: true } });
+  expect(
+    wrapper.find('.ais-RefinementList-showMore').attributes().disabled
+  ).toBeUndefined();
+});
+
 it('behaves correctly', () => {
   __setState({
     ...defaultState,

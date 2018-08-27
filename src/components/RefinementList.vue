@@ -43,6 +43,7 @@
         :class="suit('showMore')"
         @click="toggleShowMore"
         v-if="showMore"
+        :disabled="!state.canRefine"
       >
         <slot name="showMoreTitle" :is-showing-more="isShowingMore">
           Show {{state.isShowingMore ? 'less' : 'more'}}
