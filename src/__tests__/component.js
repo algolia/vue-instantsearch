@@ -97,10 +97,18 @@ it('updates widget on widget params change', () => {
     }),
   });
 
+  // Simulate render
+  wrapper.vm.state = {
+    items: [],
+  };
+
   expect(instance.addWidget).toHaveBeenCalledTimes(1);
   expect(instance.addWidget).toHaveBeenCalledWith(widget);
 
+  // Simulate widget params update
   wrapper.vm.widgetParams = nextWidgetParams;
+
+  expect(wrapper.vm.state).toBe(null);
 
   expect(instance.removeWidget).toHaveBeenCalledTimes(1);
   expect(instance.removeWidget).toHaveBeenCalledWith(widget);

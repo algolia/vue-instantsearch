@@ -28,6 +28,7 @@ export default {
   },
   watch: {
     widgetParams(nextWidgetParams) {
+      this.state = null;
       this.instantSearchInstance.removeWidget(this.widget);
       this.widget = this.factory(nextWidgetParams);
       this.instantSearchInstance.addWidget(this.widget);
