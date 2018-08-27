@@ -90,6 +90,7 @@ export default {
       required: false,
     },
     sortBy: {
+      type: [Array | Function],
       required: false,
     },
     transformItems: {
