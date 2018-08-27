@@ -1,13 +1,13 @@
 <template>
   <!-- Index is an empty component that will hold other widgets -->
   <div :class="suit()">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
 <script>
-import suit from '../suit.js';
 import instantsearch from 'instantsearch.js/es/';
+import suit from '../suit';
 
 export default {
   provide() {
@@ -63,4 +63,5 @@ export default {
       return suit(this.widgetName, ...args);
     },
   },
-};</script>
+};
+</script>

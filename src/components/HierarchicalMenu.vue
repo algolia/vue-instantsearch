@@ -26,7 +26,10 @@
         :disabled="!canToggleShowMore"
         @click.prevent="toggleShowMore"
       >
-        <slot name="showMoreLabel" :is-showing-more="isShowingMore">
+        <slot
+          name="showMoreLabel"
+          :is-showing-more="isShowingMore"
+        >
           {{ isShowingMore ? 'Show less' : 'Show more' }}
         </slot>
       </button>
@@ -130,4 +133,5 @@ export default {
       );
     },
   },
-};</script>
+};
+</script>

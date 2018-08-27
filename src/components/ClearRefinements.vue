@@ -1,5 +1,8 @@
 <template>
-  <div v-if="state" :class="suit('')">
+  <div
+    v-if="state"
+    :class="suit('')"
+  >
     <slot
       :can-refine="canRefine"
       :refine="state.refine"
@@ -62,4 +65,5 @@ export default {
       return this.state.hasRefinements;
     },
   },
-};</script>
+};
+</script>

@@ -3,13 +3,20 @@
     :class="[suit(''), !canRefine && suit('', 'noRefinement')]"
     v-if="state"
   >
-    <slot :items="items" :can-refine="canRefine" :refine="refine">
+    <slot
+      :items="items"
+      :can-refine="canRefine"
+      :refine="refine"
+    >
       <select
         :class="suit('select')"
         @change="refine($event.currentTarget.value)"
       >
-        <option :class="suit('option')" value="">
-          {{label}}
+        <option
+          :class="suit('option')"
+          value=""
+        >
+          {{ label }}
         </option>
         <option
           v-for="item in items"
@@ -18,7 +25,7 @@
           :value="item.value"
           :selected="item.isRefined"
         >
-          {{item.label}} ({{item.count}})
+          {{ item.label }} ({{ item.count }})
         </option>
       </select>
     </slot>
@@ -82,4 +89,5 @@ export default {
       this.state.refine(value);
     },
   },
-};</script>
+};
+</script>

@@ -28,7 +28,10 @@
           :key="item.name"
           :class="[suit('item'), isLastItem(index) && suit('item', 'selected')]"
         >
-          <span :class="suit('separator')" aria-hidden="true">
+          <span
+            :class="suit('separator')"
+            aria-hidden="true"
+          >
             <slot name="separator">></slot>
           </span>
           <a
@@ -90,4 +93,5 @@ export default {
       return this.state.items.length - 1 === index;
     },
   },
-};</script>
+};
+</script>
