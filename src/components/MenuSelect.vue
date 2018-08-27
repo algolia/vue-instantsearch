@@ -39,10 +39,14 @@ export default {
     limit: {
       type: Number,
       required: false,
+      default: 10,
     },
     sortBy: {
-      // type: Array | Function
+      type: [Array, Function],
       required: false,
+      default() {
+        return ['name:asc'];
+      },
     },
     label: {
       type: String,

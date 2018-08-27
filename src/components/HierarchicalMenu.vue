@@ -63,18 +63,21 @@ export default {
     },
     sortBy: {
       type: [Array, Function],
+      default() {
+        return ['name:asc'];
+      },
     },
     separator: {
       type: String,
+      default: ' > ',
     },
     rootPath: {
       type: String,
+      default: null,
     },
     showParentLevel: {
       type: Boolean,
-      // explicit otherwise Vue coerces the default value
-      // to false because of the `Boolean` prop type
-      default: undefined,
+      default: true,
     },
   },
   data() {

@@ -125,6 +125,7 @@ export default {
     },
     totalPages: {
       type: Number,
+      default: undefined,
       validator(value) {
         return value > 0;
       },

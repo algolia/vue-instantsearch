@@ -61,9 +61,11 @@ export default {
     },
     separator: {
       type: String,
+      default: ' > ',
     },
     rootPath: {
       type: String,
+      default: null,
     },
   },
   data() {

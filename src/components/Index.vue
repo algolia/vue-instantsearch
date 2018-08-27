@@ -38,9 +38,11 @@ export default {
     },
     routing: {
       type: [Boolean, Object],
+      default: null,
     },
     stalledSearchDelay: {
       type: Number,
+      default: 200,
     },
   },
   data() {

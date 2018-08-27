@@ -17,6 +17,9 @@ export default {
   props: {
     attributes: {
       type: Array,
+      default() {
+        return [];
+      },
     },
   },
   data() {
