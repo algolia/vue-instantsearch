@@ -1,12 +1,12 @@
 <template>
   <div :class="suit('')" v-if="state">
     <slot
-      :items="items"
+      :items="state.items"
       :refine="state.refine"
       :searchable="searchable"
       :search-for-items="state.searchForItems"
       :show-more="showMore"
-      :toggle-show-more="state.toggleShowMore"
+      :toggle-show-more="toggleShowMore"
       :is-showing-more="state.isShowingMore"
     >
       <div :class="suit('searchBox')" v-if="searchable">
@@ -15,7 +15,7 @@
       <ul :class="suit('list')">
         <li
           :class="[suit('item'), {[suit('item', 'selected')]: item.isRefined}]"
-          v-for="item in items"
+          v-for="item in state.items"
           :key="item.value"
         >
           <slot name="item" :item="item" :refine="state.refine">
@@ -28,7 +28,9 @@
                 @change="state.refine(item.value)"
               />
               <template v-if="searchable">
-                <span :class="suit('labelText')" v-html="item.highlighted"></span>
+                <span :class="suit('labelText')">
+                  <ais-highlight attribute="item" :hit="transformIntoHit(item)"/>
+                </span>
               </template>
               <template v-else>
                 <span :class="suit('labelText')">{{item.label}}</span>
@@ -40,7 +42,7 @@
       </ul>
       <button
         :class="suit('showMore')"
-        @click="state.toggleShowMore"
+        @click="toggleShowMore"
         v-if="showMore"
       >
         Show {{state.isShowingMore ? 'less' : 'more'}}
@@ -53,9 +55,12 @@
 import algoliaComponent from '../component';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
 import AisSearchInput from './SearchInput';
+import AisHighlight from './Highlight';
+
+const noop = () => {};
 
 export default {
-  components: { AisSearchInput },
+  components: { AisSearchInput, AisHighlight },
   mixins: [algoliaComponent],
   props: {
     attribute: {
@@ -111,19 +116,8 @@ export default {
         this.searchForFacetValuesQuery = value;
       },
     },
-    items() {
-      if (this.searchable) {
-        return this.state.items.map(item => {
-          const highlighted = item.highlighted
-            .replace(
-              new RegExp('<em>', 'g'),
-              `<mark class="ais-Highlight-highlighted">`
-            )
-            .replace(new RegExp('</em>', 'g'), `</mark>`);
-          return Object.assign({}, item, { highlighted });
-        });
-      }
-      return this.state.items;
+    toggleShowMore() {
+      return this.state.toggleShowMore || noop;
     },
     widgetParams() {
       return {
@@ -134,6 +128,17 @@ export default {
         sortBy: this.sortBy,
         escapeFacetValues: true,
         transformItems: this.transformItems,
+      };
+    },
+  },
+  methods: {
+    transformIntoHit(item) {
+      return {
+        _highlightResult: {
+          item: {
+            value: item.highlighted,
+          },
+        },
       };
     },
   },
