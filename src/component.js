@@ -19,19 +19,18 @@ export default {
     };
   },
   created() {
-    this.widgetFactory = this.connector(this.updateData, () => {});
-    this.widget = this.widgetFactory(this.widgetParams);
+    this.factory = this.connector(this.updateData, () => {});
+    this.widget = this.factory(this.widgetParams);
     this.instantSearchInstance.addWidget(this.widget);
   },
   beforeDestroy() {
     this.instantSearchInstance.removeWidget(this.widget);
   },
   watch: {
-    widgetParams(newVal) {
-      const oldWidget = this.widget;
-      this.widget = this.widgetFactory(newVal);
+    widgetParams(nextWidgetParams) {
+      this.instantSearchInstance.removeWidget(this.widget);
+      this.widget = this.factory(nextWidgetParams);
       this.instantSearchInstance.addWidget(this.widget);
-      this.instantSearchInstance.removeWidget(oldWidget);
     },
   },
   methods: {
