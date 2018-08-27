@@ -30,14 +30,10 @@
                 :checked="item.isRefined"
                 @change="state.refine(item.value)"
               />
-              <template v-if="searchable">
-                <span :class="suit('labelText')">
-                  <ais-highlight attribute="item" :hit="transformItemToHit(item)"/>
-                </span>
-              </template>
-              <template v-else>
-                <span :class="suit('labelText')">{{item.label}}</span>
-              </template>
+              <span v-if="searchable" :class="suit('labelText')">
+                <ais-highlight attribute="item" :hit="transformItemToHit(item)"/>
+              </span>
+              <span v-else :class="suit('labelText')">{{item.label}}</span>
               <span :class="suit('count')">{{item.count}}</span>
             </label>
           </slot>
