@@ -71,7 +71,7 @@ it("renders correctly when it's searchable", () => {
 it("disables show more if can't refine", () => {
   __setState({
     ...defaultState,
-    canRefine: false,
+    canToggleShowMore: false,
   });
   const wrapper = mount(RefinementList, {
     propsData: {
@@ -85,7 +85,7 @@ it("disables show more if can't refine", () => {
   expect(showMore.attributes().disabled).toBe('disabled');
   expect(showMore.classes()).toContain('ais-RefinementList-showMore--disabled');
 
-  wrapper.setData({ state: { canRefine: true } });
+  wrapper.setData({ state: { canToggleShowMore: true } });
   expect(showMore.attributes().disabled).toBeUndefined();
   expect(showMore.classes()).not.toContain(
     'ais-RefinementList-showMore--disabled'
