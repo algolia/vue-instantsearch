@@ -30,6 +30,7 @@ limit | number | 10 | Number of items to show | no
 showMoreLimit | number | 20 | Number of items to show when the user clicked on “show more items” | no
 showMore | boolean | false | Whether or not to have the option to load more values | no
 sortBy | array / sort function | `['isRefined:desc', 'count:desc', 'name:asc']` | array or function to sort the results by | no
+transformItems | `(items: object[]) => object[]` | | Function which receives the items, which will be called before displaying them. Should return a new array with the same shape as the original array. Useful for mapping over the items to transform, remove or reorder them | no
 
 ## CSS classes
 
