@@ -1,7 +1,7 @@
 <template>
   <div :class="suit()" v-if="state">
     <slot
-      :currentRefinement="state.query"
+      :currentRefinement="currentRefinement"
       :isSearchStalled="state.isSearchStalled"
       :refine="state.refine"
     >
@@ -25,7 +25,7 @@
           :placeholder="placeholder"
           :autofocus="autofocus"
           :class="suit('input')"
-          v-model="query"
+          v-model="currentRefinement"
         >
 
         <button
@@ -150,7 +150,7 @@ export default {
     },
   },
   computed: {
-    query: {
+    currentRefinement: {
       get() {
         return this.state.query;
       },
