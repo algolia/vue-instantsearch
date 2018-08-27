@@ -7,7 +7,7 @@
       :value="state.value"
       :can-refine="canRefine"
       :refine="state.refine"
-      :create-URL="state.createURL"
+      :createURL="state.createURL"
     >
       <label :class="suit('label')">
         <input

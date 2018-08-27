@@ -9,7 +9,7 @@
       :can-toggle-show-more="state.canToggleShowMore"
       :is-showing-more="state.isShowingMore"
       :refine="state.refine"
-      :create-URL="state.createURL"
+      :createURL="state.createURL"
       :toggle-show-more="state.toggleShowMore"
     >
       <ul :class="suit('list')">

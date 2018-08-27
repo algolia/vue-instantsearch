@@ -9,7 +9,7 @@
       :can-toggle-show-more="canToggleShowMore"
       :is-showing-more="isShowingMore"
       :refine="state.refine"
-      :create-URL="state.createURL"
+      :createURL="state.createURL"
       :toggle-show-more="toggleShowMore"
     >
       <hierarchical-menu-list

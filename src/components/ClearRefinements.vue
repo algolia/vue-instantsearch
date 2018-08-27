@@ -6,7 +6,7 @@
     <slot
       :can-refine="canRefine"
       :refine="state.refine"
-      :create-URL="state.createURL"
+      :createURL="state.createURL"
     >
       <button
         type="reset"

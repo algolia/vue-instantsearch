@@ -7,7 +7,7 @@
       :items="state.items"
       :can-refine="state.canRefine"
       :refine="state.refine"
-      :create-URL="state.createURL"
+      :createURL="state.createURL"
     >
       <ul :class="suit('list')">
         <li :class="[suit('item'), !state.items.length && suit('item', 'selected')]">
