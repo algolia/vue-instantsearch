@@ -48,5 +48,14 @@ DOM structure, have a look at the generated DOM in your browser.
 Class name | Description
 ---|---
 `ais-RefinementList` | Container class
-`ais-RefinementList-item` | An item
+`ais-RefinementList-list` | The list of possible refinements
+`ais-RefinementList-item` | A refinement item
+`ais-RefinementList-label` | A refinement item's label
+`ais-RefinementList-labelText` | A refinement item's label text
+`ais-RefinementList-checkbox` | A refinement item's checkbox
+`ais-RefinementList-count` | A refinement item's number of matches
 `ais-RefinementList-item--selected` | Selected item
+`ais-RefinementList-searchBox` | The search box when `searchable` is true
+`ais-RefinementList-showMore` | The show more button when `show-more` is true
+`ais-RefinementList-showMore--disabled` | The show more button when `show-more` is true and it's not possible to be clicked
+
