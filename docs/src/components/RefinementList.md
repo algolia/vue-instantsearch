@@ -36,7 +36,7 @@ transformItems | `(items: object[]) => object[]` | | Function which receives the
 
 Name | Scope | Description
 ---|---|---
-default | `{ items: Array, refine: Function, searchable: Boolean, searchForItems: Function, isFromSearch: Boolean, toggleShowMore: Function, isShowingMore: Boolean, createURL: Function, canRefine: Boolean }` | Slot to override the DOM output
+default | `{ items: Array, refine: Function, searchable: Boolean, searchForItems: Function, isFromSearch: Boolean, toggleShowMore: Function, isShowingMore: Boolean, createURL: Function, canRefine: Boolean, noRefinement: Boolean }` | Slot to override the DOM output
 item | `{ value: String, label: String, count: Number, isRefined: Boolean, highlighted }` | Slot to override the DOM of a single item in the list
 showMoreLabel | `{ isShowingMore: Boolean }` | Slot to override the text shown in the "show more" button
 noResults | `{ query: String }` | Slot to override the text shown when "searchable" is true and there are no results
@@ -59,6 +59,7 @@ DOM structure, have a look at the generated DOM in your browser.
 Class name | Description
 ---|---
 `ais-RefinementList` | Container class
+`ais-RefinementList--noRefinement` | Container, if no refinement is enabled
 `ais-RefinementList-list` | The list of possible refinements
 `ais-RefinementList-item` | A refinement item
 `ais-RefinementList-label` | A refinement item's label
@@ -67,6 +68,7 @@ Class name | Description
 `ais-RefinementList-count` | A refinement item's number of matches
 `ais-RefinementList-item--selected` | Selected item
 `ais-RefinementList-searchBox` | The search box when `searchable` is true
+`ais-RefinementList-noResults` | In place of the refinement options when the search for facet values didn't return any values
 `ais-RefinementList-showMore` | The show more button when `show-more` is true
 `ais-RefinementList-showMore--disabled` | The show more button when `show-more` is true and it's not possible to be clicked
 

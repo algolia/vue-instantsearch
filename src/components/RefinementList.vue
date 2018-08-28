@@ -1,5 +1,5 @@
 <template>
-  <div :class="suit('')" v-if="state">
+  <div :class="[suit(''), noRefinement && suit('','noRefinement')]" v-if="state">
     <slot
       :items="items"
       :refine="refine"
@@ -9,6 +9,7 @@
       :createURL="state.createURL"
       :is-from-search="state.isFromSearch"
       :can-refine="state.canRefine"
+      :no-refinement="noRefinement"
     >
       <div :class="suit('searchBox')" v-if="searchable">
         <ais-search-input v-model="searchForFacetValues"></ais-search-input>
@@ -111,6 +112,9 @@ export default {
     this.connector = connectRefinementList;
   },
   computed: {
+    noRefinement() {
+      return this.state.items.some(({isRefined}) => isRefined) === false;
+    },
     searchForFacetValues: {
       get() {
         return this.searchForFacetValuesQuery;
