@@ -32,6 +32,23 @@ it('renders correctly (with refinements)', () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
+it('renders correctly (with query)', () => {
+  __setState({
+    refinements: [
+      {
+        computedLabel: 'some query',
+        name: 'some query',
+        query: 'some query',
+        type: 'query',
+      },
+    ],
+  });
+  const wrapper = mount(CurrentRefinements, {
+    propsData: { clearsQuery: true },
+  });
+  expect(wrapper.html()).toMatchSnapshot();
+});
+
 it('calls `refine` with an item', () => {
   __setState({
     refinements: [

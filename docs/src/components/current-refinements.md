@@ -23,9 +23,17 @@ Show the currently refined values and allow them to be unset.
 
 Name | Type | Default | Description | Required
 ---|---|---|---|---
-attributes | Array | | Allows you to format the attributes | no
-clearsQuery | Boolean | `false` | Should the 'clear all' button also clear the query? | no
-excludedAttributes | Array | `[]` | Attributes not to show or clear | no
+transformItems | Function | | Allows you to format and change the attributes | no
+clears-query | Boolean | `false` | Should the 'clear all' button also clear the query? | no
+excluded-attributes | Array | `[]` | Attributes not to show or clear | no
+
+## Slots
+
+name | scope | Description
+---|---|---
+`default` | `{ items: Item[], refine: Item => void, clearAll: () => void }` | Override how all the items look
+`item` | `{ item: Item, refine: Item => void }` | Override how an item looks
+`clearAllLabel` | `{ items: Item[] }` | Override how the "clear all" button looks
 
 ## CSS classes
 

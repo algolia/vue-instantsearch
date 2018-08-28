@@ -1,16 +1,42 @@
 <template>
-  <div :class="suit('')" v-if="state">
-    <slot v-bind="state">
+  <div
+    :class="suit('')"
+    v-if="state"
+  >
+    <slot
+      :refine="state.refine"
+      :clear-all="state.clearAllClick"
+      :items="refinements"
+    >
       <ul :class="suit('list')">
-        <li v-for="item in state.refinements" :key="item.attributeName">
-          <span :class="suit('item')">
-            <span :class="suit('label')">{{item.attributeName | capitalize}}: {{item.computedLabel}}</span>
-            <button :class="suit('delete')" @click="state.refine(item)">✕</button>
-          </span>
+        <li
+          v-for="item in refinements"
+          :key="item.attributeName"
+        >
+          <slot
+            name="item"
+            :refine="state.refine"
+            :item="item"
+          >
+            <span :class="suit('item')">
+              <span :class="suit('label')">{{ item.attributeName | capitalize }}: {{ item.computedLabel }}</span>
+              <button
+                :class="suit('delete')"
+                @click="state.refine(item)"
+              >✕</button>
+            </span>
+          </slot>
         </li>
       </ul>
-      <button :class="suit('reset')" @click="state.clearAllClick()" v-if="state.refinements.length > 0">
-        Clear all
+      <button
+        :class="suit('reset')"
+        @click="state.clearAllClick()"
+        v-if="refinements.length > 0"
+      >
+        <slot
+          name="clearAllLabel"
+          :items="refinements"
+        >Clear all</slot>
       </button>
     </slot>
   </div>
@@ -23,9 +49,10 @@ import { connectCurrentRefinedValues } from 'instantsearch.js/es/connectors';
 export default {
   mixins: [algoliaComponent],
   props: {
-    attributes: {
-      type: Array,
+    transformItems: {
+      type: Function,
       required: false,
+      default: x => x,
     },
     clearsQuery: {
       type: Boolean,
@@ -34,18 +61,8 @@ export default {
     },
     excludedAttributes: {
       type: Array,
+      default: () => [],
       required: false,
-      validator(val) {
-        // TODO: make this work with the connector (IS.js doesn't expose it)
-        if (Array.isArray(val) && val.length > 0) {
-          // eslint-disable-next-line no-console
-          console.warn(
-            '`excludedAttributes` is not implemented on CurrentRefinements'
-          );
-          return false;
-        }
-        return true;
-      },
     },
   },
   data() {
@@ -57,9 +74,25 @@ export default {
     this.connector = connectCurrentRefinedValues;
   },
   computed: {
+    refinements() {
+      console.log(this.state.refinements)
+      // excludedAttributes isn't implemented in IS.js
+      return this.state.refinements
+        .filter(
+          ({ attributeName }) =>
+            this.excludedAttributes.indexOf(attributeName) === -1
+        )
+        .map(item => {
+          if (item.type === 'query') {
+            // eslint-disable-next-line no-param-reassign
+            item.attributeName = 'query';
+          }
+          return item;
+        });
+    },
     widgetParams() {
       return {
-        attributes: this.attributes,
+        transformItems: this.transformItems,
         clearsQuery: this.clearsQuery,
       };
     },
@@ -75,4 +108,5 @@ export default {
       );
     },
   },
-};</script>
+};
+</script>
