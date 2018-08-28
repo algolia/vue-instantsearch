@@ -248,6 +248,7 @@ describe('rendering', () => {
 
   it('calls the Panel mixin with `range`', () => {
     __setState({
+      ...defaultState,
       range: {
         min: 0,
         max: 10,
