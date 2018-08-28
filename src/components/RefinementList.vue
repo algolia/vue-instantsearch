@@ -56,8 +56,8 @@
 <script>
 import algoliaComponent from '../component';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
-import AisSearchInput from './SearchInput';
-import AisHighlight from './Highlight';
+import AisSearchInput from './SearchInput.vue';
+import AisHighlight from './Highlight.vue';
 
 const noop = () => {};
 
@@ -145,6 +145,5 @@ export default {
       };
     },
   },
-};
-</script>
+};</script>
 
