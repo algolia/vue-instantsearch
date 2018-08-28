@@ -40,9 +40,8 @@ export default {
     },
     updateState(state = {}, isFirstRender) {
       if (!isFirstRender) {
-        // Avoid to update the state on first render
-        // otherwise we have a flash from empty state
-        // to the next state
+        // Avoid updating the state on first render
+        // otherwise there will be a flash of placeholder data
         this.state = state;
       }
     },
