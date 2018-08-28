@@ -11,7 +11,7 @@ const createFakeInstance = () => ({
   removeWidget: jest.fn(),
 });
 
-it('adds a wdiget on create', () => {
+it('adds a widget on create', () => {
   const localVue = createLocalVue();
   const instance = createFakeInstance();
   const Test = createFakeComponent(localVue);
@@ -39,7 +39,7 @@ it('adds a wdiget on create', () => {
   expect(instance.addWidget).toHaveBeenCalledWith(widget);
 });
 
-it('removes a wdiget on destroy', () => {
+it('removes a widget on destroy', () => {
   const localVue = createLocalVue();
   const instance = createFakeInstance();
   const Test = createFakeComponent(localVue);
