@@ -13,6 +13,9 @@
       <div :class="suit('searchBox')" v-if="searchable">
         <ais-search-input v-model="searchForFacetValues"></ais-search-input>
       </div>
+      <slot name="noResults" :query="searchForFacetValues" v-if="state.isFromSearch && items.length === 0">
+        <div :class="suit('noResults')">No results.</div>
+      </slot>
       <ul :class="suit('list')">
         <li
           :class="[suit('item'), item.isRefined && suit('item', 'selected')]"
@@ -43,7 +46,7 @@
         v-if="showMore"
         :disabled="!state.canToggleShowMore"
       >
-        <slot name="showMoreTitle" :is-showing-more="state.isShowingMore">
+        <slot name="showMoreLabel" :is-showing-more="state.isShowingMore">
           Show {{state.isShowingMore ? 'less' : 'more'}}
         </slot>
       </button>
