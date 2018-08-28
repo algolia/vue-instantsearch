@@ -3512,9 +3512,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-algolia@13.2.2:
-  version "13.2.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-algolia/-/eslint-config-algolia-13.2.2.tgz#f07c0bd28c3063b6c1a734a58a5ef7db53c4054d"
+eslint-config-algolia@13.2.3:
+  version "13.2.3"
+  resolved "https://registry.yarnpkg.com/eslint-config-algolia/-/eslint-config-algolia-13.2.3.tgz#e157431033e4d47c3fe1fc4486eb24198dde33a4"
 
 eslint-config-prettier@3.0.1:
   version "3.0.1"
