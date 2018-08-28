@@ -102,8 +102,10 @@ export default {
       default: false,
     },
     operator: {
-      type: ['and', 'or'],
       default: 'or',
+      validator(value) {
+        return value === 'and' || value === 'or';
+      },
       required: false,
     },
     limit: {
