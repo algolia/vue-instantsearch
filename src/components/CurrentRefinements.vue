@@ -75,7 +75,6 @@ export default {
   },
   computed: {
     refinements() {
-      console.log(this.state.refinements)
       // excludedAttributes isn't implemented in IS.js
       return this.state.refinements
         .filter(
