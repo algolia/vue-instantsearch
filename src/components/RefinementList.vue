@@ -2,7 +2,7 @@
   <div :class="suit('')" v-if="state">
     <slot
       :items="state.items"
-      :refine="state.refine"
+      :refine="refine"
       :searchable="searchable"
       :search-for-items="state.searchForItems"
       :toggle-show-more="toggleShowMore"
@@ -21,14 +21,14 @@
           v-for="item in state.items"
           :key="item.value"
         >
-          <slot name="item" :item="item" :refine="state.refine">
+          <slot name="item" :item="item" :refine="refine">
             <label :class="suit('label')">
               <input
                 :class="suit('checkbox')"
                 type="checkbox"
                 :value="item.value"
                 :checked="item.isRefined"
-                @change="state.refine(item.value)"
+                @change="refine(item.value)"
               />
               <span v-if="searchable" :class="suit('labelText')">
                 <ais-highlight attribute="item" :hit="transformItemToHit(item)"/>
@@ -144,6 +144,10 @@ export default {
         },
       };
     },
+    refine(value) {
+      this.state.refine(value);
+      this.searchForFacetValuesQuery = '';
+    }
   },
 };</script>
 
