@@ -92,7 +92,7 @@ export default {
       required: false,
     },
     sortBy: {
-      type: [Array | Function],
+      type: [Array, Function],
       required: false,
     },
     transformItems: {
