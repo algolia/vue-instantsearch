@@ -40,6 +40,16 @@ default | `{ items: Array, refine: Function, searchable: Boolean, searchForItems
 item | `{ value: String, label: String, count: Number, isRefined: Boolean, highlighted }` | Slot to override the DOM of a single item in the list
 showMoreTitle | `{ isShowingMore: Boolean }` | Slot to override the text shown in the "show more" button
 
+Note that if you override the default or item slot, and you still want highlighting when `searchable` is enabled, you should use [ais-highlight](./highlight) to have this feature: 
+
+```html
+<ais-refinement-list attribute="brand" searchable>
+  <template name="item" slot-scope="{ item }">
+    <ais-highlight attribute="item" :hit="item"/>
+  </template>
+<ais-refinement-list>
+```
+
 ## CSS classes
 
 Here's a list of CSS classes exposed by this widget. To better understand the underlying

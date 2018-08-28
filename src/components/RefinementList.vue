@@ -1,16 +1,14 @@
 <template>
   <div :class="suit('')" v-if="state">
     <slot
-      :items="state.items"
+      :items="items"
       :refine="refine"
-      :searchable="searchable"
       :search-for-items="state.searchForItems"
       :toggle-show-more="toggleShowMore"
       :is-showing-more="state.isShowingMore"
       :createURL="state.createURL"
       :is-from-search="state.isFromSearch"
       :can-refine="state.canRefine"
-      :transform-Item-To-Hit="transformItemToHit"
     >
       <div :class="suit('searchBox')" v-if="searchable">
         <ais-search-input v-model="searchForFacetValues"></ais-search-input>
@@ -18,7 +16,7 @@
       <ul :class="suit('list')">
         <li
           :class="[suit('item'), {[suit('item', 'selected')]: item.isRefined}]"
-          v-for="item in state.items"
+          v-for="item in items"
           :key="item.value"
         >
           <slot name="item" :item="item" :refine="refine">
@@ -31,7 +29,7 @@
                 @change="refine(item.value)"
               />
               <span v-if="searchable" :class="suit('labelText')">
-                <ais-highlight attribute="item" :hit="transformItemToHit(item)"/>
+                <ais-highlight attribute="item" :hit="item"/>
               </span>
               <span v-else :class="suit('labelText')">{{item.label}}</span>
               <span :class="suit('count')">{{item.count}}</span>
@@ -122,6 +120,17 @@ export default {
     toggleShowMore() {
       return this.state.toggleShowMore || noop;
     },
+    items() {
+      return this.state.items.map(item =>
+        Object.assign({}, item, {
+          _highlightResult: {
+            item: {
+              value: item.highlighted,
+            },
+          },
+        })
+      );
+    },
     widgetParams() {
       return {
         attributeName: this.attribute,
@@ -135,19 +144,11 @@ export default {
     },
   },
   methods: {
-    transformItemToHit(item) {
-      return {
-        _highlightResult: {
-          item: {
-            value: item.highlighted,
-          },
-        },
-      };
-    },
     refine(value) {
       this.state.refine(value);
       this.searchForFacetValuesQuery = '';
-    }
+    },
   },
-};</script>
+};
+</script>
 
