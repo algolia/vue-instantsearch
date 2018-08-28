@@ -20,8 +20,8 @@ export default {
   },
   created() {
     if (this.connector) {
-      this.widgetFactory = this.connector(this.updateData, () => {});
-      this.widget = this.widgetFactory(this.widgetParams);
+      this.factory = this.connector(this.updateState, () => {});
+      this.widget = this.factory(this.widgetParams);
       this.instantSearchInstance.addWidget(this.widget);
     }
   },
