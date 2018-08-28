@@ -74,7 +74,7 @@ export default {
   computed: {
     currentRefinement: {
       get() {
-        return this.state.query;
+        return this.state.query || '';
       },
       set(value) {
         this.state.refine(value);
