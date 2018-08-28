@@ -15,7 +15,7 @@
       </div>
       <ul :class="suit('list')">
         <li
-          :class="[suit('item'), {[suit('item', 'selected')]: item.isRefined}]"
+          :class="[suit('item'), item.isRefined && suit('item', 'selected')]"
           v-for="item in items"
           :key="item.value"
         >
