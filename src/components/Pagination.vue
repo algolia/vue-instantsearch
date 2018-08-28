@@ -144,7 +144,7 @@ export default {
   mixins: [
     algoliaComponent,
     createPanelConsumerMixin({
-      mapStateToCanRefine: state => state.nbPages > 0,
+      mapStateToCanRefine: state => state.nbPages > 1,
     }),
   ],
   props: {

@@ -155,7 +155,7 @@ it('calls the Panel mixin with `nbPages`', () => {
 
   wrapper.setData({
     state: {
-      nbPages: 0,
+      nbPages: 1,
     },
   });
 
