@@ -37,11 +37,9 @@ x => done
 * [x] `ais-menu`
 * [x] `ais-numeric-menu`
 * [x] `ais-pagination`
-* [~] `ais-panel`
-  * Just header & footer slot, doesn't get any child info
+* [x] `ais-panel`
 * [x] `ais-powered-by`
-* [~] `ais-range-input`
-* [~] `ais-range-slider` Alex
+* [x] `ais-range-input`
 * [x] `ais-rating-menu`
 * [~] `ais-refinement-list` Haroenv
 * [x] `ais-search-box`
