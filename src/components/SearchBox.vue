@@ -16,8 +16,7 @@
         :submit-title="submitTitle"
         :clear-title="clearTitle"
         v-model="currentRefinement"
-      >
-      </ais-search-input>
+      />
     </slot>
   </div>
 </template>

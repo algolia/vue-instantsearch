@@ -1,5 +1,8 @@
 <template>
-  <div :class="[suit(''), noRefinement && suit('','noRefinement')]" v-if="state">
+  <div
+    :class="[suit(''), noRefinement && suit('','noRefinement')]"
+    v-if="state"
+  >
     <slot
       :items="items"
       :refine="refine"
@@ -11,10 +14,17 @@
       :can-refine="state.canRefine"
       :no-refinement="noRefinement"
     >
-      <div :class="suit('searchBox')" v-if="searchable">
-        <ais-search-input v-model="searchForFacetValues"></ais-search-input>
+      <div
+        :class="suit('searchBox')"
+        v-if="searchable"
+      >
+        <ais-search-input v-model="searchForFacetValues" />
       </div>
-      <slot name="noResults" :query="searchForFacetValues" v-if="state.isFromSearch && items.length === 0">
+      <slot
+        name="noResults"
+        :query="searchForFacetValues"
+        v-if="state.isFromSearch && items.length === 0"
+      >
         <div :class="suit('noResults')">No results.</div>
       </slot>
       <ul :class="suit('list')">
@@ -23,7 +33,11 @@
           v-for="item in items"
           :key="item.value"
         >
-          <slot name="item" :item="item" :refine="refine">
+          <slot
+            name="item"
+            :item="item"
+            :refine="refine"
+          >
             <label :class="suit('label')">
               <input
                 :class="suit('checkbox')"
@@ -31,12 +45,21 @@
                 :value="item.value"
                 :checked="item.isRefined"
                 @change="refine(item.value)"
-              />
-              <span v-if="searchable" :class="suit('labelText')">
-                <ais-highlight attribute="item" :hit="item"/>
+              >
+              <span
+                v-if="searchable"
+                :class="suit('labelText')"
+              >
+                <ais-highlight
+                  attribute="item"
+                  :hit="item"
+                />
               </span>
-              <span v-else :class="suit('labelText')">{{item.label}}</span>
-              <span :class="suit('count')">{{item.count}}</span>
+              <span
+                v-else
+                :class="suit('labelText')"
+              >{{ item.label }}</span>
+              <span :class="suit('count')">{{ item.count }}</span>
             </label>
           </slot>
         </li>
@@ -47,8 +70,11 @@
         v-if="showMore"
         :disabled="!state.canToggleShowMore"
       >
-        <slot name="showMoreLabel" :is-showing-more="state.isShowingMore">
-          Show {{state.isShowingMore ? 'less' : 'more'}}
+        <slot
+          name="showMoreLabel"
+          :is-showing-more="state.isShowingMore"
+        >
+          Show {{ state.isShowingMore ? 'less' : 'more' }}
         </slot>
       </button>
     </slot>
@@ -77,10 +103,12 @@ export default {
     },
     operator: {
       type: ['and', 'or'],
+      default: 'or',
       required: false,
     },
     limit: {
       type: Number,
+      default: 10,
       required: false,
     },
     showMoreLimit: {
@@ -95,10 +123,12 @@ export default {
     },
     sortBy: {
       type: [Array, Function],
+      default: () => ['isRefined', 'count:desc', 'name:asc'],
       required: false,
     },
     transformItems: {
       type: Function,
+      default: items => items,
       required: false,
     },
   },
@@ -113,7 +143,7 @@ export default {
   },
   computed: {
     noRefinement() {
-      return this.state.items.some(({isRefined}) => isRefined) === false;
+      return this.state.items.some(({ isRefined }) => isRefined) === false;
     },
     searchForFacetValues: {
       get() {
@@ -158,4 +188,3 @@ export default {
   },
 };
 </script>
-
