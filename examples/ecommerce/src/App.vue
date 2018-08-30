@@ -1,28 +1,45 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="root">
+    <ais-index
+      appId="latency"
+      apiKey="6be0576ff61c053d5f9a3225e2a90f76"
+      indexName="ikea"
+    >
+      <ais-configure :hitsPerPage="16" />
+      <ais-search-box />
+      <ais-hits>
+        <main slot="default" slot-scope="{ items }">
+          <article
+            v-for="item in items"
+            :key="item.objectID"
+          >
+            <ais-highlight attribute="name" :hit="item" />
+          </article>
+        </main>
+      </ais-hits>
+    </ais-index>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { Index, Configure, SearchBox, Hits, Highlight } from 'vue-instantsearch';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld
+    AisIndex: Index,
+    AisConfigure: Configure,
+    AisSearchBox: SearchBox,
+    AisHits: Hits,
+    AisHighlight: Highlight,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 </style>
