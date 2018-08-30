@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[suit(''), noRefinement && suit('','noRefinement')]"
+    :class="[suit(''), !state.canRefine && suit('','noRefinement')]"
     v-if="state"
   >
     <slot
@@ -12,7 +12,6 @@
       :createURL="state.createURL"
       :is-from-search="state.isFromSearch"
       :can-refine="state.canRefine"
-      :no-refinement="noRefinement"
     >
       <div
         :class="suit('searchBox')"
@@ -83,6 +82,7 @@
 
 <script>
 import algoliaComponent from '../component';
+import { createPanelConsumerMixin } from '../panel';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
 import AisSearchInput from './SearchInput.vue';
 import AisHighlight from './Highlight.vue';
@@ -91,7 +91,12 @@ const noop = () => {};
 
 export default {
   components: { AisSearchInput, AisHighlight },
-  mixins: [algoliaComponent],
+  mixins: [
+    algoliaComponent,
+    createPanelConsumerMixin({
+      mapStateToCanRefine: state => state.canRefine,
+    }),
+  ],
   props: {
     attribute: {
       type: String,
@@ -144,9 +149,6 @@ export default {
     this.connector = connectRefinementList;
   },
   computed: {
-    noRefinement() {
-      return this.state.items.some(({ isRefined }) => isRefined) === false;
-    },
     searchForFacetValues: {
       get() {
         return this.searchForFacetValuesQuery;

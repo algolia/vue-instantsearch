@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils';
 import RefinementList from '../RefinementList.vue';
 import { __setState } from '../../component';
 jest.mock('../../component');
+jest.mock('../../panel');
 
 const defaultState = {
   items: [
@@ -43,9 +44,22 @@ const defaultState = {
     { value: '?', label: '?', highlighted: '?', isRefined: false, count: 0 },
   ],
 };
+
 it('renders correctly', () => {
   __setState({
     ...defaultState,
+  });
+  const wrapper = mount(RefinementList, {
+    propsData: {
+      attribute: 'something',
+    },
+  });
+  expect(wrapper.html()).toMatchSnapshot();
+});
+
+it('renders correctly (empty)', () => {
+  __setState({
+    items: [],
   });
   const wrapper = mount(RefinementList, {
     propsData: {

@@ -59,7 +59,7 @@ DOM structure, have a look at the generated DOM in your browser.
 Class name | Description
 ---|---
 `ais-RefinementList` | Container class
-`ais-RefinementList--noRefinement` | Container, if no refinement is enabled
+`ais-RefinementList--noRefinement` | Container, if no refinement is possible
 `ais-RefinementList-list` | The list of possible refinements
 `ais-RefinementList-item` | A refinement item
 `ais-RefinementList-label` | A refinement item's label
