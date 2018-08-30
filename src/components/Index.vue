@@ -12,8 +12,6 @@ import suit from '../suit';
 export default {
   provide() {
     this.instantSearchInstance = instantsearch({
-      appId: this.appId,
-      apiKey: this.apiKey,
       indexName: this.indexName,
       routing: this.routing,
       stalledSearchDelay: this.stalledSearchDelay,
@@ -24,12 +22,8 @@ export default {
     };
   },
   props: {
-    apiKey: {
-      type: String,
-      required: true,
-    },
-    appId: {
-      type: String,
+    searchClient: {
+      type: Object,
       required: true,
     },
     indexName: {

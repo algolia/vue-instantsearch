@@ -18,41 +18,39 @@ This component automatically provides the search state to all its children.
 Basic usage:
 
 ```html
-<ais-index index-name="your_indexName"
-           app-id="YourAppID"
-           api-key="YourSearchAPIKey"
->
-  <!-- Add your InstantSearch components here. -->
-</ais-index>
+<template>
+  <ais-index index-name="your_indexName"
+            :searchClient="searchClient"
+  >
+    <!-- Add your InstantSearch components here. -->
+  </ais-index>
+</template>
+
+<!-- You need to instantiate the search client in your script -->
+<script>
+import algoliasearch from 'algoliasearch/lite';
+
+export default {
+  data() {
+    return {
+      searchClient: algoliasearch(
+        'latency',
+        '3d9875e51fbd20c7754e65422f7ce5e1'
+      ),
+    };
+  },
+};
+</script>
 ```
-
-Provide search query parameters:
-
-```html
-<ais-index index-name="your_indexName"
-           app-id="YourAppID"
-           api-key="YourSearchAPIKey"
-           :query-parameters="{
-             distinct: true,
-             attributeForDistinct: 'product_id'
-           }"
->
-  <!-- Add your InstantSearch components here. -->
-</ais-index>
-```
-
 
 ## Props
 
-| Name             | Type    | Default | Description                                                                                                                                        |
+  | Name             | Type    | Default | Description                                                                                                                                        |
 |------------------|---------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| api-key          | String  | ``      | The API key                                                                                                                                        |
-| app-id           | String  | ``      | The application ID                                                                                                                                 |
+| searchClient      | Object  | ``      | The instance of a search client like algoliaSearch   |
 | index-name       | String  | ``      | The index name                                                                                                                                     |
 | query            | String  | ``      | The search query                                                                                                                                   |
 | query-parameters | Object  | ``      | The search query parameters. Available options are [documented here](https://www.algolia.com/doc/api-reference/search-api-parameters/). |
-| cache            | Boolean | `true`  | Whether to cache results or not. See [the documentation](https://www.algolia.com/doc/tutorials/getting-started/quick-start-with-the-api-client/javascript/#cache)       |
-| auto-search      | Boolean | `true`  | Whether to initiate a query to Algolia when this component is mounted                                                                               |
 | stalledSearchDelay | number | `200`  | Time before the search is considered unresponsive. Used to display a loading indicator. |
 
 ## Slots
