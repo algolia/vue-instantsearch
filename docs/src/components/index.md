@@ -49,8 +49,8 @@ export default {
 |------------------|---------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------|
 | searchClient      | Object  | ``      | The instance of a search client like algoliaSearch   |
 | index-name       | String  | ``      | The index name                                                                                                                                     |
-| query            | String  | ``      | The search query                                                                                                                                   |
-| query-parameters | Object  | ``      | The search query parameters. Available options are [documented here](https://www.algolia.com/doc/api-reference/search-api-parameters/). |
+| searchParameters | Object  | ``      | The search query parameters. Available options are [documented here](https://www.algolia.com/doc/api-reference/search-api-parameters/). |
+| searchFunction | Object  | ``      | A hook that will be called each time a search needs to be done, with the helper as a parameter. It’s your responsibility to call helper.search(). This option allows you to avoid doing searches at page load for example. |
 | stalledSearchDelay | number | `200`  | Time before the search is considered unresponsive. Used to display a loading indicator. |
 
 ## Slots

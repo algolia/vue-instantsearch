@@ -15,6 +15,8 @@ export default {
       indexName: this.indexName,
       routing: this.routing,
       stalledSearchDelay: this.stalledSearchDelay,
+      searchFunction: this.searchFunction,
+      searchParameters: this.searchParameters,
     });
 
     return {
@@ -37,6 +39,14 @@ export default {
     stalledSearchDelay: {
       type: Number,
       default: 200,
+    },
+    searchFunction: {
+      type: Function,
+      default: null
+    },
+    searchParameters: {
+      type: Object,
+      default: {},
     },
   },
   data() {
