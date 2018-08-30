@@ -27,7 +27,7 @@ storiesOf('Menu', module)
       <ais-menu attribute="brand" :sort-by="['isRefined:desc', 'name:asc']" />
     `,
   }))
-  .add('with transformItems', () => ({
+  .add('with transform items', () => ({
     template: `
       <ais-menu attribute="brand" :transform-items="transformItems" />
     `,

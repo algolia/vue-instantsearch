@@ -49,7 +49,7 @@ storiesOf('Breadcrumb', module)
       attributes,
     }),
   }))
-  .add('with a transformItems', () => ({
+  .add('with a transform items', () => ({
     template: `
       <ais-breadcrumb
         :attributes="attributes"
