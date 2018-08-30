@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils';
 import CurrentRefinements from '../CurrentRefinements.vue';
 import { __setState } from '../../component';
 jest.mock('../../component');
+jest.mock('../../panel');
 
 it('renders correctly (empty)', () => {
   __setState({

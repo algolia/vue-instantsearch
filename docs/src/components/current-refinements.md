@@ -43,5 +43,7 @@ DOM structure, have a look at the generated DOM in your browser.
 Class name | Description
 ---|---
 `ais-CurrentRefinements` | Container class
+`ais-CurrentRefinements--noRefinement` | Modifier on the container when no refinements are enabled.
 `ais-CurrentRefinements-item` | An item
+`ais-CurrentRefinements-delete` | The button in the item to delete that refinement
 `ais-CurrentRefinements-item--selected` | Selected item

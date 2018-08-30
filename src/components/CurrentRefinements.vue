@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="suit('')"
+    :class="[suit(''), noRefinement && suit('','noRefinement')]"
     v-if="state"
   >
     <slot
@@ -45,9 +45,15 @@
 <script>
 import algoliaComponent from '../component';
 import { connectCurrentRefinedValues } from 'instantsearch.js/es/connectors';
+import { createPanelConsumerMixin } from '../panel';
 
 export default {
-  mixins: [algoliaComponent],
+  mixins: [
+    algoliaComponent,
+    createPanelConsumerMixin({
+      mapStateToCanRefine: state => state.refinements.length > 0,
+    }),
+  ],
   props: {
     transformItems: {
       type: Function,
@@ -74,6 +80,9 @@ export default {
     this.connector = connectCurrentRefinedValues;
   },
   computed: {
+    noRefinement() {
+      return this.refinements.length === 0;
+    },
     refinements() {
       // excludedAttributes isn't implemented in IS.js
       return this.state.refinements

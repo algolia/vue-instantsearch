@@ -2,7 +2,7 @@
 
 exports[`renders correctly (empty) 1`] = `
 
-<div class="ais-CurrentRefinements">
+<div class="ais-CurrentRefinements ais-CurrentRefinements--noRefinement">
   <ul class="ais-CurrentRefinements-list">
   </ul>
 </div>
