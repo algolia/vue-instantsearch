@@ -12,11 +12,11 @@ import suit from '../suit';
 export default {
   provide() {
     this.instantSearchInstance = instantsearch({
+      searchClient: this.searchClient,
       indexName: this.indexName,
       routing: this.routing,
       stalledSearchDelay: this.stalledSearchDelay,
       searchFunction: this.searchFunction,
-      searchParameters: this.searchParameters,
     });
 
     return {
@@ -43,10 +43,6 @@ export default {
     searchFunction: {
       type: Function,
       default: null
-    },
-    searchParameters: {
-      type: Object,
-      default: {},
     },
   },
   data() {
