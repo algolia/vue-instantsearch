@@ -42,7 +42,7 @@ export default {
     },
     searchFunction: {
       type: Function,
-      default: null
+      default: null,
     },
   },
   data() {
