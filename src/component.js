@@ -34,8 +34,6 @@ export default {
     widgetParams: {
       handler(nextWidgetParams) {
         this.state = null;
-        // TODO: this line here breaks for unmounting a Configure :(
-        // only when `searchClient` is used; not if `apiKey+appId`
         if (this.widget.dispose) {
           this.instantSearchInstance.removeWidget(this.widget);
         }

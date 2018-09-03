@@ -11,14 +11,6 @@ import suit from '../suit';
 
 export default {
   provide() {
-    this.instantSearchInstance = instantsearch({
-      searchClient: this.searchClient,
-      indexName: this.indexName,
-      routing: this.routing,
-      stalledSearchDelay: this.stalledSearchDelay,
-      searchFunction: this.searchFunction,
-    });
-
     return {
       instantSearchInstance: this.instantSearchInstance,
     };
@@ -48,6 +40,13 @@ export default {
   data() {
     return {
       widgetName: 'Index',
+      instantSearchInstance: instantsearch({
+        searchClient: this.searchClient,
+        indexName: this.indexName,
+        routing: this.routing,
+        stalledSearchDelay: this.stalledSearchDelay,
+        searchFunction: this.searchFunction,
+      }),
     };
   },
   mounted() {
