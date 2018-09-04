@@ -44,7 +44,10 @@ it('removes a widget on destroy', () => {
   const instance = createFakeInstance();
   const Test = createFakeComponent(localVue);
 
-  const widget = { render: () => {} };
+  const widget = {
+    render: () => {},
+    dispose: () => {},
+  };
   const factory = jest.fn(() => widget);
   const connector = jest.fn(() => factory);
   const widgetParams = {
@@ -74,7 +77,10 @@ it('updates widget on widget params change', () => {
   const instance = createFakeInstance();
   const Test = createFakeComponent(localVue);
 
-  const widget = { render: () => {} };
+  const widget = {
+    render: () => {},
+    dispose: () => {},
+  };
   const factory = jest.fn(() => widget);
   const connector = jest.fn(() => factory);
 
