@@ -9,6 +9,7 @@ const createFakeComponent = localVue =>
 const createFakeInstance = () => ({
   addWidget: jest.fn(),
   removeWidget: jest.fn(),
+  started: true,
 });
 
 it('adds a widget on create', () => {
