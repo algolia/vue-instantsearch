@@ -56,13 +56,10 @@ export default {
       type: String,
       default: undefined,
     },
-    name: {
-      // @TODO: just for debugging, remove IRL
-      type: String,
-    },
   },
   data() {
     return {
+      localValue: '',
       widgetName: 'SearchBox',
     };
   },
@@ -79,33 +76,26 @@ export default {
     },
   },
   computed: {
+    isControlled() {
+      return typeof this.value !== 'undefined';
+    },
     currentRefinement: {
       get() {
-        const isControlled = typeof this.value !== 'undefined';
-        console.log('get', this.name, {
-          model: this.value,
-          query: this.state.query,
-          isControlled
-        });
-
-        if (isControlled && this.state.query !== this.value) {
-          // works but infinite loop
+        // if the input is controlled, but not up to date
+        // this means it didn't search, and we should pretend it was `set`
+        if (this.isControlled && this.value !== this.localValue) {
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+          this.localValue = this.value;
+          this.$emit('input', this.value);
           this.state.refine(this.value);
         }
-        return this.value || this.state.query || '';
+        return this.value || this.localValue;
       },
-      set(value) {
-        const isControlled = typeof this.value !== 'undefined';
-        console.log('set', this.name, {
-          value,
-          query: this.state.query,
-          model: this.value,
-          isControlled
-        });
-
-        if ((isControlled && this.value !== value) || !isControlled) {
-          this.$emit('input', value);
-          this.state.refine(value);
+      set(val) {
+        this.localValue = val;
+        if (this.isControlled) {
+          this.$emit('input', val);
+          this.state.refine(val);
         }
       },
     },

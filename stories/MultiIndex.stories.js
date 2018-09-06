@@ -5,7 +5,7 @@ storiesOf('MultiIndex', module).add('simple usage', () => ({
   template: `
   <div>
     <ais-index :search-client="searchClient" index-name="ikea">
-      <ais-search-box v-model="query" name="one"/>
+      <ais-search-box v-model="query"/>
       <ais-configure :restrictSearchableAttributes="['name']"/>
       <ais-hits>
         <template slot="item" slot-scope="{ item }">
@@ -15,7 +15,7 @@ storiesOf('MultiIndex', module).add('simple usage', () => ({
     </ais-index>
     <hr />
     <ais-index :search-client="searchClient" index-name="instant_search">
-      <ais-search-box v-model="query" name="two"/>
+      <ais-search-box v-model="query" hidden/>
       <ais-configure :restrictSearchableAttributes="['name']"/>
       <ais-hits>
         <template slot="item" slot-scope="{ item }">
