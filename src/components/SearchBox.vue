@@ -52,6 +52,14 @@ export default {
       type: String,
       default: 'Clear',
     },
+    value: {
+      type: String,
+      default: undefined,
+    },
+    name: {
+      // @TODO: just for debugging, remove IRL
+      type: String,
+    },
   },
   data() {
     return {
@@ -73,11 +81,32 @@ export default {
   computed: {
     currentRefinement: {
       get() {
-        return  this.state.query || '';
+        const isControlled = typeof this.value !== 'undefined';
+        console.log('get', this.name, {
+          model: this.value,
+          query: this.state.query,
+          isControlled
+        });
+
+        if (isControlled && this.state.query !== this.value) {
+          // works but infinite loop
+          this.state.refine(this.value);
+        }
+        return this.value || this.state.query || '';
       },
       set(value) {
-        this.$emit('input', value);
-        this.state.refine(value);
+        const isControlled = typeof this.value !== 'undefined';
+        console.log('set', this.name, {
+          value,
+          query: this.state.query,
+          model: this.value,
+          isControlled
+        });
+
+        if ((isControlled && this.value !== value) || !isControlled) {
+          this.$emit('input', value);
+          this.state.refine(value);
+        }
       },
     },
   },
