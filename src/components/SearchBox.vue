@@ -89,13 +89,13 @@ export default {
           this.$emit('input', this.value);
           this.state.refine(this.value);
         }
-        return this.value || this.localValue;
+        return this.value || this.localValue || this.state.query || '';
       },
       set(val) {
         this.localValue = val;
+        this.state.refine(val);
         if (this.isControlled) {
           this.$emit('input', val);
-          this.state.refine(val);
         }
       },
     },
