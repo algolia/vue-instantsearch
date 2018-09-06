@@ -52,13 +52,9 @@ export default {
       type: String,
       default: 'Clear',
     },
-    value: {
-      type: String,
-    }
   },
   data() {
     return {
-      _value: this.value,
       widgetName: 'SearchBox',
     };
   },
@@ -77,14 +73,11 @@ export default {
   computed: {
     currentRefinement: {
       get() {
-        console.log('get')
-        return this._value || this.state.query || '';
+        return  this.state.query || '';
       },
       set(value) {
-        console.log("set", value)
-        this._value = value;
-        this.state.refine(value);
         this.$emit('input', value);
+        this.state.refine(value);
       },
     },
   },
