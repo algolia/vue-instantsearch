@@ -19,6 +19,7 @@ import PoweredBy from './components/PoweredBy.vue';
 import RangeInput from './components/RangeInput.vue';
 import RatingMenu from './components/RatingMenu.vue';
 import RefinementList from './components/RefinementList.vue';
+import Results from './components/Results.vue';
 import SearchBox from './components/SearchBox.vue';
 import Snippet from './components/Snippet.vue';
 import SortBy from './components/SortBy.vue';
@@ -26,9 +27,10 @@ import Stats from './components/Stats.vue';
 import ToggleRefinement from './components/ToggleRefinement.vue';
 
 const InstantSearch = {
+  Component,
+  // widgets:
   Breadcrumb,
   ClearRefinements,
-  Component,
   Configure,
   CurrentRefinements,
   HierarchicalMenu,
@@ -39,11 +41,14 @@ const InstantSearch = {
   InfiniteHits,
   Menu,
   MenuSelect,
+  NumericMenu,
   Pagination,
+  Panel,
   PoweredBy,
   RangeInput,
   RatingMenu,
   RefinementList,
+  Results,
   SearchBox,
   Snippet,
   SortBy,
@@ -70,6 +75,7 @@ const InstantSearch = {
     Vue.component('ais-range-input', RangeInput);
     Vue.component('ais-rating-menu', RatingMenu);
     Vue.component('ais-refinement-list', RefinementList);
+    Vue.component('ais-results', Results);
     Vue.component('ais-search-box', SearchBox);
     Vue.component('ais-snippet', Snippet);
     Vue.component('ais-sort-by', SortBy);
@@ -83,7 +89,6 @@ export default InstantSearch;
 export {
   Breadcrumb,
   ClearRefinements,
-  Component,
   Configure,
   CurrentRefinements,
   HierarchicalMenu,
@@ -94,11 +99,14 @@ export {
   InfiniteHits,
   Menu,
   MenuSelect,
+  NumericMenu,
   Pagination,
   Panel,
   PoweredBy,
   RangeInput,
   RatingMenu,
+  RefinementList,
+  Results,
   SearchBox,
   Snippet,
   SortBy,
