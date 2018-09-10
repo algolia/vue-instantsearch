@@ -67,12 +67,12 @@ storiesOf('search-state', module)
       <ais-search-box />
       <p>type "documentary"</p>
       <ais-search-state>
-        <template slot-scope="{userData}">
+        <template slot-scope="{ userData }">
           <div>
             <img
-              v-for="{banner_img_slug: src} in userData"
+              v-for="{ banner_img_slug: src } in userData"
               :key="src"
-              :src="'https://preview.algolia.com/query-rules/'+src"
+              :src="'https://preview.algolia.com/query-rules/' + src"
             />
           </div>
         </template>
