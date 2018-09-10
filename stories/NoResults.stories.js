@@ -10,7 +10,8 @@ storiesOf('NoResults', module)
     },
   }))
   .add('custom rendering', () => ({
-    template: `<ais-no-results ref="child">
+    template: `
+    <ais-no-results ref="child">
       <span slot-scope="{query}">no results for "{{query}}"</span>
     </ais-no-results>`,
     mounted() {
