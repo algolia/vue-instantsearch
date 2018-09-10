@@ -1,7 +1,7 @@
 import { previewWrapper } from './utils';
 import { storiesOf } from '@storybook/vue';
 
-storiesOf('Results', module)
+storiesOf('search-state', module)
   .addDecorator(
     previewWrapper({
       indexName: 'demo-query-rules',
@@ -31,13 +31,13 @@ storiesOf('Results', module)
     })
   )
   .add('default display', () => ({
-    template: `<ais-results></ais-results>`,
+    template: `<ais-search-state></ais-search-state>`,
   }))
   .add('custom "autocomplete"', () => ({
     template: `
     <div>
       <ais-search-box />
-      <ais-results>
+      <ais-search-state>
         <template slot-scope="{ query }">
           <ais-hits v-if="query">
             <h3
@@ -51,7 +51,7 @@ storiesOf('Results', module)
             </h3>
           </ais-hits>
         </template>
-      </ais-results>
+      </ais-search-state>
     </div>
     `,
     methods: {
@@ -66,7 +66,7 @@ storiesOf('Results', module)
     <div>
       <ais-search-box />
       <p>type "documentary"</p>
-      <ais-results>
+      <ais-search-state>
         <template slot-scope="{userData}">
           <div>
             <img
@@ -76,7 +76,7 @@ storiesOf('Results', module)
             />
           </div>
         </template>
-      </ais-results>
+      </ais-search-state>
     </div>
     `,
   }));

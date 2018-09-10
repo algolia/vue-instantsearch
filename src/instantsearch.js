@@ -19,7 +19,7 @@ import PoweredBy from './components/PoweredBy.vue';
 import RangeInput from './components/RangeInput.vue';
 import RatingMenu from './components/RatingMenu.vue';
 import RefinementList from './components/RefinementList.vue';
-import Results from './components/Results.vue';
+import SearchState from './components/SearchState.vue';
 import SearchBox from './components/SearchBox.vue';
 import Snippet from './components/Snippet.vue';
 import SortBy from './components/SortBy.vue';
@@ -48,7 +48,7 @@ const InstantSearch = {
   RangeInput,
   RatingMenu,
   RefinementList,
-  Results,
+  SearchState,
   SearchBox,
   Snippet,
   SortBy,
@@ -75,8 +75,8 @@ const InstantSearch = {
     Vue.component('ais-range-input', RangeInput);
     Vue.component('ais-rating-menu', RatingMenu);
     Vue.component('ais-refinement-list', RefinementList);
-    Vue.component('ais-results', Results);
     Vue.component('ais-search-box', SearchBox);
+    Vue.component('ais-search-state', SearchState);
     Vue.component('ais-snippet', Snippet);
     Vue.component('ais-sort-by', SortBy);
     Vue.component('ais-stats', Stats);
@@ -106,7 +106,7 @@ export {
   RangeInput,
   RatingMenu,
   RefinementList,
-  Results,
+  SearchState,
   SearchBox,
   Snippet,
   SortBy,
