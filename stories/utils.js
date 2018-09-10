@@ -5,8 +5,11 @@ export function defaultSearchStore() {
     'latency',
     '6be0576ff61c053d5f9a3225e2a90f76'
   );
-  searchStore.indexName = 'ikea';
-  searchStore.queryParameters = { snippetEllipsisText: '…' };
+  searchStore.indexName = 'instant_search';
+  searchStore.queryParameters = {
+    snippetEllipsisText: '…',
+    attributesToSnippet: ['description'],
+  };
   searchStore.start();
 
   return searchStore;
@@ -35,7 +38,7 @@ export function previewWrapper() {
                   <span> - \${{ result.price }}</span>
                   <span> - {{ result.rating }} stars</span>
                 </div>
-                <div class="result-type" v-html="result._highlightResult.type.value"></div>
+                <div class="result-type">{{result.type}}</div>
                 <div class="result-description" v-html="result._snippetResult.description.value"></div>
               </div>
             </div>
