@@ -2,7 +2,7 @@
 
 exports[`allows default slot to render whatever they want 1`] = `
 
-<div class="ais-Results">
+<div class="ais-SearchState">
   <p>
     There's no query
   </p>
@@ -12,7 +12,7 @@ exports[`allows default slot to render whatever they want 1`] = `
 
 exports[`renders explanation if no slot is used 1`] = `
 
-<div class="ais-Results">
+<div class="ais-SearchState">
   <p>
     Use this component to have a different layout based on a certain state.
   </p>

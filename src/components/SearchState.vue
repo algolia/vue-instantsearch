@@ -52,7 +52,7 @@ export default {
   },
   data() {
     return {
-      widgetName: 'Results',
+      widgetName: 'SearchState',
     };
   },
 };
