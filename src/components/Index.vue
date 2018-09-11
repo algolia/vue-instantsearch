@@ -61,14 +61,14 @@ export default {
       // private InstantSearch.js API:
       this.instantSearchInstance._stalledSearchDelay = stalledSearchDelay;
     },
-    routing(routing) {
+    routing() {
       throw new Error(
         'routing configuration can not be changed dynamically at this point.' +
           '\n\n' +
           'Please open a new issue: https://github.com/algolia/vue-instantsearch/issues/new?template=feature.md'
       );
     },
-    searchFunction(searchFunction) {
+    searchFunction() {
       throw new Error(
         'searchFunction configuration can not be changed dynamically at this point.' +
           '\n\n' +
