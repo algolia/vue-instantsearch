@@ -150,3 +150,44 @@ it('Allows a change in `search-client`', () => {
   expect(instantsearch.__helper.setClient).toHaveBeenCalledWith(newClient);
   expect(instantsearch.__helper.search).toHaveBeenCalledTimes(1);
 });
+
+it('Does not allows a change in `search-function`', () => {
+  global.console.error = jest.fn();
+  const wrapper = mount(Index, {
+    propsData: {
+      searchClient: {},
+      indexName: 'bla',
+      searchFunction: () => {},
+    },
+  });
+
+  wrapper.setProps({
+    searchFunction: () => {},
+  });
+
+  expect(global.console.error.mock.calls[0][0]).toMatchInlineSnapshot(`
+[Error: searchFunction configuration can not be changed dynamically at this point.
+
+Please open a new issue: https://github.com/algolia/vue-instantsearch/issues/new?template=feature.md]
+`);
+});
+
+it('Does not allows a change in `routing`', () => {
+  global.console.error = jest.fn();
+  const wrapper = mount(Index, {
+    propsData: {
+      searchClient: {},
+      indexName: 'bla',
+    },
+  });
+
+  wrapper.setProps({
+    routing: false,
+  });
+
+  expect(global.console.error.mock.calls[0][0]).toMatchInlineSnapshot(`
+[Error: routing configuration can not be changed dynamically at this point.
+
+Please open a new issue: https://github.com/algolia/vue-instantsearch/issues/new?template=feature.md]
+`);
+});
