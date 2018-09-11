@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { mount } from '@vue/test-utils';
 import instantsearch from 'instantsearch.js/es';
 import Index from '../Index.vue';
@@ -59,7 +60,7 @@ it('passes props to InstantSearch.js', () => {
   });
 });
 
-it('calls `start` on the next tick', () => {
+it('calls `start` on the next tick', done => {
   mount(Index, {
     propsData: {
       searchClient: {},
@@ -67,7 +68,10 @@ it('calls `start` on the next tick', () => {
     },
   });
 
-  expect(instantsearch.__startMock).toHaveBeenCalledTimes(1);
+  Vue.nextTick(() => {
+    expect(instantsearch.__startMock).toHaveBeenCalledTimes(1);
+    done();
+  });
 });
 
 it('provides an InstantSearch instance', () => {
