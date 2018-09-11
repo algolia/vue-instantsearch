@@ -154,3 +154,8 @@ Routing is not fully fleshed out yet. It's possible to set the `routing` prop to
 
 If you're using this, and have suggestions, please get in touch.
 
+3. `ais-state-results`
+
+This widget is new, but still waiting for reviews and will be added in a next version of the alpha.
+
+If you have a good, or better naming idea for this, please get in touch.
