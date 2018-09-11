@@ -1,3 +1,8 @@
+---
+name: v2 alpha feedback
+about: Create a report to help us improve Vue InstantSearch
+---
+
 **Feedback on the v2 alpha version 🆕**
 
 ### Describe the bug / features

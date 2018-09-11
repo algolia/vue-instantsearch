@@ -1,3 +1,8 @@
+---
+name: Feature request
+about: Create a report to help us improve Vue InstantSearch
+---
+
 **Feature ⚡️**
 
 ### What is your use case for such a feature?

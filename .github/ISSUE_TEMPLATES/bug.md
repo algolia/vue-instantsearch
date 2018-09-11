@@ -1,3 +1,8 @@
+---
+name: Bug report
+about: Create a report to help us improve Vue InstantSearch
+---
+
 **Bug 🐞**
 
 ### What is the current behavior?
