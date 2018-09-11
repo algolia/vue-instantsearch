@@ -1,4 +1,4 @@
-** Feedback on the v2 alpha version 🆕 **
+**Feedback on the v2 alpha version 🆕**
 
 ### Describe the bug / features
 

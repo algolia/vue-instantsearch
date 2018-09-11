@@ -1,4 +1,4 @@
-** Feature ⚡️ **
+**Feature ⚡️**
 
 ### What is your use case for such a feature?
 

@@ -1,4 +1,4 @@
-** Bug 🐞 **
+**Bug 🐞**
 
 ### What is the current behavior?
 
