@@ -28,6 +28,7 @@ jest.mock('instantsearch.js/es', () => {
   );
   fakeInstantSearch.__startMock = start;
   fakeInstantSearch._stalledSearchDelay = 200;
+  // note for the future: these tests would be better with a real helper instance
   fakeInstantSearch.__helper = {
     search: jest.fn(),
     setClient: jest.fn(() => fakeInstantSearch.__helper),
