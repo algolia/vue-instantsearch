@@ -151,7 +151,7 @@ it('Allows a change in `search-client`', () => {
   expect(instantsearch.__helper.search).toHaveBeenCalledTimes(1);
 });
 
-it('Does not allows a change in `search-function`', () => {
+it('Does not allow a change in `search-function`', () => {
   global.console.error = jest.fn();
   const wrapper = mount(Index, {
     propsData: {
@@ -172,7 +172,7 @@ Please open a new issue: https://github.com/algolia/vue-instantsearch/issues/new
 `);
 });
 
-it('Does not allows a change in `routing`', () => {
+it('Does not allow a change in `routing`', () => {
   global.console.error = jest.fn();
   const wrapper = mount(Index, {
     propsData: {
