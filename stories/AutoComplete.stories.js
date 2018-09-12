@@ -14,35 +14,29 @@ storiesOf('Autocomplete', module)
       <div>
         <ais-autocomplete>
           <template slot-scope="{currentRefinement, indices, refine}">
-            <p>I'd like to use the indices in the suggestions</p>
-            <p>
-              Also seems like it's impossible to fully control the input
-              (try typing in the other input on the page).
-            </p>
-            <details>
-              <summary><code>indices</code></summary>
-              <pre>{{indices}}</pre>
-            </details>
             <vue-autosuggest
-              :suggestions="[{ data: indices[0].hits }]"
+              :suggestions="indicesToSuggestions(indices)"
               :on-selected="selectHandler"
               :input-props="{
-                style:'width: 100%;',
-                value: currentRefinement,
+                style: 'width: 100%',
                 onInputChange: refine,
               }"
             >
             <template slot-scope="{suggestion}">
-              <img :src="suggestion.item.image" style="width: 50px;"/><span class="my-suggestion-item">{{suggestion.item.name}} - <strong>$ {{ suggestion.item.price }}</strong></span>
+              <img :src="suggestion.item.image" style="width: 50px;"/>
+              <span>
+                <ais-highlight
+                  :hit="suggestion.item"
+                  attribute="name"
+                /> - <strong>$ {{ suggestion.item.price }}</strong>
+              </span>
             </template>
             </vue-autosuggest>
           </template>
         </ais-autocomplete>
         <details v-if="selected">
           <summary><code>selected item</code></summary>
-          <pre>
-            <code>{{selected.item}}</code>
-          </pre>
+          <pre>{{selected.item}}</pre>
         </details>
       </div>
     `,
@@ -52,6 +46,9 @@ storiesOf('Autocomplete', module)
     methods: {
       selectHandler(selected) {
         this.selected = selected;
+      },
+      indicesToSuggestions(indices) {
+        return indices.map(({ hits }) => ({ data: hits }));
       },
     },
   }));
