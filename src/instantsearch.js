@@ -53,7 +53,7 @@ const InstantSearch = {
   ToggleRefinement,
 
   install(Vue) {
-    Vue.component('ais-auto-complete', AutoComplete);
+    Vue.component('ais-autocomplete', AutoComplete);
     Vue.component('ais-breadcrumb', Breadcrumb);
     Vue.component('ais-clear-refinements', ClearRefinements);
     Vue.component('ais-configure', Configure);
