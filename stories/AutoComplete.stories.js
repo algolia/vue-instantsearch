@@ -7,36 +7,42 @@ Vue.use(VueAutosuggest);
 storiesOf('AutoComplete', module)
   .addDecorator(previewWrapper())
   .add('No slot given', () => ({
-    template: `<ais-auto-complete></ais-auto-complete>`,
+    template: `<ais-autocomplete></ais-autocomplete>`,
   }))
   .add('using vue-autosuggest', () => ({
     template: `
-      <ais-auto-complete>
-        <template slot-scope="{currentRefinement, indices, refine}">
-          <p>I'd like to use the indices in the suggestions</p>
-          <p>
-            Also seems like it's impossible to fully control the input
-            (try typing in the other input on the page).
-          </p>
-          <details>
-            <summary><code>indices</code></summary>
-            <pre>{{indices}}</pre>
-          </details>
-          <vue-autosuggest
-            :suggestions="indices[0].hits.map(item => item.name)"
-            :on-selected="selectHandler"
-            :input-props="{
-              value: currentRefinement,
-              onInputChange: refine,
-            }"
-          >
-          </vue-autosuggest>
-        </template>
-      </ais-auto-complete>
+      <div>
+        <p v-if="selected">selected: {{selected}}</p>
+        <ais-autocomplete>
+          <template slot-scope="{currentRefinement, indices, refine}">
+            <p>I'd like to use the indices in the suggestions</p>
+            <p>
+              Also seems like it's impossible to fully control the input
+              (try typing in the other input on the page).
+            </p>
+            <details>
+              <summary><code>indices</code></summary>
+              <pre>{{indices}}</pre>
+            </details>
+            <vue-autosuggest
+              :suggestions="indices[0].hits.map(item => item.name)"
+              :on-selected="selectHandler"
+              :input-props="{
+                value: currentRefinement,
+                onInputChange: refine,
+              }"
+            >
+            </vue-autosuggest>
+          </template>
+        </ais-autocomplete>
+      </div>
     `,
+    data() {
+      return { selected: undefined };
+    },
     methods: {
-      selectHandler(...args) {
-        console.log('selected', ...args);
+      selectHandler(selected) {
+        this.selected = selected;
       },
     },
   }));
