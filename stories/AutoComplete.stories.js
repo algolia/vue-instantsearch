@@ -12,7 +12,6 @@ storiesOf('AutoComplete', module)
   .add('using vue-autosuggest', () => ({
     template: `
       <div>
-        <p v-if="selected">selected: {{selected}}</p>
         <ais-autocomplete>
           <template slot-scope="{currentRefinement, indices, refine}">
             <p>I'd like to use the indices in the suggestions</p>
@@ -25,16 +24,26 @@ storiesOf('AutoComplete', module)
               <pre>{{indices}}</pre>
             </details>
             <vue-autosuggest
-              :suggestions="indices[0].hits.map(item => item.name)"
+              :suggestions="[{ data: indices[0].hits }]"
               :on-selected="selectHandler"
               :input-props="{
+                style:'width: 100%;',
                 value: currentRefinement,
                 onInputChange: refine,
               }"
             >
+            <template slot-scope="{suggestion}">
+              <img :src="suggestion.item.image" style="width: 50px;"/><span class="my-suggestion-item">{{suggestion.item.name}} - <strong>$ {{ suggestion.item.price }}</strong></span>
+            </template>
             </vue-autosuggest>
           </template>
         </ais-autocomplete>
+        <details v-if="selected">
+          <summary><code>selected item</code></summary>
+          <pre>
+            <code>{{selected.item}}</code>
+          </pre>
+        </details>
       </div>
     `,
     data() {
