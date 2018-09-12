@@ -165,6 +165,7 @@ it('Does not allow a change in `search-function`', () => {
     searchFunction: () => {},
   });
 
+  // Vue catches this error and throws it to the console
   expect(global.console.error.mock.calls[0][0]).toMatchInlineSnapshot(`
 [Error: searchFunction configuration can not be changed dynamically at this point.
 
@@ -185,6 +186,7 @@ it('Does not allow a change in `routing`', () => {
     routing: false,
   });
 
+  // Vue catches this error and throws it to the console
   expect(global.console.error.mock.calls[0][0]).toMatchInlineSnapshot(`
 [Error: routing configuration can not be changed dynamically at this point.
 
