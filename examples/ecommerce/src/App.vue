@@ -1,9 +1,8 @@
 <template>
   <div id="root">
     <ais-index
-      appId="latency"
-      apiKey="6be0576ff61c053d5f9a3225e2a90f76"
-      indexName="ikea"
+      :search-client="searchClient"
+      index-name="instant_search"
     >
       <ais-configure :hitsPerPage="16" />
       <header class="navbar">
@@ -17,28 +16,64 @@
           slot-scope="{ items }"
           class="products"
         >
-        <div>
-          <article
-            v-for="item in items"
-            :key="item.objectID"
-            class="product"
-          >
-            <div class="product-picture-wrapper">
-              <img class="product-picture" :src="item.image" :alt="item.name" />
-            </div>
-            <div class="product-desc-wrapper">
-              <div class="product-name">
-                <ais-highlight attribute="name" :hit="item" />
+          <ais-panel>
+            <template slot="header">
+              <h5>Rating</h5>
+            </template>
+            <template slot="default">
+              <ais-rating-menu
+                attribute="rating"
+                :max="5"
+              />
+            </template>
+          </ais-panel>
+          <ais-state-results>
+            <template slot-scope="{ query, hits }">
+              <div class="results-wrapper" v-if="hits.length === 0">
+                <div class="no-results">
+                  No results found matching <span class="query">{{query}}</span>
+                </div>
               </div>
-              <div class="product-type">
-                <ais-highlight attribute="type" :hit="item" />
+            </template>
+          </ais-state-results>
+          <div>
+            <article
+              v-for="item in items"
+              :key="item.objectID"
+              class="product"
+            >
+              <div class="product-picture-wrapper">
+                <img class="product-picture" :src="item.image" :alt="item.name" />
               </div>
-              <div class="product-footer">
-                <!-- Add the stars -->
-                <div class="product-price">${{ item.price }}</div>
+              <div class="product-desc-wrapper">
+                <div class="product-name">
+                  <ais-highlight attribute="name" :hit="item" />
+                </div>
+                <div class="product-type">
+                  <ais-highlight attribute="type" :hit="item" />
+                </div>
+                <div class="product-footer">
+                  <div class="ais-RatingMenu-link">
+                    <svg
+                      v-for="(_,i) in 5"
+                      :key="i"
+                      :class="[
+                        'ais-RatingMenu-starIcon',
+                        i >= item.rating && 'ais-RatingMenu-starIcon--empty'
+                      ]"
+                      aria-hidden="true"
+                      width="24"
+                      height="24"
+                    >
+                      <use
+                        :xlink:href="`#ais-RatingMenu-star${i >= item.rating ? 'Empty' : ''}Symbol`" 
+                      />
+                    </svg>
+                  </div>
+                  <div class="product-price">${{ item.price }}</div>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
           </div>
         </main>
       </ais-hits>
@@ -47,25 +82,17 @@
 </template>
 
 <script>
-import {
-  Index,
-  Configure,
-  SearchBox,
-  Hits,
-  Highlight,
-} from 'vue-instantsearch';
+import algoliasearch from 'algoliasearch/lite';
 
 export default {
-  name: 'App',
-  components: {
-    AisIndex: Index,
-    AisConfigure: Configure,
-    AisSearchBox: SearchBox,
-    AisHits: Hits,
-    AisHighlight: Highlight,
+  data() {
+    return {
+      searchClient: algoliasearch('latency','6be0576ff61c053d5f9a3225e2a90f76'),
+    };
   },
 };
 </script>
+
 
 <style>
 * {
