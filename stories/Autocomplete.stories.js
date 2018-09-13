@@ -81,17 +81,14 @@ storiesOf('Autocomplete', module)
               }"
             >
             <template slot-scope="{ suggestion }">
-              <img :src="suggestion.item.image" style="width: 50px;"/>
+              <img
+                :src="suggestion.item.image"
+                style="height: 50px;"
+              />
               <span>
                 <ais-highlight
                   :hit="suggestion.item"
                   attribute="name"
-                  v-if="suggestion.item.name"
-                />
-                <ais-highlight
-                  :hit="suggestion.item"
-                  attribute="title"
-                  v-else
                 />
                 <strong>$ {{ suggestion.item.price }}</strong>
               </span>
@@ -115,7 +112,21 @@ storiesOf('Autocomplete', module)
         this.selected = selected;
       },
       indicesToSuggestions(indices) {
-        return indices.map(({ hits }) => ({ data: hits }));
+        return indices.map(({ hits }) => ({
+          data: hits.map(
+            hit =>
+              hit.name
+                ? hit
+                : // the ATIS index doesn't use `name`, so we make it pretend it does
+                  Object.assign(hit, {
+                    image: hit.largeImage,
+                    name: hit.title,
+                    _highlightResult: {
+                      name: hit._highlightResult.title,
+                    },
+                  })
+          ),
+        }));
       },
     },
   }));
