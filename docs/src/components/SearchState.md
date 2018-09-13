@@ -40,6 +40,24 @@ SearchState can be used to put a conditional statement around the hits if there'
 </div>
 ```
 
+### No results
+
+SearchState can be used to put a conditional statement around a message to show if there are no results.
+
+```html
+<div>
+  <ais-search-box />
+  <ais-hits />
+  <ais-search-state>
+    <template slot-scope="{ query, hits }">
+      <p v-if="hits.length === 0">
+        No results found for the query: <q>{{ query }}</q>
+      </p>
+    </template>
+  </ais-search-state>
+</div>
+```
+
 ## Banner from query rules
 
 If you have a [query rule with userData](https://www.algolia.com/doc/guides/query-rules/query-rules-usage/#return-user-data) in it, you can use SearchState to get this user data as a banner.

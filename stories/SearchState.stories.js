@@ -1,7 +1,7 @@
 import { previewWrapper } from './utils';
 import { storiesOf } from '@storybook/vue';
 
-storiesOf('search-state', module)
+storiesOf('SearchState', module)
   .addDecorator(
     previewWrapper({
       indexName: 'demo-query-rules',
@@ -78,5 +78,20 @@ storiesOf('search-state', module)
         </template>
       </ais-search-state>
     </div>
+    `,
+  }))
+  .add('no results', () => ({
+    template: `
+      <div>
+        <ais-search-box />
+        <ais-hits />
+        <ais-search-state>
+          <template slot-scope="{ query, hits }">
+            <p v-if="hits.length === 0">
+              No results found for the query: <q>{{ query }}</q>
+            </p>
+          </template>
+        </ais-search-state>
+      </div>
     `,
   }));
