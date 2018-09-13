@@ -41,6 +41,7 @@ You can try most of them out in our playground.
 * [PoweredBy](components/powered-by.html)
 * [Rating](components/rating-menu.html)
 * [SearchBox](components/search-box.html)
+* [SearchState](components/SearchState.html)
 * [Snippet](components/snippet.html)
 * [Stats](components/stats.html)
 
@@ -81,7 +82,7 @@ An alternative approach is to register components when we need them:
 // src/main.js
 import Vue from 'vue';
 import App from './App.vue'
-import { Index, SearchBox, Hits, Pagination } from 'vue-instantsearch';
+import { Index, SearchState, Hits, Pagination } from 'vue-instantsearch';
 
 Vue.component('ais-index', Index);
 Vue.component('ais-search-box', SearchBox);
