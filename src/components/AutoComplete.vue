@@ -28,7 +28,7 @@ export default {
   mixins: [algoliaComponent],
   props: {
     indices: {
-      type: [Array, undefined],
+      type: Array,
       required: false,
       default: undefined,
     },
