@@ -26,9 +26,6 @@ import { connectAutocomplete } from 'instantsearch.js/es/connectors';
 
 export default {
   mixins: [algoliaComponent],
-  // ⬇️ Those are all the options of your widget (attribute, items ...)
-  // You don't need to write down the props that will be forwarded by the connector on render,
-  // They are directly accessible in the state in template
   props: {
     indices: {
       type: [Array, undefined],
@@ -43,15 +40,13 @@ export default {
   },
   data() {
     return {
-      widgetName: 'AutoComplete',
+      widgetName: 'Autocomplete',
     };
   },
   beforeCreate() {
     this.connector = connectAutocomplete;
   },
   computed: {
-    // ⬇️ Those are all the options of your widget (attribute, items ...)
-    // Same as props, just do the mapping
     widgetParams() {
       return {
         indices: this.indices,
