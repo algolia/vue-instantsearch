@@ -2,3 +2,4 @@ _book/
 docs/
 coverage/
 dist/
+examples/*/node_modules/*
