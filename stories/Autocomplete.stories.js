@@ -118,7 +118,7 @@ storiesOf('Autocomplete', module)
               hit.name
                 ? hit
                 : // the ATIS index doesn't use `name`, so we make it pretend it does
-                  Object.assign(hit, {
+                  Object.assign({}, hit, {
                     image: hit.largeImage,
                     name: hit.title,
                     _highlightResult: {
