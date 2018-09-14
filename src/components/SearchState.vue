@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="suit('')"
+    :class="suit()"
     v-if="state && state.results"
   >
     <slot v-bind="state.results">
