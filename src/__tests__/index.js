@@ -12,6 +12,7 @@ test('Should register all components when installed', () => {
     'ais-clear-refinements',
     'ais-configure',
     'ais-current-refinements',
+    'ais-geo-search',
     'ais-hierarchical-menu',
     'ais-highlight',
     'ais-hits-per-page',

@@ -24,6 +24,7 @@ You can try most of them out in our playground.
 * [Breadcrumb](components/Breadcrumb.html)
 * [ClearRefinements](components/ClearRefinements.html)
 * [CurrentRefinements](components/CurrentRefinements.html)
+* [GeoSearch](components/GeoSearch.html)
 * [HierarchicalMenu](components/HierarchicalMenu.html)
 * [Hits](components/Hits.html)
 * [HitsPerPage](components/HitsPerPage.html)
