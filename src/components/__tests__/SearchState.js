@@ -39,7 +39,7 @@ it('gives results to default slot', () => {
   });
 });
 
-it('allows default slot to render whatever they want', () => {
+it('allows default slot to render whatever they want (truthy query)', () => {
   __setState({
     results: {
       query: 'q',
@@ -53,10 +53,36 @@ it('allows default slot to render whatever they want', () => {
       default: `
       <template slot-scope="{ query }">
         <p v-if="query">
-          There's no query
+          Query is here
         </p>
         <p v-else>
+          There's no query
+        </p>
+      </template>`,
+    },
+  });
+
+  expect(wrapper.html()).toMatchSnapshot();
+});
+
+it('allows default slot to render whatever they want (falsy query)', () => {
+  __setState({
+    results: {
+      query: '',
+      hits: [{ objectID: '1', name: 'one' }, { objectID: '2', name: 'two' }],
+      page: 1,
+    },
+  });
+
+  const wrapper = mount(SearchState, {
+    scopedSlots: {
+      default: `
+      <template slot-scope="{ query }">
+        <p v-if="query">
           Query is here
+        </p>
+        <p v-else>
+          There's no query
         </p>
       </template>`,
     },

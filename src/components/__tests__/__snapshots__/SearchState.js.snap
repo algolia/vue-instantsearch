@@ -1,10 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`allows default slot to render whatever they want 1`] = `
+exports[`allows default slot to render whatever they want (falsy query) 1`] = `
 
 <div class="ais-SearchState">
   <p>
     There's no query
+  </p>
+</div>
+
+`;
+
+exports[`allows default slot to render whatever they want (truthy query) 1`] = `
+
+<div class="ais-SearchState">
+  <p>
+    Query is here
   </p>
 </div>
 
