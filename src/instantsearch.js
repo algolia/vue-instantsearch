@@ -5,6 +5,7 @@ import Breadcrumb from './components/Breadcrumb.vue';
 import ClearRefinements from './components/ClearRefinements.vue';
 import Configure from './components/Configure.vue';
 import CurrentRefinements from './components/CurrentRefinements.vue';
+import GeoSearch from './components/GeoSearch.vue';
 import HierarchicalMenu from './components/HierarchicalMenu.vue';
 import Highlight from './components/Highlight.vue';
 import Hits from './components/Hits.vue';
@@ -35,6 +36,7 @@ const InstantSearch = {
   ClearRefinements,
   Configure,
   CurrentRefinements,
+  GeoSearch,
   HierarchicalMenu,
   Highlight,
   Hits,
@@ -63,6 +65,7 @@ const InstantSearch = {
     Vue.component('ais-clear-refinements', ClearRefinements);
     Vue.component('ais-configure', Configure);
     Vue.component('ais-current-refinements', CurrentRefinements);
+    Vue.component('ais-geo-search', GeoSearch);
     Vue.component('ais-hierarchical-menu', HierarchicalMenu);
     Vue.component('ais-highlight', Highlight);
     Vue.component('ais-hits-per-page', HitsPerPage);
@@ -95,6 +98,7 @@ export {
   ClearRefinements,
   Configure,
   CurrentRefinements,
+  GeoSearch,
   HierarchicalMenu,
   Highlight,
   Hits,

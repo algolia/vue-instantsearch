@@ -1,4 +1,7 @@
 import algoliasearch from 'algoliasearch/lite';
+import Vue from 'vue';
+
+Vue.config.productionTip = false;
 
 export const previewWrapper = ({
   searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76'),
