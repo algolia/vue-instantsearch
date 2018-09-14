@@ -1,5 +1,6 @@
 import Component from './mixins/component';
 
+import Autocomplete from './components/Autocomplete.vue';
 import Breadcrumb from './components/Breadcrumb.vue';
 import ClearRefinements from './components/ClearRefinements.vue';
 import Configure from './components/Configure.vue';
@@ -29,6 +30,7 @@ import ToggleRefinement from './components/ToggleRefinement.vue';
 const InstantSearch = {
   Component,
   // widgets:
+  Autocomplete,
   Breadcrumb,
   ClearRefinements,
   Configure,
@@ -56,6 +58,7 @@ const InstantSearch = {
   ToggleRefinement,
 
   install(Vue) {
+    Vue.component('ais-autocomplete', Autocomplete);
     Vue.component('ais-breadcrumb', Breadcrumb);
     Vue.component('ais-clear-refinements', ClearRefinements);
     Vue.component('ais-configure', Configure);
@@ -87,6 +90,7 @@ const InstantSearch = {
 export default InstantSearch;
 
 export {
+  Autocomplete,
   Breadcrumb,
   ClearRefinements,
   Configure,
