@@ -82,7 +82,7 @@ An alternative approach is to register components when we need them:
 // src/main.js
 import Vue from 'vue';
 import App from './App.vue'
-import { Index, SearchState, Hits, Pagination } from 'vue-instantsearch';
+import { Index, SearchBox, Hits, Pagination } from 'vue-instantsearch';
 
 Vue.component('ais-index', Index);
 Vue.component('ais-search-box', SearchBox);
