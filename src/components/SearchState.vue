@@ -27,12 +27,12 @@ const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
   },
 
   render({ results, instantSearchInstance }) {
-    const copy = Object.assign({}, results);
+    const resultsCopy = Object.assign({}, results);
     // delete internal state, not to be exposed
-    delete copy._state;
+    delete resultsCopy._state;
     renderFn(
       {
-        results: copy,
+        results: resultsCopy,
         instantSearchInstance,
         widgetParams,
       },
