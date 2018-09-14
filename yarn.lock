@@ -9790,9 +9790,9 @@ void-elements@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
 
-vue-autosuggest@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/vue-autosuggest/-/vue-autosuggest-1.5.0.tgz#db4a080ea0d9c2e8f993aa844944b5688b1f0029"
+vue-autosuggest@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/vue-autosuggest/-/vue-autosuggest-1.6.0.tgz#44a758e576d9b1e0b327559e04fc432368a30ed0"
 
 vue-class-component@^6.0.0:
   version "6.0.0"
