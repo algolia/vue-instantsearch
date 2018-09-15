@@ -14,10 +14,13 @@
       :set-map-move-since-last-refine="state.setMapMoveSinceLastRefine"
       :has-map-moved-since-last-refine="isRefineOnMapMove"
     >
-      <json-tree :data="state" :level="2"/>
+      <json-tree
+        :data="state"
+        :level="2"
+      />
       <p>position: <code>{{ state.position }}</code></p>
       <p>items: <code>{{ state.items }}</code></p>
-      <p>refine: <code>{{  state.refine }}</code></p>
+      <p>refine: <code>{{ state.refine }}</code></p>
       <p>clearMapRefinement: <code>{{ typeof state.clearMapRefinement }}</code></p>
       <p>isRefinedWithMap: <code>{{ isRefinedWithMap }}</code></p>
       <p>toggleRefineOnMapMove: <code>{{ typeof state.toggleRefineOnMapMove }}</code></p>
@@ -100,8 +103,8 @@ export default {
       return this.state.isRefineOnMapMove();
     },
     isRefinedWithMap() {
-      return this.state.isRefinedWithMap()
-    }
+      return this.state.isRefinedWithMap();
+    },
   },
 };
 </script>
