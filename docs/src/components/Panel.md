@@ -24,7 +24,9 @@ The Panel widget wraps other widgets in a consistent panel design. It also react
 
 ## Props
 
-This widget has no props.
+Name | Type | | Default | Description | Required
+---|---|---|---|---
+classNames | Object | | Override class names | no
 
 ## Slots
 

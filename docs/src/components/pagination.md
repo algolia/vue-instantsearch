@@ -29,6 +29,7 @@ showFirst | Boolean | `true` | Show the "first page" button | no
 showLast | Boolean | `true` | Show the "last page" button | no
 showNext | Boolean | `true` | Show the "next page" button | no
 showPrevious | Boolean | `true` | Show the "previous page" button | no
+classNames | Object | | Override class names | no
 
 ## CSS classes
 

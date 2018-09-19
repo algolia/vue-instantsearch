@@ -27,6 +27,7 @@ transformItems | Function | | Allows you to format and change the attributes | -
 clearsQuery | Boolean | `false` | Should the 'clear all' button also clear the query? | -
 excludedAttributes | Array | `[]` | Attributes not to show or clear | -
 transformItems | `(items: object[]) => object[]` | `x => x` | Function which receives the items, which will be called before displaying them. Should return a new array with the same shape as the original array. Useful for mapping over the items to transform, remove or reorder them | -
+classNames | Object | | Override class names | no
 
 ## Slots
 

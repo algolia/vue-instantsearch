@@ -26,6 +26,8 @@ Name | Type | Default | Description | Required
 option | Type | `defaultValue` | An option | yes
 optionTwo | Type | `defaultValue` | An option2 | no
 
+classNames | Object | | Override class names | no
+
 ## Slots
 
 Name | Scope | Description
