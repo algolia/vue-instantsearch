@@ -89,60 +89,63 @@
           </div>
         </aside>
 
-        <ais-hits>
-          <main
-            slot="default"
-            slot-scope="{ items }"
-            class="products"
-          >
-            <ais-search-state>
-              <template slot-scope="{ query, hits }">
-                <div class="results-wrapper" v-if="hits.length === 0">
-                  <div class="no-results">
-                    No results found matching <span class="query">{{query}}</span>
-                  </div>
-                </div>
-              </template>
-            </ais-search-state>
-            <article
-              v-for="item in items"
-              :key="item.objectID"
-              class="product"
+        <main class="results">
+          <ais-hits>
+            <div
+              slot="default"
+              slot-scope="{ items }"
+              class="products"
             >
-              <div class="product-picture-wrapper">
-                <img class="product-picture" :src="item.image" :alt="item.name" />
-              </div>
-              <div class="product-desc-wrapper">
-                <div class="product-name">
-                  <ais-highlight attribute="name" :hit="item" />
-                </div>
-                <div class="product-brand">
-                  <ais-highlight attribute="brand" :hit="item" />
-                </div>
-                <div class="product-footer">
-                  <div class="ais-RatingMenu-link">
-                    <svg
-                      v-for="(_,i) in 5"
-                      :key="i"
-                      :class="[
-                        'ais-RatingMenu-starIcon',
-                        i >= item.rating && 'ais-RatingMenu-starIcon--empty'
-                      ]"
-                      aria-hidden="true"
-                      width="24"
-                      height="24"
-                    >
-                      <use
-                        :xlink:href="`#ais-RatingMenu-star${i >= item.rating ? 'Empty' : ''}Symbol`"
-                      />
-                    </svg>
+              <ais-search-state>
+                <template slot-scope="{ query, hits }">
+                  <div class="results-wrapper" v-if="hits.length === 0">
+                    <div class="no-results">
+                      No results found matching <span class="query">{{query}}</span>
+                    </div>
                   </div>
-                  <div class="product-price">${{ item.price }}</div>
+                </template>
+              </ais-search-state>
+              <article
+                v-for="item in items"
+                :key="item.objectID"
+                class="product"
+              >
+                <div class="product-picture-wrapper">
+                  <img class="product-picture" :src="item.image" :alt="item.name" />
                 </div>
-              </div>
-            </article>
-          </main>
-        </ais-hits>
+                <div class="product-desc-wrapper">
+                  <div class="product-name">
+                    <ais-highlight attribute="name" :hit="item" />
+                  </div>
+                  <div class="product-brand">
+                    <ais-highlight attribute="brand" :hit="item" />
+                  </div>
+                  <div class="product-footer">
+                    <div class="ais-RatingMenu-link">
+                      <svg
+                        v-for="(_,i) in 5"
+                        :key="i"
+                        :class="[
+                          'ais-RatingMenu-starIcon',
+                          i >= item.rating && 'ais-RatingMenu-starIcon--empty'
+                        ]"
+                        aria-hidden="true"
+                        width="24"
+                        height="24"
+                      >
+                        <use
+                          :xlink:href="`#ais-RatingMenu-star${i >= item.rating ? 'Empty' : ''}Symbol`"
+                        />
+                      </svg>
+                    </div>
+                    <div class="product-price">${{ item.price }}</div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </ais-hits>
+          <ais-pagination :total-pages="5" />
+        </main>
       </div>
     </ais-index>
   </div>

@@ -248,8 +248,13 @@ aside a,
 }
 
 /*
- * Hits
+ * Results
  */
+
+.results {
+  display: flex;
+  flex-direction: column;
+}
 
 .products {
   margin: 10px -0.5% 0;
@@ -316,4 +321,8 @@ aside a,
 .ais-RatingMenu-starIcon {
   width: 15px;
   fill: #ffc168;
+}
+
+.ais-Pagination {
+  margin-top: 15px;
 }
