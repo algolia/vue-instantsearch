@@ -156,7 +156,7 @@
               </article>
             </div>
           </ais-hits>
-          <ais-pagination :total-pages="5" />
+          <ais-pagination :padding="2" />
         </main>
       </div>
     </ais-index>
