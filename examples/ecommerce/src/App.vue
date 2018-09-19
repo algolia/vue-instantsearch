@@ -90,6 +90,17 @@
         </aside>
 
         <main class="results">
+          <div class="results-header">
+            <ais-stats />
+            <ais-sort-by
+              :items="[
+                { name: 'instant_search', label: 'Featured' },
+                { name: 'instant_search_price_asc', label: 'Price asc.' },
+                { name: 'instant_search_price_desc', label: 'Price desc.' },
+              ]"
+            />
+
+          </div>
           <ais-hits>
             <div
               slot="default"
