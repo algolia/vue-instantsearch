@@ -73,10 +73,7 @@
                 <h5>Price</h5>
               </template>
               <template slot="default">
-                <ais-range-input
-                  attribute="price"
-                  :max="5"
-                />
+                <ais-range-input attribute="price" />
               </template>
             </ais-panel>
 
