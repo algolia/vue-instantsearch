@@ -1,5 +1,3 @@
-import suit from '../util/suit';
-
 export default {
   inject: {
     instantSearchInstance: {
@@ -49,9 +47,6 @@ export default {
     },
   },
   methods: {
-    suit(...args) {
-      return suit(this.widgetName, ...args);
-    },
     updateState(state = {}, isFirstRender) {
       if (!isFirstRender) {
         // Avoid updating the state on first render

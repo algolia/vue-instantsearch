@@ -36,11 +36,13 @@
 import { connectToggle } from 'instantsearch.js/es/connectors';
 import algoliaComponent from '../mixins/component';
 import { createPanelConsumerMixin } from '../mixins/panel';
+import { createSuitMixin } from '../mixins/suit';
 
 const mapStateToCanRefine = state => Boolean(state.value.count);
 
 export default {
   mixins: [
+    createSuitMixin({ name: 'ToggleRefinement' }),
     algoliaComponent,
     createPanelConsumerMixin({
       mapStateToCanRefine,
@@ -67,11 +69,6 @@ export default {
       // to false because of the `Boolean` prop type
       default: undefined,
     },
-  },
-  data() {
-    return {
-      widgetName: 'ToggleRefinement',
-    };
   },
   beforeCreate() {
     this.connector = connectToggle;

@@ -28,7 +28,6 @@
         v-if="item.data"
         :items="item.data"
         :level="level + 1"
-        :suit="suit"
         :refine="refine"
         :createURL="createURL"
       />
@@ -37,7 +36,10 @@
 </template>
 
 <script>
+import { createSuitMixin } from '../mixins/suit';
+
 export default {
+  mixins: [createSuitMixin({ name: 'HierarchicalMenu' })],
   name: 'HierarchicalMenuList',
   props: {
     items: {
@@ -46,10 +48,6 @@ export default {
     },
     level: {
       type: Number,
-      required: true,
-    },
-    suit: {
-      type: Function,
       required: true,
     },
     refine: {

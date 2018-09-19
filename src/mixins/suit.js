@@ -1,9 +1,9 @@
 import suit from '../util/suit';
 
-export default {
+export const createSuitMixin = ({ name }) => ({
   methods: {
     suit(...args) {
-      return suit(this.widgetName, ...args);
+      return suit(name, ...args);
     },
   },
-};
+});

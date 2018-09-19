@@ -17,14 +17,10 @@
 <script>
 import algoliaComponent from '../mixins/component';
 import { connectStats } from 'instantsearch.js/es/connectors';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
-  mixins: [algoliaComponent],
-  data() {
-    return {
-      widgetName: 'Stats',
-    };
-  },
+  mixins: [algoliaComponent, createSuitMixin({ name: 'Stats' })],
   beforeCreate() {
     this.connector = connectStats;
   },

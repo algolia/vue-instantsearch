@@ -139,9 +139,11 @@
 import { connectPagination } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
 import algoliaComponent from '../mixins/component';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
   mixins: [
+    createSuitMixin({ name: 'Pagination' }),
     algoliaComponent,
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.nbPages > 1,
@@ -178,11 +180,6 @@ export default {
       type: Boolean,
       default: true,
     },
-  },
-  data() {
-    return {
-      widgetName: 'Pagination',
-    };
   },
   beforeCreate() {
     this.connector = connectPagination;

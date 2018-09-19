@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils';
-import mixin from '../suit';
+import { createSuitMixin } from '../suit';
 
 const createFakeComponent = localVue =>
   localVue.component('Test', {
@@ -13,10 +13,7 @@ it('exposes the regular suit function for this widget', () => {
   const {
     vm: { suit },
   } = mount(Test, {
-    mixins: [mixin],
-    data: () => ({
-      widgetName: 'Test',
-    }),
+    mixins: [createSuitMixin({ name: 'Test' })],
   });
 
   expect(suit()).toBe('ais-Test');

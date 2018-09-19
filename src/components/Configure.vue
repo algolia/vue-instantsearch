@@ -13,14 +13,12 @@
 <script>
 import algoliaComponent from '../mixins/component';
 import { connectConfigure } from 'instantsearch.js/es/connectors';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
-  mixins: [algoliaComponent],
+  mixins: [algoliaComponent, createSuitMixin({ name: 'Configure' })],
   beforeCreate() {
     this.connector = connectConfigure;
-  },
-  data() {
-    return { widgetName: 'Configure' };
   },
   computed: {
     widgetParams() {

@@ -15,7 +15,6 @@
       <hierarchical-menu-list
         :items="items"
         :level="0"
-        :suit="suit"
         :refine="state.refine"
         :createURL="state.createURL"
       />
@@ -42,11 +41,13 @@ import { connectHierarchicalMenu } from 'instantsearch.js/es/connectors';
 import algoliaComponent from '../mixins/component';
 import { createPanelConsumerMixin } from '../mixins/panel';
 import HierarchicalMenuList from './HierarchicalMenuList.vue';
+import { createSuitMixin } from '../mixins/suit';
 
 const mapStateToCanRefine = state => state.items.length > 0;
 
 export default {
   mixins: [
+    createSuitMixin({ name: 'HierarchicalMenu' }),
     algoliaComponent,
     createPanelConsumerMixin({
       mapStateToCanRefine,
@@ -99,7 +100,6 @@ export default {
   },
   data() {
     return {
-      widgetName: 'HierarchicalMenu',
       isShowingMore: false,
     };
   },

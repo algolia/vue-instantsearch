@@ -46,9 +46,11 @@
 import algoliaComponent from '../mixins/component';
 import { connectCurrentRefinedValues } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
   mixins: [
+    createSuitMixin({ name: 'CurrentRefinements' }),
     algoliaComponent,
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.refinements.length > 0,
@@ -69,11 +71,6 @@ export default {
         return items;
       },
     },
-  },
-  data() {
-    return {
-      widgetName: 'CurrentRefinements',
-    };
   },
   beforeCreate() {
     this.connector = connectCurrentRefinedValues;

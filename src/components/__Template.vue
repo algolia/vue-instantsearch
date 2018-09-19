@@ -19,6 +19,7 @@
 <script>
 import JsonTree from 'vue-json-tree'; // 👈 When done, remove this
 import algoliaComponent from '../mixins/component';
+import { createSuitMixin } from '../mixins/suit';
 // Uncomment and change here ⬇️
 // import { connectorName } from 'instantsearch.js/es/connectors';
 
@@ -33,7 +34,10 @@ export default {
   // ⬇️ this is to help you debugging what's in `state`
   // remove it before pushing the component
   components: { 'json-tree': JsonTree },
-  mixins: [algoliaComponent],
+  mixins: [
+    algoliaComponent,
+    createSuitMixin({ name: 'Template' }), // ◀️ change this
+  ],
   // ⬇️ Those are all the options of your widget (attribute, items ...)
   // You don't need to write down the props that will be forwarded by the connector on render,
   // They are directly accessible in the state in template
@@ -43,11 +47,6 @@ export default {
       required: false,
       default: () => [],
     },
-  },
-  data() {
-    return {
-      widgetName: 'Template', // ◀️ change this
-    };
   },
   beforeCreate() {
     this.connector = connectorName; // ◀️ change this to the right connectorName you imported

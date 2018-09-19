@@ -115,9 +115,10 @@
 
 <script>
 import algoliaComponent from '../mixins/component';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
-  mixins: [algoliaComponent],
+  mixins: [algoliaComponent, createSuitMixin({ name: 'SearchBox' })],
   props: {
     placeholder: {
       type: String,
@@ -151,7 +152,6 @@ export default {
   data() {
     return {
       query: '',
-      widgetName: 'SearchBox',
     };
   },
   methods: {

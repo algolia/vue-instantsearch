@@ -23,9 +23,10 @@
 <script>
 import algoliaComponent from '../mixins/component';
 import { connectAutocomplete } from 'instantsearch.js/es/connectors';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
-  mixins: [algoliaComponent],
+  mixins: [algoliaComponent, createSuitMixin({ name: 'Autocomplete' })],
   props: {
     indices: {
       type: Array,
@@ -37,11 +38,6 @@ export default {
       required: false,
       default: true,
     },
-  },
-  data() {
-    return {
-      widgetName: 'Autocomplete',
-    };
   },
   beforeCreate() {
     this.connector = connectAutocomplete;
