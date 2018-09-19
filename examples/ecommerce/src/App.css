@@ -252,13 +252,27 @@ aside a,
  */
 
 .results {
-  display: flex;
+  flex: 1;
   flex-direction: column;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  margin-top: 10px;
 }
 
 .products {
   margin: 10px -0.5% 0;
   padding: 0 10px;
+}
+
+.products::after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
 .product {
