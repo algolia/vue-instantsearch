@@ -9,14 +9,14 @@
 
       <div class="content-wrapper">
         <aside>
-          <ais-clear-refinements
-          />
-            <!-- translations={{
-              reset: 'Clear all filters',
-            }} -->
+          <ais-clear-refinements>
+            <template slot="resetLabel">
+              Clear all filters
+            </template>
+          </ais-clear-refinements>
 
           <section class="facet-wrapper">
-            <div class="facet-category-title facet">Show results for</div>
+            <div class="facet-title">Show results for</div>
             <ais-hierarchical-menu
               :attributes="[
                 'hierarchicalCategories.lvl0',
@@ -27,7 +27,7 @@
           </section>
 
           <section class="facet-wrapper">
-            <div class="facet-category-title facet">Refine By</div>
+            <div class="facet-title">Refine By</div>
 
             <ais-panel>
               <template slot="header">
@@ -172,8 +172,14 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 12px;
   font-family: Verdana, sans-serif;
+  height: 100%;
+}
+
+#root,
+.ais-Index {
+  height: 100%;
 }
 
 .navbar {
@@ -192,11 +198,161 @@ body {
 
 .content-wrapper {
   display: flex;
+  height: calc(100% - 60px);
 }
 
-.content-wrapper aside {
-  /* @TODO: size correctly */
-  width: 15em;
+/*
+ * Aside
+ */
+
+aside {
+  border-right: 1px solid #eee;
+  padding: 20px;
+  flex: 0 0 20em;
+}
+
+.ais-ClearRefinements-button {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 13px;
+  background-color: white;
+  border: 1px solid lightgray;
+  color: #000000;
+}
+
+.facet-wrapper {
+  padding-bottom: 12px;
+  border-bottom: solid 1px #eee;
+  margin-bottom: 12px;
+  font-size: 0.87em;
+  display: flex;
+  flex-direction: column;
+}
+
+.facet-title {
+  font-size: 1.2em;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+.ais-Panel-header {
+  margin: 4px 0;
+  clear: both;
+  padding: initial;
+  border-bottom: none;
+}
+
+.ais-Panel-header h5 {
+  font-weight: bold;
+  text-transform: none;
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+aside a,
+.ais-HierarchicalMenu-link {
+  color: #000000;
+}
+
+.ais-HierarchicalMenu-item {
+  margin-top: 0px;
+  font-size: 1.6em;
+}
+
+.ais-HierarchicalMenu-item:after {
+  content: none;
+}
+
+.ais-HierarchicalMenu-link:hover,
+.ais-RatingMenu-link:hover {
+  color: #b32500;
+  text-decoration: none;
+}
+
+.ais-HierarchicalMenu-item--selected > a,
+.ais-HierarchicalMenu-item--selected.ais-HierarchicalMenu-item--parent > a {
+  font-weight: bold;
+}
+
+.ais-HierarchicalMenu-link {
+  margin-right: 4px;
+}
+
+.ais-HierarchicalMenu-label:before {
+  content: '> ';
+}
+
+.ais-HierarchicalMenu-list--child {
+  margin-left: 10px;
+}
+
+.ais-RefinementList-label {
+  font-weight: 100;
+  color: #000000;
+}
+
+.ais-RefinementList-checkbox {
+  margin-right: 5px;
+}
+
+.ais-RefinementList-count,
+.ais-HierarchicalMenu-count {
+  color: #6f6e6c;
+  background-color: initial;
+}
+
+.ais-RefinementList-searchBox .ais-SearchBox-input {
+  padding: 0.3em 2em;
+}
+
+.ais-RangeInput-input--min,
+.ais-RangeInput-input--max {
+  width: 50px;
+  border-radius: 2px;
+  border: solid 1px #888;
+  font-weight: normal;
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.ais-RangeInput-separator {
+  margin: 0px 5px;
+}
+
+.ais-RangeInput-submit {
+  display: block;
+  float: right;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  margin-left: 6px;
+  font-size: 10px;
+  line-height: 20px;
+  border: solid 1px #888;
+  border-radius: 50%;
+  text-align: center;
+  background: none;
+  color: #000000;
+}
+
+.ais-RangeInput-submit:hover {
+  color: #0063c3;
+  background-color: #ffffff;
+}
+
+.ais-RatingMenu-label,
+.ais-RatingMenu-item--selected .ais-RatingMenu-label {
+  color: #000000;
+}
+
+.ais-RatingMenu-item--selected .ais-RatingMenu-label {
+  font-weight: 700;
+}
+
+.ais-RatingMenu-count {
+  color: #6f6e6c;
+  background-color: initial;
 }
 
 /*
