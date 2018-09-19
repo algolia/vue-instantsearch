@@ -3,6 +3,8 @@
     :search-client="searchClient"
     index-name="movies"
   >
+    <ais-configure :hitsPerPage="250" />
+
     <header class="navbar">
       <img src="https://res.cloudinary.com/hilnmyskv/image/upload/w_100,h_100,dpr_2.0//v1461180087/logo-instantsearchjs-avatar.png" width="40">
       <h1 class="navbar__title">
@@ -10,7 +12,26 @@
       </h1>
       <ais-search-box placeholder="" />
     </header>
-    <ais-hits />
+
+    <main>
+      <aside>
+        <ais-panel>
+          <h5 slot="header"><i class="fa fa-chevron-right"></i> Genres</h5>
+          <ais-refinement-list attribute="genre" />
+        </ais-panel>
+        <ais-panel>
+          <h5 slot="header"><i class="fa fa-chevron-right"></i> Ratings</h5>
+          <ais-rating-menu attribute="rating" />
+        </ais-panel>
+        <div class="thank-you">
+          Data courtesy of <a href="https://www.imdb.com/">imdb.com</a>
+        </div>
+      </aside>
+
+      <section class="results">
+        <ais-hits />
+      </section>
+    </main>
   </ais-index>
 </template>
 

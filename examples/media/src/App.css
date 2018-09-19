@@ -16,6 +16,10 @@ body {
   background: #f1f1f1;
 }
 
+a {
+  color: #ce1312;
+}
+
 #root,
 .ais-Index {
   height: 100%;
@@ -26,10 +30,14 @@ body {
  */
 
 .navbar {
+  position: fixed;
   display: flex;
   align-items: center;
   padding: 10px;
+  width: 100%;
   background: #ffffff;
+  border: initial;
+  margin-bottom: initial;
 }
 
 .navbar__title {
@@ -90,7 +98,79 @@ body {
   display: none;
 }
 
-.content-wrapper {
+/*
+ * Main
+ */
+
+main {
+  height: calc(100% - 70px);
+}
+
+aside {
+  position: fixed;
+  width: 230px;
+  top: 70px;
+  bottom: 10px;
+  padding: 20px 20px;
+  background: #ffffff;
+}
+
+.ais-Panel {
+  margin-top: 20px;
+}
+
+.ais-Panel-header {
+  text-transform: uppercase;
+  border-bottom: 0;
+}
+
+.ais-Panel-header h5 {
+  color: #ce1312;
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.ais-RefinementList-item--selected .ais-RefinementList-label {
+  border: 1px solid #ce1312;
+  margin-top: -1px;
+}
+
+.ais-RefinementList-item--selected .ais-RefinementList-count {
+  background: #333333;
+}
+
+.ais-RefinementList-label {
   display: flex;
-  height: calc(100% - 60px);
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 4px 4px 4px 8px;
+  font-weight: normal;
+  font-size: 0.9em;
+  margin: 0 0 -1px;
+}
+
+.ais-RefinementList-label:hover {
+  color: #ffffff;
+  background: #333333;
+}
+
+.ais-RefinementList-checkbox {
+  display: none;
+}
+
+.ais-RefinementList-count {
+  color: #ffffff;
+  background: #bbbbbb;
+}
+
+/*
+ * Results
+ */
+
+.results {
+  padding: 70px 10px 10px 240px;
+}
+
+.thank-you {
+  margin-top: 20px;
 }
