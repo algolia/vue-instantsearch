@@ -34,6 +34,8 @@ show-loading-indicator | Boolean | `false` | Show a spinner in the search box if
 Here's a list of CSS classes exposed by this widget. To better understand the underlying
 DOM structure, have a look at the generated DOM in your browser.
 
+Note that you can pass the prop `class-names`, with an object of class names and their replacement to override this.
+
 Class name | Description
 ---|---
 `ais-SearchBox` | Container class
