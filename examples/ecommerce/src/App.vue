@@ -99,45 +99,43 @@
                 </div>
               </template>
             </ais-state-results>
-            <div>
-              <article
-                v-for="item in items"
-                :key="item.objectID"
-                class="product"
-              >
-                <div class="product-picture-wrapper">
-                  <img class="product-picture" :src="item.image" :alt="item.name" />
+            <article
+              v-for="item in items"
+              :key="item.objectID"
+              class="product"
+            >
+              <div class="product-picture-wrapper">
+                <img class="product-picture" :src="item.image" :alt="item.name" />
+              </div>
+              <div class="product-desc-wrapper">
+                <div class="product-name">
+                  <ais-highlight attribute="name" :hit="item" />
                 </div>
-                <div class="product-desc-wrapper">
-                  <div class="product-name">
-                    <ais-highlight attribute="name" :hit="item" />
-                  </div>
-                  <div class="product-type">
-                    <ais-highlight attribute="type" :hit="item" />
-                  </div>
-                  <div class="product-footer">
-                    <div class="ais-RatingMenu-link">
-                      <svg
-                        v-for="(_,i) in 5"
-                        :key="i"
-                        :class="[
-                          'ais-RatingMenu-starIcon',
-                          i >= item.rating && 'ais-RatingMenu-starIcon--empty'
-                        ]"
-                        aria-hidden="true"
-                        width="24"
-                        height="24"
-                      >
-                        <use
-                          :xlink:href="`#ais-RatingMenu-star${i >= item.rating ? 'Empty' : ''}Symbol`" 
-                        />
-                      </svg>
-                    </div>
-                    <div class="product-price">${{ item.price }}</div>
-                  </div>
+                <div class="product-brand">
+                  <ais-highlight attribute="brand" :hit="item" />
                 </div>
-              </article>
-            </div>
+                <div class="product-footer">
+                  <div class="ais-RatingMenu-link">
+                    <svg
+                      v-for="(_,i) in 5"
+                      :key="i"
+                      :class="[
+                        'ais-RatingMenu-starIcon',
+                        i >= item.rating && 'ais-RatingMenu-starIcon--empty'
+                      ]"
+                      aria-hidden="true"
+                      width="24"
+                      height="24"
+                    >
+                      <use
+                        :xlink:href="`#ais-RatingMenu-star${i >= item.rating ? 'Empty' : ''}Symbol`"
+                      />
+                    </svg>
+                  </div>
+                  <div class="product-price">${{ item.price }}</div>
+                </div>
+              </div>
+            </article>
           </main>
         </ais-hits>
       </div>
@@ -224,6 +222,7 @@ body {
 
 .product-picture-wrapper {
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .product-picture {
@@ -232,7 +231,7 @@ body {
 }
 
 .product-desc-wrapper {
-  height: 100px;
+  height: 125px;
   width: 100%;
   overflow: hidden;
 }
@@ -245,15 +244,29 @@ body {
   min-width: 120px;
 }
 
-.product-type {
+.product-brand {
   font-size: 0.8em;
   margin: 0 0 10px;
   color: #a2a2a2;
 }
 
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .product-price {
   font-weight: bold;
   color: #000000;
-  float: right;
+}
+
+.ais-RatingMenu-starIcon {
+  width: 15px;
+  fill: #ffc168;
+}
+
+.ais-RatingMenu-starIcon {
+  width: 15px;
+  fill: #ffc168;
 }
 </style>
