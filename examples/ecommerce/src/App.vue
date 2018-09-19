@@ -5,7 +5,12 @@
       index-name="instant_search"
     >
       <ais-configure :hitsPerPage="16" />
-      <my-header />
+
+      <header class="navbar">
+        <img src="https://res.cloudinary.com/hilnmyskv/image/upload/w_100,h_100,dpr_2.0//v1461180087/logo-instantsearchjs-avatar.png" width="40">
+        <h1 class="navbar__title">aeki</h1>
+        <ais-search-box placeholder="Search a product" />
+      </header>
 
       <div class="content-wrapper">
         <aside>
@@ -145,12 +150,8 @@
 
 <script>
 import algoliasearch from 'algoliasearch/lite';
-import MyHeader from './components/Header.vue';
 
 export default {
-  components: {
-    MyHeader,
-  },
   data() {
     return {
       searchClient: algoliasearch('latency','6be0576ff61c053d5f9a3225e2a90f76'),
@@ -182,6 +183,10 @@ body {
   height: 100%;
 }
 
+/*
+ * Header
+ */
+
 .navbar {
   background-color: #222f3f;
   display: flex;
@@ -189,11 +194,62 @@ body {
   padding: 10px;
 }
 
-.navbar-title {
+.navbar__title {
   font-size: 30px;
   font-weight: bold;
   color: #ffffff;
   margin: 0 15px;
+}
+
+/*
+ * SearchBox
+ */
+
+.navbar .ais-SearchBox-form {
+  display: flex;
+}
+
+.navbar .ais-SearchBox-input {
+  width: 275px;
+  padding: 5px 12px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  font-family: Verdana, sans-serif;
+  font-size: 14px;
+}
+
+.navbar .ais-SearchBox-input:focus {
+  border-color: #ffbe61;
+  outline: none;
+}
+
+.navbar .ais-SearchBox-submit {
+  position: initial;
+  background-color: #ffbe61;
+  padding: 0 30px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: none;
+  width: initial;
+  height: initial;
+  top: initial;
+  right: initial;
+  transform: initial;
+}
+
+.navbar .ais-SearchBox-submitIcon {
+  width: 15px;
+  height: 15px;
+  position: initial;
+  top: initial;
+  left: initial;
+  transform: initial;
+}
+
+.navbar .ais-SearchBox-reset {
+  display: none;
 }
 
 .content-wrapper {
