@@ -3,6 +3,7 @@
     <ais-index
       :search-client="searchClient"
       index-name="instant_search"
+      :routing="true"
     >
       <ais-configure :hitsPerPage="16" />
 
