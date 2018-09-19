@@ -90,7 +90,7 @@
             slot-scope="{ items }"
             class="products"
           >
-            <ais-state-results>
+            <ais-search-state>
               <template slot-scope="{ query, hits }">
                 <div class="results-wrapper" v-if="hits.length === 0">
                   <div class="no-results">
@@ -98,7 +98,7 @@
                   </div>
                 </div>
               </template>
-            </ais-state-results>
+            </ais-search-state>
             <article
               v-for="item in items"
               :key="item.objectID"
