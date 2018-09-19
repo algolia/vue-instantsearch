@@ -3,7 +3,13 @@
     :search-client="searchClient"
     index-name="movies"
   >
-    <ais-search-box />
+    <header class="navbar">
+      <img src="https://res.cloudinary.com/hilnmyskv/image/upload/w_100,h_100,dpr_2.0//v1461180087/logo-instantsearchjs-avatar.png" width="40">
+      <h1 class="navbar__title">
+        You <i class="fa fa-youtube-play"></i>
+      </h1>
+      <ais-search-box placeholder="" />
+    </header>
     <ais-hits />
   </ais-index>
 </template>
