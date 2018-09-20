@@ -11,4 +11,4 @@ githubSource: docs/src/examples/ecommerce.md
 
 > TODO: make proper content for this
 
-[link](./ecommerce)
+[link](examples/ecommerce/index.html)
