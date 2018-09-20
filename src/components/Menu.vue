@@ -93,9 +93,6 @@ export default {
       },
     },
   },
-  beforeCreate() {
-    this.connector = connectMenu;
-  },
   data() {
     return {
       widgetName: 'Menu',

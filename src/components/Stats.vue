@@ -25,9 +25,6 @@ export default {
       widgetName: 'Stats',
     };
   },
-  beforeCreate() {
-    this.connector = connectStats;
-  },
   computed: {
     widgetParams() {
       return {};

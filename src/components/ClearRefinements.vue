@@ -49,9 +49,6 @@ export default {
       widgetName: 'ClearRefinements',
     };
   },
-  beforeCreate() {
-    this.connector = connectClearAll;
-  },
   computed: {
     widgetParams() {
       return {

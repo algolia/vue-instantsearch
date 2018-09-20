@@ -145,9 +145,6 @@ export default {
       searchForFacetValuesQuery: '',
     };
   },
-  beforeCreate() {
-    this.connector = connectRefinementList;
-  },
   computed: {
     searchForFacetValues: {
       get() {

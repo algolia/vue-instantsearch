@@ -75,9 +75,6 @@ export default {
       widgetName: 'MenuSelect',
     };
   },
-  beforeCreate() {
-    this.connector = connectMenu;
-  },
   computed: {
     widgetParams() {
       return {

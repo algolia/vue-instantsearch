@@ -96,9 +96,6 @@ export default {
       maxInput: undefined,
     };
   },
-  beforeCreate() {
-    this.connector = connectRange;
-  },
   computed: {
     widgetParams() {
       return {

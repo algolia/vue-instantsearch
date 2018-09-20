@@ -58,9 +58,6 @@ export default {
       widgetName: 'InfiniteHits',
     };
   },
-  beforeCreate() {
-    this.connector = connectInfiniteHits;
-  },
   computed: {
     widgetParams() {
       return {

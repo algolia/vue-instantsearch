@@ -75,9 +75,6 @@ export default {
       widgetName: 'CurrentRefinements',
     };
   },
-  beforeCreate() {
-    this.connector = connectCurrentRefinedValues;
-  },
   computed: {
     noRefinement() {
       return this.refinements.length === 0;

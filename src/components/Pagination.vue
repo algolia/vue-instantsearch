@@ -184,9 +184,6 @@ export default {
       widgetName: 'Pagination',
     };
   },
-  beforeCreate() {
-    this.connector = connectPagination;
-  },
   computed: {
     widgetParams() {
       return {

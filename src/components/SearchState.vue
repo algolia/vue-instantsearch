@@ -47,9 +47,6 @@ const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
 
 export default {
   mixins: [createAlgoliaMixin({ connector: connectStateResults })],
-  beforeCreate() {
-    this.connector = connectStateResults;
-  },
   data() {
     return {
       widgetName: 'SearchState',

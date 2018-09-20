@@ -88,9 +88,7 @@ export default {
       widgetName: 'Breadcrumb',
     };
   },
-  beforeCreate() {
-    this.connector = connectBreadcrumb;
-  },
+
   computed: {
     widgetParams() {
       return {

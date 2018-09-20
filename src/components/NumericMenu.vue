@@ -62,9 +62,6 @@ export default {
       },
     },
   },
-  beforeCreate() {
-    this.connector = connectNumericRefinementList;
-  },
   data() {
     return {
       widgetName: 'NumericMenu',

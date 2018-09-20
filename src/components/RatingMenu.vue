@@ -108,9 +108,6 @@ export default {
       widgetName: 'RatingMenu',
     };
   },
-  beforeCreate() {
-    this.connector = connectStarRating;
-  },
   computed: {
     widgetParams() {
       return {

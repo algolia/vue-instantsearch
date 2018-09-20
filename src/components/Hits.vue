@@ -46,9 +46,6 @@ export default {
       widgetName: 'Hits',
     };
   },
-  beforeCreate() {
-    this.connector = connectHits;
-  },
   computed: {
     items() {
       return this.state.hits;

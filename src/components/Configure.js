@@ -3,9 +3,6 @@ import { connectConfigure } from 'instantsearch.js/es/connectors';
 
 export default {
   mixins: [createAlgoliaMixin({ connector: connectConfigure })],
-  beforeCreate() {
-    this.connector = connectConfigure;
-  },
   data() {
     return { widgetName: 'Configure' };
   },

@@ -51,9 +51,6 @@ export default {
       },
     },
   },
-  beforeCreate() {
-    this.connector = connectHitsPerPage;
-  },
   data() {
     return {
       widgetName: 'HitsPerPage',

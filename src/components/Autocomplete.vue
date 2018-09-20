@@ -43,9 +43,6 @@ export default {
       widgetName: 'Autocomplete',
     };
   },
-  beforeCreate() {
-    this.connector = connectAutocomplete;
-  },
   computed: {
     widgetParams() {
       return {

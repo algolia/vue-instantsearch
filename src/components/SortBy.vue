@@ -51,9 +51,6 @@ export default {
       },
     },
   },
-  beforeCreate() {
-    this.connector = connectSortBySelector;
-  },
   data() {
     return {
       widgetName: 'SortBy',

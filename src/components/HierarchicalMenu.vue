@@ -103,9 +103,6 @@ export default {
       isShowingMore: false,
     };
   },
-  beforeCreate() {
-    this.connector = connectHierarchicalMenu;
-  },
   computed: {
     widgetParams() {
       return {

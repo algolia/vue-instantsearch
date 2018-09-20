@@ -73,9 +73,6 @@ export default {
       widgetName: 'ToggleRefinement',
     };
   },
-  beforeCreate() {
-    this.connector = connectToggle;
-  },
   computed: {
     widgetParams() {
       return {

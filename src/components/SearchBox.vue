@@ -63,9 +63,6 @@ export default {
       widgetName: 'SearchBox',
     };
   },
-  beforeCreate() {
-    this.connector = connectSearchBox;
-  },
   methods: {
     onFormSubmit() {
       const input = this.$el.querySelector('input[type=search]');
