@@ -38,6 +38,7 @@ a {
   background: #ffffff;
   border: initial;
   margin-bottom: initial;
+  z-index: 1;
 }
 
 .navbar__title {
@@ -270,4 +271,28 @@ aside {
   background: #bbbbbb;
   font-weight: initial;
   margin-right: 2px;
+}
+
+.ais-Pagination {
+  margin: 25px 0;
+}
+
+.ais-Pagination-link {
+  background: #f8f8f8;
+  border-radius: 0;
+  color: #333;
+  padding: 3px 8px;
+  margin-right: 4px;
+}
+
+.ais-Pagination-link:hover {
+  color: initial;
+}
+
+.ais-Pagination-item--selected .ais-Pagination-link,
+.ais-Pagination-item--selected .ais-Pagination-link:hover,
+.ais-Pagination-item--selected .ais-Pagination-link:focus {
+  border-color: #337ab7;
+  background-color: #f8f8f8;
+  color: initial;
 }

@@ -79,6 +79,7 @@
               </article>
             </div>
           </ais-hits>
+          <ais-pagination />
         </div>
       </section>
     </main>
