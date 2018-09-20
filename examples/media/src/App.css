@@ -163,6 +163,37 @@ aside {
   background: #bbbbbb;
 }
 
+.ais-RatingMenu-item {
+  margin-bottom: 5px;
+}
+
+.ais-RatingMenu-link,
+.ais-RatingMenu-link:hover {
+  color: black;
+}
+
+.ais-RatingMenu-item--selected .ais-RatingMenu-link {
+  color: #ce1312;
+}
+
+.ais-RatingMenu-starIcon {
+  margin-left: 0;
+}
+
+.ais-RatingMenu-count {
+  padding: 0.1rem 0.4rem;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #bbbbbb;
+  margin-left: auto;
+}
+
+.ais-RatingMenu-count::before,
+.ais-RatingMenu-count::after {
+  display: none;
+}
+
 /*
  * Results
  */
