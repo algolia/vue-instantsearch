@@ -31,7 +31,54 @@
           <div class="results-header">
             <ais-stats />
           </div>
-          <ais-hits />
+          <ais-hits>
+            <div class="movies" slot-scope="{ items }">
+              <!-- Empty state -->
+              <article
+                v-for="item in items"
+                :key="item.objectID"
+                class="movie"
+              >
+                <div class="media">
+                  <div class="media-left">
+                    <div
+                      class="media-object"
+                      :style="`background-image: url('${item.image}');`"></div>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">
+                      <ais-highlight attribute="title" :hit="item" />
+                      <span class="media-rating">
+                        <svg
+                          v-for="(_, i) in 5"
+                          :key="i"
+                          :class="[
+                            'ais-RatingMenu-starIcon',
+                            i >= item.rating && 'ais-RatingMenu-starIcon--empty'
+                          ]"
+                          aria-hidden="true"
+                          width="24"
+                          height="24"
+                        >
+                          <use :xlink:href="`#ais-RatingMenu-star${i >= item.rating ? 'Empty' : ''}Symbol`" />
+                        </svg>
+                      </span>
+                    </h4>
+                    <p class="year">{{ item.year }}</p>
+                    <p class="genre">
+                      <span
+                       v-for="genre in item.genre"
+                       :key="genre"
+                       class="badge"
+                      >
+                        {{ genre }}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </ais-hits>
         </div>
       </section>
     </main>
