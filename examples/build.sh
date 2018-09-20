@@ -11,6 +11,7 @@ for dir in ./* ; do
       name=$(basename "$dir")
       echo "building example: $name"
       cd $name
+      yarn
       yarn build
       cp -R dist ../../docs/dist/examples/$name
       cd ..
