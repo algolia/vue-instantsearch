@@ -223,6 +223,11 @@ aside {
   font-size: 0.9em;
 }
 
+.movies-no-results {
+  text-align: center;
+  font-size: 1.2em;
+}
+
 .movie {
   height: 130px;
   margin-bottom: 10px;

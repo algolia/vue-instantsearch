@@ -33,7 +33,14 @@
           </div>
           <ais-hits>
             <div class="movies" slot-scope="{ items }">
-              <!-- Empty state -->
+              <ais-search-state>
+                <template slot-scope="{ query, hits }">
+                  <p class="movies-no-results" v-if="hits.length === 0">
+                    No results found matching <strong>{{query}}</strong>.
+                  </p>
+                </template>
+              </ais-search-state>
+
               <article
                 v-for="item in items"
                 :key="item.objectID"
