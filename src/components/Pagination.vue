@@ -142,7 +142,7 @@ import { createAlgoliaMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    createAlgoliaMixin(),
+    createAlgoliaMixin({ connector: connectPagination }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.nbPages > 1,
     }),

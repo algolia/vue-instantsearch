@@ -49,7 +49,7 @@ import { createPanelConsumerMixin } from '../mixins/panel';
 
 export default {
   mixins: [
-    createAlgoliaMixin(),
+    createAlgoliaMixin({ connector: connectCurrentRefinedValues }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.refinements.length > 0,
     }),

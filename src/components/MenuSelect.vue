@@ -39,7 +39,7 @@ import { createAlgoliaMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    createAlgoliaMixin(),
+    createAlgoliaMixin({ connector: connectMenu }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.canRefine,
     }),

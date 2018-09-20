@@ -92,7 +92,7 @@ const noop = () => {};
 export default {
   components: { AisSearchInput, AisHighlight },
   mixins: [
-    createAlgoliaMixin(),
+    createAlgoliaMixin({ connector: connectRefinementList }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.canRefine,
     }),

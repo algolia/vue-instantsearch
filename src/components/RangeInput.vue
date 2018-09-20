@@ -63,7 +63,7 @@ const mapStateToCanRefine = state =>
 
 export default {
   mixins: [
-    createAlgoliaMixin(),
+    createAlgoliaMixin({ connector: connectRange }),
     createPanelConsumerMixin({
       mapStateToCanRefine,
     }),

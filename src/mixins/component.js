@@ -1,6 +1,6 @@
 import suit from '../util/suit';
 
-export const createAlgoliaMixin = () => ({
+export const createAlgoliaMixin = ({ connector } = {}) => ({
   inject: {
     instantSearchInstance: {
       name: 'instantSearchInstance',
@@ -19,8 +19,8 @@ export const createAlgoliaMixin = () => ({
     };
   },
   created() {
-    if (this.connector) {
-      this.factory = this.connector(this.updateState, () => {});
+    if (connector) {
+      this.factory = connector(this.updateState, () => {});
       this.widget = this.factory(this.widgetParams);
       this.instantSearchInstance.addWidget(this.widget);
     }

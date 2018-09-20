@@ -47,7 +47,7 @@ const mapStateToCanRefine = state => state.items.length > 0;
 
 export default {
   mixins: [
-    createAlgoliaMixin(),
+    createAlgoliaMixin({ connector: connectHierarchicalMenu }),
     createPanelConsumerMixin({
       mapStateToCanRefine,
     }),

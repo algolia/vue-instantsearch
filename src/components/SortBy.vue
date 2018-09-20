@@ -34,7 +34,7 @@ import { createAlgoliaMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    createAlgoliaMixin(),
+    createAlgoliaMixin({ connector: connectSortBySelector }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => !state.hasNoResults,
     }),

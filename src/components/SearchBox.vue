@@ -27,7 +27,7 @@ import { createAlgoliaMixin } from '../mixins/component';
 import SearchInput from './SearchInput.vue';
 
 export default {
-  mixins: [createAlgoliaMixin()],
+  mixins: [createAlgoliaMixin({ connector: connectSearchBox })],
   components: {
     'ais-search-input': SearchInput,
   },

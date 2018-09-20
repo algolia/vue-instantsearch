@@ -15,7 +15,7 @@ import { createAlgoliaMixin } from '../mixins/component';
 import { connectConfigure } from 'instantsearch.js/es/connectors';
 
 export default {
-  mixins: [createAlgoliaMixin()],
+  mixins: [createAlgoliaMixin({ connector: connectConfigure })],
   beforeCreate() {
     this.connector = connectConfigure;
   },

@@ -41,7 +41,7 @@ const mapStateToCanRefine = state => Boolean(state.value.count);
 
 export default {
   mixins: [
-    createAlgoliaMixin(),
+    createAlgoliaMixin({ connector: connectToggle }),
     createPanelConsumerMixin({
       mapStateToCanRefine,
     }),

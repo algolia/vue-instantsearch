@@ -28,7 +28,7 @@ import { connectHits } from 'instantsearch.js/es/connectors';
 import { createAlgoliaMixin } from '../mixins/component';
 
 export default {
-  mixins: [createAlgoliaMixin()],
+  mixins: [createAlgoliaMixin({ connector: connectHits })],
   props: {
     escapeHTML: {
       type: Boolean,

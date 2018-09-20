@@ -46,7 +46,7 @@ const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
 });
 
 export default {
-  mixins: [createAlgoliaMixin()],
+  mixins: [createAlgoliaMixin({ connector: connectStateResults })],
   beforeCreate() {
     this.connector = connectStateResults;
   },

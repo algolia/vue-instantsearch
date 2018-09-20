@@ -19,7 +19,7 @@ import { createAlgoliaMixin } from '../mixins/component';
 import { connectStats } from 'instantsearch.js/es/connectors';
 
 export default {
-  mixins: [createAlgoliaMixin()],
+  mixins: [createAlgoliaMixin({ connector: connectStats })],
   data() {
     return {
       widgetName: 'Stats',

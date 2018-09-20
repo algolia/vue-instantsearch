@@ -25,7 +25,7 @@ import { createAlgoliaMixin } from '../mixins/component';
 import { connectAutocomplete } from 'instantsearch.js/es/connectors';
 
 export default {
-  mixins: [createAlgoliaMixin()],
+  mixins: [createAlgoliaMixin({ connector: connectAutocomplete })],
   props: {
     indices: {
       type: Array,

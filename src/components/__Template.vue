@@ -33,7 +33,11 @@ export default {
   // ⬇️ this is to help you debugging what's in `state`
   // remove it before pushing the component
   components: { 'json-tree': JsonTree },
-  mixins: [createAlgoliaMixin()],
+  mixins: [
+    createAlgoliaMixin({
+      connector: connectorName, // ◀️ change this to the right connectorName you imported
+    }),
+  ],
   // ⬇️ Those are all the options of your widget (attribute, items ...)
   // You don't need to write down the props that will be forwarded by the connector on render,
   // They are directly accessible in the state in template
@@ -48,9 +52,6 @@ export default {
     return {
       widgetName: 'Template', // ◀️ change this
     };
-  },
-  beforeCreate() {
-    this.connector = connectorName; // ◀️ change this to the right connectorName you imported
   },
   computed: {
     // ⬇️ Those are all the options of your widget (attribute, items ...)

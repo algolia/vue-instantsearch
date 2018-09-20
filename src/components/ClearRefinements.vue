@@ -29,7 +29,7 @@ import { createAlgoliaMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    createAlgoliaMixin(),
+    createAlgoliaMixin({ connector: connectClearAll }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.hasRefinements,
     }),

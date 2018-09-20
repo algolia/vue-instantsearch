@@ -40,7 +40,7 @@ import { createAlgoliaMixin } from '../mixins/component';
 import { connectInfiniteHits } from 'instantsearch.js/es/connectors';
 
 export default {
-  mixins: [createAlgoliaMixin()],
+  mixins: [createAlgoliaMixin({ connector: connectInfiniteHits })],
   props: {
     escapeHTML: {
       type: Boolean,
