@@ -2,6 +2,7 @@
   <ais-index
     :search-client="searchClient"
     index-name="movies"
+    :routing="true"
   >
     <header class="navbar">
       <img src="https://res.cloudinary.com/hilnmyskv/image/upload/w_100,h_100,dpr_2.0//v1461180087/logo-instantsearchjs-avatar.png" width="40">
