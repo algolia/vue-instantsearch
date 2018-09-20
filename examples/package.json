@@ -1,6 +1,0 @@
-{
-  "scripts": {
-    "build": "./build.sh"
-  },
-  "license": "MIT"
-}
