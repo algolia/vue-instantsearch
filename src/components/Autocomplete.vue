@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import algoliaComponent from '../mixins/component';
+import { createAlgoliaMixin } from '../mixins/component';
 import { connectAutocomplete } from 'instantsearch.js/es/connectors';
 
 export default {
-  mixins: [algoliaComponent],
+  mixins: [createAlgoliaMixin()],
   props: {
     indices: {
       type: Array,

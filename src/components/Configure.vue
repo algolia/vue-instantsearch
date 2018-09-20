@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import algoliaComponent from '../mixins/component';
+import { createAlgoliaMixin } from '../mixins/component';
 import { connectConfigure } from 'instantsearch.js/es/connectors';
 
 export default {
-  mixins: [algoliaComponent],
+  mixins: [createAlgoliaMixin()],
   beforeCreate() {
     this.connector = connectConfigure;
   },

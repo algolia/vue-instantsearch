@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import algoliaComponent from '../mixins/component';
+import { createAlgoliaMixin } from '../mixins/component';
 
 const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
   init({ instantSearchInstance }) {
@@ -46,7 +46,7 @@ const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
 });
 
 export default {
-  mixins: [algoliaComponent],
+  mixins: [createAlgoliaMixin()],
   beforeCreate() {
     this.connector = connectStateResults;
   },

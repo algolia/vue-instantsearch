@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import algoliaComponent from '../mixins/component';
+import { createAlgoliaMixin } from '../mixins/component';
 import { connectStats } from 'instantsearch.js/es/connectors';
 
 export default {
-  mixins: [algoliaComponent],
+  mixins: [createAlgoliaMixin()],
   data() {
     return {
       widgetName: 'Stats',

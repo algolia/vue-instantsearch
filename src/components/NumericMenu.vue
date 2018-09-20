@@ -37,11 +37,11 @@
 <script>
 import { connectNumericRefinementList } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import algoliaComponent from '../mixins/component';
+import { createAlgoliaMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    algoliaComponent,
+    createAlgoliaMixin(),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => !state.hasNoResults,
     }),

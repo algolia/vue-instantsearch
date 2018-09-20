@@ -1,6 +1,6 @@
 import suit from '../util/suit';
 
-export default {
+export const createAlgoliaMixin = () => ({
   inject: {
     instantSearchInstance: {
       name: 'instantSearchInstance',
@@ -60,4 +60,4 @@ export default {
       }
     },
   },
-};
+});

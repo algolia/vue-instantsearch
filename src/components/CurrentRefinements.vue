@@ -43,13 +43,13 @@
 </template>
 
 <script>
-import algoliaComponent from '../mixins/component';
+import { createAlgoliaMixin } from '../mixins/component';
 import { connectCurrentRefinedValues } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
 
 export default {
   mixins: [
-    algoliaComponent,
+    createAlgoliaMixin(),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.refinements.length > 0,
     }),
