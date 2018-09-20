@@ -3,8 +3,6 @@
     :search-client="searchClient"
     index-name="movies"
   >
-    <ais-configure :hitsPerPage="250" />
-
     <header class="navbar">
       <img src="https://res.cloudinary.com/hilnmyskv/image/upload/w_100,h_100,dpr_2.0//v1461180087/logo-instantsearchjs-avatar.png" width="40">
       <h1 class="navbar__title">
@@ -28,8 +26,13 @@
         </div>
       </aside>
 
-      <section class="results">
-        <ais-hits />
+      <section class="content">
+        <div class="results">
+          <div class="results-header">
+            <ais-stats />
+          </div>
+          <ais-hits />
+        </div>
       </section>
     </main>
   </ais-index>

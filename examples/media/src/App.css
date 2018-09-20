@@ -194,14 +194,30 @@ aside {
   display: none;
 }
 
+.thank-you {
+  margin-top: 20px;
+}
+
 /*
  * Results
  */
 
-.results {
+.content {
   padding: 70px 10px 10px 240px;
 }
 
-.thank-you {
-  margin-top: 20px;
+.results {
+  background: white;
+  padding: 15px;
+}
+
+.results-header {
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.ais-Stats-text {
+  font-size: 0.9em;
 }
