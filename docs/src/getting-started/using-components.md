@@ -19,32 +19,32 @@ You can try most of them out in our playground.
 
 <a class="btn btn-static-theme" href="stories/">🕹 try out live</a>
 
-* [AisInstantSearch](components/index.html)
-* [Autocomplete](components/Autocomplete.html)
-* [Breadcrumb](components/Breadcrumb.html)
-* [ClearRefinements](components/ClearRefinements.html)
-* [CurrentRefinements](components/CurrentRefinements.html)
-* [HierarchicalMenu](components/HierarchicalMenu.html)
-* [Hits](components/Hits.html)
-* [HitsPerPage](components/HitsPerPage.html)
-* [InfiniteHits](components/InfiniteHits.html)
-* [Menu](components/Menu.html)
-* [MenuSelect](components/MenuSelect.html)
-* [NumericMenu](components/NumericMenu.html)
-* [Panel](components/Panel.html)
-* [RangeInput](components/RangeInput.html)
-* [RefinementList](components/RefinementList.html)
-* [SortBy](components/SortBy.html)
-* [ToggleRefinement](components/ToggleRefinement.html)
-* [configure](components/configure.html)
-* [highlight](components/highlight.html)
-* [pagination](components/pagination.html)
-* [PoweredBy](components/powered-by.html)
-* [Rating](components/rating-menu.html)
-* [SearchBox](components/search-box.html)
-* [SearchState](components/SearchState.html)
-* [Snippet](components/snippet.html)
-* [Stats](components/stats.html)
+* [ais-instant-search](components/index.html)
+* [ais-autocomplete](components/Autocomplete.html)
+* [ais-breadcrumb](components/Breadcrumb.html)
+* [ais-clear-refinements](components/ClearRefinements.html)
+* [ais-current-refinements](components/CurrentRefinements.html)
+* [ais-hierarchical-menu](components/HierarchicalMenu.html)
+* [ais-hits](components/Hits.html)
+* [ais-hits-per-page](components/HitsPerPage.html)
+* [ais-infinite-hits](components/InfiniteHits.html)
+* [ais-menu](components/Menu.html)
+* [ais-menu-select](components/MenuSelect.html)
+* [ais-numeric-menu](components/NumericMenu.html)
+* [ais-panel](components/Panel.html)
+* [ais-range-input](components/RangeInput.html)
+* [ais-refinement-list](components/RefinementList.html)
+* [ais-sort-by](components/SortBy.html)
+* [ais-toggle-refinement](components/ToggleRefinement.html)
+* [ais-configure](components/configure.html)
+* [ais-highlight](components/highlight.html)
+* [ais-pagination](components/pagination.html)
+* [ais-powered-by](components/powered-by.html)
+* [ais-rating](components/rating-menu.html)
+* [ais-search-box](components/search-box.html)
+* [ais-search-state](components/SearchState.html)
+* [ais-snippet](components/snippet.html)
+* [ais-stats](components/stats.html)
 
 ## Registering components
 
@@ -83,12 +83,17 @@ An alternative approach is to register components when we need them:
 // src/main.js
 import Vue from 'vue';
 import App from './App.vue'
-import { AisInstantSearch, SearchBox, Hits, Pagination } from 'vue-instantsearch';
+import {
+  AisInstantSearch,
+  AisSearchBox,
+  AisHits,
+  AisPagination
+} from 'vue-instantsearch';
 
 Vue.component('ais-instant-search', AisInstantSearch);
-Vue.component('ais-search-box', SearchBox);
-Vue.component('ais-hits', Hits);
-Vue.component('ais-pagination', Pagination);
+Vue.component('ais-search-box', AisSearchBox);
+Vue.component('ais-hits', AisHits);
+Vue.component('ais-pagination', AisPagination);
 
 new Vue({
   el: '#app',
