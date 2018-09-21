@@ -29,13 +29,13 @@
 <script>
 import { connectHitsPerPage } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import algoliaComponent from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 import { createSuitMixin } from '../mixins/suit';
 
 export default {
   mixins: [
     createSuitMixin({ name: 'HitsPerPage' }),
-    algoliaComponent,
+    createWidgetMixin({ connector: connectHitsPerPage }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => !state.hasNoResults,
     }),
@@ -52,9 +52,6 @@ export default {
         return items;
       },
     },
-  },
-  beforeCreate() {
-    this.connector = connectHitsPerPage;
   },
   data() {
     return {

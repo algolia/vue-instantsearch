@@ -36,12 +36,15 @@
 </template>
 
 <script>
-import algoliaComponent from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 import { connectInfiniteHits } from 'instantsearch.js/es/connectors';
 import { createSuitMixin } from '../mixins/suit';
 
 export default {
-  mixins: [algoliaComponent, createSuitMixin({ name: 'InfiniteHits' })],
+  mixins: [
+    createWidgetMixin({ connector: connectInfiniteHits }),
+    createSuitMixin({ name: 'InfiniteHits' }),
+  ],
   props: {
     escapeHTML: {
       type: Boolean,
@@ -53,9 +56,6 @@ export default {
         return items;
       },
     },
-  },
-  beforeCreate() {
-    this.connector = connectInfiniteHits;
   },
   computed: {
     widgetParams() {

@@ -1,9 +1,9 @@
-import Component from './mixins/component';
+import { createWidgetMixin } from './mixins/widget';
 
 import Autocomplete from './components/Autocomplete.vue';
 import Breadcrumb from './components/Breadcrumb.vue';
 import ClearRefinements from './components/ClearRefinements.vue';
-import Configure from './components/Configure.vue';
+import Configure from './components/Configure';
 import CurrentRefinements from './components/CurrentRefinements.vue';
 import HierarchicalMenu from './components/HierarchicalMenu.vue';
 import Highlight from './components/Highlight.vue';
@@ -28,7 +28,7 @@ import Stats from './components/Stats.vue';
 import ToggleRefinement from './components/ToggleRefinement.vue';
 
 const InstantSearch = {
-  Component,
+  createWidgetMixin,
   // widgets:
   Autocomplete,
   Breadcrumb,
@@ -90,6 +90,8 @@ const InstantSearch = {
 export default InstantSearch;
 
 export {
+  createWidgetMixin,
+  // widgets:
   Autocomplete,
   Breadcrumb,
   ClearRefinements,

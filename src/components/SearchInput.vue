@@ -114,11 +114,10 @@
 </template>
 
 <script>
-import algoliaComponent from '../mixins/component';
 import { createSuitMixin } from '../mixins/suit';
 
 export default {
-  mixins: [algoliaComponent, createSuitMixin({ name: 'SearchBox' })],
+  mixins: [createSuitMixin({ name: 'SearchBox' })],
   props: {
     placeholder: {
       type: String,

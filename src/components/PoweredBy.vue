@@ -31,11 +31,10 @@
 </template>
 
 <script>
-import algoliaComponent from '../mixins/component';
 import { createSuitMixin } from '../mixins/suit';
 
 export default {
-  mixins: [algoliaComponent, createSuitMixin({ name: 'PoweredBy' })],
+  mixins: [createSuitMixin({ name: 'PoweredBy' })],
   props: {
     theme: {
       default: 'light',

@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import algoliaComponent from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 import { createPanelConsumerMixin } from '../mixins/panel';
 import { createSuitMixin } from '../mixins/suit';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
@@ -93,8 +93,8 @@ const noop = () => {};
 export default {
   components: { AisSearchInput, AisHighlight },
   mixins: [
-    algoliaComponent,
     createSuitMixin({ name: 'RefinementList' }),
+    createWidgetMixin({ connector: connectRefinementList }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.canRefine,
     }),
@@ -145,9 +145,6 @@ export default {
     return {
       searchForFacetValuesQuery: '',
     };
-  },
-  beforeCreate() {
-    this.connector = connectRefinementList;
   },
   computed: {
     searchForFacetValues: {

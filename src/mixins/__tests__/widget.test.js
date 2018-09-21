@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils';
-import mixin from '../component';
+import { createWidgetMixin } from '../widget';
 
 const createFakeComponent = localVue =>
   localVue.component('Test', {
@@ -25,12 +25,11 @@ it('adds a widget on create', () => {
   };
 
   mount(Test, {
-    mixins: [mixin],
+    mixins: [createWidgetMixin({ connector })],
     provide: {
       instantSearchInstance: instance,
     },
     data: () => ({
-      connector,
       widgetParams,
     }),
   });
@@ -56,12 +55,11 @@ it('removes a widget on destroy', () => {
   };
 
   const wrapper = mount(Test, {
-    mixins: [mixin],
+    mixins: [createWidgetMixin({ connector })],
     provide: {
       instantSearchInstance: instance,
     },
     data: () => ({
-      connector,
       widgetParams,
     }),
   });
@@ -94,12 +92,11 @@ it('updates widget on widget params change', () => {
   };
 
   const wrapper = mount(Test, {
-    mixins: [mixin],
+    mixins: [createWidgetMixin({ connector })],
     provide: {
       instantSearchInstance: instance,
     },
     data: () => ({
-      connector,
       widgetParams,
     }),
   });
@@ -144,12 +141,11 @@ it('updates local state on connector render', () => {
   };
 
   const wrapper = mount(Test, {
-    mixins: [mixin],
+    mixins: [createWidgetMixin({ connector })],
     provide: {
       instantSearchInstance: instance,
     },
     data: () => ({
-      connector,
       widgetParams,
     }),
   });

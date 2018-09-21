@@ -54,12 +54,12 @@
 <script>
 import { connectBreadcrumb } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import algoliaComponent from '../mixins/component';
 import { createSuitMixin } from '../mixins/suit';
+import { createWidgetMixin } from '../mixins/widget';
 
 export default {
   mixins: [
-    algoliaComponent,
+    createWidgetMixin({ connector: connectBreadcrumb }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.canRefine,
     }),
@@ -84,9 +84,6 @@ export default {
         return items;
       },
     },
-  },
-  beforeCreate() {
-    this.connector = connectBreadcrumb;
   },
   computed: {
     widgetParams() {

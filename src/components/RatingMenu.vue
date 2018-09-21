@@ -80,13 +80,13 @@
 <script>
 import { connectStarRating } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import algoliaComponent from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 import { createSuitMixin } from '../mixins/suit';
 
 export default {
   mixins: [
     createSuitMixin({ name: 'RatingMenu' }),
-    algoliaComponent,
+    createWidgetMixin({ connector: connectStarRating }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => !state.hasNoResults,
     }),
@@ -104,9 +104,6 @@ export default {
       type: Number,
       default: 5,
     },
-  },
-  beforeCreate() {
-    this.connector = connectStarRating;
   },
   computed: {
     widgetParams() {

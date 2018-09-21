@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import algoliaComponent from '../mixins/component';
 import { createSuitMixin } from '../mixins/suit';
+import { createWidgetMixin } from '../mixins/widget';
 
 const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
   init({ instantSearchInstance }) {
@@ -47,9 +47,9 @@ const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
 });
 
 export default {
-  mixins: [algoliaComponent, createSuitMixin({ name: 'SearchState' })],
-  beforeCreate() {
-    this.connector = connectStateResults;
-  },
+  mixins: [
+    createWidgetMixin({ connector: connectStateResults }),
+    createSuitMixin({ name: 'SearchState' }),
+  ],
 };
 </script>

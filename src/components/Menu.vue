@@ -49,13 +49,13 @@
 <script>
 import { connectMenu } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import algoliaComponent from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 import { createSuitMixin } from '../mixins/suit';
 
 export default {
   mixins: [
     createSuitMixin({ name: 'Menu' }),
-    algoliaComponent,
+    createWidgetMixin({ connector: connectMenu }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.canRefine,
     }),
@@ -94,9 +94,6 @@ export default {
         return items;
       },
     },
-  },
-  beforeCreate() {
-    this.connector = connectMenu;
   },
   computed: {
     widgetParams() {

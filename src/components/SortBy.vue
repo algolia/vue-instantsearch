@@ -30,13 +30,14 @@
 <script>
 import { connectSortBySelector } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import algoliaComponent from '../mixins/component';
 import { createSuitMixin } from '../mixins/suit';
+import { createWidgetMixin } from '../mixins/widget';
 
 export default {
   mixins: [
     createSuitMixin({ name: 'SortBy' }),
-    algoliaComponent,
+    createWidgetMixin({ connector: connectSortBySelector }),
+
     createPanelConsumerMixin({
       mapStateToCanRefine: state => !state.hasNoResults,
     }),
@@ -52,9 +53,6 @@ export default {
         return items;
       },
     },
-  },
-  beforeCreate() {
-    this.connector = connectSortBySelector;
   },
   computed: {
     widgetParams() {
