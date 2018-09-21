@@ -1,4 +1,5 @@
 import suit from '../util/suit';
+import { warn } from '../util/warn';
 
 export const createAlgoliaMixin = ({ connector } = {}) => ({
   inject: {
@@ -19,10 +20,22 @@ export const createAlgoliaMixin = ({ connector } = {}) => ({
     };
   },
   created() {
-    if (connector) {
+    if (typeof connector === 'function') {
       this.factory = connector(this.updateState, () => {});
       this.widget = this.factory(this.widgetParams);
       this.instantSearchInstance.addWidget(this.widget);
+    } else if (connector !== true) {
+      warn(
+        `You are using the InstantSearch widget mixin, but didn't provide a connector.
+While this is technically possible, and will give you access to the Helper,
+it's not the recommended way of making custom components.
+
+If you want to disable this message, pass { connector: true } to the mixin.
+
+(TODO: update v2 link)
+Read more on using connectors: https://community.algolia.com/vue-instantsearch/getting-started/custom-components.html
+        `
+      );
     }
   },
   beforeDestroy() {
