@@ -27,6 +27,8 @@ Some components have been renamed to be be more consistent with other InstantSea
 * `ais-sort-by-selector` -> `ais-sort-by`
 * `ais-index` -> `ais-instant-search`
 
+All individual component exports have also been renamed from e.g. `SearchBox` to `AisSearchBox`. This is to make it more ergonomic to use them as components in a Vue file with the same name as expected.
+
 ### New components
 
 Find more information on these in their respective documentation.
@@ -128,7 +130,7 @@ All CSS class names are now different, since we follow the SUIT CSS methodology 
 
 Since the DOM output is also different in most widgets, it's best to start styling over from scratch on these widgets.
 
-Each widget lists the css classes it uses in its documentation page.
+Each widget lists the CSS classes it uses in its documentation page.
 
 ### Known limitations
 
