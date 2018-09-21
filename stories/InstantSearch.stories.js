@@ -36,7 +36,7 @@ const searchFunctions = {
   },
 };
 
-storiesOf('AisInstantSearch', module)
+storiesOf('ais-instant-search', module)
   .add('simple usage', () => ({
     template: `
       <ais-instant-search

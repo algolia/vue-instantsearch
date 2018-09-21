@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/vue';
 import algoliasearch from 'algoliasearch';
 
-storiesOf('MultiIndex', module)
+storiesOf('multiple indices', module)
   .add('using search-box', () => ({
     template: `
   <div>
