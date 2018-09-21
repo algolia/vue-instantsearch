@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils';
-import { createWidgetMixin } from '../component';
+import { createWidgetMixin } from '../widget';
 
 const createFakeComponent = localVue =>
   localVue.component('Test', {
