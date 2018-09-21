@@ -57,18 +57,4 @@ storiesOf('Hits', module)
         <template slot="footer">Footer</template>
       </ais-panel>
     `,
-  }))
-  .add('inline template', () => ({
-    template: `
-    <ais-hits inline-template>
-      <table v-if="state">
-        <tbody>
-          <tr v-for="hit in items" :key="hit.objectID">
-            <td>{{ hit.name }}</td>
-            <td>{{ hit.description }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </ais-hits>
-    `,
   }));
