@@ -25,6 +25,7 @@ Some components have been renamed to be be more consistent with other InstantSea
 * `ais-results-per-page-selector` -> `ais-hits-per-page`
 * `ais-rating` -> `ais-rating-menu`
 * `ais-sort-by-selector` -> `ais-sort-by`
+* `ais-index` -> `ais-instant-search`
 
 ### New components
 
@@ -93,13 +94,13 @@ This is now handled by the `search-client` prop. Search client is what gets retu
 
 ```diff
   <template>
-    <ais-index
+    <ais-instant-search
 -     app-id="appID"
 -     api-key="apiKey"
 +     :search-client="searchClient"
     >
       <slot>My app</slot>
-    </ais-index>
+    </ais-instant-search>
     </template>
 
 + <script>
@@ -133,7 +134,7 @@ Each widget lists the css classes it uses in its documentation page.
 
 1. SSR
 
-In this alpha version there's no server side rendering support. To align this with your site which might already use SSR, you can disable that for now, by wrapping the `ais-index` component in a `no-ssr` component.
+In this alpha version there's no server side rendering support. To align this with your site which might already use SSR, you can disable that for now, by wrapping the `ais-instant-search` component in a `no-ssr` component.
 
 The reason we chose not to enable SSR yet, is because we are looking for a elegant way of integrating it, without needing to write lots of custom code for the server side parts. 
 
@@ -160,6 +161,6 @@ This widget is new, but still waiting for reviews and will be added in a next ve
 
 If you have a good, or better naming idea for this, [please get in touch](https://github.com/algolia/vue-instantsearch/issues/new?template=v2_feedback.md).
 
-4. changing props on `ais-index`. 
+4. changing props on `ais-instant-search`. 
 
-In this beta it isn't possible to change props on `ais-index`. The next alpha will have handling will handle all prop changes, except `searchFunction` and `routing`. If you have a need for those to be changed as well, [please get in touch](https://github.com/algolia/vue-instantsearch/issues/new?template=v2_feedback.md).
+In this beta it isn't possible to change props on `ais-instant-search`. The next alpha will have handling will handle all prop changes, except `searchFunction` and `routing`. If you have a need for those to be changed as well, [please get in touch](https://github.com/algolia/vue-instantsearch/issues/new?template=v2_feedback.md).

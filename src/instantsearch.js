@@ -9,7 +9,7 @@ import HierarchicalMenu from './components/HierarchicalMenu.vue';
 import Highlight from './components/Highlight.vue';
 import Hits from './components/Hits.vue';
 import HitsPerPage from './components/HitsPerPage.vue';
-import Index from './components/Index.vue';
+import AisInstantSearch from './components/InstantSearch.vue';
 import InfiniteHits from './components/InfiniteHits.vue';
 import Menu from './components/Menu.vue';
 import MenuSelect from './components/MenuSelect.vue';
@@ -27,7 +27,7 @@ import SortBy from './components/SortBy.vue';
 import Stats from './components/Stats.vue';
 import ToggleRefinement from './components/ToggleRefinement.vue';
 
-const InstantSearch = {
+const AisInstantSearch = {
   Component,
   // widgets:
   Autocomplete,
@@ -39,7 +39,7 @@ const InstantSearch = {
   Highlight,
   Hits,
   HitsPerPage,
-  Index,
+  AisInstantSearch,
   InfiniteHits,
   Menu,
   MenuSelect,
@@ -67,7 +67,7 @@ const InstantSearch = {
     Vue.component('ais-highlight', Highlight);
     Vue.component('ais-hits-per-page', HitsPerPage);
     Vue.component('ais-hits', Hits);
-    Vue.component('ais-index', Index);
+    Vue.component('ais-instant-search', AisInstantSearch);
     Vue.component('ais-infinite-hits', InfiniteHits);
     Vue.component('ais-menu', Menu);
     Vue.component('ais-menu-select', MenuSelect);
@@ -87,7 +87,7 @@ const InstantSearch = {
   },
 };
 
-export default InstantSearch;
+export default AisInstantSearch;
 
 export {
   Autocomplete,
@@ -99,7 +99,7 @@ export {
   Highlight,
   Hits,
   HitsPerPage,
-  Index,
+  AisInstantSearch,
   InfiniteHits,
   Menu,
   MenuSelect,

@@ -137,9 +137,9 @@ You can now use that component in your application:
 
 ```vue
 <template>
-  <ais-index app-id="<app-id>" api-key="<api-key>" index-name="<index-name>">
+  <ais-instant-search app-id="<app-id>" api-key="<api-key>" index-name="<index-name>">
     <table-results></table-results>
-  </ais-index>
+  </ais-instant-search>
 </template>
 <script>
 import TableResults from './TableResults.vue';

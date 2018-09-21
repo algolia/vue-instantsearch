@@ -16,7 +16,7 @@ test('Should register all components when installed', () => {
     'ais-highlight',
     'ais-hits-per-page',
     'ais-hits',
-    'ais-index',
+    'ais-instant-search',
     'ais-infinite-hits',
     'ais-menu',
     'ais-menu-select',

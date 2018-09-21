@@ -1,5 +1,5 @@
 <template>
-  <!-- Index is an empty component that will hold other widgets -->
+  <!-- AisInstantSearch is an empty component that will hold other widgets -->
   <div :class="suit()">
     <slot />
   </div>
@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      widgetName: 'Index',
+      widgetName: 'InstantSearch',
       instantSearchInstance: instantsearch({
         searchClient: this.searchClient,
         indexName: this.indexName,

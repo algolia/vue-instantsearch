@@ -1,5 +1,5 @@
 ---
-title: Index
+title: AisInstantSearch
 mainTitle: Components
 layout: main.pug
 category: Components
@@ -19,12 +19,12 @@ Basic usage:
 
 ```html
 <template>
-  <ais-index
+  <ais-instant-search
     index-name="your_indexName"
     :search-client="searchClient"
   >
     <!-- Add your InstantSearch components here. -->
-  </ais-index>
+  </ais-instant-search>
 </template>
 
 <!-- You need to instantiate the search client in your script -->
@@ -57,10 +57,10 @@ Name | Type | Default | Description | Required
 
 Name | Description
 ---|---
-default | Can contain anything. All InstantSearch components are required to be inside a `ais-index` component.
+default | Can contain anything. All InstantSearch components are required to be inside a `ais-instant-search` component.
 
 ## CSS Classes
 
 Class name | Description
 ---|---
-`ais-Index` | Container class
+`ais-InstantSearch` | Container class

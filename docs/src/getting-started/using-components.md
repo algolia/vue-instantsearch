@@ -19,7 +19,7 @@ You can try most of them out in our playground.
 
 <a class="btn btn-static-theme" href="stories/">🕹 try out live</a>
 
-* [Index](components/index.html)
+* [AisInstantSearch](components/index.html)
 * [Autocomplete](components/Autocomplete.html)
 * [Breadcrumb](components/Breadcrumb.html)
 * [ClearRefinements](components/ClearRefinements.html)
@@ -83,9 +83,9 @@ An alternative approach is to register components when we need them:
 // src/main.js
 import Vue from 'vue';
 import App from './App.vue'
-import { Index, SearchBox, Hits, Pagination } from 'vue-instantsearch';
+import { AisInstantSearch, SearchBox, Hits, Pagination } from 'vue-instantsearch';
 
-Vue.component('ais-index', Index);
+Vue.component('ais-instant-search', AisInstantSearch);
 Vue.component('ais-search-box', SearchBox);
 Vue.component('ais-hits', Hits);
 Vue.component('ais-pagination', Pagination);
@@ -106,16 +106,16 @@ When manually importing components, you can change that naming convention and as
 
 ## Using components
 
-All search components must be wrapped in an [`Index`](components/index.html) component.
+All search components must be wrapped in an [`AisInstantSearch`](components/index.html) component.
 
 ```html
 <template>
   <div id="app">
-    <ais-index app-id="appId" api-key="apiKey" index-name="indexName">
+    <ais-instant-search app-id="appId" api-key="apiKey" index-name="indexName">
       <ais-search-box></ais-search-box>
       <ais-hits></ais-hits>
       <ais-pagination></ais-pagination>
-    </ais-index>
+    </ais-instant-search>
   </div>
 </template>
 ```

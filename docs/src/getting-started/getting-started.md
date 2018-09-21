@@ -88,7 +88,7 @@ Open the `src/App.vue` component. Then replace the whole beginning of the file, 
 
 ```html
 <template>
-  <ais-index
+  <ais-instant-search
     app-id="latency"
     api-key="3d9875e51fbd20c7754e65422f7ce5e1"
     index-name="bestbuy"
@@ -101,7 +101,7 @@ Open the `src/App.vue` component. Then replace the whole beginning of the file, 
         </h2>
       </template>
     </ais-results>
-  </ais-index>
+  </ais-instant-search>
 </template>
 ```
 
@@ -113,23 +113,23 @@ Save, and see the result in the browser. Play with it!
 
 In this section you'll learn a bit more about what you just implemented.
 
-### The Index component
+### The AisInstantSearch component
 
-All search components needs to be wrapped in an Index component.
+All search components needs to be wrapped in an AisInstantSearch component.
 
 ```html
-<ais-index
+<ais-instant-search
   app-id="latency"
   api-key="3d9875e51fbd20c7754e65422f7ce5e1"
   index-name="bestbuy"
 >
   <!-- Search components go here -->
-</ais-index>
+</ais-instant-search>
 ```
 
-You should configure the Index component with the application ID and API search only key.
+You should configure the AisInstantSearch component with the application ID and API search only key.
 
-The job of the Index component is to hold the state of the search, and to provide it to child components.
+The job of the AisInstantSearch component is to hold the state of the search, and to provide it to child components.
 
 **Info:** Alternatively you can [manually inject a search store](getting-started/search-store.html), for example to support server-side rendering.
 

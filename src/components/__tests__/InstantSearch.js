@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import { mount } from '@vue/test-utils';
 import instantsearch from 'instantsearch.js/es';
-import Index from '../Index.vue';
+import AisInstantSearch from '../InstantSearch.vue';
 
 jest.mock('instantsearch.js/es', () => {
   const isPlainObject = require('lodash/isPlainObject');
@@ -42,7 +42,7 @@ beforeEach(() => jest.clearAllMocks());
 it('passes props to InstantSearch.js', () => {
   const searchClient = {};
   const searchFunction = helper => helper.search();
-  mount(Index, {
+  mount(AisInstantSearch, {
     propsData: {
       searchClient,
       indexName: 'something',
@@ -62,7 +62,7 @@ it('passes props to InstantSearch.js', () => {
 });
 
 it('calls `start` on the next tick', done => {
-  mount(Index, {
+  mount(AisInstantSearch, {
     propsData: {
       searchClient: {},
       indexName: 'something',
@@ -76,7 +76,7 @@ it('calls `start` on the next tick', done => {
 });
 
 it('provides an InstantSearch instance', () => {
-  const wrapper = mount(Index, {
+  const wrapper = mount(AisInstantSearch, {
     propsData: {
       searchClient: {},
       indexName: 'bla',
@@ -92,7 +92,7 @@ it('provides an InstantSearch instance', () => {
 });
 
 it('renders correctly (empty)', () => {
-  const wrapper = mount(Index, {
+  const wrapper = mount(AisInstantSearch, {
     propsData: {
       searchClient: {},
       indexName: 'bla',
@@ -103,7 +103,7 @@ it('renders correctly (empty)', () => {
 });
 
 it('renders correctly (with slot used)', () => {
-  const wrapper = mount(Index, {
+  const wrapper = mount(AisInstantSearch, {
     propsData: {
       searchClient: {},
       indexName: 'bla',
@@ -117,7 +117,7 @@ it('renders correctly (with slot used)', () => {
 });
 
 it('Allows a change in `index-name`', () => {
-  const wrapper = mount(Index, {
+  const wrapper = mount(AisInstantSearch, {
     propsData: {
       searchClient: {},
       indexName: 'bla',
@@ -134,7 +134,7 @@ it('Allows a change in `index-name`', () => {
 });
 
 it('Allows a change in `search-client`', () => {
-  const wrapper = mount(Index, {
+  const wrapper = mount(AisInstantSearch, {
     propsData: {
       searchClient: {},
       indexName: 'bla',
@@ -154,7 +154,7 @@ it('Allows a change in `search-client`', () => {
 
 it('Does not allow a change in `search-function`', () => {
   global.console.error = jest.fn();
-  const wrapper = mount(Index, {
+  const wrapper = mount(AisInstantSearch, {
     propsData: {
       searchClient: {},
       indexName: 'bla',
@@ -176,7 +176,7 @@ Please open a new issue: https://github.com/algolia/vue-instantsearch/issues/new
 
 it('Does not allow a change in `routing`', () => {
   global.console.error = jest.fn();
-  const wrapper = mount(Index, {
+  const wrapper = mount(AisInstantSearch, {
     propsData: {
       searchClient: {},
       indexName: 'bla',
