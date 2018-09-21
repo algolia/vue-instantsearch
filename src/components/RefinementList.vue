@@ -2,7 +2,7 @@
   <div
     :class="[
       suit(),
-      !state.canRefine && suit('','noRefinement').join(' ')
+      !state.canRefine && suit('','noRefinement')
     ]"
     v-if="state"
   >
@@ -71,7 +71,7 @@
         :class="[
           suit('showMore'),
           {
-            [suit('showMore', 'disabled').join(' ')]: !state.canToggleShowMore,
+            [suit('showMore', 'disabled')]: !state.canToggleShowMore,
           }
         ]"
         @click="toggleShowMore"

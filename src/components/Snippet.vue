@@ -43,7 +43,7 @@ export default {
       return attributeValue
         .replace(
           new RegExp('<em>', 'g'),
-          `<${this.highlightedTagName} class="${this.suit('highlighted').join(' ')}">`
+          `<${this.highlightedTagName} class="${this.suit('highlighted')}">`
         )
         .replace(new RegExp('</em>', 'g'), `</${this.highlightedTagName}>`);
     },

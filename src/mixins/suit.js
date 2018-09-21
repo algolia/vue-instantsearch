@@ -11,7 +11,10 @@ export const createSuitMixin = ({ name }) => ({
     suit(element, modifier) {
       const className = suit(name, element, modifier);
       const userClassName = this.classNames && this.classNames[className];
-      return [className, userClassName];
+      if (userClassName) {
+        return [className, userClassName].join(' ');
+      }
+      return className;
     },
   },
 });

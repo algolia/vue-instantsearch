@@ -1093,7 +1093,7 @@ exports[`default render renders correctly with show more disabled 1`] = `
     </li>
   </ul>
   <button disabled="disabled"
-          class="ais-HierarchicalMenu-showMore ais-HierarchicalMenu-showMore--disabled "
+          class="ais-HierarchicalMenu-showMore ais-HierarchicalMenu-showMore--disabled"
   >
     Show more
   </button>
@@ -1223,7 +1223,7 @@ exports[`default render renders correctly with show more label 1`] = `
     </li>
   </ul>
   <button disabled="disabled"
-          class="ais-HierarchicalMenu-showMore ais-HierarchicalMenu-showMore--disabled "
+          class="ais-HierarchicalMenu-showMore ais-HierarchicalMenu-showMore--disabled"
   >
     Show more
   </button>

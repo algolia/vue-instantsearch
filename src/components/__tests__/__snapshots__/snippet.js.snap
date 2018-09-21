@@ -4,7 +4,7 @@ exports[`allows usage of dot delimited path to access nested attribute 1`] = `
 
 <span class="ais-Snippet">
   nested
-  <mark class="ais-Snippet-highlighted ">
+  <mark class="ais-Snippet-highlighted">
     val
   </mark>
 </span>
@@ -15,7 +15,7 @@ exports[`renders proper HTML 1`] = `
 
 <span class="ais-Snippet">
   con
-  <mark class="ais-Snippet-highlighted ">
+  <mark class="ais-Snippet-highlighted">
     ten
   </mark>
   t
@@ -27,7 +27,7 @@ exports[`renders proper HTML with highlightTagName 1`] = `
 
 <span class="ais-Snippet">
   con
-  <marquee class="ais-Snippet-highlighted ">
+  <marquee class="ais-Snippet-highlighted">
     ten
   </marquee>
   t
