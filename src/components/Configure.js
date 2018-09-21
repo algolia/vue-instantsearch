@@ -1,8 +1,8 @@
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 import { connectConfigure } from 'instantsearch.js/es/connectors';
 
 export default {
-  mixins: [createAlgoliaMixin({ connector: connectConfigure })],
+  mixins: [createWidgetMixin({ connector: connectConfigure })],
   data() {
     return { widgetName: 'Configure' };
   },

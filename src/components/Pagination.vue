@@ -138,11 +138,11 @@
 <script>
 import { connectPagination } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    createAlgoliaMixin({ connector: connectPagination }),
+    createWidgetMixin({ connector: connectPagination }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.nbPages > 1,
     }),

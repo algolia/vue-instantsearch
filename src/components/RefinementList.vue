@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 import { createPanelConsumerMixin } from '../mixins/panel';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
 import AisSearchInput from './SearchInput.vue';
@@ -92,7 +92,7 @@ const noop = () => {};
 export default {
   components: { AisSearchInput, AisHighlight },
   mixins: [
-    createAlgoliaMixin({ connector: connectRefinementList }),
+    createWidgetMixin({ connector: connectRefinementList }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.canRefine,
     }),

@@ -14,7 +14,7 @@ export function __setState(newState) {
   state = newState;
 }
 
-export const createAlgoliaMixin = () => ({
+export const createWidgetMixin = () => ({
   data() {
     return {
       state,

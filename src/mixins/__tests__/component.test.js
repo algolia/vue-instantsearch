@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils';
-import { createAlgoliaMixin } from '../component';
+import { createWidgetMixin } from '../component';
 
 const createFakeComponent = localVue =>
   localVue.component('Test', {
@@ -25,7 +25,7 @@ it('adds a widget on create', () => {
   };
 
   mount(Test, {
-    mixins: [createAlgoliaMixin({ connector })],
+    mixins: [createWidgetMixin({ connector })],
     provide: {
       instantSearchInstance: instance,
     },
@@ -55,7 +55,7 @@ it('removes a widget on destroy', () => {
   };
 
   const wrapper = mount(Test, {
-    mixins: [createAlgoliaMixin({ connector })],
+    mixins: [createWidgetMixin({ connector })],
     provide: {
       instantSearchInstance: instance,
     },
@@ -92,7 +92,7 @@ it('updates widget on widget params change', () => {
   };
 
   const wrapper = mount(Test, {
-    mixins: [createAlgoliaMixin({ connector })],
+    mixins: [createWidgetMixin({ connector })],
     provide: {
       instantSearchInstance: instance,
     },
@@ -141,7 +141,7 @@ it('updates local state on connector render', () => {
   };
 
   const wrapper = mount(Test, {
-    mixins: [createAlgoliaMixin({ connector })],
+    mixins: [createWidgetMixin({ connector })],
     provide: {
       instantSearchInstance: instance,
     },
@@ -176,7 +176,7 @@ it('exposes the regular suit function for this widget', () => {
   const {
     vm: { suit },
   } = mount(Test, {
-    mixins: [createAlgoliaMixin({ connector })],
+    mixins: [createWidgetMixin({ connector })],
     provide: {
       instantSearchInstance: instance,
     },

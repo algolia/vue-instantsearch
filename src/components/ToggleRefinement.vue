@@ -34,14 +34,14 @@
 
 <script>
 import { connectToggle } from 'instantsearch.js/es/connectors';
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 import { createPanelConsumerMixin } from '../mixins/panel';
 
 const mapStateToCanRefine = state => Boolean(state.value.count);
 
 export default {
   mixins: [
-    createAlgoliaMixin({ connector: connectToggle }),
+    createWidgetMixin({ connector: connectToggle }),
     createPanelConsumerMixin({
       mapStateToCanRefine,
     }),

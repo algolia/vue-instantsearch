@@ -1,7 +1,7 @@
 import suit from '../util/suit';
 import { warn } from '../util/warn';
 
-export const createAlgoliaMixin = ({ connector } = {}) => ({
+export const createWidgetMixin = ({ connector } = {}) => ({
   inject: {
     instantSearchInstance: {
       name: 'instantSearchInstance',

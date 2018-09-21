@@ -80,11 +80,11 @@
 <script>
 import { connectStarRating } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    createAlgoliaMixin({ connector: connectStarRating }),
+    createWidgetMixin({ connector: connectStarRating }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => !state.hasNoResults,
     }),

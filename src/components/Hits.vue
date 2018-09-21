@@ -25,10 +25,10 @@
 
 <script>
 import { connectHits } from 'instantsearch.js/es/connectors';
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 
 export default {
-  mixins: [createAlgoliaMixin({ connector: connectHits })],
+  mixins: [createWidgetMixin({ connector: connectHits })],
   props: {
     escapeHTML: {
       type: Boolean,

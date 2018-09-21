@@ -30,11 +30,11 @@
 <script>
 import { connectSortBySelector } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    createAlgoliaMixin({ connector: connectSortBySelector }),
+    createWidgetMixin({ connector: connectSortBySelector }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => !state.hasNoResults,
     }),

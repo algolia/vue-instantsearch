@@ -1,4 +1,4 @@
-import { createAlgoliaMixin } from './mixins/component';
+import { createWidgetMixin } from './mixins/widget';
 
 import Autocomplete from './components/Autocomplete.vue';
 import Breadcrumb from './components/Breadcrumb.vue';
@@ -28,7 +28,7 @@ import Stats from './components/Stats.vue';
 import ToggleRefinement from './components/ToggleRefinement.vue';
 
 const InstantSearch = {
-  createAlgoliaMixin,
+  createWidgetMixin,
   // widgets:
   Autocomplete,
   Breadcrumb,
@@ -90,7 +90,7 @@ const InstantSearch = {
 export default InstantSearch;
 
 export {
-  createAlgoliaMixin,
+  createWidgetMixin,
   // widgets:
   Autocomplete,
   Breadcrumb,

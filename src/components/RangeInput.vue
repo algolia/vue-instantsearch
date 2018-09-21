@@ -55,7 +55,7 @@
 
 <script>
 import { connectRange } from 'instantsearch.js/es/connectors';
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 import { createPanelConsumerMixin } from '../mixins/panel';
 
 const mapStateToCanRefine = state =>
@@ -63,7 +63,7 @@ const mapStateToCanRefine = state =>
 
 export default {
   mixins: [
-    createAlgoliaMixin({ connector: connectRange }),
+    createWidgetMixin({ connector: connectRange }),
     createPanelConsumerMixin({
       mapStateToCanRefine,
     }),

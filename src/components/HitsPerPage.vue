@@ -29,11 +29,11 @@
 <script>
 import { connectHitsPerPage } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    createAlgoliaMixin({ connector: connectHitsPerPage }),
+    createWidgetMixin({ connector: connectHitsPerPage }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => !state.hasNoResults,
     }),

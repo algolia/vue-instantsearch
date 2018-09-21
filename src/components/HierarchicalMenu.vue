@@ -39,7 +39,7 @@
 
 <script>
 import { connectHierarchicalMenu } from 'instantsearch.js/es/connectors';
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 import { createPanelConsumerMixin } from '../mixins/panel';
 import HierarchicalMenuList from './HierarchicalMenuList.vue';
 
@@ -47,7 +47,7 @@ const mapStateToCanRefine = state => state.items.length > 0;
 
 export default {
   mixins: [
-    createAlgoliaMixin({ connector: connectHierarchicalMenu }),
+    createWidgetMixin({ connector: connectHierarchicalMenu }),
     createPanelConsumerMixin({
       mapStateToCanRefine,
     }),

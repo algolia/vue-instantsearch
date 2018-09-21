@@ -54,11 +54,11 @@
 <script>
 import { connectBreadcrumb } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    createAlgoliaMixin({ connector: connectBreadcrumb }),
+    createWidgetMixin({ connector: connectBreadcrumb }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.canRefine,
     }),

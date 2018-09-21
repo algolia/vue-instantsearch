@@ -25,11 +25,11 @@
 <script>
 import { connectClearAll } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 
 export default {
   mixins: [
-    createAlgoliaMixin({ connector: connectClearAll }),
+    createWidgetMixin({ connector: connectClearAll }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.hasRefinements,
     }),

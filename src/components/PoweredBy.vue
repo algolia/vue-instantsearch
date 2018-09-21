@@ -31,10 +31,10 @@
 </template>
 
 <script>
-import { createAlgoliaMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/component';
 
 export default {
-  mixins: [createAlgoliaMixin()],
+  mixins: [createWidgetMixin()],
   props: {
     theme: {
       default: 'light',
