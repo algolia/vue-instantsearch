@@ -10217,6 +10217,10 @@ vue-property-decorator@6.0.0:
     reflect-metadata "^0.1.10"
     vue-class-component "^6.0.0"
 
+vue-slider-component@^2.7.7:
+  version "2.7.7"
+  resolved "https://registry.yarnpkg.com/vue-slider-component/-/vue-slider-component-2.7.7.tgz#dba63bb4b0cf9c80a06b1e6bf5103390d10404c6"
+
 vue-style-loader@^4.0.1:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"
@@ -10244,6 +10248,10 @@ vue-template-validator@^1.1.5:
 vue@2.5.17:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
+
+vuetify@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.2.4.tgz#b03a634791b1627e7aab89ed4651a5cd1ea2f211"
 
 walker@~1.0.5:
   version "1.0.7"
