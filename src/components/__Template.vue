@@ -18,7 +18,7 @@
 
 <script>
 import JsonTree from 'vue-json-tree'; // 👈 When done, remove this
-import { createWidgetMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 // Uncomment and change here ⬇️
 // import { connectorName } from 'instantsearch.js/es/connectors';
 

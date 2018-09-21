@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { createWidgetMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 import { connectCurrentRefinedValues } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
 

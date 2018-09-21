@@ -34,7 +34,7 @@
 
 <script>
 import { connectToggle } from 'instantsearch.js/es/connectors';
-import { createWidgetMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 import { createPanelConsumerMixin } from '../mixins/panel';
 
 const mapStateToCanRefine = state => Boolean(state.value.count);

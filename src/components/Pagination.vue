@@ -138,7 +138,7 @@
 <script>
 import { connectPagination } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
-import { createWidgetMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 
 export default {
   mixins: [

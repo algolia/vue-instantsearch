@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { createWidgetMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 
 const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
   init({ instantSearchInstance }) {

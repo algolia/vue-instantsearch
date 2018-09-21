@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { createWidgetMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 
 export default {
   mixins: [createWidgetMixin()],

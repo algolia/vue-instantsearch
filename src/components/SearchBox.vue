@@ -23,7 +23,7 @@
 
 <script>
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
-import { createWidgetMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 import SearchInput from './SearchInput.vue';
 
 export default {

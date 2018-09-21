@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import { createWidgetMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 import { createPanelConsumerMixin } from '../mixins/panel';
 import { connectRefinementList } from 'instantsearch.js/es/connectors';
 import AisSearchInput from './SearchInput.vue';

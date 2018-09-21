@@ -1,4 +1,4 @@
-import { createWidgetMixin } from '../mixins/component';
+import { createWidgetMixin } from '../mixins/widget';
 import { connectConfigure } from 'instantsearch.js/es/connectors';
 
 export default {
