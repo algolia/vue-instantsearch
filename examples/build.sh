@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # this builds examples, works from any directory (yarn build:examples)
-
+# This script can be removed once we figure out why CodeSandbox doesn't build the examples
+# try: https://codesandbox.io/s/github/algolia/vue-instantsearch/tree/feat/connectors/examples/ecommerce
 set -e
 
 # go into directory of script
