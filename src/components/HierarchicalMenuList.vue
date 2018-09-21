@@ -30,16 +30,14 @@
         :level="level + 1"
         :refine="refine"
         :createURL="createURL"
+        :suit="suit"
       />
     </li>
   </ul>
 </template>
 
 <script>
-import { createSuitMixin } from '../mixins/suit';
-
 export default {
-  mixins: [createSuitMixin({ name: 'HierarchicalMenu' })],
   name: 'HierarchicalMenuList',
   props: {
     items: {
@@ -58,6 +56,10 @@ export default {
       type: Function,
       required: true,
     },
+    suit: {
+      type: Function,
+      required: true,
+    }
   },
 };
 </script>

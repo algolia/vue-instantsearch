@@ -17,6 +17,7 @@
         :level="0"
         :refine="state.refine"
         :createURL="state.createURL"
+        :suit="suit"
       />
 
       <button
