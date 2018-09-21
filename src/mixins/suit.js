@@ -10,7 +10,8 @@ export const createSuitMixin = ({ name }) => ({
   methods: {
     suit(element, modifier) {
       const className = suit(name, element, modifier);
-      return [className, this.classNames && this.classNames[className]];
+      const userClassName = this.classNames && this.classNames[className];
+      return [className, userClassName];
     },
   },
 });

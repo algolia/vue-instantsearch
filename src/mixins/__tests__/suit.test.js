@@ -15,10 +15,10 @@ it('exposes the regular suit function for this widget', () => {
   });
   const { suit } = wrapper.vm;
 
-  expect(suit()).toBe('ais-Test');
-  expect(suit('', 'ok')).toBe('ais-Test--ok');
-  expect(suit('ok')).toBe('ais-Test-ok');
-  expect(suit('ok', 'there')).toBe('ais-Test-ok--there');
+  expect(suit()).toEqual(['ais-Test', undefined]);
+  expect(suit('', 'ok')).toEqual(['ais-Test--ok', undefined]);
+  expect(suit('ok')).toEqual(['ais-Test-ok', undefined]);
+  expect(suit('ok', 'there')).toEqual(['ais-Test-ok--there', undefined]);
 });
 
 it('allows overriding from the `class-names` prop', () => {
@@ -42,8 +42,8 @@ it('allows overriding from the `class-names` prop', () => {
 
   const { suit } = wrapper.vm;
 
-  expect(suit()).toBe('dogs');
-  expect(suit('', 'ok')).toBe('dogs cats');
-  expect(suit('ok')).toBe('ais-Test-ok');
-  expect(suit('ok', 'there')).toBe('ais-Test-ok--there');
+  expect(suit()).toEqual(['ais-Test', 'dogs']);
+  expect(suit('', 'ok')).toEqual(['ais-Test--ok', 'dogs cats']);
+  expect(suit('ok')).toEqual(['ais-Test-ok', undefined]);
+  expect(suit('ok', 'there')).toEqual(['ais-Test-ok--there', undefined]);
 });

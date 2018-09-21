@@ -1,6 +1,9 @@
 <template>
   <div
-    :class="[suit(), !state.canRefine && suit('','noRefinement')]"
+    :class="[
+      suit(),
+      !state.canRefine && suit('','noRefinement').join(' ')
+    ]"
     v-if="state"
   >
     <slot
@@ -28,7 +31,8 @@
       </slot>
       <ul :class="suit('list')">
         <li
-          :class="[suit('item'), item.isRefined && suit('item', 'selected')]"
+          :class="[
+          suit('item'), item.isRefined && suit('item', 'selected')]"
           v-for="item in items"
           :key="item.value"
         >
@@ -64,7 +68,12 @@
         </li>
       </ul>
       <button
-        :class="[suit('showMore'), { [suit('showMore', 'disabled')]: !state.canToggleShowMore }]"
+        :class="[
+          suit('showMore'),
+          {
+            [suit('showMore', 'disabled').join(' ')]: !state.canToggleShowMore,
+          }
+        ]"
         @click="toggleShowMore"
         v-if="showMore"
         :disabled="!state.canToggleShowMore"

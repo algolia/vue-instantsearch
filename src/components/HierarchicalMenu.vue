@@ -22,7 +22,10 @@
 
       <button
         v-if="showMore"
-        :class="[suit('showMore'), !canToggleShowMore && suit('showMore', 'disabled')]"
+        :class="[
+          suit('showMore'),
+          !canToggleShowMore && suit('showMore', 'disabled').join(' ')
+        ]"
         :disabled="!canToggleShowMore"
         @click.prevent="toggleShowMore"
       >

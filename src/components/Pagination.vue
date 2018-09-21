@@ -16,9 +16,9 @@
       <ul :class="suit('list')">
         <li
           :class="{
-            [suit('item')]:true,
-            [suit('item', 'firstPage')]: true,
-            [suit('item', 'disabled')]: state.isFirstPage
+            [suit('item').join(' ')]: true,
+            [suit('item', 'firstPage').join(' ')]: true,
+            [suit('item', 'disabled').join(' ')]: state.isFirstPage,
           }"
         >
           <template v-if="!state.isFirstPage">
@@ -40,9 +40,9 @@
         </li>
         <li
           :class="{
-            [suit('item')]: true,
-            [suit('item', 'previousPage')]: true,
-            [suit('item', 'disabled')]: state.isFirstPage
+            [suit('item').join(' ')]: true,
+            [suit('item', 'previousPage').join(' ')]: true,
+            [suit('item', 'disabled').join(' ')]: state.isFirstPage,
           }"
         >
           <template v-if="!state.isFirstPage">
@@ -67,8 +67,8 @@
 
         <li
           :class="{
-            [suit('item')]:true,
-            [suit('item', 'selected')]: state.currentRefinement === page
+            [suit('item').join(' ')]: true,
+            [suit('item', 'selected').join(' ')]: state.currentRefinement === page
           }"
           v-for="page in state.pages"
           :key="page"
@@ -84,9 +84,9 @@
 
         <li
           :class="{
-            [suit('item')]:true,
-            [suit('item','nextPage')]: true,
-            [suit('item','disabled')]: state.isLastPage
+            [suit('item').join(' ')]: true,
+            [suit('item','nextPage').join(' ')]: true,
+            [suit('item','disabled').join(' ')]: state.isLastPage
           }"
         >
           <template v-if="!state.isLastPage">
@@ -108,9 +108,9 @@
         </li>
         <li
           :class="{
-            [suit('item')]:true,
-            [suit('item','lastPage')]: true,
-            [suit('item','disabled')]: state.isLastPage
+            [suit('item').join(' ')]: true,
+            [suit('item','lastPage').join(' ')]: true,
+            [suit('item','disabled').join(' ')]: state.isLastPage,
           }"
         >
           <template v-if="!state.isLastPage">
