@@ -98,14 +98,16 @@ This is now handled by the `search-client` prop. Search client is what gets retu
 
 ```diff
   <template>
-    <ais-instant-search
+-   <ais-index
++   <ais-instant-search
 -     app-id="appID"
 -     api-key="apiKey"
 +     :search-client="searchClient"
     >
       <slot>My app</slot>
-    </ais-instant-search>
-    </template>
+-   </ais-index>
++   </ais-instant-search>
+  </template>
 
 + <script>
 + import algoliasearch from 'algoliasearch/lite';
