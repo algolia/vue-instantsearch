@@ -1,4 +1,4 @@
-import Component from './mixins/component';
+import { createWidgetMixin } from './mixins/widget';
 
 import AisAutocomplete from './components/Autocomplete.vue';
 import AisBreadcrumb from './components/Breadcrumb.vue';
@@ -28,7 +28,7 @@ import AisStats from './components/Stats.vue';
 import AisToggleRefinement from './components/ToggleRefinement.vue';
 
 const InstantSearch = {
-  Component,
+  createWidgetMixin,
   // widgets:
   AisAutocomplete,
   AisBreadcrumb,
@@ -90,6 +90,8 @@ const InstantSearch = {
 export default InstantSearch;
 
 export {
+  createWidgetMixin,
+  // widgets:
   AisAutocomplete,
   AisBreadcrumb,
   AisClearRefinements,

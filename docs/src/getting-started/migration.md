@@ -29,6 +29,8 @@ Some components have been renamed to be be more consistent with other InstantSea
 
 All individual component exports have also been renamed from e.g. `SearchBox` to `AisSearchBox`. This is to make it more ergonomic to use them as components in a Vue file with the same name as expected.
 
+The `Component` mixin has been renamed to `createWidgetMixin({ connector })`. Read more about that in the [custom component guide](/advanced/custom-components.html).
+
 ### New components
 
 Find more information on these in their respective documentation.
