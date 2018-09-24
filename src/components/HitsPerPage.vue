@@ -32,6 +32,7 @@ import { createPanelConsumerMixin } from '../mixins/panel';
 import { createWidgetMixin } from '../mixins/widget';
 
 export default {
+  name: 'AisHitsPerPage',
   mixins: [
     createWidgetMixin({ connector: connectHitsPerPage }),
     createPanelConsumerMixin({

@@ -62,6 +62,7 @@ const mapStateToCanRefine = state =>
   state && state.range && state.range.min !== state.range.max;
 
 export default {
+  name: 'AisRangeInput',
   mixins: [
     createWidgetMixin({ connector: connectRange }),
     createPanelConsumerMixin({

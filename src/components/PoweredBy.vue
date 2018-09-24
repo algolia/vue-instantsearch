@@ -34,6 +34,7 @@
 import { createWidgetMixin } from '../mixins/widget';
 
 export default {
+  name: 'AisPoweredBy',
   mixins: [createWidgetMixin()],
   props: {
     theme: {

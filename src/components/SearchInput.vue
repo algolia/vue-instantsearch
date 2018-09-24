@@ -118,7 +118,8 @@
 import { createWidgetMixin } from '../mixins/widget';
 
 export default {
-  mixins: [createWidgetMixin()],
+name: 'SearchInput',
+mixins: [createWidgetMixin()],
   props: {
     placeholder: {
       type: String,

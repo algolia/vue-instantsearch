@@ -40,6 +40,7 @@ import { createPanelConsumerMixin } from '../mixins/panel';
 import { createWidgetMixin } from '../mixins/widget';
 
 export default {
+  name: 'AisNumericMenu',
   mixins: [
     createWidgetMixin({ connector: connectNumericRefinementList }),
     createPanelConsumerMixin({

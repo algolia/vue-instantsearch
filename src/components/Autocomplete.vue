@@ -25,6 +25,7 @@ import { createWidgetMixin } from '../mixins/widget';
 import { connectAutocomplete } from 'instantsearch.js/es/connectors';
 
 export default {
+  name: 'AisAutocomplete',
   mixins: [createWidgetMixin({ connector: connectAutocomplete })],
   props: {
     indices: {

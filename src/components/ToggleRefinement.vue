@@ -40,6 +40,7 @@ import { createPanelConsumerMixin } from '../mixins/panel';
 const mapStateToCanRefine = state => Boolean(state.value.count);
 
 export default {
+  name: 'AisToggleRefinement',
   mixins: [
     createWidgetMixin({ connector: connectToggle }),
     createPanelConsumerMixin({

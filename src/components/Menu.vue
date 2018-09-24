@@ -52,6 +52,7 @@ import { createPanelConsumerMixin } from '../mixins/panel';
 import { createWidgetMixin } from '../mixins/widget';
 
 export default {
+  name: 'AisMenu',
   mixins: [
     createWidgetMixin({ connector: connectMenu }),
     createPanelConsumerMixin({

@@ -46,7 +46,7 @@ import HierarchicalMenuList from './HierarchicalMenuList.vue';
 const mapStateToCanRefine = state => state.items.length > 0;
 
 export default {
-  mixins: [
+name: 'AisHierarchicalMenu',  mixins: [
     createWidgetMixin({ connector: connectHierarchicalMenu }),
     createPanelConsumerMixin({
       mapStateToCanRefine,

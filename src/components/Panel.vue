@@ -23,6 +23,7 @@ import suit from '../mixins/suit';
 import { createPanelProviderMixin } from '../mixins/panel';
 
 export default {
+  name: 'AisPanel',
   mixins: [suit, createPanelProviderMixin()],
   data() {
     return {

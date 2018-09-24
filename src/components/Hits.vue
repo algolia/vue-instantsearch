@@ -28,6 +28,7 @@ import { connectHits } from 'instantsearch.js/es/connectors';
 import { createWidgetMixin } from '../mixins/widget';
 
 export default {
+  name: 'AisHits',
   mixins: [createWidgetMixin({ connector: connectHits })],
   props: {
     escapeHTML: {

@@ -40,6 +40,7 @@ import { createWidgetMixin } from '../mixins/widget';
 import { connectInfiniteHits } from 'instantsearch.js/es/connectors';
 
 export default {
+  name: 'AisInfiniteHits',
   mixins: [createWidgetMixin({ connector: connectInfiniteHits })],
   props: {
     escapeHTML: {

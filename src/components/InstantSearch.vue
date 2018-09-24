@@ -10,6 +10,7 @@ import instantsearch from 'instantsearch.js/es/';
 import suit from '../mixins/suit';
 
 export default {
+  name: 'AisInstantSearch',
   mixins: [suit],
   provide() {
     return {

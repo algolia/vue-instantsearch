@@ -19,6 +19,7 @@ import { createWidgetMixin } from '../mixins/widget';
 import { connectStats } from 'instantsearch.js/es/connectors';
 
 export default {
+  name: 'AisStats',
   mixins: [createWidgetMixin({ connector: connectStats })],
   data() {
     return {

@@ -46,6 +46,7 @@ const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
 });
 
 export default {
+  name: 'AisSearchState',
   mixins: [createWidgetMixin({ connector: connectStateResults })],
   data() {
     return {

@@ -83,6 +83,7 @@ import { createPanelConsumerMixin } from '../mixins/panel';
 import { createWidgetMixin } from '../mixins/widget';
 
 export default {
+  name: 'AisRatingMenu',
   mixins: [
     createWidgetMixin({ connector: connectStarRating }),
     createPanelConsumerMixin({
