@@ -15,7 +15,7 @@ body {
   height: 100%;
 }
 
-header {
+.header {
   display: flex;
   align-items: center;
   z-index: 99;
@@ -39,6 +39,10 @@ section {
   padding: 10px;
 }
 
+section {
+  width: 100%;
+}
+
 .thank-you {
   font-size: 12px;
   text-align: center;
@@ -49,11 +53,7 @@ section {
   margin-top: 20px;
 }
 
-.content-wrapper {
-  display: flex;
-}
-
-.results-topbar {
+.section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,14 +73,6 @@ footer {
   margin-top: 25px;
 }
 
-.results-wrapper {
-  width: 100%;
-}
-
 .no-results {
   text-align: center;
-}
-
-.no-results .query {
-  font-style: italic;
 }
