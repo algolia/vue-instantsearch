@@ -1,12 +1,14 @@
 import { createWidgetMixin } from '../mixins/widget';
+import { createSuitMixin } from '../mixins/suit';
 import { connectConfigure } from 'instantsearch.js/es/connectors';
 
 export default {
+  inheritAttrs: false,
   name: 'AisConfigure',
-  mixins: [createWidgetMixin({ connector: connectConfigure })],
-  data() {
-    return { widgetName: 'Configure' };
-  },
+  mixins: [
+    createSuitMixin({ name: 'Configure' }),
+    createWidgetMixin({ connector: connectConfigure }),
+  ],
   computed: {
     widgetParams() {
       return {

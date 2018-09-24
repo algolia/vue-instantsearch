@@ -25,6 +25,7 @@
 <script>
 import { connectClearAll } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
+import { createSuitMixin } from '../mixins/suit';
 import { createWidgetMixin } from '../mixins/widget';
 
 export default {
@@ -34,6 +35,7 @@ export default {
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.hasRefinements,
     }),
+    createSuitMixin({ name: 'ClearRefinements' }),
   ],
   props: {
     clearsQuery: {
@@ -44,11 +46,6 @@ export default {
       type: Array,
       default: () => [],
     },
-  },
-  data() {
-    return {
-      widgetName: 'ClearRefinements',
-    };
   },
   computed: {
     widgetParams() {

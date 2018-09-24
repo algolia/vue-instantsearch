@@ -115,11 +115,11 @@
 </template>
 
 <script>
-import { createWidgetMixin } from '../mixins/widget';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
-name: 'SearchInput',
-mixins: [createWidgetMixin()],
+  name: 'SearchInput',
+  mixins: [createSuitMixin({ name: 'SearchBox' })],
   props: {
     placeholder: {
       type: String,
@@ -153,7 +153,6 @@ mixins: [createWidgetMixin()],
   data() {
     return {
       query: '',
-      widgetName: 'SearchBox',
     };
   },
   methods: {

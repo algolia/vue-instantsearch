@@ -23,12 +23,16 @@
 
 <script>
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
+import { createSuitMixin } from '../mixins/suit';
 import { createWidgetMixin } from '../mixins/widget';
 import SearchInput from './SearchInput.vue';
 
 export default {
   name: 'AisSearchBox',
-  mixins: [createWidgetMixin({ connector: connectSearchBox })],
+  mixins: [
+    createWidgetMixin({ connector: connectSearchBox }),
+    createSuitMixin({ name: 'SearchBox' }),
+  ],
   components: {
     SearchInput,
   },
@@ -61,7 +65,6 @@ export default {
   data() {
     return {
       localValue: '',
-      widgetName: 'SearchBox',
     };
   },
   methods: {

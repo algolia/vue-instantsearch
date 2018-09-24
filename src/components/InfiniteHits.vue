@@ -38,10 +38,14 @@
 <script>
 import { createWidgetMixin } from '../mixins/widget';
 import { connectInfiniteHits } from 'instantsearch.js/es/connectors';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
   name: 'AisInfiniteHits',
-  mixins: [createWidgetMixin({ connector: connectInfiniteHits })],
+  mixins: [
+    createWidgetMixin({ connector: connectInfiniteHits }),
+    createSuitMixin({ name: 'InfiniteHits' }),
+  ],
   props: {
     escapeHTML: {
       type: Boolean,
@@ -53,11 +57,6 @@ export default {
         return items;
       },
     },
-  },
-  data() {
-    return {
-      widgetName: 'InfiniteHits',
-    };
   },
   computed: {
     widgetParams() {

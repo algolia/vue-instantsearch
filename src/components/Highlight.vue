@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import suit from '../mixins/suit';
+import { createSuitMixin } from '../mixins/suit';
 import { getPropertyByPath } from '../util/object';
 import { warn } from '../util/warn';
 
 export default {
   name: 'AisHighlight',
-  mixins: [suit],
+  mixins: [createSuitMixin({ name: 'Highlight' })],
   props: {
     hit: {
       type: Object,
@@ -26,11 +26,6 @@ export default {
       type: String,
       default: 'mark',
     },
-  },
-  data() {
-    return {
-      widgetName: 'Highlight',
-    };
   },
   computed: {
     innerHTML() {

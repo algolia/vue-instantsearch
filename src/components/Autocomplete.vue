@@ -23,10 +23,14 @@
 <script>
 import { createWidgetMixin } from '../mixins/widget';
 import { connectAutocomplete } from 'instantsearch.js/es/connectors';
+import { createSuitMixin } from '../mixins/suit';
 
 export default {
   name: 'AisAutocomplete',
-  mixins: [createWidgetMixin({ connector: connectAutocomplete })],
+  mixins: [
+    createWidgetMixin({ connector: connectAutocomplete }),
+    createSuitMixin({ name: 'Autocomplete' }),
+  ],
   props: {
     indices: {
       type: Array,
@@ -38,11 +42,6 @@ export default {
       required: false,
       default: true,
     },
-  },
-  data() {
-    return {
-      widgetName: 'Autocomplete',
-    };
   },
   computed: {
     widgetParams() {

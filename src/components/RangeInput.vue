@@ -57,6 +57,7 @@
 import { connectRange } from 'instantsearch.js/es/connectors';
 import { createWidgetMixin } from '../mixins/widget';
 import { createPanelConsumerMixin } from '../mixins/panel';
+import { createSuitMixin } from '../mixins/suit';
 
 const mapStateToCanRefine = state =>
   state && state.range && state.range.min !== state.range.max;
@@ -64,6 +65,7 @@ const mapStateToCanRefine = state =>
 export default {
   name: 'AisRangeInput',
   mixins: [
+    createSuitMixin({ name: 'RangeInput' }),
     createWidgetMixin({ connector: connectRange }),
     createPanelConsumerMixin({
       mapStateToCanRefine,
@@ -92,7 +94,6 @@ export default {
   },
   data() {
     return {
-      widgetName: 'RangeInput',
       minInput: undefined,
       maxInput: undefined,
     };

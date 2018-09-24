@@ -54,6 +54,7 @@
 <script>
 import { connectBreadcrumb } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
+import { createSuitMixin } from '../mixins/suit';
 import { createWidgetMixin } from '../mixins/widget';
 
 export default {
@@ -63,6 +64,7 @@ export default {
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.canRefine,
     }),
+    createSuitMixin({ name: 'Breadcrumb' }),
   ],
   props: {
     attributes: {
@@ -84,12 +86,6 @@ export default {
       },
     },
   },
-  data() {
-    return {
-      widgetName: 'Breadcrumb',
-    };
-  },
-
   computed: {
     widgetParams() {
       return {

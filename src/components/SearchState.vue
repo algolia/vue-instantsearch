@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { createSuitMixin } from '../mixins/suit';
 import { createWidgetMixin } from '../mixins/widget';
 
 const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
@@ -47,11 +48,9 @@ const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
 
 export default {
   name: 'AisSearchState',
-  mixins: [createWidgetMixin({ connector: connectStateResults })],
-  data() {
-    return {
-      widgetName: 'SearchState',
-    };
-  },
+  mixins: [
+    createWidgetMixin({ connector: connectStateResults }),
+    createSuitMixin({ name: 'SearchState' }),
+  ],
 };
 </script>
