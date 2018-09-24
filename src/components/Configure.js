@@ -3,6 +3,7 @@ import { createSuitMixin } from '../mixins/suit';
 import { connectConfigure } from 'instantsearch.js/es/connectors';
 
 export default {
+  inheritAttrs: false,
   mixins: [
     createSuitMixin({ name: 'Configure' }),
     createWidgetMixin({ connector: connectConfigure }),
