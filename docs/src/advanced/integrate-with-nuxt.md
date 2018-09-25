@@ -82,14 +82,14 @@ You can go ahead and create a search page by creating a new file called `pages/s
 
 ```html
 <template>
-  <ais-insant-search :search-client="searchClient" index-name="bestbuy">
+  <ais-instant-search :search-client="searchClient" index-name="bestbuy">
     <ais-search-box></ais-search-box>
     <ais-results>
       <template slot-scope="{ result }">
         <h2>{{ result.name }}</h2>
       </template>
     </ais-results>
-  </ais-insant-search>
+  </ais-instant-search>
 </template>
 
 <script>
