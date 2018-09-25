@@ -19,7 +19,7 @@ You can try most of them out in our playground.
 
 <a class="btn btn-static-theme" href="stories/">🕹 try out live</a>
 
-* [ais-instant-search](components/index.html)
+* [ais-instant-search](components/InstantSearch.html)
 * [ais-autocomplete](components/Autocomplete.html)
 * [ais-breadcrumb](components/Breadcrumb.html)
 * [ais-clear-refinements](components/ClearRefinements.html)
@@ -36,15 +36,15 @@ You can try most of them out in our playground.
 * [ais-refinement-list](components/RefinementList.html)
 * [ais-sort-by](components/SortBy.html)
 * [ais-toggle-refinement](components/ToggleRefinement.html)
-* [ais-configure](components/configure.html)
-* [ais-highlight](components/highlight.html)
-* [ais-pagination](components/pagination.html)
-* [ais-powered-by](components/powered-by.html)
-* [ais-rating](components/rating-menu.html)
-* [ais-search-box](components/search-box.html)
+* [ais-configure](components/Configure.html)
+* [ais-highlight](components/Highlight.html)
+* [ais-pagination](components/Pagination.html)
+* [ais-powered-by](components/PoweredBy.html)
+* [ais-rating-menu](components/RatingMenu.html)
+* [ais-search-box](components/SearchBox.html)
 * [ais-search-state](components/SearchState.html)
-* [ais-snippet](components/snippet.html)
-* [ais-stats](components/stats.html)
+* [ais-snippet](components/Snippet.html)
+* [ais-stats](components/Stats.html)
 
 ## Registering components
 
@@ -111,7 +111,7 @@ When manually importing components, you can change that naming convention and as
 
 ## Using components
 
-All search components must be wrapped in an [`AisInstantSearch`](components/index.html) component.
+All search components must be wrapped in an [`ais-instant-search`](components/InstantSearch.html) component.
 
 ```html
 <template>

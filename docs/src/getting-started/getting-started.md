@@ -167,7 +167,7 @@ When you are ready to go further, you can [create your own Algolia account](http
 
 ### The Search Box component
 
-The [Search Box component](components/search-box.html) renders a text input.
+The [Search Box component](components/SearchBox.html) renders a text input.
 
 The text input value is bound to the query of the current search.
 
