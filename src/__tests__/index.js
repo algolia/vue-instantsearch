@@ -1,4 +1,3 @@
-/* eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }] */
 import Vue from 'vue';
 import InstantSearch from '../instantsearch';
 

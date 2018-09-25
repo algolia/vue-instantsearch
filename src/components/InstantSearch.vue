@@ -8,7 +8,7 @@
 <script>
 import instantsearch from 'instantsearch.js/es/';
 import { createSuitMixin } from '../mixins/suit';
-import {warn} from '../util/warn'
+import { warn } from '../util/warn';
 
 const oldApi = () =>
   warn(
