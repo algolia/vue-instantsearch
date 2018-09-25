@@ -9,9 +9,15 @@
 import instantsearch from 'instantsearch.js/es/';
 import { createSuitMixin } from '../mixins/suit';
 
+const oldAPI = () => new Error(
+  `Vue InstantSearch: You used the prop api-key or api-key.
+These have been replaced by search-client.
+
+See more info here: https://community.algolia.com/vue-instantsearch/components/InstantSearch.html#usage`)
+
 export default {
   name: 'AisInstantSearch',
-  mixins: [createSuitMixin({ name: 'Index' })],
+  mixins: [createSuitMixin({ name: 'InstantSearch' })],
   provide() {
     return {
       instantSearchInstance: this.instantSearchInstance,
