@@ -82,7 +82,7 @@ You can go ahead and create a search page by creating a new file called `pages/s
 
 ```html
 <template>
-  <ais-index app-id="latency" api-key="3d9875e51fbd20c7754e65422f7ce5e1" index-name="bestbuy">
+  <ais-index :search-client="searchClient" index-name="bestbuy">
     <ais-search-box></ais-search-box>
     <ais-results>
       <template slot-scope="{ result }">
@@ -91,6 +91,18 @@ You can go ahead and create a search page by creating a new file called `pages/s
     </ais-results>
   </ais-index>
 </template>
+
+<script>
+import algoliasearch from 'algoliasearch/lite';
+
+export default {
+  data() {
+    return {
+      searchClient: algoliasearch('latency', '3d9875e51fbd20c7754e65422f7ce5e1');
+    };
+  },
+};
+</script>
 ```
 
 Now, if you head to `http://localhost:3000/search`, you should be able to see your search experience.

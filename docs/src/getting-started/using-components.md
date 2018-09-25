@@ -116,11 +116,23 @@ All search components must be wrapped in an [`AisInstantSearch`](components/inde
 ```html
 <template>
   <div id="app">
-    <ais-instant-search app-id="appId" api-key="apiKey" index-name="indexName">
+    <ais-instant-search :search-client="searchClient" index-name="indexName">
       <ais-search-box></ais-search-box>
       <ais-hits></ais-hits>
       <ais-pagination></ais-pagination>
     </ais-instant-search>
   </div>
 </template>
+
+<script>
+import algoliasearch from 'algoliasearch/lite';
+
+export default {
+  data() {
+    return {
+      searchClient: algoliasearch('appId', 'apiKey');
+    };
+  },
+};
+</script>
 ```

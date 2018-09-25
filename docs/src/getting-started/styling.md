@@ -193,15 +193,22 @@ You can now use that component in your application:
 
 ```vue
 <template>
-  <ais-instant-search app-id="<app-id>" api-key="<api-key>" index-name="<index-name>">
+  <ais-instant-search :search-client="searchClient" index-name="<index-name>">
     <table-results></table-results>
   </ais-instant-search>
 </template>
 <script>
+import algoliasearch from 'algoliasearch/lite';
 import TableResults from './TableResults.vue';
+
 export default {
   components: [TableResults],
-}
+  data() {
+    return {
+      searchClient: algoliasearch('appId', 'apiKey');
+    };
+  },
+};
 </script>
 ```
 

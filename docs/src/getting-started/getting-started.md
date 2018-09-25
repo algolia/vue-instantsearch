@@ -86,11 +86,10 @@ Let's bootstrap a small search interface.
 
 Open the `src/App.vue` component. Then replace the whole beginning of the file, between the `<template></template>` tags, with the following:
 
-```html
+```vue
 <template>
   <ais-instant-search
-    app-id="latency"
-    api-key="3d9875e51fbd20c7754e65422f7ce5e1"
+    :search-client="searchClient"
     index-name="bestbuy"
   >
     <ais-search-box></ais-search-box>
@@ -103,6 +102,18 @@ Open the `src/App.vue` component. Then replace the whole beginning of the file, 
     </ais-results>
   </ais-instant-search>
 </template>
+
+<script>
+import algoliasearch from 'algoliasearch/lite';
+
+export default {
+  data() {
+    return {
+      searchClient: algoliasearch('appId', 'apiKey');
+    };
+  },
+};
+</script>
 ```
 
 Save, and see the result in the browser. Play with it!
@@ -117,14 +128,25 @@ In this section you'll learn a bit more about what you just implemented.
 
 All search components needs to be wrapped in an AisInstantSearch component.
 
-```html
+```vue
 <ais-instant-search
-  app-id="latency"
-  api-key="3d9875e51fbd20c7754e65422f7ce5e1"
+  :search-client="searchClient"
   index-name="bestbuy"
 >
   <!-- Search components go here -->
 </ais-instant-search>
+
+<script>
+import algoliasearch from 'algoliasearch/lite';
+
+export default {
+  data() {
+    return {
+      searchClient: algoliasearch('appId', 'apiKey');
+    };
+  },
+};
+</script>
 ```
 
 You should configure the AisInstantSearch component with the application ID and API search only key.
