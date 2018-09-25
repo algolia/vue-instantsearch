@@ -90,10 +90,10 @@ import {
   AisPagination
 } from 'vue-instantsearch';
 
-Vue.component('ais-instant-search', AisInstantSearch);
-Vue.component('ais-search-box', AisSearchBox);
-Vue.component('ais-hits', AisHits);
-Vue.component('ais-pagination', AisPagination);
+Vue.component(AisInstantSearch.name, AisInstantSearch);
+Vue.component(AisSearchBox.name, AisSearchBox);
+Vue.component(AisHits.name, AisHits);
+Vue.component(AisPagination.name, AisPagination);
 
 new Vue({
   el: '#app',
@@ -102,6 +102,44 @@ new Vue({
 ```
 
 With this approach, only the four manually imported components will be part of your production build. The other components will be removed after [tree-shaking](https://webpack.js.org/guides/tree-shaking/).
+
+It's also possible to do this in your component itself:
+
+```vue
+<template>
+  <div id="app">
+    <ais-instant-search :search-client="searchClient" index-name="indexName">
+      <ais-search-box></ais-search-box>
+      <ais-hits></ais-hits>
+      <ais-pagination></ais-pagination>
+    </ais-instant-search>
+  </div>
+</template>
+
+<script>
+import algoliasearch from 'algoliasearch/lite';
+import {
+  AisInstantSearch,
+  AisSearchBox,
+  AisHits,
+  AisPagination
+} from 'vue-instantsearch';
+
+export default {
+  components: {
+    AisInstantSearch,
+    AisSearchBox,
+    AisHits,
+    AisPagination,
+  },
+  data() {
+    return {
+      searchClient: algoliasearch('appId', 'apiKey');
+    };
+  },
+};
+</script>
+```
 
 ### Naming
 
