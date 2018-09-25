@@ -103,6 +103,7 @@ This is now handled by the `search-client` prop. Search client is what gets retu
 -     app-id="appID"
 -     api-key="apiKey"
 +     :search-client="searchClient"
+      index-name="myIndex"
     >
       <slot>My app</slot>
 -   </ais-index>
