@@ -8,12 +8,15 @@
 <script>
 import instantsearch from 'instantsearch.js/es/';
 import { createSuitMixin } from '../mixins/suit';
+import {warn} from '../util/warn'
 
-const oldAPI = () => new Error(
-  `Vue InstantSearch: You used the prop api-key or api-key.
+const oldApi = () =>
+  warn(
+    `Vue InstantSearch: You used the prop api-key or api-key.
 These have been replaced by search-client.
 
-See more info here: https://community.algolia.com/vue-instantsearch/components/InstantSearch.html#usage`)
+See more info here: https://community.algolia.com/vue-instantsearch/components/InstantSearch.html#usage`
+  );
 
 export default {
   name: 'AisInstantSearch',
@@ -24,6 +27,24 @@ export default {
     };
   },
   props: {
+    apiKey: {
+      type: String,
+      default: null,
+      validator(value) {
+        if (value) {
+          oldApi();
+        }
+      },
+    },
+    appId: {
+      type: String,
+      default: null,
+      validator(value) {
+        if (value) {
+          oldApi();
+        }
+      },
+    },
     searchClient: {
       type: Object,
       required: true,
