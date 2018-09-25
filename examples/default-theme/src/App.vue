@@ -1,6 +1,6 @@
 <template>
   <div id="root">
-    <ais-index
+    <ais-instant-search
       :search-client="searchClient"
       index-name="instant_search"
       :routing="true"
@@ -113,7 +113,7 @@
           </footer>
         </section>
       </main>
-    </ais-index>
+    </ais-instant-search>
   </div>
 </template>
 
