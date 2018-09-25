@@ -1,12 +1,12 @@
 ---
-title: AisInstantSearch
+title: InstantSearch
 mainTitle: Components
 layout: main.pug
 category: Components
 withHeadings: true
 navWeight: 1
 editable: true
-githubSource: docs/src/components/index.md
+githubSource: docs/src/components/InstantSearch.md
 ---
 
 A wrapper component that allows you to configure the credentials and query parameters for the search.
@@ -19,8 +19,9 @@ Basic usage:
 
 ```html
 <template>
+  <!-- this index-name is an example -->
   <ais-instant-search
-    index-name="your_indexName"
+    index-name="instant_search"
     :search-client="searchClient"
   >
     <!-- Add your InstantSearch components here. -->
@@ -34,6 +35,7 @@ import algoliasearch from 'algoliasearch/lite';
 export default {
   data() {
     return {
+      // these credentials are an example
       searchClient: algoliasearch(
         'latency',
         '3d9875e51fbd20c7754e65422f7ce5e1'
