@@ -1,9 +1,8 @@
 /* eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }] */
-import { createLocalVue } from '@vue/test-utils';
+import Vue from 'vue';
 import InstantSearch from '../instantsearch';
 
 it('should have `name` the same as the suit class name everywhere', () => {
-  const Vue = createLocalVue();
   Vue.component = jest.fn();
   Vue.use(InstantSearch);
 
@@ -17,7 +16,7 @@ it('should have `name` the same as the suit class name everywhere', () => {
           .find(mixin => mixin.methods && mixin.methods.suit)
           .methods.suit();
       } catch (e) {
-        /* no suit class! */
+        /* no suit class, so will fail the assertions */
       }
 
       return {
