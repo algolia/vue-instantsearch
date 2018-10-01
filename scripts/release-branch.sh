@@ -35,7 +35,7 @@ if ! yarn run changelog; then
   exit 1
 fi
 
-readonly PACKAGE_VERSION=$(bin/get-version.js)
+readonly PACKAGE_VERSION=$(scripts/get-version.js)
 
 git checkout -b "chore/release-$PACKAGE_VERSION"
 

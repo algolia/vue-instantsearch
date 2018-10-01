@@ -23,9 +23,9 @@ if ! yarn run test; then
   exit 1
 fi
 
-readonly PACKAGE_VERSION=$(bin/get-version.js)
+readonly PACKAGE_VERSION=$(scripts/get-version.js)
 
-npm publish --tag=$(bin/get-npm-tag.js)
+npm publish --tag=$(scripts/get-npm-tag.js)
 
 git tag "v$PACKAGE_VERSION"
 
