@@ -35,11 +35,7 @@ if ! yarn run changelog; then
   exit 1
 fi
 
-readonly PACKAGE_VERSION=$(< package.json grep version \
-  | head -1 \
-  | awk -F: '{ print $2 }' \
-  | sed 's/[",]//g' \
-  | tr -d '[:space:]')
+readonly PACKAGE_VERSION=$(bin/get-version.js)
 
 git checkout -b "chore/release-$PACKAGE_VERSION"
 

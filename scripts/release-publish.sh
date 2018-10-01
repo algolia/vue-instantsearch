@@ -23,13 +23,9 @@ if ! yarn run test; then
   exit 1
 fi
 
-readonly PACKAGE_VERSION=$(< package.json grep version \
-  | head -1 \
-  | awk -F: '{ print $2 }' \
-  | sed 's/[",]//g' \
-  | tr -d '[:space:]')
+readonly PACKAGE_VERSION=$(bin/get-version.js)
 
-npm publish
+npm publish --tag=$(bin/get-npm-tag.js)
 
 git tag "v$PACKAGE_VERSION"
 
