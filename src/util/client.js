@@ -1,5 +1,4 @@
-// TODO: increment this when versioning
-const version = 'v2.0.0-alpha.2';
+import { version } from '../../package.json';
 
 export const addAlgoliaAgent = client =>
   client.addAlgoliaAgent &&
