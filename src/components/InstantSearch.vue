@@ -9,7 +9,7 @@
 import instantsearch from 'instantsearch.js/es/';
 import { createSuitMixin } from '../mixins/suit';
 import { warn } from '../util/warn';
-import { addAlgoliaAgent } from '../util/client';
+import { version } from '../../package.json'; // rollup does pick only what needed from json
 
 const oldApi = () =>
   warn(
@@ -105,7 +105,9 @@ export default {
     },
   },
   created() {
-    addAlgoliaAgent(this.searchClient);
+    if (this.searchClient.addAlgoliaAgent) {
+      this.searchClient.addAlgoliaAgent(`Vue InstantSearch (${version})`);
+    }
   },
   mounted() {
     // from the documentation: https://vuejs.org/v2/api/#mounted
