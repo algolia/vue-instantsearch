@@ -8,5 +8,4 @@ const getReleaseTag = _version => {
   return match;
 };
 
-// give this on to the main script
-console.log(getReleaseTag(version));
+process.stdout.write(getReleaseTag(version));

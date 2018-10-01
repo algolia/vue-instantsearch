@@ -3,5 +3,4 @@
 /* eslint-disable no-console */
 const { version } = require('../package.json');
 
-// give this on to the main script
-console.log(version);
+process.stdout.write(version);
