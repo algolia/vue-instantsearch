@@ -9,6 +9,7 @@
 import instantsearch from 'instantsearch.js/es/';
 import { createSuitMixin } from '../mixins/suit';
 import { warn } from '../util/warn';
+import { addAlgoliaAgent } from '../util/client';
 
 const oldApi = () =>
   warn(
@@ -102,6 +103,9 @@ export default {
           'Please open a new issue: https://github.com/algolia/vue-instantsearch/issues/new?template=feature.md'
       );
     },
+  },
+  created() {
+    addAlgoliaAgent(this.searchClient);
   },
   mounted() {
     // from the documentation: https://vuejs.org/v2/api/#mounted
