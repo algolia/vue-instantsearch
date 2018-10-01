@@ -5,7 +5,7 @@ it('will call if you have addAlgoliaAgent', () => {
   addAlgoliaAgent(client);
   expect(client.addAlgoliaAgent).toHaveBeenCalledTimes(1);
   expect(client.addAlgoliaAgent.mock.calls[0][0]).toMatch(
-    /Vue InstantSearch \(v[a-z0-9.-]+\)/
+    /Vue InstantSearch \([a-z0-9.-]+\)/
   );
 });
 
