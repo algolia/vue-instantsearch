@@ -41,7 +41,7 @@ The next step is to fill in the rendering. Let's not think about making it work 
   <template slot-scope="{ items }">
     <ul>
       <li v-for="item in items" :key="item.value">
-        <button>{{item.label}}</button>
+        <button>{{ item.label }}</button>
       </li>
     </ul>
   </template>
@@ -56,7 +56,7 @@ Each component also provides a function called `refine`. This function can be ca
     <ul>
       <li v-for="item in items" :key="item.value">
         <button @click="refine(item.value)">
-          {{item.label}}
+          {{ item.label }}
         </button>
       </li>
     </ul>
@@ -70,7 +70,7 @@ More examples of this can be found in the [ais-search-state](components/SearchSt
 
 In some cases, you might want to create a component which uses a piece of data not currently provided by any of the widgets. You also might want to make a custom component for having access to the data in different places than the template.
 
-You can do this with the `createWidgetMixin` function exposed by Vue InstantSearch. It works together with the [connectors]() from InstantSearch.js. To get started, let's choose the `connectMenu` connector for this example. 
+You can do this with the `createWidgetMixin` function exposed by Vue InstantSearch. It works together with the [connectors](https://community.algolia.com/instantsearch.js/v2/guides/customization.html) from InstantSearch.js. To get started, let's choose the `connectMenu` connector for this example. 
 
 ```html
 <script>
@@ -109,7 +109,7 @@ Then in our template, we can use this as expected:
   <ul>
     <li v-for="item in items" :key="item.value">
       <button @click="state.refine(item.value)">
-        {{item.label}}
+        {{ item.label }}
       </button>
     </li>
   </ul>
