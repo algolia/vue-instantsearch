@@ -22,7 +22,7 @@ Finally, you can also change the URL to use full URLs, rather than just the quer
 
 All docs for InstantSearch routing configuration are [here](https://community.algolia.com/instantsearch.js/v2/guides/routing.html).
 
-Finally an option is to use Vue Router. All previous examples will _work_ using Vue Router, as long as they don't conflict, as long as you don't try to do specific Vue Router things which are controlled by InstantSearch, since that might cause infinite loops, and InstantSearch provided query strings won't be available to Vue Router, as soon as the routing changes from its initial deserialization.
+Finally an option is to use Vue Router. All previous examples will _work_ using Vue Router, as long as they don't conflict, as long as you don't try to do specific Vue Router things which are controlled by InstantSearch, since InstantSearch provided query strings won't be available to Vue Router, as soon as the routing changes from its initial deserialization.
 
 ## How **do** I use Vue Router?
 
@@ -50,7 +50,9 @@ const instantSearchRouting = {
 }
 ```
 
-Note that here I only use the `query` key, but other keys can also be used. It's advised here to use a `stateMapping` that changes nested objects into flat objects, or as a second option to modify Vue Router to allow nested objects in the query string:
+Note that here I only use the `query` key, but other keys can also be used. It's advised here to use a `stateMapping` that changes nested objects into flat objects. The reason why you need flat objects, is because by default Vue Router will serialize an object as value for a query string object as `[object Object]`. This can be avoided by either _not_ having deep objects (possibly replaced by arrays, or a flat version with only what you need in your app), or by modifying the Vue Router
+
+That second option is to modify Vue Router to allow nested objects in the query string:
 
 ```js
 import qs from 'qs';
@@ -71,4 +73,4 @@ const router = new Router({
 });
 ```
 
-Note that the `qs` module is already used in InstantSearch, so this will not add to your bundle size.
+Note that the `qs` module is already used in InstantSearch, so this will not add to your bundle size, unless you use a different version.
