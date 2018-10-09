@@ -99,7 +99,7 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@storybook/addon-knobs@^3.4.10":
+"@storybook/addon-knobs@3.4.10":
   version "3.4.10"
   resolved "https://registry.yarnpkg.com/@storybook/addon-knobs/-/addon-knobs-3.4.10.tgz#57a5639758aa77e7c697acc3b31e728cffc260ac"
   integrity sha512-FphHe6bib2S2ry5uj2tCYSGVQZNpz9m5IeRlX8AxP+32zIqGVAWUmmr/dZmuitYQG67GeOEDWpJqhplh1BirUA==
@@ -117,7 +117,7 @@
     react-textarea-autosize "^5.2.1"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-options@^3.4.10":
+"@storybook/addon-options@3.4.10":
   version "3.4.10"
   resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-3.4.10.tgz#0b6ed3e22b7541a86a7c507ff80356d33784eda9"
   integrity sha512-XCE+bxHxWZoFWAh8d67/UHz9RhCaE2rGg5Sxljf9M9lQHS7+rGIyj/DUPJwjh9pJxNxF5UuUYEZm/tKLTeAPqQ==
@@ -11811,7 +11811,7 @@ vue@2.5.17:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
   integrity sha512-mFbcWoDIJi0w0Za4emyLiW72Jae0yjANHbCVquMKijcavBGypqlF7zHRgMa5k4sesdv7hv2rB4JPdZfR+TPfhQ==
 
-vuetify@^1.2.4:
+vuetify@1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.2.4.tgz#b03a634791b1627e7aab89ed4651a5cd1ea2f211"
   integrity sha512-1Nshre1osuZD/4rzz7avnxzsK8r6cPyx7STIon7pMGn9AVnHEf7pv7157Dft6fwxkriyMyhSTXiLETz/XDLgdg==
