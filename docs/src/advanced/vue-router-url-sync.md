@@ -8,6 +8,7 @@ navWeight: 3
 editable: true
 githubSource: docs/src/advanced/vue-router-url-sync.md
 ---
+
 > NOTE: this guide **has** been updated for v2
 
 Currently there's three existing ways how to use InstantSearch routing.
@@ -41,35 +42,62 @@ const instantSearchRouting = {
     },
     createURL(routeState) {
       return router.resolve({
-        query: routeState
+        query: routeState,
       }).href;
     },
-    onUpdate() {}, 
+    onUpdate() {},
     dispose() {},
   },
-}
+};
 ```
 
-Note that here I only use the `query` key, but other keys can also be used. It's advised here to use a `stateMapping` that changes nested objects into flat objects. The reason why you need flat objects, is because by default Vue Router will serialize an object as value for a query string object as `[object Object]`. This can be avoided by either _not_ having deep objects (possibly replaced by arrays, or a flat version with only what you need in your app), or by modifying the Vue Router
+Note that in this example only use the `query` key is used, but other Vue Router keys can also be used. It's advised here to use a `stateMapping` that changes nested objects into flat objects. The reason why you need flat objects, is because by default Vue Router will serialize an object as value for a query string object as `[object Object]`. This can be avoided by either _not_ having deep objects (possibly replaced by arrays, or a flat version with only what you need in your app):
 
-That second option is to modify Vue Router to allow nested objects in the query string:
+```js
+const stateMapping = {
+  stateToRoute(uiState) {
+    return {
+      query: uiState.query,
+      // we use the character ~ as it is one that is rarely present in data and renders well in urls
+      // do this for every refinement you have
+      brands:
+        (uiState.refinementList &&
+          uiState.refinementList.brand &&
+          uiState.refinementList.brand.join('~')) ||
+        'all',
+      page: uiState.page,
+    };
+  },
+  routeToState(routeState) {
+    return {
+      query: routeState.query,
+      refinementList: {
+        brand: routeState.brands && routeState.brands.split('~'),
+      },
+      page: routeState.page,
+    };
+  },
+};
+```
+
+Or by modifying the Vue Router to allow nested objects in the query string:
 
 ```js
 import qs from 'qs';
 
 const router = new Router({
-    routes: [
-        // ...
-    ],
-    // set custom query resolver
-    parseQuery(query) {
-        return qs.parse(query);
-    },
-    stringifyQuery(query) {
-        var result = qs.stringify(query);
+  routes: [
+    // ...
+  ],
+  // set custom query resolver
+  parseQuery(query) {
+    return qs.parse(query);
+  },
+  stringifyQuery(query) {
+    var result = qs.stringify(query);
 
-        return result ? ('?' + result) : '';
-    }
+    return result ? '?' + result : '';
+  },
 });
 ```
 
