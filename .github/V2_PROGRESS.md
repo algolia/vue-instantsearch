@@ -22,34 +22,87 @@ A checklist for all of the components which are completely done.
 x => done
 ~ => in progress
 
-* [x] `ais-breadcrumb`
-* [x] `ais-clear-refinements`
-* [x] `ais-configure`
-* [~] `ais-current-refinements` Haroenv
-* [x] `ais-hierarchical-menu`
-* [x] `ais-highlight`
-  * Just a getter for \_highlightResult, doesn't set any parameters
-* [x] `ais-hits-per-page`
-* [x] `ais-hits`
-* [x] `ais-index`
-* [x] `ais-infinite-hits`
-* [x] `ais-menu-select`
-* [x] `ais-menu`
-* [x] `ais-numeric-menu`
-* [x] `ais-pagination`
-* [x] `ais-panel`
-* [x] `ais-powered-by`
-* [x] `ais-range-input`
-* [x] `ais-rating-menu`
-* [x] `ais-refinement-list`
-* [x] `ais-search-box`
-* [x] `ais-snippet`
-  * Just a getter for \_snippetResult, doesn't set any parameters
-* [x] `ais-sort-by`
-* [x] `ais-stats`
-* [x] `ais-toggle-refinement`
+- [x] `ais-breadcrumb`
+- [x] `ais-clear-refinements`
+- [x] `ais-configure`
+- [x] `ais-current-refinements`
+- [x] `ais-hierarchical-menu`
+- [x] `ais-highlight`
+  - Just a getter for \_highlightResult, doesn't set any parameters
+- [x] `ais-hits-per-page`
+- [x] `ais-hits`
+- [x] `ais-index`
+- [x] `ais-infinite-hits`
+- [x] `ais-menu-select`
+- [x] `ais-menu`
+- [x] `ais-numeric-menu`
+- [x] `ais-pagination`
+- [x] `ais-panel`
+- [x] `ais-powered-by`
+- [x] `ais-range-input`
+- [x] `ais-rating-menu`
+- [x] `ais-refinement-list`
+- [x] `ais-search-box`
+- [x] `ais-snippet`
+  - Just a getter for \_snippetResult, doesn't set any parameters
+- [x] `ais-sort-by`
+- [x] `ais-stats`
+- [x] `ais-toggle-refinement`
 
 ## Which level of customization?
 
 1.  there's a slot at the top level (always)
 2.  every list as `item` as a slot (if makes sense, can be added after 2.0)
+
+# Docs
+
+- [ ] `docs/src`
+  - [x] `index.md`
+  - [x] `advanced`
+    - [x] `server-side-rendering.md`
+    - [x] `multi-index-search.md`
+    - [x] `custom-components.md`
+    - [x] `vue-router-url-sync.md`
+    - [x] `integrate-with-nuxt.md`
+  - [x] `components`
+    - [x] `Stats.md`
+    - [x] `HitsPerPage.md`
+    - [x] `Menu.md`
+    - [x] `SearchBox.md`
+    - [x] `CurrentRefinements.md`
+    - [x] `RatingMenu.md`
+    - [x] `InfiniteHits.md`
+    - [x] `MenuSelect.md`
+    - [x] `ToggleRefinement.md`
+    - [x] `Pagination.md`
+    - [x] `Hits.md`
+    - [x] `Highlight.md`
+    - [x] `Panel.md`
+    - [x] `SortBy.md`
+    - [x] `HierarchicalMenu.md`
+    - [x] `Autocomplete.md`
+    - [x] `SearchState.md`
+    - [x] `Configure.md`
+    - [x] `ClearRefinements.md`
+    - [x] `PoweredBy.md`
+    - [x] `InstantSearch.md`
+    - [x] `NumericMenu.md`
+    - [x] `RangeInput.md`
+    - [x] `Breadcrumb.md`
+    - [ ] `__Template__.md`
+    - [x] `RefinementList.md`
+    - [x] `Snippet.md`
+  - [ ] `getting-started`
+    - [ ] `installing.md.hbs`
+    - [ ] `best-practices.md`
+    - [ ] `migration.md`
+    - [ ] `getting-started.md`
+    - [ ] `using-components.md`
+    - [ ] `styling.md`
+  - [ ] `examples`
+    - [ ] `umd.md.hbs`
+    - [ ] `ecommerce.md`
+    - [ ] `multi-index-search.md`
+    - [ ] `infinite-scroll.md`
+    - [ ] `bootstrap.md`
+    - [ ] `media.md`
