@@ -4,3 +4,4 @@
   [build.environment]
     YARN_VERSION = "1.6.0"
     NODE_ENV = "development"
+    VUE_CLI_TEST = "true"
