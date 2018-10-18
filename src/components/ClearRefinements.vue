@@ -1,7 +1,19 @@
 <template>
-  <div v-if="state" :class="suit()">
-    <slot :can-refine="canRefine" :refine="state.refine" :createURL="state.createURL">
-      <button type="reset" :class="[suit('button'), !canRefine && suit('button', 'disabled')]" :disabled="!canRefine" @click.prevent="state.refine">
+  <div
+    v-if="state"
+    :class="suit()"
+  >
+    <slot
+      :can-refine="canRefine"
+      :refine="state.refine"
+      :createURL="state.createURL"
+    >
+      <button
+        type="reset"
+        :class="[suit('button'), !canRefine && suit('button', 'disabled')]"
+        :disabled="!canRefine"
+        @click.prevent="state.refine"
+      >
         <slot name="resetLabel">
           Clear refinements
         </slot>
@@ -36,7 +48,9 @@ export default {
       return {
         clearsQuery: this.excludedAttributes.every(item => item !== 'query'),
         // note the difference: excludeAttributes vs. excludedAttributes
-        excludeAttributes: this.excludedAttributes.filter(item => item !== 'query'),
+        excludeAttributes: this.excludedAttributes.filter(
+          item => item !== 'query'
+        ),
       };
     },
     canRefine() {
