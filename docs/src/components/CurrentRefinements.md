@@ -56,12 +56,12 @@ name | scope | Description
 `default` | `{ items: Item[], refine: Item => void }` | Override how all the items look
 `item` | `{ item: Item, refine: Item => void }` | Override how an item looks
 
-an Item has the keys:
+All elements in `items` have the keys:
 
-* "type": which can be "facet", "exclude", "disjunctive", "hierarchical", "numeric" or "query"
-* "attribute": used as the key
-* "label": string form of the value
-* "value": necessary for the refinement to work correctly, no need to be changed
+* `type`: which can be "facet", "exclude", "disjunctive", "hierarchical", "numeric" or "query"
+* `attribute`: used as the key
+* `label`: string form of the value
+* `value`: necessary for the refinement to work correctly, no need to be changed
 
 ## CSS classes
 

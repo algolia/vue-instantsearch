@@ -45,7 +45,7 @@ it('TransformItems happens after excludedAttributes', () => {
   );
 });
 
-it("transformItems happens after excludedAttributes (so it doesn't include query by default", () => {
+it("transformItems happens after excludedAttributes (so it doesn't include query by default)", () => {
   __setState({
     refinements: [
       { type: 'query', query: 'hi there everyone!' },
