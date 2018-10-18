@@ -1,19 +1,7 @@
 <template>
-  <div
-    v-if="state"
-    :class="suit()"
-  >
-    <slot
-      :can-refine="canRefine"
-      :refine="state.refine"
-      :createURL="state.createURL"
-    >
-      <button
-        type="reset"
-        :class="[suit('button'), !canRefine && suit('button', 'disabled')]"
-        :disabled="!canRefine"
-        @click.prevent="state.refine"
-      >
+  <div v-if="state" :class="suit()">
+    <slot :can-refine="canRefine" :refine="state.refine" :createURL="state.createURL">
+      <button type="reset" :class="[suit('button'), !canRefine && suit('button', 'disabled')]" :disabled="!canRefine" @click.prevent="state.refine">
         <slot name="resetLabel">
           Clear refinements
         </slot>
@@ -38,21 +26,17 @@ export default {
     createSuitMixin({ name: 'ClearRefinements' }),
   ],
   props: {
-    clearsQuery: {
-      type: Boolean,
-      default: false,
-    },
     excludedAttributes: {
       type: Array,
-      default: () => [],
+      default: () => ['query'],
     },
   },
   computed: {
     widgetParams() {
       return {
-        clearsQuery: this.clearsQuery,
-        excludeAttributes: this.excludedAttributes,
-        transformItems: this.transformItems,
+        clearsQuery: this.excludedAttributes.every(item => item !== 'query'),
+        // note the difference: excludeAttributes vs. excludedAttributes
+        excludeAttributes: this.excludedAttributes.filter(item => item !== 'query'),
       };
     },
     canRefine() {
