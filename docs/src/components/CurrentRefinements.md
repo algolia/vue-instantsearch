@@ -22,6 +22,7 @@ Show the currently refined values and allow them to be unset.
     :transform-items="transformItems"
   ></ais-current-refinements>
 </template>
+
 <script>
 export default {
   data() {
