@@ -20,7 +20,7 @@ Show the currently refined values and allow them to be unset.
   <ais-current-refinements
     :excluded-attributes="[]"
     :transform-items="transformItems"
-  ></ais-current-refinements>
+  />
 </template>
 
 <script>
