@@ -90,7 +90,7 @@ export default {
         clearsQuery:
           this.excludedAttributes.indexOf('query') === -1 &&
           (this.includedAttributes
-            ? this.includedAttributes.indexOf('query') > -1
+            ? this.includedAttributes.indexOf('query') !== -1
             : true),
       };
     },
