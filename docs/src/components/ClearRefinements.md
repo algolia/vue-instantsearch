@@ -25,7 +25,7 @@ A button that clears the `query`, the `active refinements`, or both when pressed
 
 Name | Type | Default | Description | Required
 ---|---|---|---|---
-excludedAttributes | `string[]` | `["query"]` | Attributes not to clear | no
+excludedAttributes | `string[]` | `['query']` | Attributes not to clear | no
 classNames | Object | | Override class names | no
 
 ## Slots
