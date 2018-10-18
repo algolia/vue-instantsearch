@@ -28,10 +28,10 @@ export default {
   data() {
     return {
       transformItems: items =>
-        items.map(item => {
-          item.label = item.label.toLocaleUpperCase();
-          return item;
-        })
+        items.map(item => ({
+          ...label,
+          label: item.label.toLocaleUpperCase()
+        }))
     };
   }
 };
