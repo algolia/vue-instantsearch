@@ -147,7 +147,7 @@ it('default value of excludedAttributes is ["query"]', () => {
   expect(labels).toHaveLength(0);
 });
 
-it('includedAttributes overrides excludedAttributes', () => {
+it('includedAttributes overrides excludedAttributes (also for query)', () => {
   __setState({
     refinements: [
       {
@@ -172,7 +172,7 @@ it('includedAttributes overrides excludedAttributes', () => {
   expect(label.text()).toMatch(/Query/);
 });
 
-it('includedAttributes overrides excludedAttributes 2', () => {
+it('includedAttributes overrides excludedAttributes', () => {
   __setState({
     refinements: [
       {

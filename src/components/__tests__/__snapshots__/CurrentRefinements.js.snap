@@ -9,7 +9,7 @@ exports[`default value of excludedAttributes is ["query"] 1`] = `
 
 `;
 
-exports[`includedAttributes overrides excludedAttributes 1`] = `
+exports[`includedAttributes overrides excludedAttributes (also for query) 1`] = `
 
 <div class="ais-CurrentRefinements">
   <ul class="ais-CurrentRefinements-list">
@@ -28,7 +28,7 @@ exports[`includedAttributes overrides excludedAttributes 1`] = `
 
 `;
 
-exports[`includedAttributes overrides excludedAttributes 2 1`] = `
+exports[`includedAttributes overrides excludedAttributes 1`] = `
 
 <div class="ais-CurrentRefinements">
   <ul class="ais-CurrentRefinements-list">
