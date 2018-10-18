@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/vue';
 import { previewWrapper } from './utils';
-import { withKnobs, array } from '@storybook/addon-knobs/vue';
+import { withKnobs } from '@storybook/addon-knobs/vue';
 
 storiesOf('ais-current-refinements', module)
   .addDecorator(previewWrapper())
