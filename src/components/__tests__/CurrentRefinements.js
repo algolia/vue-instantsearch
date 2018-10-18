@@ -9,27 +9,43 @@ it('TransformItems happens after excludedAttributes', () => {
   __setState({
     refinements: [
       { type: 'query', query: 'hi there everyone!' },
-      { type: 'disjunctive', attribute: 'brand', value: 'Insignia™' },
+      { type: 'disjunctive', attributeName: 'brand', value: 'Insignia™' },
     ],
   });
 
-  const transformItems = items =>
-    items.filter(({ attribute }) => attribute === 'query');
+  const transformItems = items => {
+    expect(items).toHaveLength(0);
+    return [
+      { type: 'query', attribute: 'query', query: 'dogs' },
+      { type: 'disjunctive', attribute: 'brand', value: 'Insignia™' },
+    ];
+  };
 
   const wrapper = mount(CurrentRefinements, {
     propsData: {
       transformItems,
-      excludedAttributes: [],
+      excludedAttributes: ['query', 'brand'],
     },
   });
 
-  expect(wrapper.vm.refinements).toHaveLength(1);
+  expect(wrapper.vm.refinements).toHaveLength(2);
   expect(wrapper.vm.refinements[0]).toEqual(
-    expect.objectContaining({ type: 'query', attribute: 'query' })
+    expect.objectContaining({
+      type: 'query',
+      attribute: 'query',
+      query: 'dogs',
+    })
+  );
+  expect(wrapper.vm.refinements[1]).toEqual(
+    expect.objectContaining({
+      type: 'disjunctive',
+      attribute: 'brand',
+      value: 'Insignia™',
+    })
   );
 });
 
-it("TransformItems happens after excludedAttributes (so it doesn't include query by default", () => {
+it("transformItems happens after excludedAttributes (so it doesn't include query by default", () => {
   __setState({
     refinements: [
       { type: 'query', query: 'hi there everyone!' },
