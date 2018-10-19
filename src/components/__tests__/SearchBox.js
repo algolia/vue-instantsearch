@@ -51,11 +51,11 @@ test('with submit title', () => {
   );
 });
 
-test('with clear title', () => {
+test('with reset title', () => {
   __setState(defaultState);
   const wrapper = mount(SearchBox, {
     propsData: {
-      clearTitle: 'Clear Title',
+      resetTitle: 'Clear Title',
     },
   });
 
