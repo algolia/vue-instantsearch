@@ -61,6 +61,7 @@ x => done
   - [x] `advanced`
     - [x] `server-side-rendering.md`
     - [x] `multi-index-search.md`
+    - [x] `custom-backend.md`
     - [x] `custom-components.md`
     - [x] `vue-router-url-sync.md`
     - [x] `integrate-with-nuxt.md`
@@ -89,7 +90,7 @@ x => done
     - [x] `NumericMenu.md`
     - [x] `RangeInput.md`
     - [x] `Breadcrumb.md`
-    - [ ] `__Template__.md`
+    - [x] `__Template__.md`
     - [x] `RefinementList.md`
     - [x] `Snippet.md`
   - [ ] `getting-started`
@@ -99,10 +100,7 @@ x => done
     - [ ] `getting-started.md`
     - [ ] `using-components.md`
     - [ ] `styling.md`
-  - [ ] `examples`
-    - [ ] `umd.md.hbs`
-    - [ ] `ecommerce.md`
-    - [ ] `multi-index-search.md`
-    - [ ] `infinite-scroll.md`
-    - [ ] `bootstrap.md`
-    - [ ] `media.md`
+  - [x] `examples`
+    - [x] `default-theme.md`
+    - [x] `ecommerce.md`
+    - [x] `media.md`
