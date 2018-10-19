@@ -30,7 +30,7 @@
       :class="suit('submit')"
       :hidden="showLoadingIndicator && shouldShowLoadingIndicator"
     >
-      <slot name="reset-icon">
+      <slot name="submit-icon">
         <svg
           role="img"
           xmlns="http://www.w3.org/2000/svg"
