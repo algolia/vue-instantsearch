@@ -56,7 +56,7 @@ x => done
 
 # Docs
 
-- [ ] `docs/src`
+- [x] `docs/src`
   - [x] `index.md`
   - [x] `advanced`
     - [x] `server-side-rendering.md`
@@ -93,13 +93,13 @@ x => done
     - [x] `__Template__.md`
     - [x] `RefinementList.md`
     - [x] `Snippet.md`
-  - [ ] `getting-started`
-    - [ ] `installing.md.hbs`
-    - [ ] `best-practices.md`
-    - [ ] `migration.md`
-    - [ ] `getting-started.md`
-    - [ ] `using-components.md`
-    - [ ] `styling.md`
+  - [x] `getting-started`
+    - [x] `installing.md.hbs`
+    - [x] `best-practices.md`
+    - [x] `migration.md`
+    - [x] `getting-started.md`
+    - [x] `using-components.md`
+    - [x] `styling.md`
   - [x] `examples`
     - [x] `default-theme.md`
     - [x] `ecommerce.md`
