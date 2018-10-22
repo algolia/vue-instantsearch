@@ -19,6 +19,44 @@ The range input widget allows a user to select a numeric range using a minimum a
 <ais-range-input :attribute="attribute"></ais-range-input>
 ```
 
+### Range slider
+
+There's no built-in slider in Vue InstantSearch, but you can use third-party sliders that accepts two slider handles. An example is [vue-slider-component](https://github.com/NightCatSama/vue-slider-component). You would use that like this:
+
+```vue
+<template>
+  <ais-range-input attribute="price">
+    <template slot-scope="{ refine, currentRefinements, range }">
+      <vue-slider
+        :min="range.min"
+        :max="range.max"
+        :value="toValue(currentRefinements, range)"
+        @input="refine($event[0], $event[1])"
+      />
+    </template>
+  </ais-range-input>
+</template>
+
+<script>
+import VueSlider from 'vue-slider-component';
+export default {
+  components: {
+    VueSlider,
+  },
+  methods: {
+    toValue([min, max], range) {
+      return [
+        min === -Infinity ? range.min : min,
+        max === Infinity ? range.max : max,
+      ];
+    },
+  },
+}:
+</script>
+```
+
+<a class="btn btn-static-theme" href="stories/?selectedKind=RangeInput&selectedStory=with%20vue-slider-component">🕹 try out live</a>
+
 ## Props
 
 Name | Type | Default | Description | Required
@@ -27,7 +65,7 @@ attribute | String | `defaultValue` | The name of the attribute in your record |
 min | Number | - | Minimum value of the range | no
 max | Number | - | Maximum value of the range | no
 precision | Number | 0 | Number of digits after the decimal point to enforce | no
-classNames | Object | | Override class names | no
+class-names | Object | | Override class names | no
 
 ## CSS classes
 
@@ -59,4 +97,4 @@ Class name | Description
 `ais-RangeInput-input--min` | The minimum bound of the range
 `ais-RangeInput-input--max` | The maximum bound of the range
 
-classNames | Object | | Override class names | no
+class-names | Object | | Override class names | no

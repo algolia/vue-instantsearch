@@ -56,11 +56,12 @@ x => done
 
 # Docs
 
-- [ ] `docs/src`
+- [x] `docs/src`
   - [x] `index.md`
   - [x] `advanced`
     - [x] `server-side-rendering.md`
     - [x] `multi-index-search.md`
+    - [x] `custom-backend.md`
     - [x] `custom-components.md`
     - [x] `vue-router-url-sync.md`
     - [x] `integrate-with-nuxt.md`
@@ -89,20 +90,17 @@ x => done
     - [x] `NumericMenu.md`
     - [x] `RangeInput.md`
     - [x] `Breadcrumb.md`
-    - [ ] `__Template__.md`
+    - [x] `__Template__.md`
     - [x] `RefinementList.md`
     - [x] `Snippet.md`
-  - [ ] `getting-started`
-    - [ ] `installing.md.hbs`
-    - [ ] `best-practices.md`
-    - [ ] `migration.md`
-    - [ ] `getting-started.md`
-    - [ ] `using-components.md`
-    - [ ] `styling.md`
-  - [ ] `examples`
-    - [ ] `umd.md.hbs`
-    - [ ] `ecommerce.md`
-    - [ ] `multi-index-search.md`
-    - [ ] `infinite-scroll.md`
-    - [ ] `bootstrap.md`
-    - [ ] `media.md`
+  - [x] `getting-started`
+    - [x] `installing.md.hbs`
+    - [x] `best-practices.md`
+    - [x] `migration.md`
+    - [x] `getting-started.md`
+    - [x] `using-components.md`
+    - [x] `styling.md`
+  - [x] `examples`
+    - [x] `default-theme.md`
+    - [x] `ecommerce.md`
+    - [x] `media.md`
