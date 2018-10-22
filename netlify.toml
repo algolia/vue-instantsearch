@@ -1,5 +1,5 @@
 [build]
-    command = "npm run docs:build:dev"
+    command = "yarn docs:build:dev"
     publish = "docs/dist"
   [build.environment]
     YARN_VERSION = "1.6.0"
