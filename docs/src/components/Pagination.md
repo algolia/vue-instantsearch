@@ -29,7 +29,7 @@ showFirst | Boolean | `true` | Show the "first page" button | no
 showLast | Boolean | `true` | Show the "last page" button | no
 showNext | Boolean | `true` | Show the "next page" button | no
 showPrevious | Boolean | `true` | Show the "previous page" button | no
-class-names | Object | | Override class names | no
+class-names | Object | `{}` | Override class names | no
 
 ## Slots
 
@@ -60,7 +60,7 @@ Class name | Description
 `.ais-Pagination-item--lastPage` | the "last" pagination list item
 `.ais-Pagination-item--previousPage` | the "previous" pagination list item
 `.ais-Pagination-item--nextPage` | the "next" pagination list item
-`.ais-Pagination-item--page` | the "page" pagination list item
+`.ais-Pagination-item--item` | the "page" pagination list item
 `.ais-Pagination-item--selected` | the selected pagination list item
 `.ais-Pagination-item--disabled` | the disabled pagination list item
 `.ais-Pagination-link` | the pagination clickable element
