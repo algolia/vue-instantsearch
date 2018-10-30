@@ -21,7 +21,7 @@ A component to navigate between different pages of results.
 
 ## Props
 
-Name | Type | | Default | Description | Required
+Name | Type | Default | Description | Required
 ---|---|---|---|---
 padding | Number | `3` | the amount of pages to show before and after the current page | no
 totalPages | Number | | Limit the amount of pages that can be reached | no
