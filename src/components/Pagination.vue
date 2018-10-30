@@ -6,12 +6,12 @@
     <slot
       :refine="refine"
       :createURL="state.createURL"
-      :currentRefinement="state.currentRefinement"
-      :nbHits="state.nbHits"
-      :nbPages="state.nbPages"
+      :current-refinement="state.currentRefinement"
+      :nb-hits="state.nbHits"
+      :nb-pages="state.nbPages"
       :pages="state.pages"
-      :isFirstPage="state.isFirstPage"
-      :isLastPage="state.isLastPage"
+      :is-first-page="state.isFirstPage"
+      :is-last-page="state.isLastPage"
     >
       <ul :class="suit('list')">
         <li
@@ -21,22 +21,29 @@
             [suit('item', 'disabled')]: state.isFirstPage,
           }"
         >
-          <template v-if="!state.isFirstPage">
-            <a
-              :class="suit('link')"
-              aria-label="First"
-              :href="state.createURL(0)"
-              @click.prevent="refine(0)"
-            >‹‹</a>
-          </template>
-          <template v-else>
-            <span
-              :class="suit('link')"
-              aria-label="Previous"
-            >
-              ‹‹
-            </span>
-          </template>
+          <slot
+            name="first"
+            :createURL="state.createURL(0)"
+            :is-first-page="state.isFirstPage"
+            :refine="() => refine(0)"
+          >
+            <template v-if="!state.isFirstPage">
+              <a
+                :class="suit('link')"
+                aria-label="First"
+                :href="state.createURL(0)"
+                @click.prevent="refine(0)"
+              >‹‹</a>
+            </template>
+            <template v-else>
+              <span
+                :class="suit('link')"
+                aria-label="Previous"
+              >
+                ‹‹
+              </span>
+            </template>
+          </slot>
         </li>
         <li
           :class="{
@@ -45,24 +52,31 @@
             [suit('item', 'disabled')]: state.isFirstPage,
           }"
         >
-          <template v-if="!state.isFirstPage">
-            <a
-              :class="suit('link')"
-              aria-label="Previous"
-              :href="state.createURL(state.currentRefinement - 1)"
-              @click.prevent="refine(state.currentRefinement - 1)"
-            >
-              ‹
-            </a>
-          </template>
-          <template v-else>
-            <span
-              :class="suit('link')"
-              aria-label="Previous"
-            >
-              ‹
-            </span>
-          </template>
+          <slot
+            name="previous"
+            :createURL="state.createURL(state.currentRefinement - 1)"
+            :is-first-page="state.isFirstPage"
+            :refine="() => refine(state.currentRefinement - 1)"
+          >
+            <template v-if="!state.isFirstPage">
+              <a
+                :class="suit('link')"
+                aria-label="Previous"
+                :href="state.createURL(state.currentRefinement - 1)"
+                @click.prevent="refine(state.currentRefinement - 1)"
+              >
+                ‹
+              </a>
+            </template>
+            <template v-else>
+              <span
+                :class="suit('link')"
+                aria-label="Previous"
+              >
+                ‹
+              </span>
+            </template>
+          </slot>
         </li>
 
         <li
@@ -73,13 +87,22 @@
           v-for="page in state.pages"
           :key="page"
         >
-          <a
-            :class="suit('link')"
-            :href="state.createURL(page)"
-            @click.prevent="refine(page)"
+          <slot
+            name="item"
+            :page="page"
+            :createURL="state.createURL(page)"
+            :is-first-page="state.isFirstPage"
+            :is-last-page="state.isLastPage"
+            :refine="() => refine(page)"
           >
-            {{ page + 1 }}
-          </a>
+            <a
+              :class="suit('link')"
+              :href="state.createURL(page)"
+              @click.prevent="refine(page)"
+            >
+              {{ page + 1 }}
+            </a>
+          </slot>
         </li>
 
         <li
@@ -89,22 +112,29 @@
             [suit('item','disabled')]: state.isLastPage
           }"
         >
-          <template v-if="!state.isLastPage">
-            <a
-              :class="suit('link')"
-              aria-label="Next"
-              :href="state.createURL(state.currentRefinement + 1)"
-              @click.prevent="refine(state.currentRefinement + 1)"
-            >›</a>
-          </template>
-          <template v-else>
-            <span
-              :class="suit('link')"
-              aria-label="Next"
-            >
-              ›
-            </span>
-          </template>
+          <slot
+            name="next"
+            :createURL="state.createURL(state.currentRefinement + 1)"
+            :is-last-page="state.isLastPage"
+            :refine="() => refine(state.currentRefinement + 1)"
+          >
+            <template v-if="!state.isLastPage">
+              <a
+                :class="suit('link')"
+                aria-label="Next"
+                :href="state.createURL(state.currentRefinement + 1)"
+                @click.prevent="refine(state.currentRefinement + 1)"
+              >›</a>
+            </template>
+            <template v-else>
+              <span
+                :class="suit('link')"
+                aria-label="Next"
+              >
+                ›
+              </span>
+            </template>
+          </slot>
         </li>
         <li
           :class="{
@@ -113,22 +143,29 @@
             [suit('item','disabled')]: state.isLastPage,
           }"
         >
-          <template v-if="!state.isLastPage">
-            <a
-              :class="suit('link')"
-              aria-label="Last"
-              :href="state.createURL(state.nbPages - 1)"
-              @click.prevent="refine(state.nbPages - 1)"
-            >››</a>
-          </template>
-          <template v-else>
-            <span
-              :class="suit('link')"
-              aria-label="Last"
-            >
-              ››
-            </span>
-          </template>
+          <slot
+            name="last"
+            :createURL="state.createURL(state.nbPages - 1)"
+            :is-last-page="state.isLastPage"
+            :refine="() => refine(state.nbPages - 1)"
+          >
+            <template v-if="!state.isLastPage">
+              <a
+                :class="suit('link')"
+                aria-label="Last"
+                :href="state.createURL(state.nbPages - 1)"
+                @click.prevent="refine(state.nbPages - 1)"
+              >››</a>
+            </template>
+            <template v-else>
+              <span
+                :class="suit('link')"
+                aria-label="Last"
+              >
+                ››
+              </span>
+            </template>
+          </slot>
         </li>
       </ul>
     </slot>
