@@ -43,7 +43,7 @@ storiesOf('ais-pagination', module)
         </template>
       </ais-pagination>`,
   }))
-  .add('slots used', () => ({
+  .add('with named slots', () => ({
     template: `
       <ais-pagination :padding="5">
         <template slot="first" slot-scope="{ refine, isFirstPage }">
