@@ -46,20 +46,47 @@ storiesOf('ais-pagination', module)
   .add('slots used', () => ({
     template: `
       <ais-pagination :padding="5">
-        <template slot="first" slot-scope="{...scope}">
-          <pre>{{scope}}</pre>
+        <template slot="first" slot-scope="{ refine, isFirstPage }">
+          <button
+            @click="refine"
+            :disabled="isFirstPage"
+          >
+            first
+          </button>
         </template>
-        <template slot="previous" slot-scope="{...scope}">
-          <pre>{{scope}}</pre>
+        <template slot="previous" slot-scope="{ refine, isFirstPage }">
+          <button
+            @click="refine"
+            :disabled="isFirstPage"
+          >
+            previous
+          </button>
         </template>
-        <template slot="item" slot-scope="{...scope}">
-          <pre>{{scope}}</pre>
         </template>
-        <template slot="next" slot-scope="{...scope}">
-          <pre>{{scope}}</pre>
+        <template slot="item" slot-scope="{ page, refine, createURL }">
+          <a
+            class="ais-Pagination-link"
+            :href="createURL()"
+            @click.prevent="refine"
+          >
+            {{page}}
+          </a>
         </template>
-        <template slot="last" slot-scope="{...scope}">
-          <pre>{{scope}}</pre>
+        <template slot="next" slot-scope="{ refine, isFirstPage }">
+          <button
+            @click="refine"
+            :disabled="isLastPage"
+          >
+            next
+          </button>
+        </template>
+        <template slot="last" slot-scope="{ refine, isFirstPage }">
+          <button
+            @click="refine"
+            :disabled="isLastPage"
+          >
+            last
+          </button>
         </template>
       </ais-pagination>`,
   }))
