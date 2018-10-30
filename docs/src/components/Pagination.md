@@ -36,7 +36,7 @@ class-names | Object | `{}` | Override class names | no
 Name | Scope | Description
 ---|---|---
 default | `{ refine: (Number) => void, createURL: () => String, currentRefinement: Number, nbHits: Number, nbPages: Number, pages: Number, isFirstPage: Boolean, isLastPage: Boolean }` | Slot to override the DOM output
-first | `{ refine: () => void, createURL: () => String,isFirstPage: Boolean }` | Slot to override the DOM for "first page"
+first | `{ refine: () => void, createURL: () => String, isFirstPage: Boolean }` | Slot to override the DOM for "first page"
 previous | `{ refine: () => void, createURL: () => String, isFirstPage: Boolean }` | Slot to override the DOM for "previous page"
 item | `{ refine: () => void, createURL: () => String, page: Number, isFirstPage: Boolean, isLastPage: Boolean }` | Slot to override the DOM for each page
 next | `{ refine: () => void, createURL: () => String, isLastPage: Boolean }` | Slot to override the DOM for "next page"
