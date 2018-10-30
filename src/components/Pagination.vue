@@ -38,7 +38,7 @@
             <template v-else>
               <span
                 :class="suit('link')"
-                aria-label="Previous"
+                aria-label="First"
               >
                 ‹‹
               </span>
