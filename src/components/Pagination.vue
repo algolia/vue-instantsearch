@@ -20,6 +20,7 @@
             [suit('item', 'firstPage')]: true,
             [suit('item', 'disabled')]: state.isFirstPage,
           }"
+          v-if="showFirst"
         >
           <slot
             name="first"
@@ -51,6 +52,7 @@
             [suit('item', 'previousPage')]: true,
             [suit('item', 'disabled')]: state.isFirstPage,
           }"
+          v-if="showPrevious"
         >
           <slot
             name="previous"
@@ -111,6 +113,7 @@
             [suit('item','nextPage')]: true,
             [suit('item','disabled')]: state.isLastPage
           }"
+          v-if="showNext"
         >
           <slot
             name="next"
@@ -142,6 +145,7 @@
             [suit('item','lastPage')]: true,
             [suit('item','disabled')]: state.isLastPage,
           }"
+          v-if="showLast"
         >
           <slot
             name="last"
