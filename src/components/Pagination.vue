@@ -24,7 +24,7 @@
         >
           <slot
             name="first"
-            :createURL="state.createURL(0)"
+            :createURL="() => state.createURL(0)"
             :is-first-page="state.isFirstPage"
             :refine="() => refine(0)"
           >
@@ -56,7 +56,7 @@
         >
           <slot
             name="previous"
-            :createURL="state.createURL(state.currentRefinement - 1)"
+            :createURL="() => state.createURL(state.currentRefinement - 1)"
             :is-first-page="state.isFirstPage"
             :refine="() => refine(state.currentRefinement - 1)"
           >
@@ -92,7 +92,7 @@
           <slot
             name="item"
             :page="page"
-            :createURL="state.createURL(page)"
+            :createURL="() => state.createURL(page)"
             :is-first-page="state.isFirstPage"
             :is-last-page="state.isLastPage"
             :refine="() => refine(page)"
@@ -117,7 +117,7 @@
         >
           <slot
             name="next"
-            :createURL="state.createURL(state.currentRefinement + 1)"
+            :createURL="() => state.createURL(state.currentRefinement + 1)"
             :is-last-page="state.isLastPage"
             :refine="() => refine(state.currentRefinement + 1)"
           >
@@ -149,7 +149,7 @@
         >
           <slot
             name="last"
-            :createURL="state.createURL(state.nbPages - 1)"
+            :createURL="() => state.createURL(state.nbPages - 1)"
             :is-last-page="state.isLastPage"
             :refine="() => refine(state.nbPages - 1)"
           >
