@@ -31,7 +31,7 @@ storiesOf('ais-state-results', module)
     })
   )
   .add('default display', () => ({
-    template: `<ais-state-results></ais-state-results>`,
+    template: `<ais-state-results />`,
   }))
   .add('custom "autocomplete"', () => ({
     template: `
