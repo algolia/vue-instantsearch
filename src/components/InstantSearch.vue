@@ -57,12 +57,16 @@ export default {
     routing: {
       default: null,
       validator(value) {
-        if (typeof value === 'boolean' || !value.router || !value.stateMapping) {
-          throw new Error('routing should be an object, with `router` and `stateMapping`')
+        if (
+          typeof value === 'boolean' ||
+          !value.router ||
+          !value.stateMapping
+        ) {
+          warn('routing should be an object, with `router` and `stateMapping`');
           return false;
         }
-        return true
-      }
+        return true;
+      },
     },
     stalledSearchDelay: {
       type: Number,
