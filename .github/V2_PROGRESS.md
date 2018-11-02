@@ -82,7 +82,7 @@ x => done
     - [x] `SortBy.md`
     - [x] `HierarchicalMenu.md`
     - [x] `Autocomplete.md`
-    - [x] `SearchState.md`
+    - [x] `StateResults.md`
     - [x] `Configure.md`
     - [x] `ClearRefinements.md`
     - [x] `PoweredBy.md`
