@@ -42,7 +42,10 @@ export default {
 </script>
 ```
 
-They're routing object contains two keys: "history" and "stateMapping". the history object is used for writing and reading to the URL, and the state mapping is used for mapping the InstantSearch state towards the state that will be read and written to the URL.
+They're routing object contains two keys: `history` and `stateMapping`:
+
+- **history**: used for writing and reading to the URL,
+- **stateMapping**: used for mapping the InstantSearch state towards the state that will be read and written to the URL.
 
 If you want to customise which things are written in the URL but don't want to customise how exactly the URL looks you will use state mapping. The way to do this is replacing the call to `stateMapping` with an object with the functions `stateToRoute` and `routeToState`.
 
