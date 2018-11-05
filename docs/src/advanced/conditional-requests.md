@@ -69,7 +69,7 @@ Functionally this is not any different from directly passing the created search 
 
 ## Mocking a search request
 
-Since we don't want to do a request when the query is `""`, we first need to detect it:
+Since we don't want to do a request when the query is empty (`""`), we first need to detect it:
 
 ```js
 const searchClient = {
