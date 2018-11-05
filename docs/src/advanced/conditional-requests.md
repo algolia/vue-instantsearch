@@ -11,7 +11,7 @@ githubSource: docs/src/advanced/conditional-requests.md
 
 > NOTE: this guide **has** been updated for v2
 
-InstantSearch will do a requests to Algolia servers on every key stroke, which means that it's fast and users will see updated results instantly. This also means that a request is being done to show the initial results on an empty query. While this usually isn't an issue and even a feature, since it warms up the network connection so subsequent requests will be done faster too.
+InstantSearch sends a request to Algolia servers on every keystroke, which means that it's fast and users will see updated results instantly. A request is also sent to show the initial results on an empty query. This is the original behavior since it warms up the network connection so subsequent requests will be done faster too.
 
 However, there are cases in which you do not want to do extra network requests than strictly necessary, for example when you are using a custom backend, or when the initial results are never displayed.
 
