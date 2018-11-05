@@ -82,7 +82,7 @@ const searchClient = {
 }
 ```
 
-There can be multiple requests done in case a user for example clicks a hierarchical menu open. For now this doesn't really have a big impact, except that we have to make sure to check that every query is empty before we intercept.
+There can be multiple requests done in case a user for example clicks a hierarchical menu open. For now, this doesn't really have a big impact except that we have to make sure to check that every query is empty before we intercept the function call.
 
 Then, we need to return a [formatted response](https://www.algolia.com/doc/api-reference/api-methods/search/?language=javascript#response). This is an array of objects of the same length as the `requests` array. At the bare minimum, each object needs to contain: `processingTimeMS`, `nbHits`, `hits` and `facets`:
 
