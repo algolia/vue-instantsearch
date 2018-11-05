@@ -1,5 +1,5 @@
 ---
-title: Conditionally doing search requests
+title: Conditionally making search requests
 mainTitle: Advanced
 layout: main.pug
 category: Advanced
