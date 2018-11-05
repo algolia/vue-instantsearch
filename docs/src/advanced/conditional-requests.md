@@ -39,11 +39,11 @@ The way we will prevent searches to Algolia from happening in certain use cases 
 </template>
 
 <script>
-import algoliasearch from "algoliasearch/lite";
+import algoliasearch from 'algoliasearch/lite';
 
 const algoliaClient = algoliasearch(
-  "latency",
-  "6be0576ff61c053d5f9a3225e2a90f76"
+  'latency',
+  '6be0576ff61c053d5f9a3225e2a90f76'
 );
 
 const searchClient = {
@@ -52,7 +52,7 @@ const searchClient = {
   },
   async searchForFacetValues(requests) {
     return algoliaClient.searchForFacetValues(requests);
-  }
+  },
 };
 
 export default {
@@ -60,7 +60,7 @@ export default {
     return {
       searchClient,
     };
-  }
+  },
 };
 </script>
 ```
@@ -79,7 +79,7 @@ const searchClient = {
     }
     return algoliaClient.search(requests);
   },
-}
+};
 ```
 
 There can be multiple requests done in case a user for example clicks a hierarchical menu open. For now, this doesn't really have a big impact except that we have to make sure to check that every query is empty before we intercept the function call.
@@ -98,12 +98,12 @@ const searchClient = {
             hits: [],
             facets: {},
           };
-        })
+        }),
       };
     }
     return algoliaClient.search(requests);
   },
-}
+};
 ```
 
 We can then build both together and get to a result like this:
@@ -120,11 +120,11 @@ We can then build both together and get to a result like this:
 </template>
 
 <script>
-import algoliasearch from "algoliasearch/lite";
+import algoliasearch from 'algoliasearch/lite';
 
 const algoliaClient = algoliasearch(
-  "latency",
-  "6be0576ff61c053d5f9a3225e2a90f76"
+  'latency',
+  '6be0576ff61c053d5f9a3225e2a90f76'
 );
 
 const searchClient = {
@@ -140,14 +140,14 @@ const searchClient = {
             hits: [],
             facets: {},
           };
-        })
+        }),
       };
     }
     return algoliaClient.search(requests);
   },
   async searchForFacetValues(requests) {
     return algoliaClient.searchForFacetValues(requests);
-  }
+  },
 };
 
 export default {
@@ -155,7 +155,7 @@ export default {
     return {
       searchClient,
     };
-  }
+  },
 };
 </script>
 ```
