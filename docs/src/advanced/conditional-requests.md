@@ -17,7 +17,7 @@ However, there are cases in which you do not want to do extra network requests t
 
 ## How it's made possible
 
-InstantSearch is the UI part on top a search client with a state managed by a [JavaScript Helper](https://github.com/algolia/algoliasearch-helper-js). These three layers are composable and can be interchanged to leverage the InstantSearch widgets system with different search clients.
+InstantSearch is the UI part on top of a search client with a state managed by a [JavaScript Helper](https://github.com/algolia/algoliasearch-helper-js). These three layers are composable and can be interchanged to leverage the InstantSearch widgets system with different search clients.
 
 The [search client](https://github.com/algolia/algoliasearch-client-javascript) that Algolia offers queries Algolia's backends whenever the user refines the search. It is possible to implement your own search client that queries your backend, which then queries Algolia's backend with the [Algolia search client](https://github.com/algolia/algoliasearch-client-javascript) on your server.
 
