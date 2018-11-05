@@ -129,16 +129,11 @@ const algoliaClient = algoliasearch(
 
 const searchClient = {
   async search(requests) {
-    // eslint-disable-next-line no-console
-    console.log(
-      "change conditional if any of the other facets are faked",
-      requests
-    );
+    // change conditional if any of the other facets are faked"
     if (requests.every(({ params: { query } }) => Boolean(query) === false)) {
       return {
         results: requests.map(params => {
-          // eslint-disable-next-line no-console
-          console.log("fake something of the result if necessary", params);
+          // fake something of the result if used by the search interface
           return {
             processingTimeMS: 0,
             nbHits: 0,
