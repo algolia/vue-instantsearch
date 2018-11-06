@@ -1,9 +1,9 @@
 ---
-name: v2 alpha feedback
+name: v2 prerelease feedback
 about: Create a report to help us improve Vue InstantSearch
 ---
 
-**Feedback on the v2 alpha version 🆕**
+**Feedback on the v2 prerelease version 🆕**
 
 ### Describe the bug / features
 
@@ -25,4 +25,4 @@ about: Create a report to help us improve Vue InstantSearch
 
 > Always try the latest one before opening an issue.
 
-<!-- e.g. v2.0.0-alpha.1 -->
+<!-- e.g. v2.0.0-beta.1 -->
