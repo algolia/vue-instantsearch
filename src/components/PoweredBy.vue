@@ -57,9 +57,6 @@ export default {
         'utm_campaign=poweredby'
       );
     },
-    themeColor() {
-      return this.theme === 'light' ? '#5468FF' : '#FFF';
-    },
   },
 };
 </script>
