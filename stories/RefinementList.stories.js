@@ -4,23 +4,25 @@ import { previewWrapper } from './utils';
 storiesOf('ais-refinement-list', module)
   .addDecorator(previewWrapper({ filters: '' }))
   .add('default', () => ({
-    template: `<ais-refinement-list attribute="categories"></ais-refinement-list>`,
+    template: `
+      <ais-refinement-list attribute="categories" />
+    `,
   }))
   .add('with searchbox', () => ({
     template: `
       <ais-refinement-list
         attribute="categories"
         searchable
-      >
-      </ais-refinement-list>`,
+      />
+    `,
   }))
   .add('with show more', () => ({
     template: `
       <ais-refinement-list
         attribute="categories"
         show-more
-      >
-      </ais-refinement-list>`,
+      />
+    `,
   }))
   .add('with transform items', () => ({
     template: `
