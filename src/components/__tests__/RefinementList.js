@@ -94,7 +94,7 @@ it("allows override of placeholder when it's searchable", () => {
     propsData: {
       searchable: true,
       attribute: 'something',
-      placeholder,
+      searchablePlaceholder: placeholder,
     },
   });
 

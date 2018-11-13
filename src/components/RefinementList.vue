@@ -24,7 +24,7 @@
       >
         <search-input
           v-model="searchForFacetValues"
-          :placeholder="placeholder"
+          :placeholder="searchablePlaceholder"
         />
       </div>
       <slot
@@ -124,7 +124,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    placeholder: {
+    searchablePlaceholder: {
       default: 'Search here…',
       type: String,
       required: false,
