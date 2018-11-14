@@ -1,5 +1,13 @@
-import { createApp } from './app';
+import { loadAsyncComponents } from '@akryum/vue-cli-plugin-ssr/client';
 
-const { app } = createApp();
+import { createApp } from './main';
 
-app.$mount('#app');
+createApp({
+  async beforeApp({ router }) {
+    await loadAsyncComponents({ router });
+  },
+
+  afterApp({ app }) {
+    app.$mount('#app');
+  },
+});

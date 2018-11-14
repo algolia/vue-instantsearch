@@ -1,8 +1,8 @@
-import { createApp } from './app';
+import { createApp } from './main';
 
 export default context => {
-  return new Promise((resolve, reject) => {
-    const { app, router } = createApp();
+  return new Promise(async (resolve, reject) => {
+    const { app, router } = await createApp();
 
     router.push(context.url);
 

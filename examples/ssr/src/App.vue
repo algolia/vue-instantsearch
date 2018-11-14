@@ -1,22 +1,13 @@
 <template>
   <div id="app">
-    <Clicker />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/search">Search</router-link>
+    </div>
+    <router-view />
   </div>
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue';
-import Clicker from './components/Clicker.vue';
-
-export default {
-  name: 'app',
-  components: {
-    HelloWorld,
-    Clicker,
-  },
-};
-</script>
 
 <style>
 #app {

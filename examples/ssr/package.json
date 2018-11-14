@@ -3,54 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "yarn build && cross-env NODE_ENV=dev NPM_EXECPATH=yarn npm-run-all -p start serve:client",
-    "serve:client": "vue-cli-service serve",
-    "build": "yarn build:server --silent && yarn build:client --no-clean --silent",
-    "build:client": "vue-cli-service build",
-    "build:server": "cross-env WEBPACK_TARGET=node vue-cli-service build",
-    "start": "node scripts/start",
-    "lint": "vue-cli-service lint"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "ssr:build": "vue-cli-service ssr:build",
+    "ssr:serve": "vue-cli-service ssr:serve",
+    "ssr:start": "cross-env NODE_ENV=production vue-cli-service ssr:serve --mode production"
   },
   "dependencies": {
+    "algoliasearch": "^3.30.0",
+    "instantsearch.css": "^7.1.0",
     "vue": "^2.5.17",
+    "vue-instantsearch": "^2.0.0-beta.1",
     "vue-router": "^3.0.1",
-    "vue-server-renderer": "^2.5.17"
+    "vue-server-renderer": "^2.5.16"
   },
   "devDependencies": {
+    "@akryum/vue-cli-plugin-ssr": "^0.3.0",
     "@vue/cli-plugin-babel": "^3.0.5",
     "@vue/cli-plugin-eslint": "^3.0.5",
     "@vue/cli-service": "^3.0.5",
     "@vue/eslint-config-prettier": "^4.0.0",
     "babel-eslint": "^10.0.1",
-    "cross-env": "^5.2.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
-    "npm-run-all": "^4.1.3",
-    "vue-template-compiler": "^2.5.17",
-    "webpack-node-externals": "^1.7.2"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+    "vue-template-compiler": "^2.5.17"
+  }
 }
