@@ -22,6 +22,12 @@ See more info here: https://community.algolia.com/vue-instantsearch/components/I
 export default {
   name: 'AisInstantSearch',
   mixins: [createSuitMixin({ name: 'InstantSearch' })],
+  inject: {
+    $_ais: {
+      // instantsearch instance
+      name: 'ais',
+    },
+  },
   provide() {
     return {
       instantSearchInstance: this.instantSearchInstance,
@@ -48,6 +54,7 @@ export default {
     },
     searchClient: {
       type: Object,
+      // TODO: make separate SSR component without these props, rest same?
       required: true,
     },
     indexName: {
@@ -79,7 +86,7 @@ export default {
   },
   data() {
     return {
-      instantSearchInstance: instantsearch({
+      instantSearchInstance: this.$_ais || instantsearch({
         searchClient: this.searchClient,
         indexName: this.indexName,
         routing: this.routing,
@@ -112,7 +119,7 @@ export default {
     },
   },
   created() {
-    if (typeof this.searchClient.addAlgoliaAgent === 'function') {
+    if (this.searchClient && typeof this.searchClient.addAlgoliaAgent === 'function') {
       this.searchClient.addAlgoliaAgent(`Vue InstantSearch (${version})`);
     }
   },

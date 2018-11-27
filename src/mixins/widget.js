@@ -22,7 +22,11 @@ export const createWidgetMixin = ({ connector } = {}) => ({
     if (typeof connector === 'function') {
       this.factory = connector(this.updateState, () => {});
       this.widget = this.factory(this.widgetParams);
-      this.instantSearchInstance.addWidget(this.widget);
+      if (this.$isServer) {
+        this.instantSearchInstance.whateverTheMethodIs(this.widget);
+      } else {
+        this.instantSearchInstance.addWidget(this.widget);
+      }
     } else if (connector !== true) {
       warn(
         `You are using the InstantSearch widget mixin, but didn't provide a connector.
