@@ -23,9 +23,16 @@ export const createWidgetMixin = ({ connector } = {}) => ({
       this.factory = connector(this.updateState, () => {});
       this.widget = this.factory(this.widgetParams);
       if (this.$isServer) {
-        this.instantSearchInstance.whateverTheMethodIs(this.widget);
+        this.instantSearchInstance.giveRenderPropsServerOrSomething(
+          this.widget
+        );
       } else {
         this.instantSearchInstance.addWidget(this.widget);
+        if (this.instantSearchInstance._isSsr) {
+          this.instantSearchInstance.giveRenderPropsClientOrSomething(
+            this.widget
+          );
+        }
       }
     } else if (connector !== true) {
       warn(
@@ -66,6 +73,7 @@ Read more on using connectors: https://community.algolia.com/vue-instantsearch/g
   },
   methods: {
     updateState(state = {}, isFirstRender) {
+      console.log(state);
       if (!isFirstRender) {
         // Avoid updating the state on first render
         // otherwise there will be a flash of placeholder data

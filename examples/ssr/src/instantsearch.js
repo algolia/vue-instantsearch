@@ -8,6 +8,8 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
     ...options,
   });
 
+  search._isSsr = true;
+
   search.ssr = async params => {
     search.helper = algoliaHelper(searchClient, indexName, params);
 
@@ -18,12 +20,12 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
 
     return {
       ais: {
-        lastResults,
+        lastResults: JSON.parse(JSON.stringify(lastResults)),
       },
     };
   };
 
-  search.whateverTheMethodIs = widget => {
+  search.giveRenderPropsServerOrSomething = widget => {
     widget.init({
       state: search.helper.lastResults._state,
       helper: search.helper,
@@ -46,13 +48,33 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
     });
   };
 
+  search.giveRenderPropsClientOrSomething = widget => {
+    widget.render({
+      state: search.helper.lastResults._state,
+      results: search.helper.lastResults,
+      helper: search.helper,
+      templatesConfig: {},
+      createURL: () => '#',
+      instantSearchInstance: search,
+      searchMetadata: {
+        isSearchStalled: false,
+      },
+    });
+  };
+
   search.injectOrHydrate = () => {
     if (window.__ALGOLIA_STATE__) {
       const { lastResults } = window.__ALGOLIA_STATE__;
       search.searchParameters = lastResults._state;
+      search.helper = algoliaHelper(
+        searchClient,
+        indexName,
+        lastResults._state
+      );
+      search.helper.lastResults = lastResults;
       // TODO: set the search results, and use those for the initial "search"
       // not doing that yet is what causes the flash of no content
-      delete window.__ALGOLIA_STATE__;
+      // delete window.__ALGOLIA_STATE__;
     }
   };
 
