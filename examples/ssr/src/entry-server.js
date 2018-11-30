@@ -1,6 +1,5 @@
 import { createApp } from './main';
 
-
 export default context =>
   new Promise(async (resolve, reject) => {
     const { app, router, instantsearch } = await createApp();
@@ -24,17 +23,9 @@ export default context =>
           }
         })
       )
-        .then(components => {
-          // eslint-disable-next-line no-console
-          const aisComponents = components.filter(comp => comp && comp.ais);
-          if (aisComponents.length > 1) {
-            throw new Error('only one InstantSearch instance is allowed');
-          }
-
-          if (aisComponents[0]) {
-            context.ais = {...aisComponents[0].ais};
-          }
-        })
+        .then(components =>
+          instantsearch.injectSsrOrSomethingServer({ components, context })
+        )
         .then(() => {
           // After all preFetch hooks are resolved, our store is now
           // filled with the state needed to render the app.

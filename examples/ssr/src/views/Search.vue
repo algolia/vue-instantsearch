@@ -1,5 +1,5 @@
 <template>
-  <AisInstantSearch>
+  <AisSsr>
     <AisSearchBox />
     <AisStats />
     <AisHits>
@@ -23,12 +23,12 @@
         </p>
       </template>
     </AisHits>
-  </AisInstantSearch>
+  </AisSsr>
 </template>
 
 <script>
 import {
-  AisInstantSearch,
+  AisSsr,
   AisHits,
   AisHighlight,
   AisSearchBox,
@@ -46,7 +46,7 @@ export default {
     });
   },
   components: {
-    AisInstantSearch,
+    AisSsr,
     AisHits,
     AisHighlight,
     AisSearchBox,
