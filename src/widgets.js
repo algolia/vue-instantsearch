@@ -29,6 +29,7 @@ export { default as AisSearchBox } from './components/SearchBox.vue';
 export { default as AisSnippet } from './components/Snippet.vue';
 export { default as AisSortBy } from './components/SortBy.vue';
 export { default as AisStats } from './components/Stats.vue';
+export { default as AisSsr } from './components/Ssr.vue';
 export {
   default as AisToggleRefinement,
 } from './components/ToggleRefinement.vue';
