@@ -320,7 +320,7 @@ export class Store {
     try {
       values = this._helper.lastResults.getFacetValues(attribute, {
         sortBy,
-      });
+      }).data;
     } catch (e) {
       values = [];
     }
