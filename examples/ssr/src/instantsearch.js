@@ -11,7 +11,12 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
   search._isSsr = true;
 
   search.ssr = async params => {
-    search.helper = algoliaHelper(searchClient, indexName, params);
+    search.helper = algoliaHelper(searchClient, indexName, {
+      // parameters set by default
+      highlightPreTag: '__ais-highlight__',
+      highlightPostTag: '__/ais-highlight__',
+      ...params,
+    });
 
     const { content: lastResults } = await search.helper.searchOnce();
 

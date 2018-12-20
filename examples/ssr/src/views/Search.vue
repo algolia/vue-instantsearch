@@ -40,9 +40,6 @@ export default {
     return instantsearch.ssr({
       query: 'hi',
       hitsPerPage: 5,
-      // TODO: export this from Vue InstantSearch
-      highlightPreTag: '__ais-highlight__',
-      highlightPostTag: '__/ais-highlight__',
     });
   },
   components: {
