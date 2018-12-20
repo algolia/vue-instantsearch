@@ -35,7 +35,7 @@ Name | Scope | Description
 ---|---|---
 default | `{ items: Array<{label: String, value: String}>, canRefine: Boolean, refine: String => void, createURL: () => String }` | Slot to override the DOM output
 item | `{ item: {label: String, value: String} }` | Slot to override the content of the `<option>`. Make sure to use a `<template>` tag as root here, since anything else is invalid DOM.
-all | `{}` | Label for the "no currently selected" optionMake sure to use a `<template>` tag as root here, since anything else is invalid DOM.
+ defaultOption | `{}` | Label for the "no currently selected" optionMake sure to use a `<template>` tag as root here, since anything else is invalid DOM.
 
 ## CSS classes
 
