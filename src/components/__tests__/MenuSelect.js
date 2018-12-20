@@ -117,7 +117,7 @@ describe('default render', () => {
       propsData: props,
       slots: {
         // tag is needed here for Vue Test Utils, even if it's invalid HTML
-        all: '<span>None</span>',
+        defaultOption: '<span>None</span>',
       },
     });
 

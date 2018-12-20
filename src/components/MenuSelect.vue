@@ -17,7 +17,7 @@
           :class="suit('option')"
           value=""
         >
-          <slot name="all">See all</slot>
+          <slot name="defaultOption">See all</slot>
         </option>
         <option
           v-for="item in state.items"
