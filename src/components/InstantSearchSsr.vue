@@ -1,6 +1,6 @@
 <template>
   <!-- AisSsr is an empty component that will hold other widgets -->
-  <div :class="suit()"><slot /></div>
+  <div :class="[suit(), suit('', 'ssr')]"><slot /></div>
 </template>
 
 <script>
