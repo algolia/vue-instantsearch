@@ -31,6 +31,7 @@ jest.mock('instantsearch.js/es', () => {
         _searchFunction: searchFunction,
         routing: new RoutingManager(routing),
         helper: fakeInstantSearch.__helper,
+        client: searchClient,
         start,
       };
     }
