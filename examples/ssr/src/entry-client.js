@@ -4,7 +4,7 @@ import { createApp } from './main';
 
 createApp({
   async beforeApp({ router, instantsearch }) {
-    instantsearch.injectOrHydrate();
+    instantsearch.hydrate();
     await loadAsyncComponents({ router });
   },
 

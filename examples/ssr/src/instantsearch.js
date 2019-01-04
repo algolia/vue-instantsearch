@@ -13,7 +13,8 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
 
   search._isSsr = true;
 
-  search.ssr = async params => {
+  // main API for SSR, called in asyncData of a root component which contains instantsearch
+  search.findResultsState = async params => {
     search.helper = algoliaHelper(searchClient, indexName, {
       // parameters set by default
       highlightPreTag: '__ais-highlight__',
@@ -33,7 +34,9 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
     };
   };
 
-  search.giveRenderPropsServerOrSomething = widget => {
+  // make sure correct data is available in each widget's state
+  // called in widget mixin
+  search.__forceRender = widget => {
     widget.init({
       state: search.helper.lastResults._state,
       helper: search.helper,
@@ -48,6 +51,7 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
       results: search.helper.lastResults,
       helper: search.helper,
       templatesConfig: {},
+      // TODO: use memory or real router
       createURL: () => '#',
       instantSearchInstance: search,
       searchMetadata: {
@@ -56,21 +60,9 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
     });
   };
 
-  search.giveRenderPropsClientOrSomething = widget => {
-    widget.render({
-      state: search.helper.lastResults._state,
-      results: search.helper.lastResults,
-      helper: search.helper,
-      templatesConfig: {},
-      createURL: () => '#',
-      instantSearchInstance: search,
-      searchMetadata: {
-        isSearchStalled: false,
-      },
-    });
-  };
-
-  search.injectOrHydrate = () => {
+  // called before app mounts on client
+  // reads from ALGOLIA_STATE & makes sure the results are read when rendering
+  search.hydrate = () => {
     if (window.__ALGOLIA_STATE__) {
       const { lastResults } = window.__ALGOLIA_STATE__;
       search.searchParameters = lastResults._state;
@@ -88,15 +80,11 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
     }
   };
 
-  search.injectToRootOrProvideOrSomethingMaybeAMixin = () => ({
-    provide() {
-      return {
-        $_ais: search,
-      };
-    },
-  });
-
-  search.injectSsrOrSomethingServer = ({ components, context }) => {
+  // receives components & context
+  // finds all components which have a call to `instantsearch.calledInAsyncDataPrefetch`
+  // keeps only one of those and puts it on global context
+  // (this global context is used to be put on window.ALGOLIA_STATE)
+  search.findRoot = ({ components, context }) => {
     const aisComponents = components.filter(comp => comp && comp.ais);
     if (aisComponents.length > 1) {
       throw new Error('only one InstantSearch instance is allowed');
@@ -107,5 +95,18 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
     }
   };
 
-  return search;
+  // put this in the user's root Vue instance
+  // we can then reuse that InstantSearch instance seamlessly from `ais-ssr`
+  const rootMixin = {
+    provide() {
+      return {
+        $_ais: search,
+      };
+    },
+  };
+
+  return {
+    instantsearch: search,
+    rootMixin,
+  };
 };

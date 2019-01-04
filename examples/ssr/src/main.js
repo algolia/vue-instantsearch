@@ -17,7 +17,7 @@ export async function createApp({
 } = {}) {
   const router = createRouter();
 
-  const instantsearch = createInstantSearch({
+  const { instantsearch, rootMixin } = createInstantSearch({
     searchClient,
     indexName: 'movies',
     // options: {
@@ -31,9 +31,9 @@ export async function createApp({
   });
 
   const app = new Vue({
+    mixins: [rootMixin],
     router,
     render: h => h(App),
-    ...instantsearch.injectToRootOrProvideOrSomethingMaybeAMixin(),
   });
 
   const result = {

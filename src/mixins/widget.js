@@ -22,17 +22,10 @@ export const createWidgetMixin = ({ connector } = {}) => ({
     if (typeof connector === 'function') {
       this.factory = connector(this.updateState, () => {});
       this.widget = this.factory(this.widgetParams);
-      if (this.$isServer) {
-        this.instantSearchInstance.giveRenderPropsServerOrSomething(
-          this.widget
-        );
-      } else {
-        this.instantSearchInstance.addWidget(this.widget);
-        if (this.instantSearchInstance._isSsr) {
-          this.instantSearchInstance.giveRenderPropsClientOrSomething(
-            this.widget
-          );
-        }
+      this.instantSearchInstance.addWidget(this.widget);
+
+      if (this.instantSearchInstance._isSsr) {
+        this.instantSearchInstance.__forceRender(this.widget);
       }
     } else if (connector !== true) {
       warn(

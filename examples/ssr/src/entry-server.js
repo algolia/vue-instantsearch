@@ -24,7 +24,7 @@ export default context =>
         })
       )
         .then(components =>
-          instantsearch.injectSsrOrSomethingServer({ components, context })
+          instantsearch.findRoot({ components, context })
         )
         .then(() => {
           // After all preFetch hooks are resolved, our store is now

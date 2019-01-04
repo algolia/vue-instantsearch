@@ -35,11 +35,11 @@ import {
   AisHighlight,
   AisSearchBox,
   AisStats,
-} from '../../../../src/instantsearch.js';
+} from '../../../../src/instantsearch.js'; // TODO: move this to 'vue-instantsearch'
 
 export default {
   asyncData({ instantsearch }) {
-    return instantsearch.ssr({
+    return instantsearch.findResultsState({
       query: 'hi',
       hitsPerPage: 5,
       disjunctiveFacets: ['genre'],
