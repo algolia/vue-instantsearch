@@ -1,5 +1,8 @@
 import instantsearch from 'instantsearch.js/es/index';
-import algoliaHelper from 'algoliasearch-helper';
+import algoliaHelper, {
+  SearchParameters,
+  SearchResults,
+} from 'algoliasearch-helper';
 
 export const createInstantSearch = ({ searchClient, indexName, options }) => {
   const search = instantsearch({
@@ -76,10 +79,12 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
         indexName,
         lastResults._state
       );
-      search.helper.lastResults = lastResults;
-      // TODO: set the search results, and use those for the initial "search"
-      // not doing that yet is what causes the flash of no content
-      // delete window.__ALGOLIA_STATE__;
+      search.helper.lastResults = new SearchResults(
+        new SearchParameters(lastResults._state),
+        lastResults._rawResults
+      );
+
+      delete window.__ALGOLIA_STATE__;
     }
   };
 
