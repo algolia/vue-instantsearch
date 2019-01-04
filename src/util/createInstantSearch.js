@@ -17,8 +17,11 @@ export const createInstantSearch = ({ ssr }) => ({
   inject: ssr
     ? {
         $_ais: {
-          // Injected by the user's root component
-          name: 'ais',
+          default() {
+            throw new Error(
+              'When using SSR, it is required to use the rootMixin'
+            );
+          },
         },
       }
     : undefined,
