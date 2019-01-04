@@ -2,6 +2,7 @@
   <AisInstantSearchSsr>
     <AisSearchBox />
     <AisStats />
+    <AisRefinementList attribute="genre"/>
     <AisHits>
       <template
         slot="item"
@@ -29,6 +30,7 @@
 <script>
 import {
   AisInstantSearchSsr,
+  AisRefinementList,
   AisHits,
   AisHighlight,
   AisSearchBox,
@@ -40,10 +42,13 @@ export default {
     return instantsearch.ssr({
       query: 'hi',
       hitsPerPage: 5,
+      disjunctiveFacets: ['genre'],
+      disjunctiveFacetsRefinements: {genre: ['Comedy']},
     });
   },
   components: {
     AisInstantSearchSsr,
+    AisRefinementList,
     AisHits,
     AisHighlight,
     AisSearchBox,
