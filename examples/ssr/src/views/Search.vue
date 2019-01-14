@@ -24,6 +24,7 @@
         </p>
       </template>
     </ais-hits>
+    <ais-pagination />
   </ais-instant-search-ssr>
 </template>
 
@@ -35,6 +36,7 @@ import {
   AisHighlight,
   AisSearchBox,
   AisStats,
+  AisPagination,
 } from '../../../../src/instantsearch.js'; // TODO: move this to 'vue-instantsearch'
 
 export default {
@@ -53,6 +55,7 @@ export default {
     AisHighlight,
     AisSearchBox,
     AisStats,
+    AisPagination,
   },
 };
 </script>
