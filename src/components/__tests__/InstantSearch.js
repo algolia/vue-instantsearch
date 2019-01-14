@@ -247,6 +247,31 @@ it('Allows a change in `stalled-search-delay`', () => {
   expect(wrapper.vm.instantSearchInstance._stalledSearchDelay).toEqual(50);
 });
 
+it('does not allow `routing` to be a boolean', () => {
+  global.console.error = jest.fn();
+  global.console.warn = jest.fn();
+  mount(InstantSearch, {
+    propsData: {
+      searchClient: {},
+      indexName: 'bla',
+      routing: true,
+    },
+  });
+
+  expect(global.console.error.mock.calls[0][0]).toMatchInlineSnapshot(`
+"[Vue warn]: Invalid prop: custom validator check failed for prop \\"routing\\".
+
+found in
+
+---> <AisInstantSearch>
+       <Root>"
+`);
+
+  expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
+    `"routing should be an object, with \`router\` and \`stateMapping\`"`
+  );
+});
+
 it('Does not allow a change in `routing`', () => {
   global.console.error = jest.fn();
   const wrapper = mount(InstantSearch, {
