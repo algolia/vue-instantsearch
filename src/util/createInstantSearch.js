@@ -16,6 +16,9 @@ export const createInstantSearch = ({ ssr }) => ({
   mixins: [createSuitMixin({ name: 'InstantSearch' })],
   inject: ssr
     ? {
+        // should be possible to configure this with {camelcase: ['error', {allow: ['^\\$_']}]}
+        // but that didn't work
+        // eslint-disable-next-line camelcase
         $_ais: {
           default() {
             throw new Error(

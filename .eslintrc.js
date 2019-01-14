@@ -10,12 +10,6 @@ module.exports = {
         ignore: ['createURL'],
       },
     ],
-    camelcase: [
-      'error',
-      {
-        allow: ['^$_'],
-      },
-    ],
   },
   overrides: {
     files: ['src/components/__tests__/*.js'],
