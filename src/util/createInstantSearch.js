@@ -12,7 +12,7 @@ See more info here: https://community.algolia.com/vue-instantsearch/components/I
   );
 
 export const createInstantSearch = ({ ssr }) => ({
-  name: `AisInstantSearch${ssr ? 'Ssr' : ''}`,
+  name: ssr ? 'AisInstantSearchSsr' : 'AisInstantSearch',
   mixins: [createSuitMixin({ name: 'InstantSearch' })],
   inject: ssr
     ? {
