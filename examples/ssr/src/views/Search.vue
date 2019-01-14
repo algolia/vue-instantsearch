@@ -1,14 +1,14 @@
 <template>
-  <AisInstantSearchSsr>
-    <AisSearchBox />
-    <AisStats />
-    <AisRefinementList attribute="genre"/>
-    <AisHits>
+  <ais-instant-search-ssr>
+    <ais-search-box />
+    <ais-stats />
+    <ais-refinement-list attribute="genre"/>
+    <ais-hits>
       <template
         slot="item"
         slot-scope="{ item }"
       >
-        <AisHighlight
+        <ais-highlight
           attribute="title"
           :hit="item"
         />
@@ -23,8 +23,8 @@
           </span>
         </p>
       </template>
-    </AisHits>
-  </AisInstantSearchSsr>
+    </ais-hits>
+  </ais-instant-search-ssr>
 </template>
 
 <script>
