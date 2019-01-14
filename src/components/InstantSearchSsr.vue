@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { createInstantSearch } from '../util/createInstantSearch';
+import { createInstantSearchComponent } from '../util/createInstantSearchComponent';
 
-export default createInstantSearch({ ssr: true });
+export default createInstantSearchComponent({ ssr: true });
 </script>

@@ -11,7 +11,7 @@ These have been replaced by search-client.
 See more info here: https://community.algolia.com/vue-instantsearch/components/InstantSearch.html#usage`
   );
 
-export const createInstantSearch = ({ ssr }) => ({
+export const createInstantSearchComponent = ({ ssr }) => ({
   name: ssr ? 'AisInstantSearchSsr' : 'AisInstantSearch',
   mixins: [createSuitMixin({ name: 'InstantSearch' })],
   inject: ssr
