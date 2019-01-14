@@ -1,8 +1,6 @@
 import instantsearch from 'instantsearch.js/es/index';
-import algoliaHelper, {
-  SearchParameters,
-  SearchResults,
-} from 'algoliasearch-helper';
+import algoliaHelper from 'algoliasearch-helper';
+const { SearchParameters, SearchResults } = algoliaHelper;
 
 export const createInstantSearch = ({ searchClient, indexName, options }) => {
   const search = instantsearch({
@@ -14,7 +12,7 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
   search._isSsr = true;
 
   // main API for SSR, called in asyncData of a root component which contains instantsearch
-  search.findResultsState = async params => {
+  search.findResultsState = params => {
     search.helper = algoliaHelper(searchClient, indexName, {
       // parameters set by default
       highlightPreTag: '__ais-highlight__',
@@ -22,16 +20,17 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
       ...params,
     });
 
-    const { content: lastResults } = await search.helper.searchOnce();
-
-    // TODO: maybe use the life cycle version?
-    search.helper.lastResults = lastResults;
-
-    return {
-      ais: {
-        lastResults: JSON.parse(JSON.stringify(lastResults)),
-      },
-    };
+    return search.helper.searchOnce().then(({ content: lastResults }) => {
+      search.helper.lastResults = lastResults;
+      return {
+        ais: {
+          // parse / stringify to safely deep clone the results
+          // InstantSearch modifies the result, so we need to make sure we keep
+          // a unique version available here.
+          lastResults: JSON.parse(JSON.stringify(lastResults)),
+        },
+      };
+    });
   };
 
   // make sure correct data is available in each widget's state
@@ -91,6 +90,7 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
     }
 
     if (aisComponents[0]) {
+      // eslint-disable-next-line no-param-reassign
       context.ais = { ...aisComponents[0].ais };
     }
   };
@@ -100,6 +100,9 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
   const rootMixin = {
     provide() {
       return {
+        // should be possible to configure this with {camelcase: ['error', {allow: ['^\\$_']}]}
+        // but that didn't work
+        // eslint-disable-next-line camelcase
         $_ais: search,
       };
     },

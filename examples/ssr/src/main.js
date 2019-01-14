@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import { createRouter } from './router';
-import { createInstantSearch } from './instantsearch';
+import { createInstantSearch } from '../../../src/instantsearch'; // TODO: move this to 'vue-instantsearch'
 import algoliasearch from 'algoliasearch/lite';
 
 const searchClient = algoliasearch(
