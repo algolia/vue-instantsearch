@@ -37,6 +37,13 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
   // make sure correct data is available in each widget's state
   // called in widget mixin
   search.__forceRender = widget => {
+    if (!search.helper) {
+      warn(
+        'You did not call `instantsearch.findResultsState`, which is required for ais-instant-search-ssr'
+      );
+      return;
+    }
+
     widget.init({
       state: search.helper.lastResults._state,
       helper: search.helper,
@@ -70,12 +77,12 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
       return;
     }
     const { lastResults } = ais;
-      search.searchParameters = lastResults._state;
+    search.searchParameters = lastResults._state;
     search.helper = algoliaHelper(searchClient, indexName, lastResults._state);
-      search.helper.lastResults = new SearchResults(
-        new SearchParameters(lastResults._state),
-        lastResults._rawResults
-      );
+    search.helper.lastResults = new SearchResults(
+      new SearchParameters(lastResults._state),
+      lastResults._rawResults
+    );
   };
 
   // receives components & context

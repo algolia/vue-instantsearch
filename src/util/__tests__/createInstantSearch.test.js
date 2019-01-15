@@ -297,6 +297,20 @@ Object {
   it('returns a fake onHistoryChange to init', () => {
     expect(initArgs.onHistoryChange()).toBe(undefined);
   });
+
+  it('warns if the `search` has no helper', () => {
+    // this happens if this method gets called without hydrate / findResultsState
+    instantsearch.helper = null; // default value in InstantSearch
+    global.console.warn = jest.fn();
+
+    instantsearch.__forceRender(widget);
+
+    expect(widget.init).toBeCalledTimes(1);
+    expect(widget.render).toBeCalledTimes(1);
+    expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
+      `"You did not call \`instantsearch.findResultsState\`, which is required for ais-instant-search-ssr"`
+    );
+  });
 });
 
 describe('hydrate', () => {
