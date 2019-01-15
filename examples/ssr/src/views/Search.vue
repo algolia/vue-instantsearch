@@ -2,7 +2,7 @@
   <ais-instant-search-ssr>
     <ais-search-box />
     <ais-stats />
-    <ais-refinement-list attribute="genre"/>
+    <ais-refinement-list attribute="genre" />
     <ais-hits>
       <template
         slot="item"
@@ -45,7 +45,7 @@ export default {
       query: 'hi',
       hitsPerPage: 5,
       disjunctiveFacets: ['genre'],
-      disjunctiveFacetsRefinements: {genre: ['Comedy']},
+      disjunctiveFacetsRefinements: { genre: ['Comedy'] },
     });
   },
   components: {
