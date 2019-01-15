@@ -1,6 +1,7 @@
 import instantsearch from 'instantsearch.js/es/index';
 import algoliaHelper from 'algoliasearch-helper';
 const { SearchParameters, SearchResults } = algoliaHelper;
+import { warn } from './warn';
 
 export const createInstantSearch = ({ searchClient, indexName, options }) => {
   const search = instantsearch({
@@ -61,22 +62,20 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
 
   // called before app mounts on client
   // reads from ALGOLIA_STATE & makes sure the results are read when rendering
-  search.hydrate = () => {
-    if (window.__ALGOLIA_STATE__) {
-      const { lastResults } = window.__ALGOLIA_STATE__;
-      search.searchParameters = lastResults._state;
-      search.helper = algoliaHelper(
-        searchClient,
-        indexName,
-        lastResults._state
+  search.hydrate = ais => {
+    if (!ais || !ais.lastResults) {
+      warn(
+        'you did not pass the result of `findResultsState` to `hydrate`, which is required'
       );
+      return;
+    }
+    const { lastResults } = ais;
+      search.searchParameters = lastResults._state;
+    search.helper = algoliaHelper(searchClient, indexName, lastResults._state);
       search.helper.lastResults = new SearchResults(
         new SearchParameters(lastResults._state),
         lastResults._rawResults
       );
-
-      delete window.__ALGOLIA_STATE__;
-    }
   };
 
   // receives components & context

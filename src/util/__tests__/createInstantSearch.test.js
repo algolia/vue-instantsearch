@@ -301,44 +301,32 @@ Object {
 
 describe('hydrate', () => {
   it('does not error if window does not have __ALGOLIA_STATE__', () => {
+    global.console.warn = jest.fn();
     const { instantsearch } = createInstantSearch({
       searchClient: {},
       indexName: 'bla',
     });
-
-    expect(() => {
-      instantsearch.hydrate();
-    }).not.toThrowError();
-  });
-
-  it('reads state from window.__ALGOLIA_STATE__', () => {
-    const { instantsearch } = createInstantSearch({
-      searchClient: {},
-      indexName: 'bla',
-    });
-
-    global.window.__ALGOLIA_STATE__ = createSerializedState();
 
     instantsearch.hydrate();
+
+    expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
+      `"you did not pass the result of \`findResultsState\` to \`hydrate\`, which is required"`
+    );
+  });
+
+  it('reads state from argument', () => {
+    const { instantsearch } = createInstantSearch({
+      searchClient: {},
+      indexName: 'bla',
+    });
+
+    instantsearch.hydrate(createSerializedState());
 
     expect(instantsearch.searchParameters).toEqual(
       expect.objectContaining({
         query: 'hi',
       })
     );
-  });
-
-  it('removes window.__ALGOLIA_STATE__ after hydration', () => {
-    const { instantsearch } = createInstantSearch({
-      searchClient: {},
-      indexName: 'bla',
-    });
-
-    global.window.__ALGOLIA_STATE__ = createSerializedState();
-
-    instantsearch.hydrate();
-
-    expect(global.window.__ALGOLIA_STATE__).toBe(undefined);
   });
 });
 
