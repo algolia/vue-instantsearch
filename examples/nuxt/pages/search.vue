@@ -39,7 +39,7 @@ import {
   AisStats,
   AisPagination,
   createInstantSearch,
-} from '../../../src/instantsearch.js'; // TODO: move this to 'vue-instantsearch'
+} from '../../../src/instantsearch'; // TODO: move this to 'vue-instantsearch'
 import algoliasearch from 'algoliasearch/lite';
 
 const searchClient = algoliasearch(
@@ -53,7 +53,7 @@ const { instantsearch, rootMixin } = createInstantSearch({
 });
 
 export default {
-  asyncData(context) {
+  asyncData() {
     return instantsearch.findResultsState({
       query: 'hi',
       hitsPerPage: 5,
