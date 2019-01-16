@@ -1,4 +1,4 @@
-import instantsearch from 'instantsearch.js/es/index';
+import instantsearch from 'instantsearch.js/es';
 import algoliaHelper from 'algoliasearch-helper';
 const { SearchParameters, SearchResults } = algoliaHelper;
 import { warn } from './warn';

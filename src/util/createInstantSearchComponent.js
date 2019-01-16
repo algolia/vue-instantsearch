@@ -137,4 +137,16 @@ export const createInstantSearchComponent = ({ ssr }) => ({
       this.instantSearchInstance.start();
     });
   },
+  render(createElement) {
+    return createElement(
+      'div',
+      {
+        class: {
+          [this.suit()]: true,
+          [this.suit('ssr')]: ssr,
+        },
+      },
+      this.$slots.default
+    );
+  },
 });

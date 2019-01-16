@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import { mount } from '@vue/test-utils';
 import instantsearch from 'instantsearch.js/es';
-import InstantSearch from '../InstantSearch.vue';
+import InstantSearch from '../InstantSearch';
 
+// TODO: find out why I can't mock this generally
 jest.mock('instantsearch.js/es', () => {
   const isPlainObject = require('lodash/isPlainObject');
   const start = jest.fn();
@@ -12,6 +13,7 @@ jest.mock('instantsearch.js/es', () => {
       this._routing = routing;
     }
   }
+
   const fakeInstantSearch = jest.fn(
     ({
       indexName,
@@ -38,6 +40,7 @@ jest.mock('instantsearch.js/es', () => {
   );
   fakeInstantSearch.__startMock = start;
   fakeInstantSearch._stalledSearchDelay = 200;
+
   // note for the future: these tests would be better with a real helper instance
   fakeInstantSearch.__helper = {
     search: jest.fn(),
