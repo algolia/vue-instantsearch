@@ -84,22 +84,6 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
     );
   };
 
-  // receives components & context
-  // finds all components which have a call to `instantsearch.calledInAsyncDataPrefetch`
-  // keeps only one of those and puts it on global context
-  // (this global context is used to be put on window.ALGOLIA_STATE)
-  search.findRoot = ({ components, context }) => {
-    const aisComponents = components.filter(comp => comp && comp.ais);
-    if (aisComponents.length > 1) {
-      throw new Error('only one InstantSearch instance is allowed');
-    }
-
-    if (aisComponents[0]) {
-      // eslint-disable-next-line no-param-reassign
-      context.ais = { ...aisComponents[0].ais };
-    }
-  };
-
   // put this in the user's root Vue instance
   // we can then reuse that InstantSearch instance seamlessly from `ais-ssr`
   const rootMixin = {
