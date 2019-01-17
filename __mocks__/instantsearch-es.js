@@ -8,6 +8,14 @@ class RoutingManager {
   }
 }
 
+class Helper {
+  constructor() {
+    this.search = jest.fn();
+    this.setClient = jest.fn(() => this);
+    this.setIndex = jest.fn(() => this);
+  }
+}
+
 const fakeInstantSearch = jest.fn(
   ({
     indexName,
@@ -22,11 +30,12 @@ const fakeInstantSearch = jest.fn(
     if (!indexName) {
       throw new Error('need indexName to be a string');
     }
+
     return {
       _stalledSearchDelay: stalledSearchDelay,
       _searchFunction: searchFunction,
       routing: new RoutingManager(routing),
-      helper: fakeInstantSearch.__helper,
+      helper: new Helper(),
       client: searchClient,
       start,
     };
@@ -35,10 +44,4 @@ const fakeInstantSearch = jest.fn(
 fakeInstantSearch.__startMock = start;
 fakeInstantSearch._stalledSearchDelay = 200;
 
-// note for the future: these tests would be better with a real helper instance
-fakeInstantSearch.__helper = {
-  search: jest.fn(),
-  setClient: jest.fn(() => fakeInstantSearch.__helper),
-  setIndex: jest.fn(() => fakeInstantSearch.__helper),
-};
 module.exports = fakeInstantSearch;

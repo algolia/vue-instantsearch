@@ -139,9 +139,11 @@ it('Allows a change in `index-name`', () => {
     indexName: 'doggie_bowl',
   });
 
-  expect(instantsearch.__helper.setIndex).toHaveBeenCalledTimes(1);
-  expect(instantsearch.__helper.setIndex).toHaveBeenCalledWith('doggie_bowl');
-  expect(instantsearch.__helper.search).toHaveBeenCalledTimes(1);
+  const helper = wrapper.vm.instantSearchInstance.helper;
+
+  expect(helper.setIndex).toHaveBeenCalledTimes(1);
+  expect(helper.setIndex).toHaveBeenCalledWith('doggie_bowl');
+  expect(helper.search).toHaveBeenCalledTimes(1);
 });
 
 it('Allows a change in `search-client`', () => {
@@ -158,9 +160,11 @@ it('Allows a change in `search-client`', () => {
     searchClient: newClient,
   });
 
-  expect(instantsearch.__helper.setClient).toHaveBeenCalledTimes(1);
-  expect(instantsearch.__helper.setClient).toHaveBeenCalledWith(newClient);
-  expect(instantsearch.__helper.search).toHaveBeenCalledTimes(1);
+  const helper = wrapper.vm.instantSearchInstance.helper;
+
+  expect(helper.setClient).toHaveBeenCalledTimes(1);
+  expect(helper.setClient).toHaveBeenCalledWith(newClient);
+  expect(helper.search).toHaveBeenCalledTimes(1);
 });
 
 it('Allows a change in `search-function`', () => {
