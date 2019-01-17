@@ -160,78 +160,33 @@ describe('instantsearch.__forceRender', () => {
     expect(widget.init).toBeCalledTimes(1);
     expect(widget.render).toBeCalledTimes(1);
 
-    expect(initArgs).toMatchInlineSnapshot(`
+    expect(initArgs).toMatchInlineSnapshot(
+      {
+        helper: expect.any(Object),
+        instantSearchInstance: expect.any(Object),
+      },
+      `
 Object {
   "createURL": [Function],
-  "helper": Object {
-    "lastResults": Object {
-      "_state": Object {},
-    },
-    "search": [MockFunction],
-    "setClient": [MockFunction],
-    "setIndex": [MockFunction],
-  },
-  "instantSearchInstance": Object {
-    "__forceRender": [Function],
-    "_isSsr": true,
-    "_searchFunction": undefined,
-    "_stalledSearchDelay": undefined,
-    "client": Object {},
-    "findResultsState": [Function],
-    "findRoot": [Function],
-    "helper": Object {
-      "lastResults": Object {
-        "_state": Object {},
-      },
-      "search": [MockFunction],
-      "setClient": [MockFunction],
-      "setIndex": [MockFunction],
-    },
-    "hydrate": [Function],
-    "routing": RoutingManager {
-      "_routing": undefined,
-    },
-    "start": [MockFunction],
-  },
+  "helper": Any<Object>,
+  "instantSearchInstance": Any<Object>,
   "onHistoryChange": [Function],
   "state": Object {},
   "templatesConfig": Object {},
 }
-`);
+`
+    );
 
-    expect(renderArgs).toMatchInlineSnapshot(`
+    expect(renderArgs).toMatchInlineSnapshot(
+      {
+        helper: expect.any(Object),
+        instantSearchInstance: expect.any(Object),
+      },
+      `
 Object {
   "createURL": [Function],
-  "helper": Object {
-    "lastResults": Object {
-      "_state": Object {},
-    },
-    "search": [MockFunction],
-    "setClient": [MockFunction],
-    "setIndex": [MockFunction],
-  },
-  "instantSearchInstance": Object {
-    "__forceRender": [Function],
-    "_isSsr": true,
-    "_searchFunction": undefined,
-    "_stalledSearchDelay": undefined,
-    "client": Object {},
-    "findResultsState": [Function],
-    "findRoot": [Function],
-    "helper": Object {
-      "lastResults": Object {
-        "_state": Object {},
-      },
-      "search": [MockFunction],
-      "setClient": [MockFunction],
-      "setIndex": [MockFunction],
-    },
-    "hydrate": [Function],
-    "routing": RoutingManager {
-      "_routing": undefined,
-    },
-    "start": [MockFunction],
-  },
+  "helper": Any<Object>,
+  "instantSearchInstance": Any<Object>,
   "results": Object {
     "_state": Object {},
   },
@@ -241,7 +196,8 @@ Object {
   "state": Object {},
   "templatesConfig": Object {},
 }
-`);
+`
+    );
   });
 
   it('returns a fake createURL to init & render', () => {
