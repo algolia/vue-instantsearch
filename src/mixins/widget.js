@@ -31,9 +31,7 @@ it's not the recommended way of making custom components.
 
 If you want to disable this message, pass { connector: true } to the mixin.
 
-Read more on using connectors:
-http://alg.li/vue-custom
-`
+Read more on using connectors: http://alg.li/vue-custom`
       );
     }
   },
