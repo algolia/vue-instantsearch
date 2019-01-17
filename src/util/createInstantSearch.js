@@ -72,7 +72,7 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
   search.hydrate = ais => {
     if (!ais || !ais.lastResults) {
       warn(
-        'you did not pass the result of `findResultsState` to `hydrate`, which is required'
+        'You did not pass the result of `findResultsState` to `hydrate`, which is required'
       );
       return;
     }
