@@ -143,7 +143,7 @@ export const createInstantSearchComponent = ({ ssr }) => ({
       {
         class: {
           [this.suit()]: true,
-          [this.suit('ssr')]: ssr,
+          [this.suit('', 'ssr')]: ssr,
         },
       },
       this.$slots.default
