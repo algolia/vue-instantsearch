@@ -68,7 +68,6 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
   };
 
   // called before app mounts on client
-  // reads from ALGOLIA_STATE & makes sure the results are read when rendering
   search.hydrate = instantSearchState => {
     if (!instantSearchState || !instantSearchState.lastResults) {
       warn(
