@@ -23,14 +23,6 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
 
     return search.helper.searchOnce().then(({ content: lastResults }) => {
       search.helper.lastResults = lastResults;
-      return {
-        ais: {
-          // parse / stringify to safely deep clone the results
-          // InstantSearch modifies the result, so we need to make sure we keep
-          // a unique version available here.
-          lastResults: JSON.parse(JSON.stringify(lastResults)),
-        },
-      };
     });
   };
 
@@ -65,6 +57,17 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
         isSearchStalled: false,
       },
     });
+  };
+
+  search.getState = () => {
+    if (search.helper === null || !search.helper.lastResults) {
+      throw new Error(
+        'You called `getState` with an instance which has not searched yet, use `findResultsState`'
+      );
+    }
+    return {
+      lastResults: JSON.parse(JSON.stringify(search.helper.lastResults)),
+    };
   };
 
   // called before app mounts on client

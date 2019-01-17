@@ -121,11 +121,11 @@ describe('findResultsState', () => {
       indexName: 'bla',
     });
 
-    const res = await instantsearch.findResultsState({
+    await instantsearch.findResultsState({
       query: 'hi there!',
     });
 
-    expect(res.ais).toEqual({
+    expect(instantsearch.getState()).toEqual({
       lastResults: expect.objectContaining({
         _state: expect.objectContaining({
           query: 'hi there!',
@@ -256,45 +256,32 @@ describe('hydrate', () => {
   });
 });
 
-describe('findRoot', () => {
-  it('puts the first ais component on context', () => {
+describe('getState', () => {
+  it('will throw an error if called before findResultsState', () => {
     const { instantsearch } = createInstantSearch({
       searchClient: {},
-      indexName: 'bla',
+      indexName: 'test',
     });
 
-    const ais = { hello: 'catto' };
-    const context = {};
-    instantsearch.findRoot({ components: [{ ais }], context });
-
-    expect(context.ais).toEqual(ais);
-  });
-
-  it('silently allows no components', () => {
-    const { instantsearch } = createInstantSearch({
-      searchClient: {},
-      indexName: 'bla',
-    });
-
-    const context = {};
-    instantsearch.findRoot({ components: [], context });
-
-    expect(context.ais).toBe(undefined);
-  });
-
-  it('errors with multiple ais components', () => {
-    const { instantsearch } = createInstantSearch({
-      searchClient: {},
-      indexName: 'bla',
-    });
-
-    expect(() => {
-      instantsearch.findRoot({
-        components: [{ ais: 1 }, { ais: 2 }],
-        context: {},
-      });
-    }).toThrowErrorMatchingInlineSnapshot(
-      `"only one InstantSearch instance is allowed"`
+    expect(instantsearch.getState).toThrowErrorMatchingInlineSnapshot(
+      `"You called \`getState\` with an instance which has not searched yet, use \`findResultsState\`"`
     );
+  });
+
+  it('returns the last state', () => {
+    const { instantsearch } = createInstantSearch({
+      searchClient: {},
+      indexName: 'test',
+    });
+
+    instantsearch.helper.lastResults = { dog: true };
+
+    expect(instantsearch.getState()).toMatchInlineSnapshot(`
+Object {
+  "lastResults": Object {
+    "dog": true,
+  },
+}
+`);
   });
 });
