@@ -53,15 +53,19 @@ const { instantsearch, rootMixin } = createInstantSearch({
 
 export default {
   asyncData() {
-    return instantsearch.findResultsState({
-      query: 'hi',
-      hitsPerPage: 5,
-      disjunctiveFacets: ['genre'],
-      disjunctiveFacetsRefinements: { genre: ['Comedy'] },
-    });
+    return instantsearch
+      .findResultsState({
+        query: 'hi',
+        hitsPerPage: 5,
+        disjunctiveFacets: ['genre'],
+        disjunctiveFacetsRefinements: { genre: ['Comedy'] },
+      })
+      .then(() => ({
+        instantSearchState: instantsearch.getState(),
+      }));
   },
   beforeMount() {
-    instantsearch.hydrate(this.ais);
+    instantsearch.hydrate(this.instantSearchState);
   },
   mixins: [rootMixin],
   components: {
