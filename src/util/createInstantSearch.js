@@ -69,14 +69,14 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
 
   // called before app mounts on client
   // reads from ALGOLIA_STATE & makes sure the results are read when rendering
-  search.hydrate = ais => {
-    if (!ais || !ais.lastResults) {
+  search.hydrate = instantSearchState => {
+    if (!instantSearchState || !instantSearchState.lastResults) {
       warn(
         'You did not pass the result of `findResultsState` to `hydrate`, which is required'
       );
       return;
     }
-    const { lastResults } = ais;
+    const { lastResults } = instantSearchState;
     search.searchParameters = lastResults._state;
     search.helper = algoliaHelper(searchClient, indexName, lastResults._state);
     search.helper.lastResults = new SearchResults(
