@@ -31,9 +31,9 @@ it's not the recommended way of making custom components.
 
 If you want to disable this message, pass { connector: true } to the mixin.
 
-(TODO: update v2 link)
-Read more on using connectors: https://community.algolia.com/vue-instantsearch/getting-started/custom-components.html
-        `
+Read more on using connectors:
+http://alg.li/vue-custom
+`
       );
     }
   },
