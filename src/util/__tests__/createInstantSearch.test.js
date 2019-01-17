@@ -1,49 +1,5 @@
 import { createInstantSearch } from '../createInstantSearch';
 
-jest.mock('instantsearch.js/es', () => {
-  const isPlainObject = require('lodash/isPlainObject');
-  const start = jest.fn();
-
-  class RoutingManager {
-    constructor(routing) {
-      this._routing = routing;
-    }
-  }
-  const fakeInstantSearch = jest.fn(
-    ({
-      indexName,
-      searchClient,
-      routing,
-      stalledSearchDelay,
-      searchFunction,
-    }) => {
-      if (!searchClient && !isPlainObject(searchClient)) {
-        throw new Error('need searchClient to be a plain object');
-      }
-      if (!indexName) {
-        throw new Error('need indexName to be a string');
-      }
-      return {
-        _stalledSearchDelay: stalledSearchDelay,
-        _searchFunction: searchFunction,
-        routing: new RoutingManager(routing),
-        helper: fakeInstantSearch.__helper,
-        client: searchClient,
-        start,
-      };
-    }
-  );
-  fakeInstantSearch.__startMock = start;
-  fakeInstantSearch._stalledSearchDelay = 200;
-  // note for the future: these tests would be better with a real helper instance
-  fakeInstantSearch.__helper = {
-    search: jest.fn(),
-    setClient: jest.fn(() => fakeInstantSearch.__helper),
-    setIndex: jest.fn(() => fakeInstantSearch.__helper),
-  };
-  return fakeInstantSearch;
-});
-
 const createSerializedState = () => ({
   lastResults: {
     _rawResults: [
@@ -204,78 +160,33 @@ describe('instantsearch.__forceRender', () => {
     expect(widget.init).toBeCalledTimes(1);
     expect(widget.render).toBeCalledTimes(1);
 
-    expect(initArgs).toMatchInlineSnapshot(`
+    expect(initArgs).toMatchInlineSnapshot(
+      {
+        helper: expect.any(Object),
+        instantSearchInstance: expect.any(Object),
+      },
+      `
 Object {
   "createURL": [Function],
-  "helper": Object {
-    "lastResults": Object {
-      "_state": Object {},
-    },
-    "search": [MockFunction],
-    "setClient": [MockFunction],
-    "setIndex": [MockFunction],
-  },
-  "instantSearchInstance": Object {
-    "__forceRender": [Function],
-    "_isSsr": true,
-    "_searchFunction": undefined,
-    "_stalledSearchDelay": undefined,
-    "client": Object {},
-    "findResultsState": [Function],
-    "findRoot": [Function],
-    "helper": Object {
-      "lastResults": Object {
-        "_state": Object {},
-      },
-      "search": [MockFunction],
-      "setClient": [MockFunction],
-      "setIndex": [MockFunction],
-    },
-    "hydrate": [Function],
-    "routing": RoutingManager {
-      "_routing": undefined,
-    },
-    "start": [MockFunction],
-  },
+  "helper": Any<Object>,
+  "instantSearchInstance": Any<Object>,
   "onHistoryChange": [Function],
   "state": Object {},
   "templatesConfig": Object {},
 }
-`);
+`
+    );
 
-    expect(renderArgs).toMatchInlineSnapshot(`
+    expect(renderArgs).toMatchInlineSnapshot(
+      {
+        helper: expect.any(Object),
+        instantSearchInstance: expect.any(Object),
+      },
+      `
 Object {
   "createURL": [Function],
-  "helper": Object {
-    "lastResults": Object {
-      "_state": Object {},
-    },
-    "search": [MockFunction],
-    "setClient": [MockFunction],
-    "setIndex": [MockFunction],
-  },
-  "instantSearchInstance": Object {
-    "__forceRender": [Function],
-    "_isSsr": true,
-    "_searchFunction": undefined,
-    "_stalledSearchDelay": undefined,
-    "client": Object {},
-    "findResultsState": [Function],
-    "findRoot": [Function],
-    "helper": Object {
-      "lastResults": Object {
-        "_state": Object {},
-      },
-      "search": [MockFunction],
-      "setClient": [MockFunction],
-      "setIndex": [MockFunction],
-    },
-    "hydrate": [Function],
-    "routing": RoutingManager {
-      "_routing": undefined,
-    },
-    "start": [MockFunction],
-  },
+  "helper": Any<Object>,
+  "instantSearchInstance": Any<Object>,
   "results": Object {
     "_state": Object {},
   },
@@ -285,7 +196,8 @@ Object {
   "state": Object {},
   "templatesConfig": Object {},
 }
-`);
+`
+    );
   });
 
   it('returns a fake createURL to init & render', () => {
@@ -297,48 +209,50 @@ Object {
   it('returns a fake onHistoryChange to init', () => {
     expect(initArgs.onHistoryChange()).toBe(undefined);
   });
+
+  it('warns if the `search` has no helper', () => {
+    // this happens if this method gets called without hydrate / findResultsState
+    instantsearch.helper = null; // default value in InstantSearch
+    global.console.warn = jest.fn();
+
+    instantsearch.__forceRender(widget);
+
+    expect(widget.init).toBeCalledTimes(1);
+    expect(widget.render).toBeCalledTimes(1);
+    expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
+      `"You did not call \`instantsearch.findResultsState\`, which is required for ais-instant-search-ssr"`
+    );
+  });
 });
 
 describe('hydrate', () => {
   it('does not error if window does not have __ALGOLIA_STATE__', () => {
+    global.console.warn = jest.fn();
     const { instantsearch } = createInstantSearch({
       searchClient: {},
       indexName: 'bla',
     });
-
-    expect(() => {
-      instantsearch.hydrate();
-    }).not.toThrowError();
-  });
-
-  it('reads state from window.__ALGOLIA_STATE__', () => {
-    const { instantsearch } = createInstantSearch({
-      searchClient: {},
-      indexName: 'bla',
-    });
-
-    global.window.__ALGOLIA_STATE__ = createSerializedState();
 
     instantsearch.hydrate();
+
+    expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
+      `"You did not pass the result of \`findResultsState\` to \`hydrate\`, which is required"`
+    );
+  });
+
+  it('reads state from argument', () => {
+    const { instantsearch } = createInstantSearch({
+      searchClient: {},
+      indexName: 'bla',
+    });
+
+    instantsearch.hydrate(createSerializedState());
 
     expect(instantsearch.searchParameters).toEqual(
       expect.objectContaining({
         query: 'hi',
       })
     );
-  });
-
-  it('removes window.__ALGOLIA_STATE__ after hydration', () => {
-    const { instantsearch } = createInstantSearch({
-      searchClient: {},
-      indexName: 'bla',
-    });
-
-    global.window.__ALGOLIA_STATE__ = createSerializedState();
-
-    instantsearch.hydrate();
-
-    expect(global.window.__ALGOLIA_STATE__).toBe(undefined);
   });
 });
 

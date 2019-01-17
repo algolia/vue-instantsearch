@@ -12,9 +12,13 @@ for dir in ./* ; do
       name=$(basename "$dir")
       echo "building example: $name"
       cd $name
+      if [[ "$name" != "nuxt" && "$name" != "ssr" ]]; then
       yarn
       yarn build
       cp -R dist ../../docs/dist/examples/$name
+      else
+        echo "build of $name skipped"
+      fi
       cd ..
   fi
 done

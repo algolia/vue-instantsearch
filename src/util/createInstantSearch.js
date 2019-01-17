@@ -1,6 +1,7 @@
-import instantsearch from 'instantsearch.js/es/index';
+import instantsearch from 'instantsearch.js/es';
 import algoliaHelper from 'algoliasearch-helper';
 const { SearchParameters, SearchResults } = algoliaHelper;
+import { warn } from './warn';
 
 export const createInstantSearch = ({ searchClient, indexName, options }) => {
   const search = instantsearch({
@@ -36,6 +37,13 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
   // make sure correct data is available in each widget's state
   // called in widget mixin
   search.__forceRender = widget => {
+    if (!search.helper) {
+      warn(
+        'You did not call `instantsearch.findResultsState`, which is required for ais-instant-search-ssr'
+      );
+      return;
+    }
+
     widget.init({
       state: search.helper.lastResults._state,
       helper: search.helper,
@@ -60,23 +68,20 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
   };
 
   // called before app mounts on client
-  // reads from ALGOLIA_STATE & makes sure the results are read when rendering
-  search.hydrate = () => {
-    if (window.__ALGOLIA_STATE__) {
-      const { lastResults } = window.__ALGOLIA_STATE__;
-      search.searchParameters = lastResults._state;
-      search.helper = algoliaHelper(
-        searchClient,
-        indexName,
-        lastResults._state
+  search.hydrate = instantSearchState => {
+    if (!instantSearchState || !instantSearchState.lastResults) {
+      warn(
+        'You did not pass the result of `findResultsState` to `hydrate`, which is required'
       );
-      search.helper.lastResults = new SearchResults(
-        new SearchParameters(lastResults._state),
-        lastResults._rawResults
-      );
-
-      delete window.__ALGOLIA_STATE__;
+      return;
     }
+    const { lastResults } = instantSearchState;
+    search.searchParameters = lastResults._state;
+    search.helper = algoliaHelper(searchClient, indexName, lastResults._state);
+    search.helper.lastResults = new SearchResults(
+      new SearchParameters(lastResults._state),
+      lastResults._rawResults
+    );
   };
 
   // receives components & context

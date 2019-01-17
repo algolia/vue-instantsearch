@@ -37,10 +37,22 @@ import {
   AisSearchBox,
   AisStats,
   AisPagination,
-} from '../../../../src/instantsearch.js'; // TODO: move this to 'vue-instantsearch'
+  createInstantSearch,
+} from '../../../src/instantsearch'; // TODO: move this to 'vue-instantsearch'
+import algoliasearch from 'algoliasearch/lite';
+
+const searchClient = algoliasearch(
+  'latency',
+  '6be0576ff61c053d5f9a3225e2a90f76'
+);
+
+const { instantsearch, rootMixin } = createInstantSearch({
+  searchClient,
+  indexName: 'movies',
+});
 
 export default {
-  asyncData({ instantsearch }) {
+  asyncData() {
     return instantsearch.findResultsState({
       query: 'hi',
       hitsPerPage: 5,
@@ -48,6 +60,10 @@ export default {
       disjunctiveFacetsRefinements: { genre: ['Comedy'] },
     });
   },
+  beforeMount() {
+    instantsearch.hydrate(this.ais);
+  },
+  mixins: [rootMixin],
   components: {
     AisInstantSearchSsr,
     AisRefinementList,
@@ -57,11 +73,25 @@ export default {
     AisStats,
     AisPagination,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: 'stylesheet',
+          href:
+            'https://unpkg.com/instantsearch.css@7.1.0/themes/algolia-min.css',
+        },
+      ],
+    };
+  },
 };
 </script>
 
 <style>
 .ais-Hits-list {
   text-align: left;
+}
+.ais-InstantSearch {
+  margin: 1em;
 }
 </style>
