@@ -30,7 +30,6 @@
 
 <script>
 import {
-  AisInstantSearch,
   AisInstantSearchSsr,
   AisRefinementList,
   AisHits,
@@ -66,7 +65,6 @@ export default {
   },
   mixins: [rootMixin],
   components: {
-    AisInstantSearch,
     AisInstantSearchSsr,
     AisRefinementList,
     AisHits,
