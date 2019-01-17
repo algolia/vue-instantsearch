@@ -236,7 +236,7 @@ describe('hydrate', () => {
     instantsearch.hydrate();
 
     expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
-      `"you did not pass the result of \`findResultsState\` to \`hydrate\`, which is required"`
+      `"You did not pass the result of \`findResultsState\` to \`hydrate\`, which is required"`
     );
   });
 
