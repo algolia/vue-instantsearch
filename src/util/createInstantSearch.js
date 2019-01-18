@@ -22,6 +22,8 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
     });
 
     return search.helper.searchOnce().then(({ content: lastResults }) => {
+      // The search instance needs to act as if this was a regular `search`
+      // but return a promise, since that is the interface of `asyncData`
       search.helper.lastResults = lastResults;
     });
   };
