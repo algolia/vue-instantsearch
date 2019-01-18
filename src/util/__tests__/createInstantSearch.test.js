@@ -195,7 +195,7 @@ describe('findResultsState', () => {
         }),
       }),
     ]);
-});
+  });
 
   it('always passes highlightPreTag or highlightPostTag', async () => {
     const searchClient = {
@@ -246,6 +246,8 @@ describe('findResultsState', () => {
     ]);
   });
 });
+
+describe('__forceRender', () => {
   const { instantsearch } = createInstantSearch({
     searchClient: {},
     indexName: 'bla',
@@ -333,7 +335,7 @@ Object {
 });
 
 describe('hydrate', () => {
-  it('does not error if window does not have __ALGOLIA_STATE__', () => {
+  it('warns if called without arguments', () => {
     global.console.warn = jest.fn();
     const { instantsearch } = createInstantSearch({
       searchClient: {},
@@ -364,13 +366,16 @@ describe('hydrate', () => {
 });
 
 describe('getState', () => {
-  it('will throw an error if called before findResultsState', () => {
+  it('will warn if called before findResultsState', () => {
+    global.console.warn = jest.fn();
     const { instantsearch } = createInstantSearch({
       searchClient: {},
       indexName: 'test',
     });
 
-    expect(instantsearch.getState).toThrowErrorMatchingInlineSnapshot(
+    instantsearch.getState();
+
+    expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
       `"You called \`getState\` with an instance which has not searched yet, use \`findResultsState\`"`
     );
   });
