@@ -1,108 +1,11 @@
-import instantsearch from 'instantsearch.js/es/';
 import { createSuitMixin } from '../mixins/suit';
-import { _objectSpread } from './polyfills';
-import { warn } from './warn';
 import { version } from '../../package.json'; // rollup does pick only what needed from json
 
-const oldApi = () =>
-  warn(
-    `Vue InstantSearch: You used the prop api-key or api-key.
-These have been replaced by search-client.
-
-See more info here: https://community.algolia.com/vue-instantsearch/components/InstantSearch.html#usage`
-  );
-
-export const createInstantSearchComponent = ({ ssr }) => ({
-  name: ssr ? 'AisInstantSearchSsr' : 'AisInstantSearch',
+export const createInstantSearchComponent = () => ({
   mixins: [createSuitMixin({ name: 'InstantSearch' })],
-  inject: ssr
-    ? {
-        // should be possible to configure this with {camelcase: ['error', {allow: ['^\\$_']}]}
-        // but that didn't work
-        // eslint-disable-next-line camelcase
-        $_ais: {
-          default() {
-            throw new Error(
-              'When using SSR, it is required to use the rootMixin'
-            );
-          },
-        },
-      }
-    : undefined,
   provide() {
     return {
       instantSearchInstance: this.instantSearchInstance,
-    };
-  },
-  props: _objectSpread(
-    {
-      apiKey: {
-        type: String,
-        default: null,
-        validator(value) {
-          if (value) {
-            oldApi();
-          }
-        },
-      },
-      appId: {
-        type: String,
-        default: null,
-        validator(value) {
-          if (value) {
-            oldApi();
-          }
-        },
-      },
-      routing: {
-        default: null,
-        validator(value) {
-          if (
-            typeof value === 'boolean' ||
-            !value.router ||
-            !value.stateMapping
-          ) {
-            warn(
-              'routing should be an object, with `router` and `stateMapping`'
-            );
-            return false;
-          }
-          return true;
-        },
-      },
-      stalledSearchDelay: {
-        type: Number,
-        default: 200,
-      },
-      searchFunction: {
-        type: Function,
-        default: null,
-      },
-    },
-    ssr
-      ? {}
-      : {
-          searchClient: {
-            type: Object,
-            required: true,
-          },
-          indexName: {
-            type: String,
-            required: true,
-          },
-        }
-  ),
-  data() {
-    return {
-      instantSearchInstance: ssr
-        ? this.$_ais
-        : instantsearch({
-            searchClient: this.searchClient,
-            indexName: this.indexName,
-            routing: this.routing,
-            stalledSearchDelay: this.stalledSearchDelay,
-            searchFunction: this.searchFunction,
-          }),
     };
   },
   watch: {
@@ -141,17 +44,5 @@ export const createInstantSearchComponent = ({ ssr }) => ({
     this.$nextTick(() => {
       this.instantSearchInstance.start();
     });
-  },
-  render(createElement) {
-    return createElement(
-      'div',
-      {
-        class: {
-          [this.suit()]: true,
-          [this.suit('', 'ssr')]: ssr,
-        },
-      },
-      this.$slots.default
-    );
   },
 });
