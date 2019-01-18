@@ -9,6 +9,4 @@ module.exports = {
       ],
     },
   },
-  // TODO: re-enable this
-  lintOnSave: false
 };
