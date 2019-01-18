@@ -9,4 +9,6 @@ module.exports = {
       ],
     },
   },
+  // TODO: remove this when import is from "vue-instantsearch" package
+  lintOnSave: false,
 };
