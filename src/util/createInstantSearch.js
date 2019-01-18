@@ -1,25 +1,30 @@
 import instantsearch from 'instantsearch.js/es';
 import algoliaHelper from 'algoliasearch-helper';
 const { SearchParameters, SearchResults } = algoliaHelper;
+import { _objectSpread } from './polyfills';
 import { warn } from './warn';
 
 export const createInstantSearch = ({ searchClient, indexName, options }) => {
-  const search = instantsearch({
-    ...options,
-    searchClient,
-    indexName,
-  });
+  const search = instantsearch(
+    _objectSpread({}, options, {
+      searchClient,
+      indexName,
+    })
+  );
 
   search._isSsr = true;
 
   // main API for SSR, called in asyncData of a root component which contains instantsearch
   search.findResultsState = params => {
-    search.helper = algoliaHelper(searchClient, indexName, {
-      ...params,
-      // parameters set by default
-      highlightPreTag: '__ais-highlight__',
-      highlightPostTag: '__/ais-highlight__',
-    });
+    search.helper = algoliaHelper(
+      searchClient,
+      indexName,
+      _objectSpread({}, params, {
+        // parameters set by default
+        highlightPreTag: '__ais-highlight__',
+        highlightPostTag: '__/ais-highlight__',
+      })
+    );
 
     return search.helper.searchOnce().then(({ content: lastResults }) => {
       // The search instance needs to act as if this was a regular `search`

@@ -1,5 +1,6 @@
 import instantsearch from 'instantsearch.js/es/';
 import { createSuitMixin } from '../mixins/suit';
+import { _objectSpread } from './polyfills';
 import { warn } from './warn';
 import { version } from '../../package.json'; // rollup does pick only what needed from json
 
@@ -33,26 +34,52 @@ export const createInstantSearchComponent = ({ ssr }) => ({
       instantSearchInstance: this.instantSearchInstance,
     };
   },
-  props: {
-    apiKey: {
-      type: String,
-      default: null,
-      validator(value) {
-        if (value) {
-          oldApi();
-        }
+  props: _objectSpread(
+    {
+      apiKey: {
+        type: String,
+        default: null,
+        validator(value) {
+          if (value) {
+            oldApi();
+          }
+        },
+      },
+      appId: {
+        type: String,
+        default: null,
+        validator(value) {
+          if (value) {
+            oldApi();
+          }
+        },
+      },
+      routing: {
+        default: null,
+        validator(value) {
+          if (
+            typeof value === 'boolean' ||
+            !value.router ||
+            !value.stateMapping
+          ) {
+            warn(
+              'routing should be an object, with `router` and `stateMapping`'
+            );
+            return false;
+          }
+          return true;
+        },
+      },
+      stalledSearchDelay: {
+        type: Number,
+        default: 200,
+      },
+      searchFunction: {
+        type: Function,
+        default: null,
       },
     },
-    appId: {
-      type: String,
-      default: null,
-      validator(value) {
-        if (value) {
-          oldApi();
-        }
-      },
-    },
-    ...(ssr
+    ssr
       ? {}
       : {
           searchClient: {
@@ -63,30 +90,8 @@ export const createInstantSearchComponent = ({ ssr }) => ({
             type: String,
             required: true,
           },
-        }),
-    routing: {
-      default: null,
-      validator(value) {
-        if (
-          typeof value === 'boolean' ||
-          !value.router ||
-          !value.stateMapping
-        ) {
-          warn('routing should be an object, with `router` and `stateMapping`');
-          return false;
         }
-        return true;
-      },
-    },
-    stalledSearchDelay: {
-      type: Number,
-      default: 200,
-    },
-    searchFunction: {
-      type: Function,
-      default: null,
-    },
-  },
+  ),
   data() {
     return {
       instantSearchInstance: ssr

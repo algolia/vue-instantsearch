@@ -40,7 +40,6 @@ export default [
         transforms: {
           dangerousForOf: true,
         },
-        objectAssign: 'Object.assign',
       }),
       terser(),
       filesize(),
