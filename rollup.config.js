@@ -66,7 +66,6 @@ export default [
         transforms: {
           dangerousForOf: true,
         },
-        objectAssign: 'Object.assign',
       }),
       replace(processEnv({ NODE_ENV: 'production' })),
       commonjs(),
