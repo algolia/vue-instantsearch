@@ -47,18 +47,7 @@ export const createInstantSearchComponent = () => ({
   },
   beforeDestroy() {
     this.instantSearchInstance.dispose();
+    // TODO: remove this once algolia/instantsearch.js#3399 is used
     this.instantSearchInstance.started = false;
-  },
-  render(createElement) {
-    return createElement(
-      'div',
-      {
-        class: {
-          [this.suit()]: true,
-          [this.suit('', 'ssr')]: ssr,
-        },
-      },
-      this.$slots.default
-    );
   },
 });
