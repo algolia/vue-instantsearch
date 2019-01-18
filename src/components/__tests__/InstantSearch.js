@@ -72,34 +72,16 @@ found in
 `);
 });
 
-it('calls `start` on the next tick', done => {
-  mount(InstantSearch, {
+it('calls `start` on the next tick', async () => {
+  const wrapper = mount(InstantSearch, {
     propsData: {
       searchClient: {},
       indexName: 'something',
     },
   });
 
-  Vue.nextTick(() => {
-    expect(instantsearch.__startMock).toHaveBeenCalledTimes(1);
-    done();
-  });
-});
-
-it('provides an InstantSearch instance', () => {
-  const wrapper = mount(InstantSearch, {
-    propsData: {
-      searchClient: {},
-      indexName: 'bla',
-    },
-  });
-
-  expect(wrapper.vm._provided).toEqual({
-    instantSearchInstance: expect.objectContaining({
-      // it's really InstantSearch, since it has the same spy as our custom mock
-      start: instantsearch.__startMock,
-    }),
-  });
+  await Vue.nextTick();
+  expect(wrapper.vm.instantSearchInstance.start).toHaveBeenCalledTimes(1);
 });
 
 it('renders correctly (empty)', () => {
@@ -278,4 +260,22 @@ it('will not call client.addAlgoliaAgent if not function (so nothing to assert)'
       },
     })
   ).not.toThrow();
+});
+
+it('disposes the instantsearch instance on unmount', async () => {
+  const wrapper = mount(InstantSearch, {
+    propsData: {
+      searchClient: {},
+      indexName: 'something',
+    },
+  });
+
+  await Vue.nextTick();
+
+  expect(wrapper.vm.instantSearchInstance.started).toBe(true);
+
+  wrapper.destroy();
+
+  expect(wrapper.vm.instantSearchInstance.started).toBe(false);
+  expect(wrapper.vm.instantSearchInstance.dispose).toHaveBeenCalledTimes(1);
 });

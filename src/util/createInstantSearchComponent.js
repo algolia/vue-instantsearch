@@ -45,4 +45,9 @@ export const createInstantSearchComponent = () => ({
       this.instantSearchInstance.start();
     });
   },
+  beforeDestroy() {
+    this.instantSearchInstance.dispose();
+    // TODO: remove this once algolia/instantsearch.js#3399 is used
+    this.instantSearchInstance.started = false;
+  },
 });

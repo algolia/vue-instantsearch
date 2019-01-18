@@ -1,6 +1,5 @@
 /* eslint-disable import/no-commonjs */
 const isPlainObject = require('lodash/isPlainObject');
-const start = jest.fn();
 
 class RoutingManager {
   constructor(routing) {
@@ -31,17 +30,21 @@ const fakeInstantSearch = jest.fn(
       throw new Error('need indexName to be a string');
     }
 
-    return {
+    const instantsearchInstance = {
       _stalledSearchDelay: stalledSearchDelay,
       _searchFunction: searchFunction,
       routing: new RoutingManager(routing),
       helper: new Helper(),
       client: searchClient,
-      start,
+      start: jest.fn(() => {
+        instantsearchInstance.started = true;
+      }),
+      dispose: jest.fn(),
     };
+
+    return instantsearchInstance;
   }
 );
-fakeInstantSearch.__startMock = start;
 fakeInstantSearch._stalledSearchDelay = 200;
 
 module.exports = fakeInstantSearch;
