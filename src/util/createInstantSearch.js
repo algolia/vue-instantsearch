@@ -12,8 +12,6 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
     })
   );
 
-  search._isSsr = true;
-
   // main API for SSR, called in asyncData of a root component which contains instantsearch
   search.findResultsState = params => {
     search.helper = algoliaHelper(
@@ -93,6 +91,8 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
       new SearchParameters(lastResults._state),
       lastResults._rawResults
     );
+
+    search.hydrated = true;
   };
 
   // put this in the user's root Vue instance

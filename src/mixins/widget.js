@@ -24,7 +24,8 @@ export const createWidgetMixin = ({ connector } = {}) => ({
       this.widget = this.factory(this.widgetParams);
       this.instantSearchInstance.addWidget(this.widget);
 
-      if (this.instantSearchInstance._isSsr) {
+      const { hydrated, started } = this.instantSearchInstance;
+      if ((!started && hydrated) || this.$isServer) {
         this.instantSearchInstance.__forceRender(this.widget);
       }
     } else if (connector !== true) {
