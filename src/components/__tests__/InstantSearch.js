@@ -262,3 +262,20 @@ it('will not call client.addAlgoliaAgent if not function (so nothing to assert)'
   ).not.toThrow();
 });
 
+it('disposes the instantsearch instance on unmount', async () => {
+  const wrapper = mount(InstantSearch, {
+    propsData: {
+      searchClient: {},
+      indexName: 'something',
+    },
+  });
+
+  await Vue.nextTick();
+
+  expect(wrapper.vm.instantSearchInstance.started).toBe(true);
+
+  wrapper.destroy();
+
+  expect(wrapper.vm.instantSearchInstance.started).toBe(false);
+  expect(wrapper.vm.instantSearchInstance.dispose).toHaveBeenCalledTimes(1);
+});
