@@ -5,9 +5,9 @@ import { warn } from './warn';
 
 export const createInstantSearch = ({ searchClient, indexName, options }) => {
   const search = instantsearch({
+    ...options,
     searchClient,
     indexName,
-    ...options,
   });
 
   search._isSsr = true;
@@ -15,10 +15,10 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
   // main API for SSR, called in asyncData of a root component which contains instantsearch
   search.findResultsState = params => {
     search.helper = algoliaHelper(searchClient, indexName, {
+      ...params,
       // parameters set by default
       highlightPreTag: '__ais-highlight__',
       highlightPostTag: '__/ais-highlight__',
-      ...params,
     });
 
     return search.helper.searchOnce().then(({ content: lastResults }) => {

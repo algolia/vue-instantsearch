@@ -1,4 +1,5 @@
 import { createInstantSearch } from '../createInstantSearch';
+import instantsearchFactory from 'instantsearch.js/es';
 
 const createSerializedState = () => ({
   lastResults: {
@@ -101,6 +102,39 @@ const createSerializedState = () => ({
   },
 });
 
+describe('createInstantSearch', () => {
+  it('allows passing of more arguments to instantsearch', () => {
+    createInstantSearch({
+      searchClient: {},
+      indexName: 'whatever',
+      options: {
+        whatILike: ['this', 'self'],
+      },
+    });
+
+    expect(instantsearchFactory).toHaveBeenCalledWith({
+      indexName: 'whatever',
+      searchClient: {},
+      whatILike: ['this', 'self'],
+    });
+  });
+  it('does not allow overriding of search client or ', () => {
+    createInstantSearch({
+      searchClient: {},
+      indexName: 'whatever',
+      options: {
+        indexName: "haha I can override this, I'm the winner!",
+        searchClient: ['some', 'array', 'lol?'],
+      },
+    });
+
+    expect(instantsearchFactory).toHaveBeenCalledWith({
+      indexName: 'whatever',
+      searchClient: {},
+    });
+  });
+});
+
 describe('rootMixin', () => {
   it('provides the search instance as $_ais', () => {
     const { rootMixin, instantsearch } = createInstantSearch({
@@ -114,7 +148,9 @@ describe('rootMixin', () => {
 describe('findResultsState', () => {
   it('returns `ais` with lastResults', async () => {
     const searchClient = {
-      search: jest.fn(({ query }) => Promise.resolve({ results: [{ query }] })),
+      search: jest.fn(([{ query }]) =>
+        Promise.resolve({ results: [{ query }] })
+      ),
     };
     const { instantsearch } = createInstantSearch({
       searchClient,
@@ -136,9 +172,80 @@ describe('findResultsState', () => {
       }),
     });
   });
+
+  it('can pass search parameters', async () => {
+    const searchClient = {
+      search: jest.fn(({ query }) => Promise.resolve({ results: [{ query }] })),
+    };
+    const { instantsearch } = createInstantSearch({
+      searchClient,
+      indexName: 'bla',
+    });
+
+    await instantsearch.findResultsState({
+      query: 'hi there!',
+      someRandomParameter: "it doesn't exist",
+    });
+
+    expect(searchClient.search).toHaveBeenCalledWith([
+      expect.objectContaining({
+        params: expect.objectContaining({
+          query: 'hi there!',
+          someRandomParameter: "it doesn't exist",
+        }),
+      }),
+    ]);
 });
 
-describe('instantsearch.__forceRender', () => {
+  it('always passes highlightPreTag or highlightPostTag', async () => {
+    const searchClient = {
+      search: jest.fn(([{ query }]) =>
+        Promise.resolve({ results: [{ query }] })
+      ),
+    };
+    const { instantsearch } = createInstantSearch({
+      searchClient,
+      indexName: 'bla',
+    });
+
+    await instantsearch.findResultsState({});
+
+    expect(searchClient.search).toHaveBeenCalledWith([
+      expect.objectContaining({
+        params: expect.objectContaining({
+          highlightPostTag: '__/ais-highlight__',
+          highlightPreTag: '__ais-highlight__',
+        }),
+      }),
+    ]);
+  });
+
+  it('can not override highlightPreTag or highlightPostTag', async () => {
+    const searchClient = {
+      search: jest.fn(([{ query }]) =>
+        Promise.resolve({ results: [{ query }] })
+      ),
+    };
+    const { instantsearch } = createInstantSearch({
+      searchClient,
+      indexName: 'bla',
+    });
+
+    await instantsearch.findResultsState({
+      highlightPreTag: '<em>',
+      highlightPostTag: '</em>',
+    });
+
+    expect(searchClient.search).toHaveBeenCalledWith([
+      expect.objectContaining({
+        params: expect.objectContaining({
+          highlightPostTag: '__/ais-highlight__',
+          highlightPreTag: '__ais-highlight__',
+        }),
+      }),
+    ]);
+  });
+});
   const { instantsearch } = createInstantSearch({
     searchClient: {},
     indexName: 'bla',
