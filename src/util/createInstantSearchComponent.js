@@ -45,4 +45,20 @@ export const createInstantSearchComponent = () => ({
       this.instantSearchInstance.start();
     });
   },
+  beforeDestroy() {
+    this.instantSearchInstance.dispose();
+    this.instantSearchInstance.started = false;
+  },
+  render(createElement) {
+    return createElement(
+      'div',
+      {
+        class: {
+          [this.suit()]: true,
+          [this.suit('', 'ssr')]: ssr,
+        },
+      },
+      this.$slots.default
+    );
+  },
 });
