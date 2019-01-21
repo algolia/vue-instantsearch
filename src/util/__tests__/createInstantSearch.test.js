@@ -313,7 +313,7 @@ Object {
     expect(widget.init).toBeCalledTimes(1);
     expect(widget.render).toBeCalledTimes(1);
     expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
-      `"You did not call \`instantsearch.findResultsState\`, which is required for ais-instant-search-ssr"`
+      `"\`instantsearch.findResultsState()\` needs to be called when using \`ais-instant-search-ssr\`."`
     );
   });
 });
@@ -329,7 +329,7 @@ describe('hydrate', () => {
     instantsearch.hydrate();
 
     expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
-      `"You did not pass the result of \`findResultsState\` to \`hydrate\`, which is required"`
+      `"The result of \`getState()\` needs to be passed to \`hydrate()\`."`
     );
   });
 

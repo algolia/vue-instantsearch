@@ -2,13 +2,10 @@ import instantsearch from 'instantsearch.js/es/';
 import { createInstantSearchComponent } from '../util/createInstantSearchComponent';
 import { warn } from '../util/warn';
 
-const oldApi = () =>
-  warn(
-    `Vue InstantSearch: You used the prop api-key or api-key.
+const oldApiWarning = `Vue InstantSearch: You used the prop api-key or api-key.
 These have been replaced by search-client.
 
-See more info here: https://community.algolia.com/vue-instantsearch/components/InstantSearch.html#usage`
-  );
+See more info here: https://www.algolia.com/doc/api-reference/widgets/instantsearch/vue/#widget-param-search-client`;
 
 export default createInstantSearchComponent({
   name: 'AisInstantSearch',
@@ -29,7 +26,9 @@ export default createInstantSearchComponent({
           !value.router ||
           !value.stateMapping
         ) {
-          warn('routing should be an object, with `router` and `stateMapping`');
+          warn(
+            'routing should be an object, with `router` and `stateMapping`. See https://www.algolia.com/doc/api-reference/widgets/instantsearch/vue/#widget-param-routing'
+          );
           return false;
         }
         return true;
@@ -49,7 +48,7 @@ export default createInstantSearchComponent({
       default: null,
       validator(value) {
         if (value) {
-          oldApi();
+          warn(oldApiWarning);
         }
         return false;
       },
@@ -59,7 +58,7 @@ export default createInstantSearchComponent({
       default: null,
       validator(value) {
         if (value) {
-          oldApi();
+          warn(oldApiWarning);
         }
         return false;
       },

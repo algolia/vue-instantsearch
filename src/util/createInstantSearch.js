@@ -32,7 +32,7 @@ export const createInstantSearch = instantSearchOptions => {
   search.__forceRender = widget => {
     if (!search.helper) {
       warn(
-        'You did not call `instantsearch.findResultsState`, which is required for ais-instant-search-ssr'
+        '`instantsearch.findResultsState()` needs to be called when using `ais-instant-search-ssr`.'
       );
       return;
     }
@@ -73,7 +73,7 @@ export const createInstantSearch = instantSearchOptions => {
   search.hydrate = instantSearchState => {
     if (!instantSearchState || !instantSearchState.lastResults) {
       warn(
-        'You did not pass the result of `findResultsState` to `hydrate`, which is required'
+        'The result of `getState()` needs to be passed to `hydrate()`.'
       );
       return;
     }

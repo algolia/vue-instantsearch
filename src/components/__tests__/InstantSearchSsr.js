@@ -4,7 +4,7 @@ import instantsearch from 'instantsearch.js/es';
 
 it('requires an injected instantsearch instance ($_ais)', () => {
   expect(() => mount(InstantSearchSsr)).toThrowErrorMatchingInlineSnapshot(
-    `"When using SSR, it is required to use the rootMixin"`
+    `"\`rootMixin\` is required when using SSR."`
   );
 });
 

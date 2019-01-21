@@ -8,7 +8,7 @@ export default createInstantSearchComponent({
     // eslint-disable-next-line camelcase
     $_ais: {
       default() {
-        throw new Error('When using SSR, it is required to use the rootMixin');
+        throw new Error('`rootMixin` is required when using SSR.');
       },
     },
   },

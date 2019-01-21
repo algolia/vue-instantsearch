@@ -50,7 +50,7 @@ it('throws on usage of appId or apiKey', () => {
 "Vue InstantSearch: You used the prop api-key or api-key.
 These have been replaced by search-client.
 
-See more info here: https://community.algolia.com/vue-instantsearch/components/InstantSearch.html#usage"
+See more info here: https://www.algolia.com/doc/api-reference/widgets/instantsearch/vue/#widget-param-search-client"
 `);
 
   expect(global.console.error.mock.calls[0][0]).toMatchInlineSnapshot(`
@@ -210,7 +210,7 @@ found in
 `);
 
   expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
-    `"routing should be an object, with \`router\` and \`stateMapping\`"`
+    `"routing should be an object, with \`router\` and \`stateMapping\`. See https://www.algolia.com/doc/api-reference/widgets/instantsearch/vue/#widget-param-routing"`
   );
 });
 
