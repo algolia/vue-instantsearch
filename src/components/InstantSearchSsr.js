@@ -1,7 +1,6 @@
 import { createInstantSearchComponent } from '../util/createInstantSearchComponent';
-import { _objectSpread } from '../util/polyfills';
 
-export default _objectSpread({}, createInstantSearchComponent(), {
+export default createInstantSearchComponent({
   name: 'AisInstantSearchSsr',
   inject: {
     // should be possible to configure this with {camelcase: ['error', {allow: ['^\\$_']}]}

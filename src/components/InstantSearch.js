@@ -11,7 +11,7 @@ These have been replaced by search-client.
 See more info here: https://community.algolia.com/vue-instantsearch/components/InstantSearch.html#usage`
   );
 
-export default _objectSpread({}, createInstantSearchComponent(), {
+export default createInstantSearchComponent({
   name: 'AisInstantSearch',
   props: {
     searchClient: {
