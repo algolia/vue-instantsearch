@@ -107,30 +107,14 @@ describe('createInstantSearch', () => {
     createInstantSearch({
       searchClient: {},
       indexName: 'whatever',
-      options: {
-        whatILike: ['this', 'self'],
-      },
+
+      whatILike: ['this', 'self'],
     });
 
     expect(instantsearchFactory).toHaveBeenCalledWith({
       indexName: 'whatever',
       searchClient: {},
       whatILike: ['this', 'self'],
-    });
-  });
-  it('does not allow overriding of search client or ', () => {
-    createInstantSearch({
-      searchClient: {},
-      indexName: 'whatever',
-      options: {
-        indexName: "haha I can override this, I'm the winner!",
-        searchClient: ['some', 'array', 'lol?'],
-      },
-    });
-
-    expect(instantsearchFactory).toHaveBeenCalledWith({
-      indexName: 'whatever',
-      searchClient: {},
     });
   });
 });

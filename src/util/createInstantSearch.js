@@ -4,13 +4,9 @@ const { SearchParameters, SearchResults } = algoliaHelper;
 import { _objectSpread } from './polyfills';
 import { warn } from './warn';
 
-export const createInstantSearch = ({ searchClient, indexName, options }) => {
-  const search = instantsearch(
-    _objectSpread({}, options, {
-      searchClient,
-      indexName,
-    })
-  );
+export const createInstantSearch = instantSearchOptions => {
+  const search = instantsearch(instantSearchOptions);
+  const { searchClient, indexName } = instantSearchOptions;
 
   // main API for SSR, called in asyncData of a root component which contains instantsearch
   search.findResultsState = params => {

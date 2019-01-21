@@ -20,9 +20,8 @@ export async function createApp({
   const { instantsearch, rootMixin } = createInstantSearch({
     searchClient,
     indexName: 'movies',
-    // options: {
-    //   stalledSearchDelay: 50
-    // }
+    // other options, like
+    // stalledSearchDelay: 50
   });
 
   await beforeApp({
