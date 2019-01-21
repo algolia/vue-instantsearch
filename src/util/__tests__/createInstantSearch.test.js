@@ -366,18 +366,14 @@ describe('hydrate', () => {
 });
 
 describe('getState', () => {
-  it('will warn if called before findResultsState', () => {
+  it('will return undefined if called before findResultsState', () => {
     global.console.warn = jest.fn();
     const { instantsearch } = createInstantSearch({
       searchClient: {},
       indexName: 'test',
     });
 
-    instantsearch.getState();
-
-    expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(
-      `"You called \`getState\` with an instance which has not searched yet, use \`findResultsState\`"`
-    );
+    expect(instantsearch.getState()).toBe(undefined);
   });
 
   it('returns the last state', () => {

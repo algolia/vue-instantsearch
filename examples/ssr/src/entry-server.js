@@ -29,9 +29,7 @@ export default context =>
           // When we attach the state to the context, and the `template` option
           // is used for the renderer, the state will automatically be
           // serialized and injected into the HTML as `window.__INITIAL_STATE__`.
-          if (context.url === '/search') {
-            context.algoliaState = instantsearch.getState();
-          }
+          context.algoliaState = instantsearch.getState();
 
           resolve(app);
         })

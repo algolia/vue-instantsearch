@@ -66,9 +66,6 @@ export const createInstantSearch = ({ searchClient, indexName, options }) => {
 
   search.getState = () => {
     if (search.helper === null || !search.helper.lastResults) {
-      warn(
-        'You called `getState` with an instance which has not searched yet, use `findResultsState`'
-      );
       return undefined;
     }
     return {
