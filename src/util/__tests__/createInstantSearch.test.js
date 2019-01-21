@@ -146,7 +146,7 @@ describe('rootMixin', () => {
 });
 
 describe('findResultsState', () => {
-  it('returns `ais` with lastResults', async () => {
+  it('modifies the state of InstantSearch', async () => {
     const searchClient = {
       search: jest.fn(([{ query }]) =>
         Promise.resolve({ results: [{ query }] })
