@@ -47,7 +47,7 @@ it('throws on usage of appId or apiKey', () => {
   });
 
   expect(global.console.warn.mock.calls[0][0]).toMatchInlineSnapshot(`
-"Vue InstantSearch: You used the prop api-key or api-key.
+"Vue InstantSearch: You used the prop api-key or app-id.
 These have been replaced by search-client.
 
 See more info here: https://www.algolia.com/doc/api-reference/widgets/instantsearch/vue/#widget-param-search-client"
