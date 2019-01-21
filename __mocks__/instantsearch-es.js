@@ -31,7 +31,7 @@ const fakeInstantSearch = jest.fn(
     }
 
     const instantsearchInstance = {
-      _stalledSearchDelay: stalledSearchDelay,
+      _stalledSearchDelay: stalledSearchDelay || 200,
       _searchFunction: searchFunction,
       routing: new RoutingManager(routing),
       helper: new Helper(),
@@ -45,6 +45,5 @@ const fakeInstantSearch = jest.fn(
     return instantsearchInstance;
   }
 );
-fakeInstantSearch._stalledSearchDelay = 200;
 
 module.exports = fakeInstantSearch;
