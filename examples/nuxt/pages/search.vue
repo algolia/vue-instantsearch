@@ -61,11 +61,12 @@ export default {
         disjunctiveFacetsRefinements: { genre: ['Comedy'] },
       })
       .then(() => ({
-        instantSearchState: instantsearch.getState(),
+        algoliaState: instantsearch.getState(),
       }));
   },
   beforeMount() {
-    instantsearch.hydrate(this.instantSearchState);
+    // Nuxt will merge `asyncData` and `data` on the client
+    instantsearch.hydrate(this.algoliaState);
   },
   mixins: [rootMixin],
   components: {
