@@ -52,6 +52,8 @@ export const createInstantSearchComponent = component =>
         this.instantSearchInstance.dispose();
         // TODO: remove this once algolia/instantsearch.js#3399 is used
         this.instantSearchInstance.started = false;
+        // TODO: remove this once algolia/instantsearch.js#3415 is used
+        this.instantSearchInstance.helper = null;
       },
     },
     component
