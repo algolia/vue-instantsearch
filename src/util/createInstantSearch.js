@@ -72,9 +72,7 @@ export const createInstantSearch = instantSearchOptions => {
   // called before app mounts on client
   search.hydrate = instantSearchState => {
     if (!instantSearchState || !instantSearchState.lastResults) {
-      warn(
-        'The result of `getState()` needs to be passed to `hydrate()`.'
-      );
+      warn('The result of `getState()` needs to be passed to `hydrate()`.');
       return;
     }
     const { lastResults } = instantSearchState;
