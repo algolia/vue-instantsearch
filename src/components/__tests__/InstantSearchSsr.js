@@ -1,6 +1,13 @@
-import InstantSearchSsr from '../InstantSearchSsr';
 import { mount } from '@vue/test-utils';
 import instantsearch from 'instantsearch.js/es';
+import Vue from 'vue';
+import InstantSearchSsr from '../InstantSearchSsr';
+import SearchBox from '../SearchBox.vue';
+import { createSerializedState } from '../../util/testutils/helper';
+import { createInstantSearch } from '../../util/createInstantSearch';
+import { fakeClient } from '../../util/testutils/client';
+
+jest.unmock('instantsearch.js/es');
 
 it('requires an injected instantsearch instance ($_ais)', () => {
   expect(() => mount(InstantSearchSsr)).toThrowErrorMatchingInlineSnapshot(
@@ -14,7 +21,7 @@ it('renders correctly (empty)', () => {
       // eslint-disable-next-line camelcase
       $_ais: instantsearch({
         indexName: 'bla',
-        searchClient: {},
+        searchClient: fakeClient,
       }),
     }),
   });
@@ -28,7 +35,7 @@ it('renders correctly (with slot used)', () => {
       // eslint-disable-next-line camelcase
       $_ais: instantsearch({
         indexName: 'bla',
-        searchClient: {},
+        searchClient: fakeClient,
       }),
     }),
     slots: {
@@ -37,4 +44,45 @@ it('renders correctly (with slot used)', () => {
   });
 
   expect(wrapper.html()).toMatchSnapshot();
+});
+
+it('does not call __forceRender on second start', async () => {
+  const { instantsearch: instance, rootMixin } = createInstantSearch({
+    indexName: 'bla',
+    searchClient: fakeClient,
+  });
+  instance.hydrate(createSerializedState());
+  const forceRenderSpy = jest.spyOn(instance, '__forceRender');
+
+  const wrapper = mount(InstantSearchSsr, {
+    ...rootMixin,
+    components: {
+      AisSearchBox: SearchBox,
+    },
+    slots: {
+      default: SearchBox,
+    },
+  });
+
+  // called once, for the `SearchBox` widget
+  expect(forceRenderSpy).toHaveBeenCalledTimes(1);
+
+  await Vue.nextTick();
+
+  wrapper.destroy();
+
+  await Vue.nextTick();
+
+  mount(InstantSearchSsr, {
+    ...rootMixin,
+    components: {
+      AisSearchBox: SearchBox,
+    },
+    slots: {
+      default: SearchBox,
+    },
+  });
+
+  // does not call again, since we remove `hydrated` flag on unmount
+  expect(forceRenderSpy).toHaveBeenCalledTimes(1);
 });
