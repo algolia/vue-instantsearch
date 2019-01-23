@@ -45,7 +45,9 @@ export const createInstantSearchComponent = component =>
         // "Note that mounted does not guarantee that all child components have also been mounted. If you want to
         // wait until the entire view has been rendered, you can use vm.$nextTick inside of mounted"
         this.$nextTick(() => {
-          this.instantSearchInstance.start();
+          if (!this.instantSearchInstance.started) {
+            this.instantSearchInstance.start();
+          }
         });
       },
       beforeDestroy() {

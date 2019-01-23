@@ -46,7 +46,7 @@ it('renders correctly (with slot used)', () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
-it('does not call __forceRender on second start', async () => {
+it('does not call __forceRender on second start', () => {
   const { instantsearch: instance, rootMixin } = createInstantSearch({
     indexName: 'bla',
     searchClient: fakeClient,
@@ -67,11 +67,7 @@ it('does not call __forceRender on second start', async () => {
   // called once, for the `SearchBox` widget
   expect(forceRenderSpy).toHaveBeenCalledTimes(1);
 
-  await Vue.nextTick();
-
   wrapper.destroy();
-
-  await Vue.nextTick();
 
   mount(InstantSearchSsr, {
     ...rootMixin,
@@ -85,4 +81,47 @@ it('does not call __forceRender on second start', async () => {
 
   // does not call again, since we remove `hydrated` flag on unmount
   expect(forceRenderSpy).toHaveBeenCalledTimes(1);
+});
+
+it('does not start too many times', async () => {
+  const { instantsearch: instance, rootMixin } = createInstantSearch({
+    indexName: 'bla',
+    searchClient: fakeClient,
+  });
+
+  const startSpy = jest.spyOn(instance, 'start');
+
+  mount(InstantSearchSsr, {
+    ...rootMixin,
+    components: {
+      AisSearchBox: SearchBox,
+    },
+    slots: {
+      default: SearchBox,
+    },
+  });
+
+  // not started yet (next tick)
+  expect(startSpy).toHaveBeenCalledTimes(0);
+
+  mount(InstantSearchSsr, {
+    ...rootMixin,
+    components: {
+      AisSearchBox: SearchBox,
+    },
+    slots: {
+      default: SearchBox,
+    },
+  });
+
+  // does not yet call again, since same instance needs to unmount first
+  expect(startSpy).toHaveBeenCalledTimes(0);
+
+  await Vue.nextTick();
+
+  expect(startSpy).toHaveBeenCalledTimes(1);
+
+  await Vue.nextTick();
+
+  expect(startSpy).toHaveBeenCalledTimes(1);
 });
