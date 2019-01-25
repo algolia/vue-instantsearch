@@ -564,7 +564,7 @@ algoliasearch-helper@^2.26.0, algoliasearch-helper@^2.26.1:
     qs "^6.5.1"
     util "^0.10.3"
 
-algoliasearch@^3.27.0, algoliasearch@^3.30.0:
+algoliasearch@^3.30.0:
   version "3.30.0"
   resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.30.0.tgz#355585e49b672e5f71d45b9c2b371ecdff129cd1"
   integrity sha512-FuinyPgNn0MeAHm9pan6rLgY6driY3mcTo4AWNBMY1MUReeA5PQA8apV/3SNXqA5bbsuvMvmA0ZrVzrOmEeQTA==
@@ -5865,12 +5865,11 @@ instantsearch.css@7.1.0:
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.1.0.tgz#49264d2bdc3d6c1f6395812ce9422ed1e987fccb"
   integrity sha512-QL3iJTYG5NAP4LiZCojPg/m3dOELTNipq2FZ1IHFNZBTOsZCYQpFdI1UFB70oLijsHoq5WMBIG3ETbIzhcoDPQ==
 
-instantsearch.js@^2.10.2:
-  version "2.10.4"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-2.10.4.tgz#446b1ce06eff52c86f195e761087950020cc7fee"
-  integrity sha512-hhGdYQJBejN4Xm1ElirNenD1BUsP6HE9HOoAII13psn1vXnKE89oQ7/3Z/fpVRBKM0P2KopXJZ5WVn2JFp7ZDQ==
+instantsearch.js@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-3.0.0.tgz#713708790c7b6a853f1e7c8259aa6a099a778ade"
+  integrity sha512-nW6xyxwbNpYTRQcSdCQI8USkkQ0vNqJdIEjdwnMqHVAQpOb2icWmfjoAspoyhCw/udKn1K//QBJb2V6e0fZF9A==
   dependencies:
-    algoliasearch "^3.27.0"
     algoliasearch-helper "^2.26.0"
     classnames "^2.2.5"
     events "^1.1.0"

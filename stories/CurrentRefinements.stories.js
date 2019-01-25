@@ -60,23 +60,50 @@ storiesOf('ais-current-refinements', module)
       transformItems(items) {
         return items.map(item =>
           Object.assign({}, item, {
-            label: item.label.toUpperCase(),
+            attribute: item.attribute.toLocaleUpperCase(),
+            refinements: item.refinements.map(refinement =>
+              Object.assign({}, refinement, {
+                label: refinement.label.toLocaleUpperCase(),
+              })
+            ),
           })
         );
       },
     },
   }))
-  .add('with custom rendering', () => ({
+  .add('with custom item rendering', () => ({
+    template: `
+      <ais-current-refinements :excluded-attributes="[]">
+        <template slot="item" slot-scope="{ item, refine, createURL }">
+          <button
+            @click="refine(item)"
+            style="color: white"
+          >
+            {{item.label}} ╳
+          </button>
+        </template>
+      </ais-current-refinements>
+    `,
+  }))
+  .add('with full custom rendering', () => ({
     template: `
       <ais-current-refinements :excluded-attributes="[]">
         <template slot-scope="{ refine, items, createURL }">
-          <button
-            v-for="item in items"
-            :key="item.attribute"
-            @click="refine(item.value)"
-          >
-            {{item.attribute}}: {{item.label}}
-          </button>
+          <ul>
+            <li
+              v-for="item in items"
+              :key="item.attribute"
+              >
+              {{item.attribute}}: 
+              <button
+                v-for="refinement in item.refinements"
+                @click="item.refine(refinement)"
+                :key="refinement.value"
+              >
+                {{refinement.label}} ╳
+              </button>
+            </li>
+          </ul>
         </template>
       </ais-current-refinements>
     `,

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { connectClearAll } from 'instantsearch.js/es/connectors';
+import { connectClearRefinements } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
 import { createSuitMixin } from '../mixins/suit';
 import { createWidgetMixin } from '../mixins/widget';
@@ -29,7 +29,7 @@ import { createWidgetMixin } from '../mixins/widget';
 export default {
   name: 'AisClearRefinements',
   mixins: [
-    createWidgetMixin({ connector: connectClearAll }),
+    createWidgetMixin({ connector: connectClearRefinements }),
     createPanelConsumerMixin({
       mapStateToCanRefine: state => state.hasRefinements,
     }),
@@ -38,17 +38,25 @@ export default {
   props: {
     excludedAttributes: {
       type: Array,
-      default: () => ['query'],
+      // explicitly no default, since in/ex are incompatible
+    },
+    includedAttributes: {
+      type: Array,
+      // explicitly no default, since in/ex are incompatible
+    },
+    transformItems: {
+      type: Function,
+      default(items) {
+        return items;
+      },
     },
   },
   computed: {
     widgetParams() {
       return {
-        clearsQuery: this.excludedAttributes.every(item => item !== 'query'),
-        // note the difference: excludeAttributes vs. excludedAttributes
-        excludeAttributes: this.excludedAttributes.filter(
-          item => item !== 'query'
-        ),
+        includedAttributes: this.includedAttributes,
+        excludedAttributes: this.excludedAttributes,
+        transformItems: this.transformItems,
       };
     },
     canRefine() {

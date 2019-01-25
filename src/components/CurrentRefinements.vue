@@ -5,28 +5,41 @@
   >
     <slot
       :refine="state.refine"
-      :items="refinements"
+      :items="state.items"
       :createURL="state.createURL"
     >
       <ul :class="suit('list')">
         <li
-          v-for="item in refinements"
-          :key="item.key"
+          v-for="item in state.items"
+          :key="item.attribute"
+          :class="suit('item')"
         >
-          <slot
-            name="item"
-            :refine="state.refine"
-            :item="item"
-            :createURL="() => state.createURL(item.value)"
+          <span :class="suit('label')">{{ item.attribute | capitalize }}: </span>
+          <span
+            v-for="refinement in item.refinements"
+            :key="createItemKey(refinement)"
+            :class="suit('category')"
           >
-            <span :class="suit('item')">
-              <span :class="suit('label')">{{ item.attribute | capitalize }}: {{ item.label }}</span>
+            <slot
+              name="item"
+              :refine="item.refine"
+              :item="refinement"
+              :createURL="() => state.createURL(item.value)"
+            >
+              <span :class="suit('categoryLabel')">
+                <q v-if="refinement.attribute === 'query'">{{refinement.label}}</q>
+                <template v-else>
+                  {{refinement.label}}
+                </template>
+              </span>
               <button
                 :class="suit('delete')"
-                @click="state.refine(item.value)"
-              >✕</button>
-            </span>
-          </slot>
+                @click="item.refine(refinement)"
+              >
+                ✕
+              </button>
+            </slot>
+          </span>
         </li>
       </ul>
     </slot>
@@ -35,7 +48,7 @@
 
 <script>
 import { createWidgetMixin } from '../mixins/widget';
-import { connectCurrentRefinedValues } from 'instantsearch.js/es/connectors';
+import { connectCurrentRefinements } from 'instantsearch.js/es/connectors';
 import { createPanelConsumerMixin } from '../mixins/panel';
 import { createSuitMixin } from '../mixins/suit';
 
@@ -43,19 +56,19 @@ export default {
   name: 'AisCurrentRefinements',
   mixins: [
     createSuitMixin({ name: 'CurrentRefinements' }),
-    createWidgetMixin({ connector: connectCurrentRefinedValues }),
+    createWidgetMixin({ connector: connectCurrentRefinements }),
     createPanelConsumerMixin({
-      mapStateToCanRefine: state => state.refinements.length > 0,
+      mapStateToCanRefine: state => state.items.length > 0,
     }),
   ],
   props: {
     includedAttributes: {
       type: Array,
-      default: null,
+      // no default because in/ex conflicts
     },
     excludedAttributes: {
       type: Array,
-      default: () => ['query'],
+      // no default because in/ex conflicts
     },
     transformItems: {
       type: Function,
@@ -66,39 +79,19 @@ export default {
   },
   computed: {
     noRefinement() {
-      return this.refinements.length === 0;
-    },
-    refinements() {
-      let refinements = this.state.refinements.map(item => {
-        const attribute = item.type === 'query' ? 'query' : item.attributeName;
-        return {
-          type: item.type,
-          attribute,
-          label: item.computedLabel,
-          value: item,
-          key: `${attribute}-${item.computedLabel}`,
-        };
-      });
-
-      if (this.includedAttributes) {
-        refinements = refinements.filter(
-          ({ attribute }) => this.includedAttributes.indexOf(attribute) !== -1
-        );
-      } else {
-        refinements = refinements.filter(
-          ({ attribute }) => this.excludedAttributes.indexOf(attribute) === -1
-        );
-      }
-      return this.transformItems(refinements);
+      return this.state && this.state.items.length === 0;
     },
     widgetParams() {
       return {
-        clearsQuery:
-          this.excludedAttributes.indexOf('query') === -1 &&
-          (this.includedAttributes
-            ? this.includedAttributes.indexOf('query') !== -1
-            : true),
+        includedAttributes: this.includedAttributes,
+        excludedAttributes: this.excludedAttributes,
+        transformItems: this.transformItems,
       };
+    },
+  },
+  methods: {
+    createItemKey({ attribute, value, type, operator }) {
+      return [attribute, type, value, operator].join(':');
     },
   },
   filters: {

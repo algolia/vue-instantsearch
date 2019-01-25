@@ -110,6 +110,7 @@ export default {
     widgetParams() {
       return {
         attributes: this.attributes,
+        // TODO: how does this migrate?
         limit: this.showMore ? this.showMoreLimit : this.limit,
         separator: this.separator,
         rootPath: this.rootPath,
