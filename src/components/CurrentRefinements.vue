@@ -5,41 +5,47 @@
   >
     <slot
       :refine="state.refine"
-      :items="state.items"
+      :items="items"
       :createURL="state.createURL"
     >
       <ul :class="suit('list')">
         <li
-          v-for="item in state.items"
+          v-for="item in items"
           :key="item.attribute"
           :class="suit('item')"
         >
-          <span :class="suit('label')">{{ item.attribute | capitalize }}: </span>
-          <span
-            v-for="refinement in item.refinements"
-            :key="createItemKey(refinement)"
-            :class="suit('category')"
+          <slot
+            name="refinement"
+            :refine="item.refine"
+            :refinement="item"
           >
-            <slot
-              name="item"
-              :refine="item.refine"
-              :item="refinement"
-              :createURL="() => state.createURL(item.value)"
+            <span :class="suit('label')">{{ item.label }}: </span>
+            <span
+              v-for="refinement in item.refinements"
+              :key="createItemKey(refinement)"
+              :class="suit('category')"
             >
-              <span :class="suit('categoryLabel')">
-                <q v-if="refinement.attribute === 'query'">{{refinement.label}}</q>
-                <template v-else>
-                  {{refinement.label}}
-                </template>
-              </span>
-              <button
-                :class="suit('delete')"
-                @click="item.refine(refinement)"
+              <slot
+                name="item"
+                :refine="item.refine"
+                :item="refinement"
+                :createURL="() => state.createURL(item.value)"
               >
-                ✕
-              </button>
-            </slot>
-          </span>
+                <span :class="suit('categoryLabel')">
+                  <q v-if="refinement.attribute === 'query'">{{refinement.label}}</q>
+                  <template v-else>
+                    {{refinement.label}}
+                  </template>
+                </span>
+                <button
+                  :class="suit('delete')"
+                  @click="item.refine(refinement)"
+                >
+                  ✕
+                </button>
+              </slot>
+            </span>
+          </slot>
         </li>
       </ul>
     </slot>
@@ -87,6 +93,18 @@ export default {
         excludedAttributes: this.excludedAttributes,
         transformItems: this.transformItems,
       };
+    },
+    items() {
+      return this.state.items.map(item => {
+        if (!item.label) {
+          item.label =
+            item.attribute
+              .toString()
+              .charAt(0)
+              .toLocaleUpperCase() + item.attribute.toString().slice(1);
+        }
+        return item;
+      });
     },
   },
   methods: {
