@@ -15,9 +15,10 @@
           :class="suit('item')"
         >
           <slot
-            name="refinement"
+            name="item"
             :refine="item.refine"
-            :refinement="item"
+            :item="item"
+            :createURL="state.createURL"
           >
             <span :class="suit('label')">{{ item.label }}: </span>
             <span
@@ -26,10 +27,10 @@
               :class="suit('category')"
             >
               <slot
-                name="item"
+                name="refinement"
                 :refine="item.refine"
-                :item="refinement"
-                :createURL="() => state.createURL(item.value)"
+                :refinement="refinement"
+                :createURL="state.createURL"
               >
                 <span :class="suit('categoryLabel')">
                   <q v-if="refinement.attribute === 'query'">{{refinement.label}}</q>
