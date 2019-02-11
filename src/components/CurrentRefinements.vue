@@ -5,12 +5,12 @@
   >
     <slot
       :refine="state.refine"
-      :items="items"
+      :items="state.items"
       :createURL="state.createURL"
     >
       <ul :class="suit('list')">
         <li
-          v-for="item in items"
+          v-for="item in state.items"
           :key="item.attribute"
           :class="suit('item')"
         >
@@ -20,7 +20,7 @@
             :item="item"
             :createURL="state.createURL"
           >
-            <span :class="suit('label')">{{ item.label }}: </span>
+            <span :class="suit('label')">{{ item.attribute | capitalize }}: </span>
             <span
               v-for="refinement in item.refinements"
               :key="createItemKey(refinement)"
@@ -94,18 +94,6 @@ export default {
         excludedAttributes: this.excludedAttributes,
         transformItems: this.transformItems,
       };
-    },
-    items() {
-      return this.state.items.map(item => {
-        if (!item.label) {
-          item.label =
-            item.attribute
-              .toString()
-              .charAt(0)
-              .toLocaleUpperCase() + item.attribute.toString().slice(1);
-        }
-        return item;
-      });
     },
   },
   methods: {
