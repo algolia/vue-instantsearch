@@ -64,11 +64,11 @@ export default {
   props: {
     includedAttributes: {
       type: Array,
-      // no default because in/ex conflicts
+      // no default because included and excluded are incompatible
     },
     excludedAttributes: {
       type: Array,
-      // no default because in/ex conflicts
+      // no default because included and excluded are incompatible
     },
     transformItems: {
       type: Function,

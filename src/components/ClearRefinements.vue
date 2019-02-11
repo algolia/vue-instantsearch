@@ -38,11 +38,11 @@ export default {
   props: {
     excludedAttributes: {
       type: Array,
-      // explicitly no default, since in/ex are incompatible
+      // explicitly no default, since included and excluded are incompatible
     },
     includedAttributes: {
       type: Array,
-      // explicitly no default, since in/ex are incompatible
+      // explicitly no default, since included and excluded are incompatible
     },
     transformItems: {
       type: Function,
