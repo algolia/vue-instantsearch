@@ -78,7 +78,7 @@ it('accepts an items prop', () => {
 
   const wrapper = mount(NumericMenu, {
     propsData: props,
-  }); // ok
+  });
 
   expect(wrapper.vm.widgetParams.items).toEqual([
     { label: 'All' },
