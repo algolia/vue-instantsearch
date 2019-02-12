@@ -167,7 +167,7 @@ it('accepts a showMoreLimit prop (with showMore)', () => {
     },
   });
 
-  expect(wrapper.vm.widgetParams.limit).toBe(5);
+  expect(wrapper.vm.widgetParams.showMoreLimit).toBe(5);
 });
 
 it('accepts a separator prop', () => {
@@ -178,11 +178,11 @@ it('accepts a separator prop', () => {
   const wrapper = mount(HierarchicalMenu, {
     propsData: {
       ...defaultProps,
-      separator: ' > ',
+      separator: ' --> ',
     },
   });
 
-  expect(wrapper.vm.widgetParams.separator).toBe(' > ');
+  expect(wrapper.vm.widgetParams.separator).toBe(' --> ');
 });
 
 it('accepts a rootPath prop', () => {
