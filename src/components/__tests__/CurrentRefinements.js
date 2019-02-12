@@ -222,7 +222,7 @@ describe('custom render', () => {
           v-for="item in items"
           :key="item.attribute"
           >
-          {{item.attribute}}: 
+          {{item.label}}: 
           <button
             v-for="refinement in item.refinements"
             @click="item.refine(refinement)"
@@ -237,11 +237,13 @@ describe('custom render', () => {
 
   const itemScopedSlot = `
     <div slot-scope="{ item, refine }">
+      {{item.label}}: 
       <button
-        @click="refine(item)"
-        style="color: white"
+        v-for="refinement in item.refinements"
+        @click="item.refine(refinement)"
+        :key="refinement.value"
       >
-        {{item.label}} ╳
+        {{refinement.label}}
       </button>
     </div>
   `;
@@ -257,9 +259,9 @@ describe('custom render', () => {
   `;
 
   const items = [
-    // TODO:
     {
       attribute: 'brands',
+      label: 'brands',
       refinements: [
         {
           attribute: 'brands',
@@ -271,6 +273,7 @@ describe('custom render', () => {
     },
     {
       attribute: 'colors',
+      label: 'colors',
       refinements: [
         {
           attribute: 'colors',

@@ -29,15 +29,17 @@ exports[`custom render item slot gives all relevant info to scoped slot 1`] = `
   <ul class="ais-CurrentRefinements-list">
     <li class="ais-CurrentRefinements-item">
       <div>
-        <button style="color: white;">
-          ╳
+        brands:
+        <button>
+          apple
         </button>
       </div>
     </li>
     <li class="ais-CurrentRefinements-item">
       <div>
-        <button style="color: white;">
-          ╳
+        colors:
+        <button>
+          red
         </button>
       </div>
     </li>

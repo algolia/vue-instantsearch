@@ -20,7 +20,7 @@
             :item="item"
             :createURL="state.createURL"
           >
-            <span :class="suit('label')">{{ item.attribute | capitalize }}: </span>
+            <span :class="suit('label')">{{ item.label | capitalize }}: </span>
             <span
               v-for="refinement in item.refinements"
               :key="createItemKey(refinement)"
