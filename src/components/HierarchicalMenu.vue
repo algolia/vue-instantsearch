@@ -4,16 +4,16 @@
     :class="[suit(), !canRefine && suit('', 'noRefinement')]"
   >
     <slot
-      :items="items"
+      :items="state.items"
       :can-refine="canRefine"
-      :can-toggle-show-more="canToggleShowMore"
-      :is-showing-more="isShowingMore"
+      :can-toggle-show-more="state.canToggleShowMore"
+      :is-showing-more="state.isShowingMore"
       :refine="state.refine"
       :createURL="state.createURL"
-      :toggle-show-more="toggleShowMore"
+      :toggle-show-more="state.toggleShowMore"
     >
       <hierarchical-menu-list
-        :items="items"
+        :items="state.items"
         :level="0"
         :refine="state.refine"
         :createURL="state.createURL"
@@ -24,15 +24,15 @@
         v-if="showMore"
         :class="[
           suit('showMore'),
-          !canToggleShowMore && suit('showMore', 'disabled')
+          !state.canToggleShowMore && suit('showMore', 'disabled')
         ]"
-        :disabled="!canToggleShowMore"
-        @click.prevent="toggleShowMore"
+        :disabled="!state.canToggleShowMore"
+        @click.prevent="state.toggleShowMore"
       >
         <slot
           name="showMoreLabel"
-          :is-showing-more="isShowingMore"
-        >{{ isShowingMore ? 'Show less' : 'Show more' }}</slot>
+          :is-showing-more="state.isShowingMore"
+        >{{ state.isShowingMore ? 'Show less' : 'Show more' }}</slot>
       </button>
     </slot>
   </div>
@@ -101,11 +101,6 @@ export default {
       },
     },
   },
-  data() {
-    return {
-      isShowingMore: false,
-    };
-  },
   computed: {
     widgetParams() {
       return {
@@ -120,34 +115,8 @@ export default {
         transformItems: this.transformItems,
       };
     },
-    items() {
-      return this.truncate(this.state.items);
-    },
     canRefine() {
       return mapStateToCanRefine(this.state);
-    },
-    canToggleShowMore() {
-      return (
-        this.isShowingMore ||
-        this.state.items.length >= this.internalShowMoreLimit
-      );
-    },
-    internalShowMoreLimit() {
-      return this.isShowingMore ? this.showMoreLimit : this.limit;
-    },
-  },
-  methods: {
-    toggleShowMore() {
-      this.isShowingMore = !this.isShowingMore;
-    },
-    truncate(items) {
-      const sliced = items.slice(items, this.internalShowMoreLimit);
-
-      return sliced.map(item =>
-        Object.assign({}, item, {
-          data: Array.isArray(item.data) ? this.truncate(item.data) : item.data,
-        })
-      );
     },
   },
 };
