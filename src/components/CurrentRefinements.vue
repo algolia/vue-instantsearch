@@ -33,9 +33,9 @@
                 :createURL="state.createURL"
               >
                 <span :class="suit('categoryLabel')">
-                  <q v-if="refinement.attribute === 'query'">{{refinement.label}}</q>
+                  <q v-if="refinement.attribute === 'query'">{{ refinement.label }}</q>
                   <template v-else>
-                    {{refinement.label}}
+                    {{ refinement.label }}
                   </template>
                 </span>
                 <button
@@ -69,13 +69,15 @@ export default {
     }),
   ],
   props: {
+    // no default because included and excluded are incompatible
+    // eslint-disable-next-line vue/require-default-prop
     includedAttributes: {
       type: Array,
-      // no default because included and excluded are incompatible
     },
+    // no default because included and excluded are incompatible
+    // eslint-disable-next-line vue/require-default-prop
     excludedAttributes: {
       type: Array,
-      // no default because included and excluded are incompatible
     },
     transformItems: {
       type: Function,
