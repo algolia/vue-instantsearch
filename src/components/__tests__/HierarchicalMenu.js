@@ -113,7 +113,7 @@ const defaultState = {
     microsoft,
   ],
   refine: () => {},
-  createURL: () => {}, // TODO: turn this into a string
+  createURL: () => {},
   isShowingMore: false,
   canToggleShowMore: true,
   toggleShowMore: () => {},
