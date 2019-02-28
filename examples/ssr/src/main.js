@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
 import { createRouter } from './router';
-import { createInstantSearch } from 'vue-instantsearch';
+import { createInstantSearch } from '../../../src/instantsearch';
+import historyRouter from 'instantsearch.js/es/lib/routers/history'
+import simpleStateMapping from 'instantsearch.js/es/lib/stateMappings/simple'
 import algoliasearch from 'algoliasearch/lite';
 
 const searchClient = algoliasearch(
@@ -19,6 +21,10 @@ export async function createApp({
   const { instantsearch, rootMixin } = createInstantSearch({
     searchClient,
     indexName: 'instant_search',
+    routing: {
+      router: historyRouter(),
+      stateMapping: simpleStateMapping(),
+    },
     // other options, like
     // stalledSearchDelay: 50
   });

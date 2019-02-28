@@ -6,6 +6,7 @@ import { warn } from './warn';
 
 export const createInstantSearch = instantSearchOptions => {
   const search = instantsearch(instantSearchOptions);
+  console.log(Object.keys(search.routing.stateMapping));
   const { searchClient, indexName } = instantSearchOptions;
 
   // main API for SSR, called in asyncData of a root component which contains instantsearch

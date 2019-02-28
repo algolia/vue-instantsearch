@@ -36,9 +36,21 @@ import {
   AisStats,
   AisPagination,
 } from 'vue-instantsearch';
+import qsModule from 'qs'
 
 export default {
-  asyncData({ instantsearch }) {
+  asyncData({ instantsearch, route: { fullPath } }) {
+    const startOfQueryString = fullPath.slice(0).indexOf('?');
+    console.log(
+      instantsearch.routing.router.parseURL({qsModule, location: {
+        search: startOfQueryString > -1
+        ? (fullPath.slice(startOfQueryString))
+        : ''
+      }}),
+      instantsearch
+
+    );
+    // console.log(instantsearch.routing.parseURL(route.fullPath))
     return instantsearch.findResultsState({
       query: 'hi',
       hitsPerPage: 5,
