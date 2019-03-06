@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "algoliasearch-helper": "^2.26.1",
+    "bundlesize": "^0.17.1",
     "instantsearch.js": "^3.1.1"
   },
   "peerDependencies": {
@@ -95,6 +96,20 @@
     "vue-template-compiler": "2.5.17",
     "vuetify": "1.5.3"
   },
+  "bundlesize": [
+    {
+      "path": "./dist/vue-instantsearch.js",
+      "maxSize": "60 kB"
+    },
+    {
+      "path": "./dist/vue-instantsearch.esm.js",
+      "maxSize": "14 kB"
+    },
+    {
+      "path": "./dist/vue-instantsearch.common.js",
+      "maxSize": "14 kB"
+    }
+  ],
   "jest": {
     "setupFiles": [
       "<rootDir>/jest.setup.js"
