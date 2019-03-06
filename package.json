@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "algoliasearch-helper": "^2.26.1",
-    "bundlesize": "^0.17.1",
     "instantsearch.js": "^3.1.1"
   },
   "peerDependencies": {
@@ -54,6 +53,7 @@
     "vue": "^2.4.0"
   },
   "devDependencies": {
+    "bundlesize": "0.17.1",
     "@storybook/addon-knobs": "3.4.11",
     "@storybook/addon-options": "3.4.11",
     "@storybook/vue": "3.4.11",
