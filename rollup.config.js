@@ -54,6 +54,9 @@ export default [
         format: 'umd',
         name: 'VueInstantSearch',
         exports: 'named',
+        globals: {
+          vue: 'Vue',
+        },
       },
     ],
     plugins: [
