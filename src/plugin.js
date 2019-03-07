@@ -3,9 +3,9 @@
 import * as widgets from './widgets';
 
 export const plugin = {
-  install(Vue) {
+  install(localVue) {
     Object.keys(widgets).forEach(widgetName => {
-      Vue.component(widgets[widgetName].name, widgets[widgetName]);
+      localVue.component(widgets[widgetName].name, widgets[widgetName]);
     });
   },
 };
