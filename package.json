@@ -94,7 +94,7 @@
     "vue-json-tree": "0.3.3",
     "vue-loader": "14.2.2",
     "vue-slider-component": "3.0.15",
-    "vue-template-compiler": "2.5.17",
+    "vue-template-compiler": "2.5.18",
     "vuetify": "1.5.3"
   },
   "bundlesize": [
