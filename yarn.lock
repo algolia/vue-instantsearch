@@ -11974,6 +11974,11 @@ vue-class-component@^6.0.0:
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-6.0.0.tgz#abb87f0acdc77428973401ca3bfaae133c826432"
   integrity sha512-3XS48fRq8NoTg/SgGOoHc50xiwgIkaee3/eyFcHl5BlzU5EW4phN3q5yh8aLdJ3vzcW1jxdiEyI6davLq+VJ0w==
 
+vue-class-component@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.0.1.tgz#7af2225c600667c7042b60712eefdf41dfc6de63"
+  integrity sha512-YIihdl7YmceEOjSwcxLhCXCNA3TKC2FStuMcjtuzhUAgw5x5d1T5gZTmVQHGyOaQsaKffL4GlZzYN3dlMYl53w==
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
@@ -12039,10 +12044,19 @@ vue-property-decorator@6.0.0:
     reflect-metadata "^0.1.10"
     vue-class-component "^6.0.0"
 
-vue-slider-component@2.8.13:
-  version "2.8.13"
-  resolved "https://registry.yarnpkg.com/vue-slider-component/-/vue-slider-component-2.8.13.tgz#0ef282542c93d7ae58166c6090f02b181f60a6df"
-  integrity sha512-FkcJtSczo6//wCahVUwMWPnBhex5asGTFngFI9fubRon/5mnN8cYYg/jnHW88+axnceDFBhq7VfT3C5Bwc02WQ==
+vue-property-decorator@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-8.0.0.tgz#a2e9bb2419b638cbf1614e17b99aa675d6d4e9e4"
+  integrity sha512-aaAO/Wbh+n3sPMOoQ+Rwi9va6vFqZPX13dA8vMycGuS/DOIYC77KxX0gMAPEzzkT4Umya0uSlTvBV5jQvSTyBQ==
+  dependencies:
+    vue-class-component "^7.0.1"
+
+vue-slider-component@3.0.15:
+  version "3.0.15"
+  resolved "https://registry.yarnpkg.com/vue-slider-component/-/vue-slider-component-3.0.15.tgz#1d9f0e7c51a3c87d13c0c76aa67a4a197a9a2869"
+  integrity sha512-slqTrdokRhJvuqHODwjZ27e5fUMvFuNzPV9DIxi9CAEABfapRNEJUljifvUfqcn6M2hTAWacodBddWX05C7HfQ==
+  dependencies:
+    vue-property-decorator "^8.0.0"
 
 vue-style-loader@^4.0.1:
   version "4.1.2"
