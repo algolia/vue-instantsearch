@@ -2,6 +2,7 @@ import { storiesOf } from '@storybook/vue';
 import { previewWrapper } from './utils';
 
 import VueSlider from 'vue-slider-component';
+import 'vue-slider-component/theme/default.css';
 
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.css';
