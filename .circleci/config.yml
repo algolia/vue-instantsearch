@@ -54,6 +54,7 @@ jobs:
           name: Unit Tests
           command: yarn test --maxWorkers=4
 
+  # # TODO: add simple E2E tests for the examples
   # test_examples:
   #   <<: *defaults
   #   steps:
@@ -73,4 +74,3 @@ workflows:
       - test_build
       - test_unit
       # - test_examples
-      # - test_docs
