@@ -94,7 +94,7 @@ export const createInstantSearch = instantSearchOptions => {
         // should be possible to configure this with {camelcase: ['error', {allow: ['^\\$_']}]}
         // but that didn't work
         // eslint-disable-next-line camelcase
-        $_ais: search,
+        [`$_ais-${indexName}`]: search,
       };
     },
   };
