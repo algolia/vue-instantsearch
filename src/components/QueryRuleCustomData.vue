@@ -2,7 +2,9 @@
   <div v-if="state">
     <slot :items="state.items">
       <div v-for="(item, key) in state.items" :key="key">
-        <pre>{{item}}</pre>
+        <slot name="item" :item="item">
+          <pre>{{item}}</pre>
+        </slot>
       </div>
     </slot>
   </div>
