@@ -4,3 +4,4 @@ node_modules/
 coverage
 .DS_store
 .nuxt
+.idea
