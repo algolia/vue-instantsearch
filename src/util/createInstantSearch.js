@@ -6,8 +6,7 @@ import { warn } from './warn';
 
 export const createInstantSearch = instantSearchOptions => {
   const search = instantsearch(instantSearchOptions);
-  const { searchClient, indexName } = instantSearchOptions;
-  const multiIndex = instantSearchOptions.multiIndex || false;
+  const { searchClient, indexName, multiIndex } = instantSearchOptions;
 
   // main API for SSR, called in asyncData of a root component which contains instantsearch
   search.findResultsState = params => {
