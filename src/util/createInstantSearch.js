@@ -90,12 +90,12 @@ export const createInstantSearch = instantSearchOptions => {
   // we can then reuse that InstantSearch instance seamlessly from `ais-ssr`
   const rootMixin = {
     provide() {
-      const mixinName = multiIndex ? `$_ais-${indexName}` : '$_ais';
+      const name = multiIndex ? `$_ais-${indexName}` : '$_ais';
       return {
         // should be possible to configure this with {camelcase: ['error', {allow: ['^\\$_']}]}
         // but that didn't work
         // eslint-disable-next-line camelcase
-        [mixinName]: search,
+        [name]: search,
       };
     },
   };
