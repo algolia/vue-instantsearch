@@ -10,7 +10,7 @@ it('renders in a list of <pre> by default', () => {
   const wrapper = mount(QueryRuleCustomData);
   expect(wrapper.html()).toMatchInlineSnapshot(`
 
-<div>
+<div class="ais-QueryRuleCustomData">
   <div>
     <pre>
       this is user data

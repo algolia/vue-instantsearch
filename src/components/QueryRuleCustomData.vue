@@ -1,5 +1,5 @@
 <template>
-  <div v-if="state">
+  <div v-if="state" :class="suit()">
     <slot :items="state.items">
       <div v-for="(item, key) in state.items" :key="key">
         <slot name="item" :item="item">
@@ -27,7 +27,7 @@ export default {
     transformItems: {
       type: Function,
       required: false,
-      default: customData => customData,
+      default: items => items,
     },
   },
   computed: {
