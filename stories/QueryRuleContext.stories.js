@@ -66,7 +66,7 @@ storiesOf('ais-query-rule-context', module)
         <li>Type <q>music</q> and a banner will appear.</li>
       </ul>
       <ais-configure
-        :disjunctive-Facets-Refinements.camel="{
+        :disjunctive-facets-refinements.camel="{
           genre: ['Drama']
         }"
       />
@@ -102,7 +102,7 @@ storiesOf('ais-query-rule-context', module)
         <li>Type <q>music</q> and a banner will appear.</li>
       </ul>
       <ais-configure
-        :disjunctive-Facets-Refinements.camel="{
+        :disjunctive-facets-refinements.camel="{
           genre: ['Drama']
         }"
       />
