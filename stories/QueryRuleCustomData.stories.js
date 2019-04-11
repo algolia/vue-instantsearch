@@ -89,12 +89,14 @@ storiesOf('ais-query-rule-custom-data', module)
   }))
   .add('picking first with transform', () => ({
     template: `
+    <div>
       <p>
         Type <q>music</q> and a banner will appear.
       </p>
       <ais-query-rule-custom-data
         :transform-items="transformItems"
-      />`,
+      />
+    </div>`,
     data() {
       return {
         transformItems: items => [items[0]],
@@ -103,12 +105,14 @@ storiesOf('ais-query-rule-custom-data', module)
   }))
   .add('keeping only banners with transform', () => ({
     template: `
+    <div>
       <p>
         Type <q>not a banner</q> and nothing will appear.
       </p>
       <ais-query-rule-custom-data
         :transform-items="transformItems"
-      />`,
+      />
+    </div>`,
     data() {
       return {
         transformItems: items =>
