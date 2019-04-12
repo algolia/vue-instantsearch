@@ -31,7 +31,7 @@ export const previewWrapper = ({
     <ais-refinement-list attribute="brand" />
     <ais-configure :hitsPerPage="3" />
   `,
-  routing
+  routing,
 } = {}) => () => ({
   template: `
     <ais-instant-search
@@ -61,7 +61,7 @@ export const previewWrapper = ({
   data() {
     return {
       searchClient,
-      routing
+      routing,
     };
   },
 });

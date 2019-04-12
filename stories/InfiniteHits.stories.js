@@ -89,12 +89,14 @@ storiesOf('ais-infinite-hits', module)
   }));
 
 storiesOf('ais-infinite-hits', module)
-  .addDecorator(previewWrapper({
-    routing: {
-      router: new MemoryRouter({page: 3}),
-      stateMapping: simple()
-    },
-  }))
+  .addDecorator(
+    previewWrapper({
+      routing: {
+        router: new MemoryRouter({ page: 3 }),
+        stateMapping: simple(),
+      },
+    })
+  )
   .add('with show previous enabled', () => ({
     template: `
       <ais-infinite-hits :show-previous=true></ais-infinite-hits>`,
