@@ -31,11 +31,13 @@ export const previewWrapper = ({
     <ais-refinement-list attribute="brand" />
     <ais-configure :hitsPerPage="3" />
   `,
+  routing
 } = {}) => () => ({
   template: `
     <ais-instant-search
       :search-client="searchClient"
       index-name="${indexName}"
+      :routing="routing"
     >
       <div class="vis-container vis-container-preview">
         <story />
@@ -59,6 +61,7 @@ export const previewWrapper = ({
   data() {
     return {
       searchClient,
+      routing
     };
   },
 });

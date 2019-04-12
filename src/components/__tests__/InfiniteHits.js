@@ -5,6 +5,11 @@ import InfiniteHits from '../InfiniteHits.vue';
 jest.mock('../../mixins/widget');
 
 const defaultState = {
+  widgetParams: {
+    showPrevious: false,
+    escapeHTML: true,
+    transformItems: items => items,
+  },
   hits: [
     {
       objectID: '00001',
@@ -25,8 +30,10 @@ const defaultState = {
   results: {
     page: 0,
   },
+  isFirstPage: false,
   isLastPage: false,
   showMore: () => {},
+  showPrevious: () => {},
 };
 
 it('accepts a escapeHTML prop', () => {
@@ -57,6 +64,20 @@ it('accepts a transformItems prop', () => {
   });
 
   expect(wrapper.vm.widgetParams.transformItems).toBe(transformItems);
+});
+
+it('accepts a showPrevious prop', () => {
+  __setState({
+    ...defaultState,
+  });
+
+  const wrapper = mount(InfiniteHits, {
+    propsData: {
+      showPrevious: true,
+    },
+  });
+
+  expect(wrapper.vm.widgetParams.showPrevious).toBe(true);
 });
 
 it('renders correctly', () => {
@@ -107,6 +128,21 @@ it('renders correctly with a custom item rendering', () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
+it('renders correctly on the first page', () => {
+  __setState({
+    ...defaultState,
+    widgetParams: {
+      ...defaultState.widgetParams,
+      showPrevious: true,
+    },
+    isFirstPage: true,
+  });
+
+  const wrapper = mount(InfiniteHits);
+
+  expect(wrapper.html()).toMatchSnapshot();
+});
+
 it('renders correctly on the last page', () => {
   __setState({
     ...defaultState,
@@ -116,6 +152,27 @@ it('renders correctly on the last page', () => {
   const wrapper = mount(InfiniteHits);
 
   expect(wrapper.html()).toMatchSnapshot();
+});
+
+it('expect to call showPrevious on click', () => {
+  const showPrevious = jest.fn();
+
+  __setState({
+    ...defaultState,
+    widgetParams: {
+      ...defaultState.widgetParams,
+      showPrevious: true,
+    },
+    showPrevious,
+  });
+
+  const wrapper = mount(InfiniteHits);
+
+  expect(showPrevious).not.toHaveBeenCalled();
+
+  wrapper.find('.ais-InfiniteHits-loadPrevious').trigger('click');
+
+  expect(showPrevious).toHaveBeenCalled();
 });
 
 it('expect to call showMore on click', () => {
