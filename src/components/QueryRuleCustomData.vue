@@ -1,9 +1,18 @@
 <template>
-  <div v-if="state" :class="suit()">
+  <div
+    v-if="state"
+    :class="suit()"
+  >
     <slot :items="state.items">
-      <div v-for="(item, key) in state.items" :key="key">
-        <slot name="item" :item="item">
-          <pre>{{item}}</pre>
+      <div
+        v-for="(item, key) in state.items"
+        :key="key"
+      >
+        <slot
+          name="item"
+          :item="item"
+        >
+          <pre>{{ item }}</pre>
         </slot>
       </div>
     </slot>
