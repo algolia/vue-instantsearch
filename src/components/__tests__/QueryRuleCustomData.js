@@ -5,7 +5,7 @@ jest.mock('../../mixins/widget');
 
 it('renders in a list of <pre> by default', () => {
   __setState({
-    items: ['this is user data', 'this too!'],
+    items: [{ text: 'this is user data' }, { text: 'this too!' }],
   });
   const wrapper = mount(QueryRuleCustomData);
   expect(wrapper.html()).toMatchInlineSnapshot(`
@@ -13,12 +13,16 @@ it('renders in a list of <pre> by default', () => {
 <div class="ais-QueryRuleCustomData">
   <div>
     <pre>
-      this is user data
+      {
+  "text": "this is user data"
+}
     </pre>
   </div>
   <div>
     <pre>
-      this too!
+      {
+  "text": "this too!"
+}
     </pre>
   </div>
 </div>

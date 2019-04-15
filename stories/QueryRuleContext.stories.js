@@ -27,13 +27,13 @@ storiesOf('ais-query-rule-context', module)
       `,
     })
   )
-  .add('simple usage', () => ({
+  .add('default', () => ({
     template: `
     <div>
       <ul>
-        <li>Select the "Drama" category and The Shawshank Redemption appears</li>
-        <li>Select the "Thriller" category and Pulp Fiction appears</li>
-        <li>Type <q>music</q> and a banner will appear.</li>
+      <li>On empty query & "Drama" category: "The Shawshank Redemption" appears</li>
+      <li>On empty query & "Thriller" category: "Pulp Fiction" appears</li>
+      <li>On query <q>music</q>: "This is it" appears.</li>
       </ul>
       <ais-query-rule-context :tracked-filters="trackedFilters" />
       <ais-query-rule-custom-data>
@@ -57,13 +57,13 @@ storiesOf('ais-query-rule-context', module)
       };
     },
   }))
-  .add('with initial filter applied', () => ({
+  .add('with initial filter', () => ({
     template: `
     <div>
       <ul>
-        <li>Select the "Drama" category and The Shawshank Redemption appears</li>
-        <li>Select the "Thriller" category and Pulp Fiction appears</li>
-        <li>Type <q>music</q> and a banner will appear.</li>
+        <li>On empty query & "Drama" category: "The Shawshank Redemption" appears</li>
+        <li>On empty query & "Thriller" category: "Pulp Fiction" appears</li>
+        <li>On query <q>music</q>: "This is it" appears.</li>
       </ul>
       <ais-configure
         :disjunctive-facets-refinements.camel="{
@@ -93,19 +93,14 @@ storiesOf('ais-query-rule-context', module)
       };
     },
   }))
-  .add('with filter out "thriller" in generated rules', () => ({
+  .add('with initial rule context', () => ({
     template: `
     <div>
       <ul>
-        <li>Select the "Drama" category and The Shawshank Redemption appears</li>
-        <li>Select the "Thriller" category and Pulp Fiction does not appear</li>
-        <li>Type <q>music</q> and a banner will appear.</li>
+        <li>On empty query: "The Shawshank Redemption" appears</li>
+        <li>On empty query & "Thriller" category: "Pulp Fiction" appears</li>
+        <li>On query <q>music</q>: "This is it" appears.</li>
       </ul>
-      <ais-configure
-        :disjunctive-facets-refinements.camel="{
-          genre: ['Drama']
-        }"
-      />
       <ais-query-rule-context
         :tracked-filters="trackedFilters"
         :transform-rule-contexts="transformRuleContexts"
@@ -129,8 +124,13 @@ storiesOf('ais-query-rule-context', module)
         trackedFilters: {
           genre: values => values,
         },
-        transformRuleContexts: rules =>
-          rules.filter(rule => rule.indexOf('Thriller') < 0),
+        transformRuleContexts: ruleContexts => {
+          if (ruleContexts.length === 0) {
+            return ['ais-genre-Drama'];
+          }
+
+          return ruleContexts;
+        },
       };
     },
   }));

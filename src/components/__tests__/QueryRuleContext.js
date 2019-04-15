@@ -22,7 +22,7 @@ it('accepts only trackedFilters and transformRuleContexts', () => {
     propsData: {
       trackedFilters,
       transformRuleContexts,
-      lolExtra: 'hehe not a widget param',
+      transformItems: "won't be transferred",
     },
   });
 

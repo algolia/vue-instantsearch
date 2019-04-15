@@ -27,12 +27,13 @@ storiesOf('ais-query-rule-custom-data', module)
       `,
     })
   )
-  .add('simple usage', () => ({
+  .add('default', () => ({
     template: `
     <div>
-      <p>
-        Type <q>music</q> and a banner will appear.
-      </p>
+      <ul
+        <li>On query <q>music</q>: "This is it" appears.</li>
+        <li>On query <q>not a banner</q>: empty banner appears.</li>
+      </ul
       <ais-query-rule-custom-data>
         <template slot="item" slot-scope="{ item }">
           <h2>{{ item.title }}</h2>
@@ -51,10 +52,11 @@ storiesOf('ais-query-rule-custom-data', module)
   .add('with default banner', () => ({
     template: `
     <div>
-      <p>
-        Kill Bill appears whenever no other results are promoted. Type
-        <q>music</q> to see another movie promoted.
-      </p>
+      <ul>
+        <li>On query <q>music</q>: "This is it" appears.</li>
+        <li>On query <q>not a banner</q>: empty banner appears.</li>
+        <li>On any other query: "Kill Bill" appears.</li>
+      </ul>
       <ais-query-rule-custom-data :transform-items="transformItems">
         <template slot="item" slot-scope="{ item }">
           <h2>{{ item.title }}</h2>
@@ -106,17 +108,17 @@ storiesOf('ais-query-rule-custom-data', module)
   .add('keeping only banners with transform', () => ({
     template: `
     <div>
-      <p>
-        Type <q>not a banner</q> and nothing will appear.
-      </p>
+      <ul>
+        <li>On query <q>music</q>: "This is it" appears.</li>
+        <li>On query <q>not a banner</q>: nothing will appear.</li>
+      </ul>
       <ais-query-rule-custom-data
         :transform-items="transformItems"
       />
     </div>`,
     data() {
       return {
-        transformItems: items =>
-          items.filter(item => item.banner !== undefined),
+        transformItems: items => items.filter(item => Boolean(item.banner)),
       };
     },
   }));
