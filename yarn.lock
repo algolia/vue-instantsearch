@@ -5885,17 +5885,17 @@ instantsearch.css@7.1.1:
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.1.1.tgz#64fa9f07ff39ab088b00cd3f0fa3ea697d2215f7"
   integrity sha512-8+2FLbZk9uK+VRFJ4tXByMNX9KTsPOrY/nkw4oe+8HH+jcHoVMQkUdxbFu7mSUHUdZjh5kK9Xk8IQau1Sy+VKw==
 
-instantsearch.js@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-3.1.1.tgz#ab545da6b9b137ffdd90480b1610c8d09055a0ea"
-  integrity sha512-vQw84UX7sM5Tnv5L2cOngi98FafiweWASY+i56On5jiNR8sTnjcF1G+Xy30I3Bdh2LeWv9lCWKOt8AU9nkaltw==
+instantsearch.js@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-3.4.0.tgz#8dd687789747d17e60c2335b50a15b4a3e20a3b5"
+  integrity sha512-lEZqEZP6fppKBFnE0S4dnA0NN4ytKADtktLZsVD5fhbgH15+VDsK4JST1UjpM/bMLcmpoCRYzIehitp7l8SNAg==
   dependencies:
     algoliasearch-helper "^2.26.0"
     classnames "^2.2.5"
     events "^1.1.0"
     hogan.js "^3.0.2"
     lodash "^4.17.5"
-    preact "^8.2.7"
+    preact "^8.3.0"
     preact-compat "^3.18.0"
     preact-rheostat "^2.1.1"
     prop-types "^15.5.10"
@@ -8923,10 +8923,15 @@ preact-transition-group@^1.1.1:
   resolved "https://registry.yarnpkg.com/preact-transition-group/-/preact-transition-group-1.1.1.tgz#f0a49327ea515ece34ea2be864c4a7d29e5d6e10"
   integrity sha1-8KSTJ+pRXs406ivoZMSn0p5dbhA=
 
-preact@^8.2.5, preact@^8.2.7:
+preact@^8.2.5:
   version "8.3.1"
   resolved "https://registry.yarnpkg.com/preact/-/preact-8.3.1.tgz#ed34f79d09edc5efd32a378a3416ef5dc531e3ac"
   integrity sha512-s8H1Y8O9e+mOBo3UP1jvWqArPmjCba2lrrGLlq/0kN1XuIINUbYtf97iiXKxCuG3eYwmppPKnyW2DBrNj/TuTg==
+
+preact@^8.3.0:
+  version "8.4.2"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-8.4.2.tgz#1263b974a17d1ea80b66590e41ef786ced5d6a23"
+  integrity sha512-TsINETWiisfB6RTk0wh3/mvxbGRvx+ljeBccZ4Z6MPFKgu/KFGyf2Bmw3Z/jlXhL5JlNKY6QAbA9PVyzIy9//A==
 
 prebuild-install@^2.3.0:
   version "2.5.3"
