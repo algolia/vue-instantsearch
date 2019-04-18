@@ -104,7 +104,7 @@ storiesOf('ais-infinite-hits', module)
   .add('with a custom show previous render', () => ({
     template: `
       <ais-infinite-hits :show-previous=true>
-        <div slot="loadPrevious" slot-scope="{ refinePrevious, page, isFirstPage }">
+        <div slot="loadPrevious" slot-scope="{ refinePrevious, isFirstPage }">
           <button
             :disabled="isFirstPage"
             @click="refinePrevious"
