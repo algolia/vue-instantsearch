@@ -168,7 +168,7 @@ it('expect to call showPrevious on click', () => {
 
   const wrapper = mount(InfiniteHits);
 
-  expect(showPrevious).not.toHaveBeenCalled();
+  expect(showPrevious).toHaveBeenCalledTimes(0);
 
   wrapper.find('.ais-InfiniteHits-loadPrevious').trigger('click');
 
