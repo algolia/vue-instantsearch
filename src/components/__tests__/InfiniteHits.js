@@ -172,7 +172,7 @@ it('expect to call showPrevious on click', () => {
 
   wrapper.find('.ais-InfiniteHits-loadPrevious').trigger('click');
 
-  expect(showPrevious).toHaveBeenCalled();
+  expect(showPrevious).toHaveBeenCalledTimes(1);
 });
 
 it('expect to call showMore on click', () => {
