@@ -99,7 +99,7 @@ storiesOf('ais-infinite-hits', module)
   )
   .add('with show previous enabled', () => ({
     template: `
-      <ais-infinite-hits :show-previous=true></ais-infinite-hits>`,
+      <ais-infinite-hits :show-previous="true"></ais-infinite-hits>`,
   }))
   .add('with a custom show previous render', () => ({
     template: `
