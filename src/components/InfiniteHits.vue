@@ -5,7 +5,7 @@
   >
 
     <slot
-      v-if="state.widgetParams.showPrevious"
+      v-if="showPrevious"
       name="loadPrevious"
       :refinePrevious="refinePrevious"
       :page="state.results.page"
