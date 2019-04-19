@@ -99,8 +99,6 @@ export default {
     },
   },
   methods: {
-    // Fixes InstantSearch.js connectors API: every function
-    // that trigger a search must be called `refine`
     refinePrevious() {
       this.state.showPrevious();
     },
