@@ -154,6 +154,22 @@ it('renders correctly on the last page', () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
+it('renders correctly when not on the first page', () => {
+  __setState({
+    ...defaultState,
+    isFirstPage: false,
+    isLastPage: false,
+  });
+
+  const wrapper = mount(InfiniteHits, {
+    propsData: {
+      showPrevious: true,
+    },
+  });
+
+  expect(wrapper.html()).toMatchSnapshot();
+});
+
 it('expect to call showPrevious on click', () => {
   const showPrevious = jest.fn();
 
