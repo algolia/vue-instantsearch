@@ -14,5 +14,7 @@ export class MemoryRouter {
   onUpdate() {
     return {};
   }
-  dispose() {}
+  dispose() {
+    this._memoryState = {};
+  }
 }
