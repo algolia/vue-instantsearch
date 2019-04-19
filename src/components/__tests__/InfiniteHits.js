@@ -131,14 +131,14 @@ it('renders correctly with a custom item rendering', () => {
 it('renders correctly on the first page', () => {
   __setState({
     ...defaultState,
-    widgetParams: {
-      ...defaultState.widgetParams,
-      showPrevious: true,
-    },
     isFirstPage: true,
   });
 
-  const wrapper = mount(InfiniteHits);
+  const wrapper = mount(InfiniteHits, {
+    propsData: {
+      showPrevious: true,
+    },
+  });
 
   expect(wrapper.html()).toMatchSnapshot();
 });
@@ -159,14 +159,14 @@ it('expect to call showPrevious on click', () => {
 
   __setState({
     ...defaultState,
-    widgetParams: {
-      ...defaultState.widgetParams,
-      showPrevious: true,
-    },
     showPrevious,
   });
 
-  const wrapper = mount(InfiniteHits);
+  const wrapper = mount(InfiniteHits, {
+    propsData: {
+      showPrevious: true,
+    },
+  });
 
   expect(showPrevious).toHaveBeenCalledTimes(0);
 
