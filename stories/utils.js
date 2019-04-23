@@ -1,7 +1,10 @@
 import algoliasearch from 'algoliasearch/lite';
+import { action } from '@storybook/addon-actions';
 
 export const previewWrapper = ({
   searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76'),
+  insightsClient = (method, payload) =>
+    action(`[InsightsClient] sent ${method} with payload`)(payload),
   indexName = 'instant_search',
   hits = `
     <ol
@@ -36,6 +39,7 @@ export const previewWrapper = ({
     <ais-instant-search
       :search-client="searchClient"
       index-name="${indexName}"
+      :insights-client="insightsClient"
     >
       <div class="vis-container vis-container-preview">
         <story />
@@ -59,6 +63,7 @@ export const previewWrapper = ({
   data() {
     return {
       searchClient,
+      insightsClient,
     };
   },
 });
