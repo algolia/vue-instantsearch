@@ -78,7 +78,7 @@ storiesOf('ais-hits', module)
               :key="item.objectID"
             >
               custom objectID: {{item.objectID}}
-              <button @click="insights('clickedObjectIDsAfterSearch', { eventName: 'Add to cart', objectIDs: [item    .objectID] })">Add to cart</button>
+              <button @click="insights('clickedObjectIDsAfterSearch', { eventName: 'Add to cart', objectIDs: [item.objectID] })">Add to cart</button>
             </div>
           </div>
         </ais-hits>
