@@ -100,7 +100,17 @@ storiesOf('ais-infinite-hits', module)
   .add('with show previous enabled', () => ({
     template: `
       <ais-infinite-hits :show-previous="true"></ais-infinite-hits>`,
-  }))
+  }));
+
+storiesOf('ais-infinite-hits', module)
+  .addDecorator(
+    previewWrapper({
+      routing: {
+        router: new MemoryRouter({ page: 3 }),
+        stateMapping: simple(),
+      },
+    })
+  )
   .add('with a custom show previous render', () => ({
     template: `
       <ais-infinite-hits :show-previous="true">
