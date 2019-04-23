@@ -22,7 +22,7 @@
       :items="items"
       :results="state.results"
       :is-last-page="state.isLastPage"
-      :refinePrevious="refinePrevious"
+      :refine-previous="refinePrevious"
       :refineNext="refineNext"
       :refine="refineNext"
     >
