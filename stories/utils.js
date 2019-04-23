@@ -2,7 +2,7 @@ import algoliasearch from 'algoliasearch/lite';
 
 export const previewWrapper = ({
   searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76'),
-  insightsClient = null,
+  insightsClient,
   indexName = 'instant_search',
   hits = `
     <ol
