@@ -1,10 +1,8 @@
 import algoliasearch from 'algoliasearch/lite';
-import { action } from '@storybook/addon-actions';
 
 export const previewWrapper = ({
   searchClient = algoliasearch('latency', '6be0576ff61c053d5f9a3225e2a90f76'),
-  insightsClient = (method, payload) =>
-    action(`[InsightsClient] sent ${method} with payload`)(payload),
+  insightsClient = null,
   indexName = 'instant_search',
   hits = `
     <ol
