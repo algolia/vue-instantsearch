@@ -7,7 +7,7 @@
     <slot
       v-if="showPrevious"
       name="loadPrevious"
-      :refinePrevious="refinePrevious"
+      :refine-previous="refinePrevious"
       :page="state.results.page"
       :is-first-page="state.isFirstPage"
     >
