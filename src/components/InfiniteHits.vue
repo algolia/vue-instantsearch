@@ -42,7 +42,7 @@
 
       <slot
         name="loadMore"
-        :refineNext="refineNext"
+        :refine-next="refineNext"
         :refine="refineNext"
         :page="state.results.page"
         :is-last-page="state.isLastPage"
