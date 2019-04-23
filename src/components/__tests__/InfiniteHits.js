@@ -140,6 +140,13 @@ it('renders correctly on the first page', () => {
     },
   });
 
+  const previousButton = wrapper.find('.ais-InfiniteHits-loadPrevious');
+
+  expect(previousButton.exists()).toEqual(true);
+  expect(
+    previousButton.classes('ais-InfiniteHits-loadPrevious--disabled')
+  ).toEqual(true);
+  expect(previousButton.attributes('disabled')).toEqual('disabled');
   expect(wrapper.html()).toMatchSnapshot();
 });
 
@@ -167,6 +174,13 @@ it('renders correctly when not on the first page', () => {
     },
   });
 
+  const previousButton = wrapper.find('.ais-InfiniteHits-loadPrevious');
+
+  expect(previousButton.exists()).toEqual(true);
+  expect(
+    previousButton.classes('ais-InfiniteHits-loadPrevious--disabled')
+  ).toEqual(false);
+  expect(previousButton.attributes('disabled')).toEqual(undefined);
   expect(wrapper.html()).toMatchSnapshot();
 });
 
