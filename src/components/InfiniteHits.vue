@@ -23,7 +23,7 @@
       :results="state.results"
       :is-last-page="state.isLastPage"
       :refine-previous="refinePrevious"
-      :refineNext="refineNext"
+      :refine-next="refineNext"
       :refine="refineNext"
     >
       <ol :class="suit('list')">
