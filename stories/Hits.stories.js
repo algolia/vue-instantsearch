@@ -65,7 +65,7 @@ storiesOf('ais-hits', module)
     previewWrapper({
       insightsClient: (method, payload) =>
         action(`[InsightsClient] sent ${method} with payload`)(payload),
-    }),
+    })
   )
   .add('with insights', () => ({
     template: `
