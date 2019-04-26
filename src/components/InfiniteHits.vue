@@ -37,6 +37,7 @@
             name="item"
             :item="item"
             :index="index"
+            :insights="state.insights"
           >objectID: {{ item.objectID }}, index: {{ index }}</slot>
         </li>
       </ol>

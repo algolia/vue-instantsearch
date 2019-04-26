@@ -133,9 +133,9 @@ storiesOf('ais-infinite-hits', module)
         action(`[InsightsClient] sent ${method} with payload`)(payload),
     })
   )
-  .add('with insights', () => ({
+  .add('with insights on default slot', () => ({
     template: `
-    <div>
+      <div>
         <ais-configure :clickAnalytics="true" />
         <ais-infinite-hits>
           <div slot-scope="{ items, refine, isLastPage, insights }">
@@ -154,6 +154,19 @@ storiesOf('ais-infinite-hits', module)
             </button>
           </div>
         </ais-infinite-hits>
-    </div>
+      </div>
+    `,
+  }))
+  .add('with insights on item slot', () => ({
+    template: `
+      <div>
+        <ais-configure :clickAnalytics="true" />
+        <ais-infinite-hits>
+          <div slot="item" slot-scope="{ item, insights }">
+            custom objectID: {{item.objectID}}
+            <button @click="insights('clickedObjectIDsAfterSearch', { eventName: 'Add to cart', objectIDs: [item.objectID] })">Add to cart</button>
+          </div>
+        </ais-infinite-hits>
+      </div>
     `,
   }));
