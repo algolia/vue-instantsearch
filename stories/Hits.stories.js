@@ -67,9 +67,9 @@ storiesOf('ais-hits', module)
         action(`[InsightsClient] sent ${method} with payload`)(payload),
     })
   )
-  .add('with insights', () => ({
+  .add('with insights default slot', () => ({
     template: `
-    <div>
+      <div>
         <ais-configure :clickAnalytics="true" />
         <ais-hits>
           <div slot-scope="{ items, insights }">
@@ -82,6 +82,19 @@ storiesOf('ais-hits', module)
             </div>
           </div>
         </ais-hits>
-    </div>
+      </div>
+    `,
+  }))
+  .add('with insights with item slot', () => ({
+    template: `
+      <div>
+        <ais-configure :clickAnalytics="true" />
+        <ais-hits>
+          <div slot="item" slot-scope="{ item, insights }">
+            custom objectID: {{item.objectID}}
+            <button @click="insights('clickedObjectIDsAfterSearch', { eventName: 'Add to cart', objectIDs: [item.objectID] })">Add to cart</button>
+          </div>
+        </ais-hits>
+      </div>
     `,
   }));
