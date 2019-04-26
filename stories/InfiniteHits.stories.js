@@ -138,7 +138,7 @@ storiesOf('ais-infinite-hits', module)
     <div>
         <ais-configure :clickAnalytics="true" />
         <ais-infinite-hits>
-          <div slot-scope="{ items, refine, insights }">
+          <div slot-scope="{ items, refine, isLastPage, insights }">
             <div
               v-for="item in items"
               :key="item.objectID"
