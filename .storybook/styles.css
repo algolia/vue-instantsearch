@@ -108,14 +108,14 @@ body {
   min-height: unset !important;
 }
 
-input:not([class^="ais-"]) {
+input:not([class^='ais-']) {
   border-style: solid !important;
   border-width: 1px;
   border-color: #c4c8d8;
   border-radius: 5px !important;
 }
 
-button:not([class^="ais-"]) {
+button:not([class^='ais-']) {
   border-style: solid !important;
   border-width: 1px;
   padding: 0.2em;
@@ -123,6 +123,6 @@ button:not([class^="ais-"]) {
   border-radius: 5px !important;
 }
 
-button:not([class^="ais-"]):disabled {
+button:not([class^='ais-']):disabled {
   border-color: #c4c8d8;
 }
