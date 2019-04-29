@@ -53,7 +53,6 @@ storiesOf('ais-query-rule-custom-data', module)
     <div>
       <ul>
         <li>On query <q>music</q>: "This is it" appears.</li>
-        <li>On query <q>not a banner</q>: empty banner appears.</li>
         <li>On any other query: "Kill Bill" appears.</li>
       </ul>
       <ais-query-rule-custom-data :transform-items="transformItems">
@@ -91,9 +90,13 @@ storiesOf('ais-query-rule-custom-data', module)
   .add('picking first with transform', () => ({
     template: `
     <div>
-      <p>
-        Type <q>music</q> and a banner will appear.
-      </p>
+      <ul>
+        <li>On query <q>music</q>: "This is it" appears.</li>
+        <li>On empty query, select the "Drama" category and The Shawshank Redemption appears</li>
+        <li>On empty query, select the "Thriller" category and Pulp Fiction appears</li>
+        <li>Only one will be visible at the same time</li>
+      </ul>
+      <ais-query-rule-context :tracked-filters="trackedFilters" />
       <ais-query-rule-custom-data
         :transform-items="transformItems"
       />
@@ -101,6 +104,9 @@ storiesOf('ais-query-rule-custom-data', module)
     data() {
       return {
         transformItems: items => [items[0]],
+        trackedFilters: {
+          genre: () => ['Thriller', 'Drama'],
+        },
       };
     },
   }))
