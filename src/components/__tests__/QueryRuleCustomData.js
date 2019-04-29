@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import QueryRuleCustomData from '../QueryRuleCustomData.vue';
 import { __setState } from '../../mixins/widget';
+
 jest.mock('../../mixins/widget');
 
 it('renders in a list of <pre> by default', () => {

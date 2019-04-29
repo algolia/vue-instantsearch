@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import QueryRuleContext from '../QueryRuleContext';
 import { __setState } from '../../mixins/widget';
+
 jest.mock('../../mixins/widget');
 
 it('is renderless', () => {
