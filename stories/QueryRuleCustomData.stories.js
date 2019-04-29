@@ -32,8 +32,7 @@ storiesOf('ais-query-rule-custom-data', module)
     <div>
       <ul
         <li>On query <q>music</q>: "This is it" appears.</li>
-        <li>On query <q>not a banner</q>: empty banner appears.</li>
-      </ul
+      </ul>
       <ais-query-rule-custom-data>
         <template slot="item" slot-scope="{ item }">
           <h2>{{ item.title }}</h2>
@@ -75,7 +74,7 @@ storiesOf('ais-query-rule-custom-data', module)
       return {
         transformItems: items => {
           if (items.length > 0) {
-            return [items[0]];
+            return items.filter(item => Boolean(item.banner));
           }
 
           return [
@@ -110,7 +109,6 @@ storiesOf('ais-query-rule-custom-data', module)
     <div>
       <ul>
         <li>On query <q>music</q>: "This is it" appears.</li>
-        <li>On query <q>not a banner</q>: nothing will appear.</li>
       </ul>
       <ais-query-rule-custom-data
         :transform-items="transformItems"

@@ -31,9 +31,9 @@ storiesOf('ais-query-rule-context', module)
     template: `
     <div>
       <ul>
-      <li>On empty query & "Drama" category: "The Shawshank Redemption" appears</li>
-      <li>On empty query & "Thriller" category: "Pulp Fiction" appears</li>
-      <li>On query <q>music</q>: "This is it" appears.</li>
+        <li>On empty query, select the "Drama" category and The Shawshank Redemption appears</li>
+        <li>On empty query, select the "Thriller" category and Pulp Fiction appears</li>
+        <li>Type <q>music</q> and a banner will appear.</li>
       </ul>
       <ais-query-rule-context :tracked-filters="trackedFilters" />
       <ais-query-rule-custom-data>
@@ -61,9 +61,9 @@ storiesOf('ais-query-rule-context', module)
     template: `
     <div>
       <ul>
-        <li>On empty query & "Drama" category: "The Shawshank Redemption" appears</li>
-        <li>On empty query & "Thriller" category: "Pulp Fiction" appears</li>
-        <li>On query <q>music</q>: "This is it" appears.</li>
+        <li>On empty query, select the "Drama" category and The Shawshank Redemption appears</li>
+        <li>On empty query, select the "Thriller" category and Pulp Fiction appears</li>
+        <li>Type <q>music</q> and a banner will appear.</li>
       </ul>
       <ais-configure
         :disjunctive-facets-refinements.camel="{
