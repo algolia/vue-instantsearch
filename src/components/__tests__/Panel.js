@@ -32,9 +32,13 @@ describe('default render', () => {
 
   it('passes data without refinement', () => {
     const defaultScopedSlot = jest.fn();
+    const headerScopedSlot = jest.fn();
+    const footerScopedSlot = jest.fn();
     const wrapper = mount(Panel, {
       scopedSlots: {
         default: defaultScopedSlot,
+        header: headerScopedSlot,
+        footer: footerScopedSlot,
       },
     });
 
@@ -43,6 +47,29 @@ describe('default render', () => {
     });
 
     expect(defaultScopedSlot).toHaveBeenCalledWith({ noRefinement: true });
+    expect(headerScopedSlot).toHaveBeenCalledWith({ noRefinement: true });
+    expect(footerScopedSlot).toHaveBeenCalledWith({ noRefinement: true });
+  });
+
+  it('passes data with refinement', () => {
+    const defaultScopedSlot = jest.fn();
+    const headerScopedSlot = jest.fn();
+    const footerScopedSlot = jest.fn();
+    const wrapper = mount(Panel, {
+      scopedSlots: {
+        default: defaultScopedSlot,
+        header: headerScopedSlot,
+        footer: footerScopedSlot,
+      },
+    });
+
+    wrapper.setData({
+      canRefine: true,
+    });
+
+    expect(defaultScopedSlot).toHaveBeenCalledWith({ noRefinement: false });
+    expect(headerScopedSlot).toHaveBeenCalledWith({ noRefinement: false });
+    expect(footerScopedSlot).toHaveBeenCalledWith({ noRefinement: false });
   });
 
   it('renders correctly with header', () => {

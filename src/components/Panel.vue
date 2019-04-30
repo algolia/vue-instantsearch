@@ -1,7 +1,7 @@
 <template>
   <div :class="[suit(), !canRefine && suit('', 'noRefinement')]">
     <div
-      v-if="$slots.header"
+      v-if="$slots.header || $scopedSlots.header"
       :class="suit('header')"
     >
       <slot
@@ -13,7 +13,7 @@
       <slot :no-refinement="!canRefine" />
     </div>
     <div
-      v-if="$slots.footer"
+      v-if="$slots.footer || $scopedSlots.footer"
       :class="suit('footer')"
     >
       <slot
