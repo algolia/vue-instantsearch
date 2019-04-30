@@ -46,9 +46,9 @@ describe('default render', () => {
       canRefine: false,
     });
 
-    expect(defaultScopedSlot).toHaveBeenCalledWith({ noRefinement: true });
-    expect(headerScopedSlot).toHaveBeenCalledWith({ noRefinement: true });
-    expect(footerScopedSlot).toHaveBeenCalledWith({ noRefinement: true });
+    expect(defaultScopedSlot).toHaveBeenCalledWith({ hasRefinements: false });
+    expect(headerScopedSlot).toHaveBeenCalledWith({ hasRefinements: false });
+    expect(footerScopedSlot).toHaveBeenCalledWith({ hasRefinements: false });
   });
 
   it('passes data with refinement', () => {
@@ -67,9 +67,9 @@ describe('default render', () => {
       canRefine: true,
     });
 
-    expect(defaultScopedSlot).toHaveBeenCalledWith({ noRefinement: false });
-    expect(headerScopedSlot).toHaveBeenCalledWith({ noRefinement: false });
-    expect(footerScopedSlot).toHaveBeenCalledWith({ noRefinement: false });
+    expect(defaultScopedSlot).toHaveBeenCalledWith({ hasRefinements: true });
+    expect(headerScopedSlot).toHaveBeenCalledWith({ hasRefinements: true });
+    expect(footerScopedSlot).toHaveBeenCalledWith({ hasRefinements: true });
   });
 
   it('renders correctly with header', () => {
