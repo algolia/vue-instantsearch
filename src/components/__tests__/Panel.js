@@ -30,6 +30,21 @@ describe('default render', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
+  it('passes data without refinement', () => {
+    const defaultScopedSlot = jest.fn();
+    const wrapper = mount(Panel, {
+      scopedSlots: {
+        default: defaultScopedSlot,
+      },
+    });
+
+    wrapper.setData({
+      canRefine: false,
+    });
+
+    expect(defaultScopedSlot).toHaveBeenCalledWith({ noRefinement: true });
+  });
+
   it('renders correctly with header', () => {
     const wrapper = mount(Panel, {
       slots: {

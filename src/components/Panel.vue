@@ -4,16 +4,22 @@
       v-if="$slots.header"
       :class="suit('header')"
     >
-      <slot name="header" />
+      <slot
+        name="header"
+        no-refinement="!canRefine"
+      />
     </div>
     <div :class="suit('body')">
-      <slot />
+      <slot no-refinement="!canRefine" />
     </div>
     <div
       v-if="$slots.footer"
       :class="suit('footer')"
     >
-      <slot name="footer" />
+      <slot
+        name="footer"
+        no-refinement="!canRefine"
+      />
     </div>
   </div>
 </template>
