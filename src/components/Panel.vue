@@ -6,11 +6,11 @@
     >
       <slot
         name="header"
-        no-refinement="!canRefine"
+        :no-refinement="!canRefine"
       />
     </div>
     <div :class="suit('body')">
-      <slot no-refinement="!canRefine" />
+      <slot :no-refinement="!canRefine" />
     </div>
     <div
       v-if="$slots.footer"
@@ -18,7 +18,7 @@
     >
       <slot
         name="footer"
-        no-refinement="!canRefine"
+        :no-refinement="!canRefine"
       />
     </div>
   </div>
