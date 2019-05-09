@@ -7,8 +7,8 @@
       <button
         type="button"
         :class="suit('button')"
-        :title="isBrowserSupported ? buttonTitle : disabledButtonTitle"
-        :disabled="!isBrowserSupported"
+        :title="state.isBrowserSupported ? buttonTitle : disabledButtonTitle"
+        :disabled="!state.isBrowserSupported"
         @click="handleClick"
       >
         <slot
@@ -46,7 +46,7 @@
           >
             <path
               d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
-              :fill="isListening ? 'currentColor' : 'none'"
+              :fill="state.isListening ? 'currentColor' : 'none'"
             />
             <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
             <line
@@ -69,7 +69,7 @@
           name="status"
           v-bind="innerSlotProps"
         >
-          <p>{{ transcript }}</p>
+          <p>{{ state.voiceListeningState.transcript }}</p>
         </slot>
       </div>
     </slot>
@@ -125,45 +125,27 @@ export default {
         searchAsYouSpeak: this.searchAsYouSpeak,
       };
     },
-    status() {
-      return this.state.voiceListeningState.status;
-    },
-    transcript() {
-      return this.state.voiceListeningState.transcript;
-    },
-    isSpeechFinal() {
-      return this.state.voiceListeningState.isSpeechFinal;
-    },
-    errorCode() {
-      return this.state.voiceListeningState.errorCode;
-    },
-    isBrowserSupported() {
-      return this.state.isBrowserSupported;
-    },
-    isListening() {
-      return this.state.isListening;
-    },
     errorNotAllowed() {
-      return this.status === 'error' && this.errorCode === 'not-allowed';
+      return (
+        this.state.voiceListeningState.status === 'error' &&
+        this.state.voiceListeningState.errorCode === 'not-allowed'
+      );
     },
     innerSlotProps() {
       return {
-        status: this.status,
-        errorCode: this.errorCode,
-        isListening: this.isListening,
-        transcript: this.transcript,
-        isSpeechFinal: this.isSpeechFinal,
-        isBrowserSupported: this.isBrowserSupported,
+        status: this.state.voiceListeningState.status,
+        errorCode: this.state.voiceListeningState.errorCode,
+        isListening: this.state.isListening,
+        transcript: this.state.voiceListeningState.transcript,
+        isSpeechFinal: this.state.voiceListeningState.isSpeechFinal,
+        isBrowserSupported: this.state.isBrowserSupported,
       };
     },
   },
   methods: {
-    toggleListening() {
-      this.state.toggleListening();
-    },
     handleClick(event) {
       event.currentTarget.blur();
-      this.toggleListening();
+      this.state.toggleListening();
     },
   },
 };
