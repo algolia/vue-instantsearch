@@ -16,7 +16,7 @@
     "autocomplete"
   ],
   "license": "MIT",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "files": [
     "dist"
   ],
@@ -53,6 +53,7 @@
     "vue": "^2.4.0"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "3.4.11",
     "@storybook/addon-knobs": "3.4.11",
     "@storybook/addon-options": "3.4.11",
     "@storybook/vue": "3.4.11",
@@ -100,7 +101,7 @@
   "bundlesize": [
     {
       "path": "./dist/vue-instantsearch.js",
-      "maxSize": "66 kB"
+      "maxSize": "67.25 kB"
     },
     {
       "path": "./dist/vue-instantsearch.esm.js",
