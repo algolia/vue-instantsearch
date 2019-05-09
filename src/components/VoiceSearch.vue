@@ -3,12 +3,7 @@
     v-if="state"
     :class="suit()"
   >
-    <slot
-      :is-browser-supported="state.isBrowserSupported"
-      :is-listening="state.isListening"
-      :toggle-listening="state.toggleListening"
-      :voice-listening-state="state.voiceListeningState"
-    >
+    <slot v-bind="rootSlotProps">
       <button
         type="button"
         :class="suit('button')"
@@ -135,6 +130,14 @@ export default {
         this.state.voiceListeningState.status === 'error' &&
         this.state.voiceListeningState.errorCode === 'not-allowed'
       );
+    },
+    rootSlotProps() {
+      return {
+        isBrowserSupported: this.state.isBrowserSupported,
+        isListening: this.state.isListening,
+        toggleListening: this.state.toggleListening,
+        voiceListeningState: this.state.voiceListeningState,
+      };
     },
     innerSlotProps() {
       return {
