@@ -4,10 +4,10 @@
     :class="suit()"
   >
     <slot
-      :isBrowserSupported="state.isBrowserSupported"
-      :isListening="state.isListening"
-      :toggleListening="state.toggleListening"
-      :voiceListeningState="state.voiceListeningState"
+      :is-browser-supported="state.isBrowserSupported"
+      :is-listening="state.isListening"
+      :toggle-listening="state.toggleListening"
+      :voice-listening-state="state.voiceListeningState"
     >
       <button
         type="button"
