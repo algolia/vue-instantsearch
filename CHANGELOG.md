@@ -1,17 +1,22 @@
 ## [2.0.1](https://github.com/algolia/vue-instantsearch/compare/v2.0.0...v2.0.1) (2019-03-13)
 
+
 ### Bug Fixes
 
-- **umd:** prevent inclusion of Vue in bundle ([#635](https://github.com/algolia/vue-instantsearch/issues/635)) ([a90cbce](https://github.com/algolia/vue-instantsearch/commit/a90cbce))
+* **umd:** prevent inclusion of Vue in bundle ([#635](https://github.com/algolia/vue-instantsearch/issues/635)) ([a90cbce](https://github.com/algolia/vue-instantsearch/commit/a90cbce))
+
+
 
 <a name="2.0.0"></a>
-
 # [2.0.0](https://github.com/algolia/vue-instantsearch/compare/v2.0.0-beta.3...v2.0.0) (2019-02-18)
+
 
 ### Features
 
-- **core:** update to InstantSearch.js v3 ([#612](https://github.com/algolia/vue-instantsearch/issues/612)) ([fbf818e](https://github.com/algolia/vue-instantsearch/commit/fbf818e)), closes [#619](https://github.com/algolia/vue-instantsearch/issues/619)
-- **deps:** remove transitive dependencies ([6fa3169](https://github.com/algolia/vue-instantsearch/commit/6fa3169))
+* **core:** update to InstantSearch.js v3 ([#612](https://github.com/algolia/vue-instantsearch/issues/612)) ([fbf818e](https://github.com/algolia/vue-instantsearch/commit/fbf818e)), closes [#619](https://github.com/algolia/vue-instantsearch/issues/619)
+* **deps:** remove transitive dependencies ([6fa3169](https://github.com/algolia/vue-instantsearch/commit/6fa3169))
+
+
 
 <a name="2.0.0-beta.3"></a>
 
