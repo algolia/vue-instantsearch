@@ -3,7 +3,12 @@
     v-if="state"
     :class="suit()"
   >
-    <slot>
+    <slot
+      :isBrowserSupported="state.isBrowserSupported"
+      :isListening="state.isListening"
+      :toggleListening="state.toggleListening"
+      :voiceListeningState="state.voiceListeningState"
+    >
       <button
         type="button"
         :class="suit('button')"

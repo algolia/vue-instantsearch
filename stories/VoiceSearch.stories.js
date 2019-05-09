@@ -123,4 +123,16 @@ storiesOf('ais-voice-search', module)
         </div>
     `,
     };
-  });
+  })
+  .add('with custom template for default slot', () => ({
+    template: `
+      <ais-voice-search>
+        <template slot-scope="{ isBrowserSupported, isListening, toggleListening, voiceListeningState }">
+          <button @click="toggleListening()">click</button>
+          <p>isListening: {{isListening ? 'true' : 'false'}}</p>
+          <p>isBrowserSupported: {{isBrowserSupported ? 'true' : 'false'}}</p>
+          <pre>voiceListeningState: {{JSON.stringify(voiceListeningState, null, 2)}}</pre>
+        </template>
+      </ais-voice-search>
+    `,
+  }));
