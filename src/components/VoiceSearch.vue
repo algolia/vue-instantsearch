@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { connectVoiceSearch } from 'instantsearch.js';
+import { connectVoiceSearch } from 'instantsearch.js/es/connectors';
 import { createSuitMixin } from '../mixins/suit';
 import { createWidgetMixin } from '../mixins/widget';
 
