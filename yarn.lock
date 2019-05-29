@@ -5901,10 +5901,10 @@ instantsearch.css@7.3.1:
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.3.1.tgz#7ab74a8f355091ae040947a9cf5438f379026622"
   integrity sha512-/kaMDna5D+Q9mImNBHEhb9HgHATDOFKYii7N1Iwvrj+lmD9gBJLqVhUw67gftq2O0QI330pFza+CRscIwB1wQQ==
 
-instantsearch.js@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-3.5.1.tgz#6252dba4b71cc121ce3f76ba693437614d2d4da7"
-  integrity sha512-BPJMfwcxsXYZkk9pow/kmL2PGAC/1DZpuk1kn+amvaY9cvgPXpCTexhF2uQ/ixdVL8UGcINpIXYKekKz72EbbQ==
+instantsearch.js@^3.5.3:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-3.5.3.tgz#da85f306874fb1b588f886de5a38331bc689b03f"
+  integrity sha512-QEXkKCJtBIQK5cJMGlkWdyM+aBZFV+8YwxwhN/qcebPJEA19Mwq9LlsFpMSv7UEw42Xx0wEpHuLVUtDqEC7YIQ==
   dependencies:
     algoliasearch-helper "^2.26.0"
     classnames "^2.2.5"
