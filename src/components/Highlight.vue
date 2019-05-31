@@ -10,6 +10,13 @@ import { createSuitMixin } from '../mixins/suit';
 import { getPropertyByPath } from '../util/object';
 import { warn } from '../util/warn';
 
+// not imported from instantsearch.js/es/lib/escape-highlight,
+// because that path can change adn break our implementation
+const TAG_REPLACEMENT = {
+  highlightPreTag: '<mark>',
+  highlightPostTag: '</mark>',
+};
+
 export default {
   name: 'AisHighlight',
   mixins: [createSuitMixin({ name: 'Highlight' })],
@@ -43,12 +50,19 @@ export default {
             'See https://www.algolia.com/doc/api-reference/api-parameters/attributesToHighlight/.'
         );
       }
-      return attributeValue
+
+      const final = attributeValue
         .replace(
-          new RegExp('<em>', 'g'),
+          new RegExp(TAG_REPLACEMENT.highlightPreTag, 'g'),
           `<${this.highlightedTagName} class="${this.suit('highlighted')}">`
         )
-        .replace(new RegExp('</em>', 'g'), `</${this.highlightedTagName}>`);
+        .replace(
+          new RegExp(TAG_REPLACEMENT.highlightPostTag, 'g'),
+          `</${this.highlightedTagName}>`
+        );
+
+      console.warn(attributeValue);
+      return final;
     },
   },
 };
