@@ -61,7 +61,6 @@ export default {
           `</${this.highlightedTagName}>`
         );
 
-      console.warn(attributeValue);
       return final;
     },
   },
