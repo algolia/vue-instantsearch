@@ -51,7 +51,7 @@ export default {
         );
       }
 
-      const final = attributeValue
+      return attributeValue
         .replace(
           new RegExp(TAG_REPLACEMENT.highlightPreTag, 'g'),
           `<${this.highlightedTagName} class="${this.suit('highlighted')}">`
@@ -60,8 +60,6 @@ export default {
           new RegExp(TAG_REPLACEMENT.highlightPostTag, 'g'),
           `</${this.highlightedTagName}>`
         );
-
-      return final;
     },
   },
 };
