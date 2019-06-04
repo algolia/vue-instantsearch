@@ -86,6 +86,7 @@
                 <ais-refinement-list
                   attribute="brand"
                   searchable
+                  searchablePlaceholder="Search for brands…"
                 />
               </template>
             </ais-panel>
