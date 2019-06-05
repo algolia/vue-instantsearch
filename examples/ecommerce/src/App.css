@@ -332,3 +332,9 @@ mark {
 .toggle-refinement-count {
   display: none;
 }
+
+/* RatingMenu */
+
+.ais-RatingMenu-item:not(.ais-RatingMenu-item--selected) {
+  opacity: 0.5;
+}
