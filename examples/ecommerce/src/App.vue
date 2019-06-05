@@ -82,7 +82,7 @@
                 'ais-Panel-header': 'panel-header',
               }"
             >
-              <template slot="header">Brand</template>
+              <template slot="header">Brands</template>
 
               <template slot="default">
                 <ais-refinement-list
@@ -98,7 +98,7 @@
                 'ais-Panel-header': 'panel-header',
               }"
             >
-              <template slot="header">Categories</template>
+              <template slot="header">Category</template>
 
               <template slot="default">
                 <ais-hierarchical-menu
