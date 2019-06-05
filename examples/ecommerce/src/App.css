@@ -211,9 +211,10 @@ mark {
 }
 
 .hit-rating {
-  background-color: rgba(226, 164, 0, 0.16);
+  border: 1px solid rgba(226, 164, 0, 0.5);
   border-radius: 4px;
-  padding: 2px 4px;
+  margin-left: 4px;
+  padding: 0 4px;
 }
 
 /* RangeInput */
