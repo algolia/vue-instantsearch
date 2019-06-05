@@ -1,6 +1,10 @@
 <template>
   <div id="root">
-    <ais-instant-search :search-client="searchClient" index-name="instant_search">
+    <ais-instant-search
+      :search-client="searchClient"
+      index-name="instant_search"
+      :routing="routing"
+    >
       <ais-configure :attributesToSnippet="['description:10']" snippetEllipsisText="…"/>
 
       <header class="header">
