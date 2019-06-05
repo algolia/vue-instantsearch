@@ -3,7 +3,8 @@
 }
 
 body,
-h1 {
+h1,
+h2 {
   margin: 0;
   padding: 0;
 }
@@ -13,6 +14,13 @@ body {
     Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol';
   -webkit-font-smoothing: antialiased;
+}
+
+h2 {
+  color: #21243d;
+  font-family: Hind, sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 /* Header */
@@ -67,6 +75,7 @@ body {
 .container-header {
   align-items: center;
   display: flex;
+  justify-content: space-between;
   min-height: 80px;
 }
 
@@ -75,6 +84,7 @@ body {
 }
 
 .container-options {
+  justify-content: flex-end;
   border-bottom: 1px solid #ebecf3;
   display: flex;
   margin-bottom: 30px;

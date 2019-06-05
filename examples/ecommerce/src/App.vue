@@ -50,6 +50,8 @@
       <main class="container">
         <section class="container-filters">
           <div class="container-header">
+            <h2>Filters</h2>
+
             <ais-clear-refinements>
               <template slot="resetLabel">
                 <div class="clear-filters">
