@@ -254,7 +254,7 @@ mark {
 /* Slider */
 
 .vue-slider {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .vue-slider-rail {
@@ -274,13 +274,22 @@ mark {
 }
 
 .vue-slider-dot-tooltip {
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: bold;
   margin-top: 5px;
 }
 
-.vue-slider-dot-tooltip-inner {
+.vue-slider-dot-tooltip::before {
+  color: #e2a400;
+  content: '$';
+  font-size: 0.6;
+  margin-right: 4px;
+}
+
+.vue-slider-dot-tooltip-text .vue-slider-dot-tooltip-inner {
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;
-  font-size: 0.75rem;
   text-align: center;
   white-space: nowrap;
 }

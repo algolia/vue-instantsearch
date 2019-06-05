@@ -117,18 +117,6 @@
                 <template slot="header">Price</template>
 
                 <template slot="default">
-                  <ais-range-input
-                    attribute="price"
-                    :class-names="{
-                      'ais-RangeInput-label': 'range-input-label',
-                      'ais-RangeInput-input': 'range-input-input',
-                      'ais-RangeInput-separator': 'range-input-separator',
-                      'ais-RangeInput-submit': 'range-input-submit',
-                    }"
-                  >
-                    <span slot="separator">—</span>
-                  </ais-range-input>
-
                   <ais-range-input attribute="price">
                     <div slot-scope="{ currentRefinement, range, refine, canRefine }">
                       <vue-slider
