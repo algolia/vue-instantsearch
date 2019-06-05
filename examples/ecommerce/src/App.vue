@@ -171,7 +171,9 @@
                 <ais-rating-menu attribute="rating">
                   <ul class="ais-RatingMenu-list" slot-scope="{ items, refine, createURL }">
                     <li
-                      :class="item.isRefined ? 'ais-RatingMenu-item ais-RatingMenu-item--selected' : 'ais-RatingMenu-item'"
+                      :class="cx('ais-RatingMenu-item', {
+                        'ais-RatingMenu-item--selected': item.isRefined
+                      })"
                       v-for="item in items"
                       :key="item.value"
                     >
@@ -182,7 +184,10 @@
                       >
                         <span v-for="(full, index) in item.stars" :key="index">
                           <svg
-                            :class="full ? 'ais-RatingMenu-starIcon ais-RatingMenu-starIcon--full' : 'ais-RatingMenu-starIcon ais-RatingMenu-starIcon--empty'"
+                            :class="cx('ais-RatingMenu-starIcon', {
+                              'ais-RatingMenu-starIcon--full': full,
+                              'ais-RatingMenu-starIcon--empty': !full,
+                            })"
                             aria-hidden="true"
                             width="16"
                             height="16"
@@ -344,7 +349,9 @@
                   </li>
 
                   <li
-                    :class="page === currentRefinement ? 'ais-Pagination-item ais-Pagination-item--page ais-Pagination-item--selected' : 'ais-Pagination-item ais-Pagination-item--page'"
+                    :class="cx('ais-Pagination-item', 'ais-Pagination-item--page', {
+                      'ais-Pagination-item--selected': page === currentRefinement
+                    })"
                     v-for="page in pages"
                     :key="page"
                   >
@@ -422,6 +429,7 @@ import algoliasearch from 'algoliasearch/lite';
 import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
 import { simple as simpleMapping } from 'instantsearch.js/es/lib/stateMappings';
 import VueSlider from 'vue-slider-component';
+import cx from 'classnames';
 
 import './Theme.css';
 import './App.css';
@@ -432,6 +440,7 @@ export default {
   },
   data() {
     return {
+      cx,
       searchClient: algoliasearch(
         'latency',
         '6be0576ff61c053d5f9a3225e2a90f76'
