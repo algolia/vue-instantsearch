@@ -268,7 +268,7 @@
           </ais-hits>
 
           <footer class="container-footer">
-            <ais-pagination :total-pages="4">
+            <ais-pagination :padding="2">
               <div
                 slot-scope="{
                   currentRefinement,
