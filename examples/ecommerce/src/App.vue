@@ -175,7 +175,7 @@
                   <ul class="ais-RatingMenu-list" slot-scope="{ items, refine, createURL }">
                     <li
                       :class="cx('ais-RatingMenu-item', {
-                        'ais-RatingMenu-item--selected': item.isRefined
+                        'ais-RatingMenu-item--selected': items.every(item => !item.isRefined) || item.isRefined
                       })"
                       v-for="item in items"
                       :key="item.value"
