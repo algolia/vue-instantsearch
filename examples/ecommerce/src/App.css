@@ -84,9 +84,9 @@ h2 {
 }
 
 .container-options {
-  justify-content: flex-end;
   border-bottom: 1px solid #ebecf3;
   display: flex;
+  justify-content: flex-end;
   margin-bottom: 30px;
   padding: 30px 0;
 }
@@ -230,17 +230,17 @@ mark {
 /* Slider */
 
 .vue-slider {
+  display: flex;
+  justify-content: center;
   margin-top: 1.5rem;
-}
-
-.vue-slider-rail {
-  width: calc(100% - 10px);
 }
 
 .vue-slider-rail {
   background-color: rgba(65, 66, 71, 0.08);
   border-radius: 3px;
+  cursor: pointer;
   height: 3px;
+  width: calc(100% - 10px);
 }
 
 .vue-slider-process {
@@ -250,6 +250,7 @@ mark {
 }
 
 .vue-slider-dot-tooltip {
+  cursor: grab;
   display: flex;
   font-size: 0.75rem;
   font-weight: bold;
