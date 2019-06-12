@@ -130,8 +130,11 @@
                         :max="range.max"
                         :value="toValue(currentRefinement, range)"
                         :disabled="!canRefine"
-                        tooltip="always"
                         :lazy="true"
+                        :useKeyboard="true"
+                        :enableCross="false"
+                        tooltip="always"
+                        duration="0"
                         @change="refine({ min: $event[0], max: $event[1] })"
                       />
                     </div>
