@@ -8690,10 +8690,10 @@ vue-property-decorator@^8.0.0:
   dependencies:
     vue-class-component "^7.0.1"
 
-vue-slider-component@3.0.31:
-  version "3.0.31"
-  resolved "https://registry.yarnpkg.com/vue-slider-component/-/vue-slider-component-3.0.31.tgz#50571bef97b988f12a25851890ef74d90be55a25"
-  integrity sha512-8RuT1WfZGcIRanXhsplOfA3csL8qhLVar9yHaARnJzGbxH2pS1ccl2R63FJ1XdhfOHTaOtmLY7P5JmCz/khQMA==
+vue-slider-component@3.0.32:
+  version "3.0.32"
+  resolved "https://registry.yarnpkg.com/vue-slider-component/-/vue-slider-component-3.0.32.tgz#bc241280cd7371c24eb749c28088e2365e529aca"
+  integrity sha512-uF8R6fqUPzqMTbzyujppG2oGl+n2rvG8k5KTVBBSJqDh4dC+WqxtjFb9oQlTmUVBOmlEwC2MFYYQfXmZ5OeftA==
   dependencies:
     vue-property-decorator "^8.0.0"
 
