@@ -436,6 +436,7 @@ import cx from 'classnames';
 
 import './Theme.css';
 import './App.css';
+import './App.mobile.css';
 
 export default {
   components: {
