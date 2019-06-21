@@ -10,7 +10,7 @@
       <header class="header">
         <p class="header-logo">
           <a href="https://algolia.com" aria-label="Go to the Algolia website">
-            <svg xmlns="http://www.w3.org/2000/svg" width="93" height="24" viewBox="0 0 93 24">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93 24">
               <path
                 fill="#fff"
                 fill-rule="nonzero"
@@ -24,16 +24,11 @@
 
         <ais-search-box
           placeholder="Search for a product, brand, color, …"
-          :class-names="{
-            'ais-SearchBox': 'searchbox',
-            'ais-SearchBox-input': 'searchbox-input',
-            'ais-SearchBox-submit': 'searchbox-submit',
-          }"
         >
           <div slot="reset-icon"></div>
 
           <div slot="submit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 18 18">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
               <g
                 fill="none"
                 fill-rule="evenodd"
@@ -56,13 +51,11 @@
           <div class="container-header">
             <h2>Filters</h2>
 
-            <ais-clear-refinements>
+            <ais-clear-refinements data-layout="desktop">
               <template slot="resetLabel">
                 <div class="clear-filters">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="11"
-                    height="11"
                     viewBox="0 0 11 11"
                   >
                     <g fill="none" fill-rule="evenodd" opacity=".4">
@@ -78,14 +71,16 @@
                 </div>
               </template>
             </ais-clear-refinements>
+
+            <ais-stats data-layout="mobile">
+              <template slot="default" slot-scope="{ nbHits }">
+                <strong>{{ nbHits }}</strong> results
+              </template>
+            </ais-stats>
           </div>
 
           <div class="container-body">
-            <ais-panel
-              :class-names="{
-                'ais-Panel-header': 'panel-header',
-              }"
-            >
+            <ais-panel>
               <template slot="header">Brands</template>
 
               <template slot="default">
@@ -97,11 +92,7 @@
               </template>
             </ais-panel>
 
-            <ais-panel
-              :class-names="{
-                'ais-Panel-header': 'panel-header',
-              }"
-            >
+            <ais-panel>
               <template slot="header">Category</template>
 
               <template slot="default">
@@ -114,60 +105,41 @@
               </template>
             </ais-panel>
 
-            <div>
-              <ais-panel
-                :class-names="{
-                'ais-Panel-header': 'panel-header',
-              }"
-              >
-                <template slot="header">Price</template>
+            <ais-panel>
+              <template slot="header">Price</template>
 
-                <template slot="default">
-                  <ais-range-input attribute="price">
-                    <div slot-scope="{ currentRefinement, range, refine, canRefine }">
-                      <vue-slider
-                        :min="range.min"
-                        :max="range.max"
-                        :value="toValue(currentRefinement, range)"
-                        :disabled="!canRefine"
-                        :lazy="true"
-                        :useKeyboard="true"
-                        :enableCross="false"
-                        tooltip="always"
-                        duration="0"
-                        @change="refine({ min: $event[0], max: $event[1] })"
-                      />
-                    </div>
-                  </ais-range-input>
-                </template>
-              </ais-panel>
-            </div>
+              <template slot="default">
+                <ais-range-input attribute="price">
+                  <div slot-scope="{ currentRefinement, range, refine, canRefine }">
+                    <vue-slider
+                      :min="range.min"
+                      :max="range.max"
+                      :value="toValue(currentRefinement, range)"
+                      :disabled="!canRefine"
+                      :lazy="true"
+                      :useKeyboard="true"
+                      :enableCross="false"
+                      tooltip="always"
+                      :duration="0"
+                      @change="refine({ min: $event[0], max: $event[1] })"
+                    />
+                  </div>
+                </ais-range-input>
+              </template>
+            </ais-panel>
 
-            <ais-panel
-              :class-names="{
-                'ais-Panel-header': 'panel-header',
-              }"
-            >
+            <ais-panel>
               <template slot="header">Free shipping</template>
 
               <template slot="default">
                 <ais-toggle-refinement
                   attribute="free_shipping"
                   label="Display only items with free shipping"
-                  :class-names="{
-                    'ais-ToggleRefinement-label': 'toggle-refinement-label',
-                    'ais-ToggleRefinement-checkbox': 'toggle-refinement-checkbox',
-                    'ais-ToggleRefinement-count': 'toggle-refinement-count'
-                  }"
                 />
               </template>
             </ais-panel>
 
-            <ais-panel
-              :class-names="{
-                'ais-Panel-header': 'panel-header',
-              }"
-            >
+            <ais-panel>
               <template slot="header">Rating</template>
 
               <template slot="default">
@@ -192,8 +164,6 @@
                               'ais-RatingMenu-starIcon--empty': !full,
                             })"
                             aria-hidden="true"
-                            width="16"
-                            height="16"
                           >
                             <path
                               fill-rule="evenodd"
@@ -210,6 +180,32 @@
               </template>
             </ais-panel>
           </div>
+
+          <footer class="container-filters-footer" data-layout="mobile">
+            <ais-clear-refinements class="container-filters-footer-button-wrapper">
+              <template slot="resetLabel">
+                <div class="clear-filters">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11">
+                    <g fill="none" fill-rule="evenodd" opacity=".4">
+                      <path d="M0 0h11v11H0z"/>
+                      <path fill="#000" fill-rule="nonzero" d="M8.26 2.75a3.896 3.896 0 1 0 1.102 3.262l.007-.056a.49.49 0 0 1 .485-.456c.253 0 .451.206.437.457 0 0 .012-.109-.006.061a4.813 4.813 0 1 1-1.348-3.887v-.987a.458.458 0 1 1 .917.002v2.062a.459.459 0 0 1-.459.459H7.334a.458.458 0 1 1-.002-.917h.928z"/>
+                    </g>
+                  </svg>
+                  Clear filters
+                </div>
+              </template>
+            </ais-clear-refinements>
+
+            <ais-stats
+              class="container-filters-footer-button-wrapper"
+            >
+              <template slot="default" slot-scope="{ nbHits }">
+                <button class="button button-primary" @click="closeFilters">
+                  See {{nbHits}} results
+                </button>
+              </template>
+            </ais-stats>
+          </footer>
         </section>
 
         <section class="container-results">
@@ -248,35 +244,34 @@
                   <img :src="item.image" :alt="item.name" class="hit-image">
                 </header>
 
-                <p class="hit-category">{{ item.categories[0] }}</p>
-                <h1>
-                  <ais-highlight attribute="name" :hit="item"/>
-                </h1>
-                <p class="hit-description">
-                  <ais-snippet attribute="description" :hit="item"/>
-                </p>
-
-                <footer>
-                  <p>
-                    <span class="hit-em">$&nbsp;</span>
-                    <strong>{{ item.price }}&nbsp;</strong>
-                    <span class="hit-em hit-rating">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="8"
-                        height="8"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fill="#e2a400"
-                          fill-rule="evenodd"
-                          d="M10.472 5.008L16 5.816l-4 3.896.944 5.504L8 12.616l-4.944 2.6L4 9.712 0 5.816l5.528-.808L8 0z"
-                        ></path>
-                      </svg>
-                      {{ item.rating }}
-                    </span>
+                <main class="hit-info-container">
+                  <p class="hit-category">{{ item.categories[0] }}</p>
+                  <h1>
+                    <ais-highlight attribute="name" :hit="item"/>
+                  </h1>
+                  <p class="hit-description">
+                    <ais-snippet attribute="description" :hit="item"/>
                   </p>
-                </footer>
+                  <footer>
+                    <p>
+                      <span class="hit-em">$&nbsp;</span>
+                      <strong>{{ item.price }}</strong>
+                      <span class="hit-em hit-rating">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill="#e2a400"
+                            fill-rule="evenodd"
+                            d="M10.472 5.008L16 5.816l-4 3.896.944 5.504L8 12.616l-4.944 2.6L4 9.712 0 5.816l5.528-.808L8 0z"
+                          ></path>
+                        </svg>
+                        {{ item.rating }}
+                      </span>
+                    </p>
+                  </footer>
+                </main>
               </article>
             </div>
           </ais-hits>
@@ -303,8 +298,6 @@
                     <span class="ais-Pagination-link">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="10"
                         viewBox="0 0 10 10"
                       >
                         <g
@@ -333,8 +326,6 @@
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="10"
                         viewBox="0 0 10 10"
                       >
                         <g
@@ -375,8 +366,6 @@
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="10"
                         viewBox="0 0 10 10"
                       >
                         <g
@@ -400,8 +389,6 @@
                     <span class="ais-Pagination-link">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="10"
                         viewBox="0 0 10 10"
                       >
                         <g
@@ -423,6 +410,24 @@
           </footer>
         </section>
       </main>
+
+      <aside data-layout="mobile">
+        <button class="filters-button" @click="openFilters">
+          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 14">
+            <path
+              d="M15 1H1l5.6 6.3v4.37L9.4 13V7.3z"
+              stroke="#fff"
+              stroke-width="1.29"
+              fill="none"
+              fill-rule="evenodd"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          Filters
+        </button>
+      </aside>
     </ais-instant-search>
   </div>
 </template>
@@ -441,6 +446,14 @@ import './App.mobile.css';
 export default {
   components: {
     VueSlider,
+  },
+  created() {
+    this.onKeyUp = event => {
+      if (event.key !== 'Escape') {
+        return;
+      }
+      this.closeFilters();
+    }
   },
   data() {
     return {
@@ -462,6 +475,17 @@ export default {
         value.max !== null ? value.max : range.max,
       ];
     },
+    openFilters() {
+      document.body.classList.add('filtering');
+      window.scrollTo(0, 0);
+      window.addEventListener('keyup', this.onKeyUp);
+    },
+    closeFilters() {
+      document.body.classList.remove('filtering');
+      const resultsContainer = document.querySelector('.container-results');
+      resultsContainer.scrollIntoView();
+      window.removeEventListener('keyup', this.onKeyUp);
+    }
   },
 };
 </script>

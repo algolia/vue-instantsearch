@@ -116,7 +116,10 @@ mark {
 }
 
 .clear-filters svg {
+  display: inline-block;
+  height: 10px;
   margin-right: 8px;
+  width: 10px;
 }
 
 /* Panel */
@@ -149,6 +152,11 @@ mark {
     Adding 4px of padding top makes it more vertically aligned.
   */
   padding: 4px 48px 0 58px;
+}
+
+.header .ais-SearchBox-submit svg {
+  height: 16px;
+  width: 16px;
 }
 
 .header .ais-SearchBox .ais-SearchBox-input::placeholder {
@@ -232,6 +240,11 @@ mark {
   padding: 0 4px;
 }
 
+.hit-rating svg {
+  width: 8px;
+  height: 8px;
+}
+
 /* RangeSlider */
 
 .vue-slider {
@@ -293,6 +306,7 @@ mark {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  position: relative;
 }
 
 .ais-ToggleRefinement-checkbox {
@@ -320,6 +334,10 @@ mark {
   content: 'Yes';
 }
 
+.ais-ToggleRefinement-count {
+  display: none;
+}
+
 /* RatingMenu */
 
 .ais-RatingMenu-item:not(.ais-RatingMenu-item--selected) {
@@ -328,6 +346,12 @@ mark {
 
 .ais-RatingMenu-starIcon {
   margin-right: 0.5rem;
+}
+
+/* Pagination */
+.ais-Pagination-link svg {
+  height: 10px;
+  width: 10px;
 }
 
 /* Hide all mobile-specific design on desktop */
