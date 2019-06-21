@@ -81,18 +81,6 @@
 
           <div class="container-body">
             <ais-panel>
-              <template slot="header">Brands</template>
-
-              <template slot="default">
-                <ais-refinement-list
-                  attribute="brand"
-                  searchable
-                  searchablePlaceholder="Search for brands…"
-                />
-              </template>
-            </ais-panel>
-
-            <ais-panel>
               <template slot="header">Category</template>
 
               <template slot="default">
@@ -101,6 +89,18 @@
                     'hierarchicalCategories.lvl0',
                     'hierarchicalCategories.lvl1'
                   ]"
+                />
+              </template>
+            </ais-panel>
+
+            <ais-panel>
+              <template slot="header">Brands</template>
+
+              <template slot="default">
+                <ais-refinement-list
+                  attribute="brand"
+                  searchable
+                  searchablePlaceholder="Search for brands…"
                 />
               </template>
             </ais-panel>
