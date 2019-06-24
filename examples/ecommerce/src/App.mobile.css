@@ -62,7 +62,7 @@
     padding: 1rem;
     position: sticky;
     width: 100%;
-    z-index: 1;
+    z-index: 5; /* to avoid collision with vue-slider */
   }
 
   .container-filters-footer-button-wrapper {
