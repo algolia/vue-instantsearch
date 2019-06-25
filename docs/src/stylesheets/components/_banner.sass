@@ -6,7 +6,7 @@ $light-background: #4DBA87
   height: $banner-height
   width: 100%
   position: fixed
-  background: repeating-linear-gradient(-45deg, $dark-background, $dark-background 1em, $light-background 1em, $light-background 2em)
+  background: $bunting
   float: left
   line-height: $banner-height
   padding: 0 2em
@@ -20,12 +20,12 @@ $light-background: #4DBA87
     background-position: bottom right
 
   .banner__description
-    color: #FFFFFF
+    color: $white
     text-align: center
 
     a
-      color: #FFFFFF
-      text-decoration: none
+      color: inherit
+      text-decoration: underline
       display: block
       width: 100%
       height: 100%
