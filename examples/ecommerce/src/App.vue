@@ -74,7 +74,9 @@
 
             <ais-stats data-layout="mobile">
               <template slot="default" slot-scope="{ nbHits }">
-                <strong>{{ nbHits }}</strong> results
+                <span class="ais-Stats-text">
+                  <strong>{{ nbHits }}</strong> results
+                </span>
               </template>
             </ais-stats>
           </div>
