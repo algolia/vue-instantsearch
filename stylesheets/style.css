@@ -4257,7 +4257,7 @@ strong {
   height: 50px;
   width: 100%;
   position: fixed;
-  background: linear-gradient(to right, #4DBA87, #2F9088);
+  background: #3e396b;
   float: left;
   line-height: 50px;
   padding: 0 2em;
@@ -4272,11 +4272,11 @@ strong {
   .marketing-banner:hover {
     background-position: bottom right; }
   .marketing-banner .banner__description {
-    color: #FFFFFF;
+    color: white;
     text-align: center; }
     .marketing-banner .banner__description a {
-      color: #FFFFFF;
-      text-decoration: none;
+      color: inherit;
+      text-decoration: underline;
       display: block;
       width: 100%;
       height: 100%; }
