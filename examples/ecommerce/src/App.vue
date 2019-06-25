@@ -482,8 +482,10 @@ export default {
     },
     closeFilters() {
       document.body.classList.remove('filtering');
-      const resultsContainer = document.querySelector('.container-results');
-      resultsContainer.scrollIntoView();
+      if (!this.resultsContainer) {
+        this.resultsContainer = document.querySelector('.container-results');
+      }
+      this.resultsContainer.scrollIntoView();
       window.removeEventListener('keyup', this.onKeyUp);
     }
   },
