@@ -140,7 +140,7 @@
             </ais-panel>
 
             <ais-panel>
-              <template slot="header">Rating</template>
+               <template slot="header">Ratings</template>
 
               <template slot="default">
                 <ais-rating-menu attribute="rating">
