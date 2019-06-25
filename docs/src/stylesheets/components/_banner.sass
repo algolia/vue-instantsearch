@@ -1,10 +1,12 @@
 $banner-height: 50px
+$dark-background: #2F9088
+$light-background: #4DBA87
 
 .marketing-banner
   height: $banner-height
   width: 100%
   position: fixed
-  background: linear-gradient(to right, #4DBA87, #2F9088)
+  background: repeating-linear-gradient(-45deg, $dark-background, $dark-background 1em, $light-background 1em, $light-background 2em)
   float: left
   line-height: $banner-height
   padding: 0 2em
