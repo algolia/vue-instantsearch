@@ -25,10 +25,10 @@ Vue InstantSearch is available in the npm registry. Install it:
 
 ```sh
 # with npm
-npm install --save vue-instantsearch
+npm install --save vue-instantsearch@1
 
 # with yarn
-yarn add vue-instantsearch
+yarn add vue-instantsearch@1
 ```
 
 To learn more about the usage, follow our [getting started guide](https://community.algolia.com/vue-instantsearch/getting-started/getting-started.html).

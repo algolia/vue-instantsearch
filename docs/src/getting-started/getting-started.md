@@ -37,7 +37,7 @@ $ npm install
 Add Vue InstantSearch as a dependency, it's published on [npm](https://www.npmjs.com):
 
 ```shell
-$ npm install --save vue-instantsearch
+$ npm install --save vue-instantsearch@1
 ```
 
 ## Run the development environment

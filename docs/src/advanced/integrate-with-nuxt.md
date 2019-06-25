@@ -47,7 +47,7 @@ Now that your basic Nuxt application is ready, let's add Vue InstantSearch to it
 First, you need to install `vue-instantsearch` as a dependency:
 
 ```shell
-$ npm install --save vue-instantsearch
+$ npm install --save vue-instantsearch@1
 ```
 
 By default, Vue InstantSearch exports a Vue plugin, and you need to register it.
