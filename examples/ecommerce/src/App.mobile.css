@@ -199,10 +199,9 @@
 
   /* RangeSlider */
 
-  .ais-RangeSlider .rheostat-handle {
-    height: 1.5rem;
-    top: -12px;
-    width: 1.5rem;
+  .vue-slider-dot {
+    height: 24px !important;
+    width: 24px !important;
   }
 
   /* ToggleRefinement */
