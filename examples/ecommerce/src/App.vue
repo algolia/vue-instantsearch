@@ -7,7 +7,7 @@
     >
       <ais-configure :attributesToSnippet="['description:10']" snippetEllipsisText="…"/>
 
-      <header class="header">
+      <header class="header" id="header">
         <p class="header-logo">
           <a href="https://algolia.com" aria-label="Go to the Algolia website">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93 24">
@@ -455,9 +455,18 @@ export default {
       }
       this.closeFilters();
     }
+
+    this.onClick = event => {
+      if (event.target !== this.header) {
+        return;
+      }
+
+      this.closeFilters();
+    }
   },
   mounted() {
     this.resultsContainer = document.querySelector('.container-results');
+    this.header = document.querySelector('#header');
   },
   data() {
     return {
@@ -484,11 +493,13 @@ export default {
       document.body.classList.add('filtering');
       window.scrollTo(0, 0);
       window.addEventListener('keyup', this.onKeyUp);
+      window.addEventListener('click', this.onClick);
     },
     closeFilters() {
       document.body.classList.remove('filtering');
       this.resultsContainer.scrollIntoView();
       window.removeEventListener('keyup', this.onKeyUp);
+      window.removeEventListener('click', this.onClick);
     },
   },
 };
