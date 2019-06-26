@@ -151,7 +151,7 @@ mark {
     The "Hind" font family is vertically off-balance.
     Adding 4px of padding top makes it more vertically aligned.
   */
-  padding: 4px 48px 0 58px;
+  padding: 4px 58px 0 64px;
 }
 
 .header .ais-SearchBox-submit svg {
@@ -174,7 +174,6 @@ mark {
 
 .ais-SearchBox-submit {
   color: #e2a400;
-  height: 16px;
 }
 
 .ais-RefinementList .ais-SearchBox-input {
