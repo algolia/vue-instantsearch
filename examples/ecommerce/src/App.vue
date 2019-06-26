@@ -75,7 +75,7 @@
             <ais-stats data-layout="mobile">
               <template slot="default" slot-scope="{ nbHits }">
                 <span class="ais-Stats-text">
-                  <strong>{{ nbHits }}</strong> results
+                  <strong>{{ formatNumber(nbHits) }}</strong> results
                 </span>
               </template>
             </ais-stats>
@@ -195,7 +195,7 @@
             >
               <template slot="default" slot-scope="{ nbHits }">
                 <button class="button button-primary" @click="closeFilters">
-                  See {{nbHits}} results
+                  See {{ formatNumber(nbHits) }} results
                 </button>
               </template>
             </ais-stats>
@@ -249,7 +249,7 @@
                   <footer>
                     <p>
                       <span class="hit-em">$&nbsp;</span>
-                      <strong>{{ item.price }}</strong>
+                      <strong>{{ formatNumber(item.price) }}</strong>
                       <span class="hit-em hit-rating">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -433,6 +433,7 @@ import { simple as simpleMapping } from 'instantsearch.js/es/lib/stateMappings';
 import VueSlider from 'vue-slider-component';
 import cx from 'classnames';
 import ClearRefinements from './widgets/ClearRefinements.vue';
+import { formatNumber } from './utils';
 
 import './Theme.css';
 import './App.css';
@@ -468,6 +469,7 @@ export default {
     };
   },
   methods: {
+    formatNumber,
     toValue(value, range) {
       return [
         value.min !== null ? value.min : range.min,
