@@ -124,7 +124,11 @@
                       tooltip="always"
                       :duration="0"
                       @change="refine({ min: $event[0], max: $event[1] })"
-                    />
+                    >
+                      <template slot="tooltip" slot-scope="{ value }">
+                        {{ formatNumber(value) }}
+                      </template>
+                    </vue-slider>
                   </div>
                 </ais-range-input>
               </template>
