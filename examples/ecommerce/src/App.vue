@@ -23,7 +23,7 @@
         <p class="header-title">Stop looking for an item — find it.</p>
 
         <ais-search-box
-          placeholder="Search for a product, brand, color, …"
+          placeholder="Product, brand, color, …"
         >
           <div slot="reset-icon"></div>
 
