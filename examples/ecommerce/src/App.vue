@@ -185,19 +185,10 @@
           </div>
 
           <footer class="container-filters-footer" data-layout="mobile">
-            <ais-clear-refinements class="container-filters-footer-button-wrapper">
-              <template slot="resetLabel">
-                <div class="clear-filters">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11">
-                    <g fill="none" fill-rule="evenodd" opacity=".4">
-                      <path d="M0 0h11v11H0z"/>
-                      <path fill="#000" fill-rule="nonzero" d="M8.26 2.75a3.896 3.896 0 1 0 1.102 3.262l.007-.056a.49.49 0 0 1 .485-.456c.253 0 .451.206.437.457 0 0 .012-.109-.006.061a4.813 4.813 0 1 1-1.348-3.887v-.987a.458.458 0 1 1 .917.002v2.062a.459.459 0 0 1-.459.459H7.334a.458.458 0 1 1-.002-.917h.928z"/>
-                    </g>
-                  </svg>
-                  Clear filters
-                </div>
-              </template>
-            </ais-clear-refinements>
+            <clear-refinements
+              class="container-filters-footer-button-wrapper"
+              @click="closeFilters"
+            />
 
             <ais-stats
               class="container-filters-footer-button-wrapper"
@@ -441,6 +432,7 @@ import { history as historyRouter } from 'instantsearch.js/es/lib/routers';
 import { simple as simpleMapping } from 'instantsearch.js/es/lib/stateMappings';
 import VueSlider from 'vue-slider-component';
 import cx from 'classnames';
+import ClearRefinements from './widgets/ClearRefinements.vue';
 
 import './Theme.css';
 import './App.css';
@@ -449,6 +441,7 @@ import './App.mobile.css';
 export default {
   components: {
     VueSlider,
+    ClearRefinements
   },
   created() {
     this.onKeyUp = event => {
@@ -490,7 +483,7 @@ export default {
       }
       this.resultsContainer.scrollIntoView();
       window.removeEventListener('keyup', this.onKeyUp);
-    }
+    },
   },
 };
 </script>
