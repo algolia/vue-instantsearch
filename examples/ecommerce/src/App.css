@@ -161,6 +161,8 @@ mark {
 
 .header .ais-SearchBox-submit svg {
   height: 16px;
+  position: relative;
+  top: 2px;
   width: 16px;
 }
 
