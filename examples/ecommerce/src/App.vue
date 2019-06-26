@@ -451,6 +451,9 @@ export default {
       this.closeFilters();
     }
   },
+  mounted() {
+    this.resultsContainer = document.querySelector('.container-results');
+  },
   data() {
     return {
       cx,
@@ -478,9 +481,6 @@ export default {
     },
     closeFilters() {
       document.body.classList.remove('filtering');
-      if (!this.resultsContainer) {
-        this.resultsContainer = document.querySelector('.container-results');
-      }
       this.resultsContainer.scrollIntoView();
       window.removeEventListener('keyup', this.onKeyUp);
     },
