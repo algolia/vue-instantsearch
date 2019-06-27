@@ -5,6 +5,7 @@
   >
     <slot
       :items="items"
+      :results="state.results"
       :insights="state.insights"
     >
       <ol :class="suit('list')">
@@ -17,6 +18,7 @@
             name="item"
             :item="item"
             :index="itemIndex"
+            :results="state.results"
             :insights="state.insights"
           >objectID: {{ item.objectID }}, index: {{ itemIndex }}</slot>
         </li>

@@ -1,5 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`exposes results prop to the default slot 1`] = `
+
+<div class="ais-Hits">
+  {
+  "hits": [
+    {
+      "objectID": "one"
+    },
+    {
+      "objectID": "two"
+    }
+  ],
+  "page": 0,
+  "hitsPerPage": 16
+}
+</div>
+
+`;
+
+exports[`exposes results prop to the item slot 1`] = `
+
+<div class="ais-Hits">
+  <ol class="ais-Hits-list">
+    <li class="ais-Hits-item">
+      <div>
+        {
+  "hits": [
+    {
+      "objectID": "one"
+    },
+    {
+      "objectID": "two"
+    }
+  ],
+  "page": 0,
+  "hitsPerPage": 16
+}
+      </div>
+    </li>
+    <li class="ais-Hits-item">
+      <div>
+        {
+  "hits": [
+    {
+      "objectID": "one"
+    },
+    {
+      "objectID": "two"
+    }
+  ],
+  "page": 0,
+  "hitsPerPage": 16
+}
+      </div>
+    </li>
+  </ol>
+</div>
+
+`;
+
 exports[`renders correctly 1`] = `
 
 <div class="ais-Hits">

@@ -8,6 +8,15 @@ const defaultState = {
   hits: [{ objectID: 'one' }, { objectID: 'two' }],
 };
 
+const defaultStateWithResults = {
+  ...defaultState,
+  results: {
+    hits: [{ objectID: 'one' }, { objectID: 'two' }],
+    page: 0,
+    hitsPerPage: 16,
+  },
+};
+
 it('accepts an escapeHTML prop', () => {
   __setState({
     ...defaultState,
@@ -99,4 +108,38 @@ it('exposes insights prop to the item slot', () => {
     eventName: 'Add to cart',
     objectIDs: ['two'],
   });
+});
+
+it('exposes results prop to the default slot', () => {
+  __setState({
+    ...defaultStateWithResults,
+  });
+
+  const wrapper = mount(Hits, {
+    scopedSlots: {
+      default: `
+        <template slot-scope="{ results }">
+          {{ results }}
+        </template>
+      `,
+    },
+  });
+  expect(wrapper.html()).toMatchSnapshot();
+});
+
+it('exposes results prop to the item slot', () => {
+  __setState({
+    ...defaultStateWithResults,
+  });
+
+  const wrapper = mount(Hits, {
+    scopedSlots: {
+      item: `
+        <div slot-scope="{ results }">
+          {{ results }}
+        </div>
+      `,
+    },
+  });
+  expect(wrapper.html()).toMatchSnapshot();
 });
