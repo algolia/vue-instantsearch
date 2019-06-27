@@ -197,11 +197,6 @@ a[class^='ais-'] {
   color: rgba(33, 36, 61, 0.5);
 }
 
-.ais-SearchBox-reset svg {
-  height: 10px;
-  width: 10px;
-}
-
 .ais-SearchBox-reset,
 .ais-SearchBox-loadingIndicator,
 .ais-SearchBox-submit {
@@ -230,6 +225,11 @@ a[class^='ais-'] {
 .ais-SearchBox-reset,
 .ais-SearchBox-loadingIndicator {
   right: 0;
+}
+
+.ais-SearchBox-resetIcon {
+  width: 10px;
+  height: 10px;
 }
 
 /* SFFV search box */

@@ -90,7 +90,7 @@ h2 {
   padding: 30px 0;
 }
 
-.container-options div:not(:first-of-type) {
+.container-options .container-option:not(:first-child) {
   margin-left: 48px;
 }
 
@@ -104,6 +104,11 @@ h2 {
 
 /* Styles the SFFV highlightings */
 
+em {
+  font-style: normal;
+}
+
+em,
 mark {
   background: rgba(226, 164, 0, 0.4);
 }
@@ -116,10 +121,7 @@ mark {
 }
 
 .clear-filters svg {
-  display: inline-block;
-  height: 10px;
   margin-right: 8px;
-  width: 10px;
 }
 
 /* Panel */
@@ -157,13 +159,6 @@ mark {
 .header .ais-SearchBox-submit {
   padding: 0 1rem 0 2rem;
   width: 64px;
-}
-
-.header .ais-SearchBox-submit svg {
-  height: 16px;
-  position: relative;
-  top: 2px;
-  width: 16px;
 }
 
 .header .ais-SearchBox .ais-SearchBox-input::placeholder {
@@ -246,63 +241,42 @@ mark {
   padding: 0 4px;
 }
 
-.hit-rating svg {
-  width: 8px;
-  height: 8px;
-}
-
-/* RangeSlider */
-
-.vue-slider {
+.hits-empty-state {
+  align-items: center;
   display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
+  flex-direction: column;
+  margin: auto;
+  max-width: 300px;
 }
 
-.vue-slider-rail {
-  background-color: rgba(65, 66, 71, 0.08);
-  border-radius: 3px;
-  cursor: pointer;
-  height: 4px;
-  width: calc(100% - 10px);
-}
-
-.vue-slider-process {
-  background-color: #e2a400;
-  border-radius: 3px;
-}
-
-.vue-slider-dot-tooltip {
-  cursor: grab;
-  display: flex;
-  font-size: 0.75rem;
+.hits-empty-state-title {
+  font-family: Hind;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-top: 5px;
-}
-
-.vue-slider-dot-tooltip::before {
-  color: #e2a400;
-  content: '$';
-  font-size: 0.6;
-  margin-right: 4px;
-}
-
-.vue-slider-dot-tooltip-text .vue-slider-dot-tooltip-inner {
-  cursor: -webkit-grabbing;
-  cursor: -moz-grabbing;
+  margin-bottom: 0;
   text-align: center;
-  white-space: nowrap;
 }
 
-.vue-slider-dot-handle {
-  background-image: linear-gradient(to top, #f5f5fa, #fff);
-  border-radius: 50%;
-  box-shadow: 0 4px 11px 0 rgba(37, 44, 97, 0.15),
-    0 2px 3px 0 rgba(93, 100, 148, 0.2);
-  cursor: -webkit-grabbing;
-  cursor: -moz-grabbing;
-  height: 100%;
-  width: 100%;
+.hits-empty-state-description {
+  color: rgba(35, 37, 51, 0.6);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.hits-empty-state .ais-ClearRefinements {
+  margin-top: 1rem;
+}
+
+.hits-empty-state .ais-ClearRefinements-button--disabled {
+  display: none;
+}
+
+.hits-empty-state .ais-ClearRefinements-button {
+  background: rgba(10, 8, 41, 0.04);
+  border-radius: 3px;
+  color: #21243d;
+  min-height: 48px;
+  padding: 16px 24px;
 }
 
 /* ToggleRefinement */
@@ -311,7 +285,6 @@ mark {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
-  position: relative;
 }
 
 .ais-ToggleRefinement-checkbox {
@@ -352,12 +325,6 @@ mark {
 
 .ais-RatingMenu-starIcon {
   margin-right: 0.5rem;
-}
-
-/* Pagination */
-.ais-Pagination-link svg {
-  height: 10px;
-  width: 10px;
 }
 
 /* Hide all mobile-specific design on desktop */

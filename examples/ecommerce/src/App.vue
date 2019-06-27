@@ -25,8 +25,13 @@
         <ais-search-box
           placeholder="Product, brand, color, …"
         >
-          <div slot="submit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+          <template slot="submit-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 18 18"
+              width="16"
+              height="16"
+            >
               <g
                 fill="none"
                 fill-rule="evenodd"
@@ -40,7 +45,7 @@
                 <path d="M16 16l-3.87-3.87"></path>
               </g>
             </svg>
-          </div>
+          </template>
         </ais-search-box>
       </header>
 
@@ -55,6 +60,8 @@
                   <div class="clear-filters">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
                       viewBox="0 0 11 11"
                     >
                       <g fill="none" fill-rule="evenodd" opacity=".4">
@@ -209,6 +216,7 @@
         <section class="container-results">
           <header class="container-header container-options">
             <ais-sort-by
+              class="container-option"
               :items="[
                 { value: 'instant_search', label: 'Featured' },
                 { value: 'instant_search_price_asc', label: 'Price asc.' },
@@ -217,6 +225,7 @@
             />
 
             <ais-hits-per-page
+              class="container-option"
               :items="[
                 {
                   label: '16 hits per page',
@@ -258,6 +267,8 @@
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 16 16"
+                          width="8"
+                          height="8"
                         >
                           <path
                             fill="#e2a400"
@@ -297,6 +308,8 @@
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 10 10"
+                        width="10"
+                        height="10"
                       >
                         <g
                           fill="none"
@@ -325,6 +338,8 @@
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 10 10"
+                        width="10"
+                        height="10"
                       >
                         <g
                           fill="none"
@@ -365,6 +380,8 @@
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 10 10"
+                        width="10"
+                        height="10"
                       >
                         <g
                           fill="none"
@@ -388,6 +405,8 @@
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 10 10"
+                        width="10"
+                        height="10"
                       >
                         <g
                           fill="none"
@@ -442,6 +461,7 @@ import { formatNumber } from './utils';
 import './Theme.css';
 import './App.css';
 import './App.mobile.css';
+import './widgets/PriceSlider.css';
 
 export default {
   components: {
