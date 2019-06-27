@@ -49,3 +49,10 @@
   height: 100%;
   width: 100%;
 }
+
+@media (max-width: 899px) {
+  .vue-slider-dot {
+    height: 24px !important;
+    width: 24px !important;
+  }
+}
