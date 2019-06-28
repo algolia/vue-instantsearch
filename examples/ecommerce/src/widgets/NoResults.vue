@@ -1,7 +1,6 @@
 <template>
   <div
     v-if="state && state.results && state.results.nbHits === 0"
-    class="app-NoResult"
   >
     <div class="hits-empty-state">
       <svg
@@ -99,7 +98,7 @@ import { connectHits } from 'instantsearch.js/es/connectors';
 import { createWidgetMixin } from 'vue-instantsearch';
 
 export default {
-  name: 'AppNoResult',
+  name: 'AppNoResults',
   mixins: [
     createWidgetMixin({ connector: connectHits }),
   ]

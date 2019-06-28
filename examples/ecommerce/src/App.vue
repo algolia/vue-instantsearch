@@ -289,7 +289,7 @@
             </div>
           </ais-hits>
 
-          <no-result />
+          <no-results />
 
           <footer class="container-footer">
             <ais-pagination :padding="2">
@@ -462,7 +462,7 @@ import { simple as simpleMapping } from 'instantsearch.js/es/lib/stateMappings';
 import VueSlider from 'vue-slider-component';
 import cx from 'classnames';
 import ClearRefinements from './widgets/ClearRefinements.vue';
-import NoResult from './widgets/NoResult.vue';
+import NoResults from './widgets/NoResults.vue';
 import { formatNumber } from './utils';
 
 import './Theme.css';
@@ -474,7 +474,7 @@ export default {
   components: {
     VueSlider,
     ClearRefinements,
-    NoResult
+    NoResults
   },
   created() {
     this.onKeyUp = event => {
