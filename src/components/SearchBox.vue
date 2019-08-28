@@ -9,6 +9,7 @@
       :refine="state.refine"
     >
       <search-input
+        @focus="$emit('focus', $event)"
         :placeholder="placeholder"
         :autofocus="autofocus"
         :show-loading-indicator="showLoadingIndicator"

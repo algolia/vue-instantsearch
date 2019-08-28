@@ -21,6 +21,7 @@
       :autofocus="autofocus"
       :class="suit('input')"
       :value="value"
+      @focus="$emit('focus', $event)"
       @input="$emit('input', $event.target.value)"
       ref="input"
     >
