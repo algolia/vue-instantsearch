@@ -18,7 +18,8 @@
   "license": "MIT",
   "version": "2.5.0",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "main": "dist/vue-instantsearch.common.js",
   "module": "dist/vue-instantsearch.esm.js",
@@ -138,5 +139,6 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ]
-  }
+  },
+  "sideEffects": false
 }
