@@ -3,10 +3,6 @@ import Highlight from '../Highlight.vue';
 
 jest.unmock('instantsearch.js/es');
 
-afterEach(() => {
-  process.env.NODE_ENV = 'test';
-});
-
 test('renders proper HTML', () => {
   const hit = {
     _highlightResult: {
