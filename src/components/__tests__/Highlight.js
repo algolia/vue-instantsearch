@@ -1,6 +1,8 @@
 import { mount } from '@vue/test-utils';
 import Highlight from '../Highlight.vue';
 
+jest.unmock('instantsearch.js/es');
+
 afterEach(() => {
   process.env.NODE_ENV = 'test';
 });
@@ -58,23 +60,6 @@ test('should render an empty string in production if attribute is not highlighte
   });
 
   expect(wrapper.html()).toMatchSnapshot();
-});
-
-test('should warn when not in production if attribute is not highlighted', () => {
-  global.console.warn = jest.fn();
-
-  const hit = {
-    _highlightResult: {},
-  };
-
-  mount(Highlight, {
-    propsData: {
-      attribute: 'attr',
-      hit,
-    },
-  });
-
-  expect(global.console.warn).toHaveBeenCalledTimes(1);
 });
 
 test('allows usage of dot delimited path to access nested attribute', () => {
