@@ -238,17 +238,17 @@
                 {
                   label: '16 hits per page',
                   value: 16,
-                  default: isSelectedHitsPerPageValue(16, true),
+                  default: getSelectedHitsPerPageValue() === 16 || !getSelectedHitsPerPageValue(),
                 },
                 {
                   label: '32 hits per page',
                   value: 32,
-                  default: isSelectedHitsPerPageValue(32),
+                  default: getSelectedHitsPerPageValue() === 32,
                 },
                 {
                   label: '64 hits per page',
                   value: 64,
-                  default: isSelectedHitsPerPageValue(64),
+                  default: getSelectedHitsPerPageValue() === 64,
                 },
               ]"
             />
@@ -519,9 +519,9 @@ export default {
         value.max !== null ? value.max : range.max,
       ];
     },
-    isSelectedHitsPerPageValue(itemValue, force = false) {
+    getSelectedHitsPerPageValue() {
       const [, hitsPerPage] = document.location.search.match(/hitsPerPage=([0-9]+)/) || [];
-      return itemValue === Number(hitsPerPage) || !hitsPerPage && force;
+      return Number(hitsPerPage);
     },
     openFilters() {
       document.body.classList.add('filtering');
