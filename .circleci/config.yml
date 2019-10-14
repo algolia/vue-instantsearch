@@ -54,18 +54,19 @@ jobs:
           name: Unit Tests
           command: yarn test --maxWorkers=4
 
-  # # TODO: add simple E2E tests for the examples
-  # test_examples:
-  #   <<: *defaults
-  #   steps:
-  #     - checkout
-  #     - run: *install_yarn_version
-  #     - restore_cache: *restore_yarn_cache
-  #     - run: *run_yarn_install
-  #     - save_cache: *save_yarn_cache
-  #     - run:
-  #         name: Build & Test examples
-  #         command: yarn test:examples
+  test_e2e:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install_yarn_version
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run:
+          name: End-2-End tests
+          command: |
+            yarn run examples:build
+            yarn run test:e2e:saucelabs
 
 workflows:
   version: 2
@@ -73,4 +74,4 @@ workflows:
     jobs:
       - test_build
       - test_unit
-      # - test_examples
+      - test_e2e
