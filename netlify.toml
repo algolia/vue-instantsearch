@@ -1,6 +1,6 @@
 [build]
     command = "yarn docs:build:dev"
-    publish = "docs/dist"
+    publish = "website"
   [build.environment]
     YARN_VERSION = "1.6.0"
     NODE_ENV = "development"
