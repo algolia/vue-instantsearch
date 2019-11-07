@@ -9,7 +9,7 @@ export const createInstantSearchComponent = component =>
       mixins: [createSuitMixin({ name: 'InstantSearch' })],
       provide() {
         return {
-          instantSearchInstance: this.instantSearchInstance,
+          $_ais_instantSearchInstance: this.instantSearchInstance,
         };
       },
       watch: {

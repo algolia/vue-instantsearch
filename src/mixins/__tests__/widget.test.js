@@ -33,7 +33,7 @@ describe('on root index', () => {
     mount(Test, {
       mixins: [createWidgetMixin({ connector })],
       provide: {
-        instantSearchInstance: instance,
+        $_ais_instantSearchInstance: instance,
       },
       data: () => ({
         widgetParams,
@@ -63,7 +63,7 @@ describe('on root index', () => {
     const wrapper = mount(Test, {
       mixins: [createWidgetMixin({ connector })],
       provide: {
-        instantSearchInstance: instance,
+        $_ais_instantSearchInstance: instance,
       },
       data: () => ({
         widgetParams,
@@ -100,7 +100,7 @@ describe('on root index', () => {
     const wrapper = mount(Test, {
       mixins: [createWidgetMixin({ connector })],
       provide: {
-        instantSearchInstance: instance,
+        $_ais_instantSearchInstance: instance,
       },
       data: () => ({
         widgetParams,
@@ -149,7 +149,7 @@ describe('on root index', () => {
     const wrapper = mount(Test, {
       mixins: [createWidgetMixin({ connector })],
       provide: {
-        instantSearchInstance: instance,
+        $_ais_instantSearchInstance: instance,
       },
       data: () => ({
         widgetParams,
@@ -188,8 +188,8 @@ describe('on child index', () => {
     mount(Test, {
       mixins: [createWidgetMixin({ connector })],
       provide: {
-        instantSearchInstance: instance,
-        indexWidget: () => indexWidget,
+        $_ais_instantSearchInstance: instance,
+        $_ais_indexWidget: () => indexWidget,
       },
       data: () => ({
         widgetParams,
@@ -220,8 +220,8 @@ describe('on child index', () => {
     const wrapper = mount(Test, {
       mixins: [createWidgetMixin({ connector })],
       provide: {
-        instantSearchInstance: instance,
-        indexWidget: () => indexWidget,
+        $_ais_instantSearchInstance: instance,
+        $_ais_indexWidget: () => indexWidget,
       },
       data: () => ({
         widgetParams,
@@ -259,8 +259,8 @@ describe('on child index', () => {
     const wrapper = mount(Test, {
       mixins: [createWidgetMixin({ connector })],
       provide: {
-        instantSearchInstance: instance,
-        indexWidget: () => indexWidget,
+        $_ais_instantSearchInstance: instance,
+        $_ais_indexWidget: () => indexWidget,
       },
       data: () => ({
         widgetParams,
@@ -310,8 +310,8 @@ describe('on child index', () => {
     const wrapper = mount(Test, {
       mixins: [createWidgetMixin({ connector })],
       provide: {
-        instantSearchInstance: instance,
-        indexWidget: () => indexWidget,
+        $_ais_instantSearchInstance: instance,
+        $_ais_indexWidget: () => indexWidget,
       },
       data: () => ({
         widgetParams,

@@ -3,8 +3,7 @@ import { warn } from '../util/warn';
 export const createWidgetMixin = ({ connector } = {}) => ({
   inject: {
     instantSearchInstance: {
-      // TODO: should we prevent name clashes like this?
-      // from: '$ais_instantSearchInstance',
+      from: '$_ais_instantSearchInstance',
       default() {
         const tag = this.$options._componentTag;
         throw new TypeError(
@@ -13,7 +12,7 @@ export const createWidgetMixin = ({ connector } = {}) => ({
       },
     },
     indexWidget: {
-      // from: '$ais_indexWidget',
+      from: '$_ais_indexWidget',
       default() {
         // injection isn't required, since InstantSearch makes a root index widget.
         return undefined;
