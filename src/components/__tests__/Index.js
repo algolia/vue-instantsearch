@@ -1,8 +1,12 @@
+import Vue from 'vue';
 import { mount } from '@vue/test-utils';
 import Index from '../Index';
+import { __setWidget } from '../../mixins/widget';
 jest.mock('../../mixins/widget');
 
-beforeEach(() => jest.clearAllMocks());
+beforeEach(() => {
+  jest.resetAllMocks();
+});
 
 it('passes props to widgetParams', () => {
   const wrapper = mount(Index, {
@@ -16,16 +20,6 @@ it('passes props to widgetParams', () => {
     indexName: 'the name',
     indexId: 'the id',
   });
-});
-
-it('exposes its widget', () => {
-  mount(Index, {
-    propsData: {
-      indexName: 'index name',
-    },
-  });
-
-  // TODO: test that it provides indexWidget to its children, how?
 });
 
 it('renders just a div by default', () => {
@@ -62,4 +56,35 @@ it('renders its children', () => {
 </div>
 
 `);
+});
+
+it('provides the index widget', done => {
+  Vue.config.errorHandler = done;
+
+  const indexWidget = { $$type: 'ais.index' };
+  __setWidget(indexWidget);
+
+  const ChildComponent = {
+    inject: ['$_ais_indexWidget'],
+    mounted() {
+      this.$nextTick(() => {
+        expect(typeof this.$_ais_indexWidget).toBe('function');
+        expect(this.$_ais_indexWidget()).toBe(indexWidget);
+        done();
+      });
+    },
+    render() {
+      return null;
+    },
+  };
+
+  mount(Index, {
+    propsData: {
+      indexName: 'something',
+      widget: indexWidget,
+    },
+    slots: {
+      default: ChildComponent,
+    },
+  });
 });

@@ -1,6 +1,5 @@
 import { createSuitMixin } from '../mixins/suit';
 import { createWidgetMixin } from '../mixins/widget';
-// TODO: should InstantSearch expose a fake connector instead? Would be more consistent.
 import indexWidget from 'instantsearch.js/es/widgets/index/index';
 
 // wrapped in a dummy function, since indexWidget doesn't render
