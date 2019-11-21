@@ -31,7 +31,7 @@ it('renders just a div by default', () => {
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
 
-<div class="ais-Index">
+<div>
 </div>
 
 `);
@@ -49,7 +49,7 @@ it('renders its children', () => {
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
 
-<div class="ais-Index">
+<div>
   <div>
     hi there!
   </div>

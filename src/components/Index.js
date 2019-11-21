@@ -29,15 +29,7 @@ export default {
     },
   },
   render(createElement) {
-    return createElement(
-      'div',
-      {
-        class: {
-          [this.suit()]: true,
-        },
-      },
-      this.$slots.default
-    );
+    return createElement('div', {}, this.$slots.default);
   },
   computed: {
     widgetParams() {
