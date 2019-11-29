@@ -50,8 +50,8 @@
     "release:publish": "scripts/release-publish.sh"
   },
   "dependencies": {
-    "algoliasearch-helper": "0.0.0-5a0352a",
-    "instantsearch.js": "^4.0.0"
+    "algoliasearch-helper": "^3.0.0",
+    "instantsearch.js": "^4.0.1"
   },
   "peerDependencies": {
     "algoliasearch": "^3.30.0",
