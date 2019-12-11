@@ -11,11 +11,10 @@ export const createWidgetMixin = ({ connector } = {}) => ({
         );
       },
     },
-    indexWidget: {
-      from: '$_ais_indexWidget',
+    getIndexWidget: {
+      from: '$_ais_getIndexWidget',
       default() {
-        // injection isn't required, since InstantSearch makes a root index widget.
-        return undefined;
+        return () => this.instantSearchInstance;
       },
     },
   },
@@ -28,7 +27,7 @@ export const createWidgetMixin = ({ connector } = {}) => ({
     if (typeof connector === 'function') {
       this.factory = connector(this.updateState, () => {});
       this.widget = this.factory(this.widgetParams);
-      this.parentIndex.addWidgets([this.widget]);
+      this.getIndexWidget().addWidgets([this.widget]);
 
       const { hydrated, started } = this.instantSearchInstance;
       if ((!started && hydrated) || this.$isServer) {
@@ -57,17 +56,8 @@ Read more on using connectors: https://alg.li/vue-custom`
       this.widget.dispose &&
       this.instantSearchInstance.started // a widget can't be removed if IS is not started
     ) {
-      this.parentIndex.removeWidgets([this.widget]);
+      this.getIndexWidget().removeWidgets([this.widget]);
     }
-  },
-  computed: {
-    parentIndex() {
-      if (this.indexWidget) {
-        // indexWidget isn't reactive (provide), thus is wrapped in an accessor
-        return this.indexWidget();
-      }
-      return this.instantSearchInstance;
-    },
   },
   watch: {
     widgetParams: {
@@ -75,10 +65,10 @@ Read more on using connectors: https://alg.li/vue-custom`
         this.state = null;
         // a widget can't be removed if IS is not started
         if (this.widget.dispose && this.instantSearchInstance.started) {
-          this.parentIndex.removeWidgets([this.widget]);
+          this.getIndexWidget().removeWidgets([this.widget]);
         }
         this.widget = this.factory(nextWidgetParams);
-        this.parentIndex.addWidgets([this.widget]);
+        this.getIndexWidget().addWidgets([this.widget]);
       },
       deep: true,
     },

@@ -65,11 +65,11 @@ it('provides the index widget', done => {
   __setWidget(indexWidget);
 
   const ChildComponent = {
-    inject: ['$_ais_indexWidget'],
+    inject: ['$_ais_getIndexWidget'],
     mounted() {
       this.$nextTick(() => {
-        expect(typeof this.$_ais_indexWidget).toBe('function');
-        expect(this.$_ais_indexWidget()).toBe(indexWidget);
+        expect(typeof this.$_ais_getIndexWidget).toBe('function');
+        expect(this.$_ais_getIndexWidget()).toBe(indexWidget);
         done();
       });
     },

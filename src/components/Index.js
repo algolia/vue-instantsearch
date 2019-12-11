@@ -15,7 +15,7 @@ export default {
     return {
       // The widget is created & registered by widgetMixin, accessor is needed
       // because provide is not reactive.
-      $_ais_indexWidget: () => this.widget,
+      $_ais_getIndexWidget: () => this.widget,
     };
   },
   props: {
