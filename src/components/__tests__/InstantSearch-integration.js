@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import InstantSearch from '../InstantSearch';
 import { createWidgetMixin } from '../../mixins/widget';
 
-it('provides a value which works with widgetMixin', () => {
+it('child widgets get added to its parent instantsearch', () => {
   const widgetInstance = {};
 
   const ChildComponent = {
