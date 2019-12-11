@@ -28,7 +28,7 @@ export const createWidgetMixin = ({ connector } = {}) => ({
     if (typeof connector === 'function') {
       this.factory = connector(this.updateState, () => {});
       this.widget = this.factory(this.widgetParams);
-      this.root.addWidgets([this.widget]);
+      this.parentIndex.addWidgets([this.widget]);
 
       const { hydrated, started } = this.instantSearchInstance;
       if ((!started && hydrated) || this.$isServer) {
@@ -57,11 +57,11 @@ Read more on using connectors: https://alg.li/vue-custom`
       this.widget.dispose &&
       this.instantSearchInstance.started // a widget can't be removed if IS is not started
     ) {
-      this.root.removeWidgets([this.widget]);
+      this.parentIndex.removeWidgets([this.widget]);
     }
   },
   computed: {
-    root() {
+    parentIndex() {
       if (this.indexWidget) {
         // indexWidget isn't reactive (provide), thus is wrapped in an accessor
         return this.indexWidget();
@@ -75,10 +75,10 @@ Read more on using connectors: https://alg.li/vue-custom`
         this.state = null;
         // a widget can't be removed if IS is not started
         if (this.widget.dispose && this.instantSearchInstance.started) {
-          this.root.removeWidgets([this.widget]);
+          this.parentIndex.removeWidgets([this.widget]);
         }
         this.widget = this.factory(nextWidgetParams);
-        this.root.addWidgets([this.widget]);
+        this.parentIndex.addWidgets([this.widget]);
       },
       deep: true,
     },
