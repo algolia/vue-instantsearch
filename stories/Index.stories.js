@@ -5,7 +5,7 @@ storiesOf('ais-index', module)
   .add('one search box, two indices', () => ({
     template: `
   <div>
-    <ais-instant-search :search-client="searchClient" index-name="ikea">
+    <ais-instant-search :search-client="searchClient" index-name="airbnb">
       <ais-configure :restrictSearchableAttributes="['name']"/>
       <ais-search-box />
       <div>
