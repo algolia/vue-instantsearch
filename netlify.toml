@@ -1,5 +1,5 @@
 [build]
-    command = "yarn docs:build"
+    command = "yarn website:build"
     publish = "website"
   [build.environment]
     YARN_VERSION = "1.6.0"
