@@ -11,8 +11,8 @@ export const createWidgetMixin = ({ connector } = {}) => ({
         );
       },
     },
-    getIndexWidget: {
-      from: '$_ais_getIndexWidget',
+    getParentIndex: {
+      from: '$_ais_getParentIndex',
       default() {
         return () => this.instantSearchInstance;
       },
@@ -27,7 +27,7 @@ export const createWidgetMixin = ({ connector } = {}) => ({
     if (typeof connector === 'function') {
       this.factory = connector(this.updateState, () => {});
       this.widget = this.factory(this.widgetParams);
-      this.getIndexWidget().addWidgets([this.widget]);
+      this.getParentIndex().addWidgets([this.widget]);
 
       const { hydrated, started } = this.instantSearchInstance;
       if ((!started && hydrated) || this.$isServer) {
@@ -56,7 +56,7 @@ Read more on using connectors: https://alg.li/vue-custom`
       this.widget.dispose &&
       this.instantSearchInstance.started // a widget can't be removed if IS is not started
     ) {
-      this.getIndexWidget().removeWidgets([this.widget]);
+      this.getParentIndex().removeWidgets([this.widget]);
     }
   },
   watch: {
@@ -65,10 +65,10 @@ Read more on using connectors: https://alg.li/vue-custom`
         this.state = null;
         // a widget can't be removed if IS is not started
         if (this.widget.dispose && this.instantSearchInstance.started) {
-          this.getIndexWidget().removeWidgets([this.widget]);
+          this.getParentIndex().removeWidgets([this.widget]);
         }
         this.widget = this.factory(nextWidgetParams);
-        this.getIndexWidget().addWidgets([this.widget]);
+        this.getParentIndex().addWidgets([this.widget]);
       },
       deep: true,
     },

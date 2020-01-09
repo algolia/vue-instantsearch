@@ -189,7 +189,7 @@ describe('on child index', () => {
       mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
-        $_ais_getIndexWidget: () => indexWidget,
+        $_ais_getParentIndex: () => indexWidget,
       },
       data: () => ({
         widgetParams,
@@ -221,7 +221,7 @@ describe('on child index', () => {
       mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
-        $_ais_getIndexWidget: () => indexWidget,
+        $_ais_getParentIndex: () => indexWidget,
       },
       data: () => ({
         widgetParams,
@@ -260,7 +260,7 @@ describe('on child index', () => {
       mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
-        $_ais_getIndexWidget: () => indexWidget,
+        $_ais_getParentIndex: () => indexWidget,
       },
       data: () => ({
         widgetParams,
@@ -311,7 +311,7 @@ describe('on child index', () => {
       mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
-        $_ais_getIndexWidget: () => indexWidget,
+        $_ais_getParentIndex: () => indexWidget,
       },
       data: () => ({
         widgetParams,
