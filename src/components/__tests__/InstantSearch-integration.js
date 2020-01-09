@@ -23,9 +23,7 @@ it('child widgets get added to its parent instantsearch', () => {
     },
   });
 
-  expect(
-    wrapper.vm.instantSearchInstance.mainIndex
-      .getWidgets()
-      .includes(widgetInstance)
-  ).toBe(true);
+  expect(wrapper.vm.instantSearchInstance.mainIndex.getWidgets()).toContain(
+    widgetInstance
+  );
 });
