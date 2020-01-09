@@ -1,4 +1,10 @@
-const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
+import { _objectSpread } from '../util/polyfills';
+
+const connectStateResults = (renderFn, unmountFn = () => {}) => (
+  widgetParams = {}
+) => ({
+  $$type: 'vue.stateResults',
+
   init({ instantSearchInstance }) {
     renderFn(
       {
@@ -12,19 +18,9 @@ const connectStateResults = (renderFn, unmountFn) => (widgetParams = {}) => ({
   },
 
   render({ results, instantSearchInstance, state }) {
-    const resultsCopy = Object.keys(results).reduce((acc, key) => {
-      if (key !== '_state') {
-        // eslint-disable-next-line no-param-reassign
-        acc[key] = results[key];
-      }
-      return acc;
-    }, {});
+    const resultsCopy = _objectSpread({}, results);
 
-    const stateCopy = Object.keys(state).reduce((acc, key) => {
-      // eslint-disable-next-line no-param-reassign
-      acc[key] = state[key];
-      return acc;
-    }, {});
+    const stateCopy = _objectSpread({}, state);
 
     renderFn(
       {
