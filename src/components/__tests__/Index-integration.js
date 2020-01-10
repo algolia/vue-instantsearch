@@ -6,7 +6,7 @@ import { SearchParameters } from 'algoliasearch-helper';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../../util/testutils/client';
 
-it('child widgets get added to its parent index', () => {
+it('child widgets get added to their parent index', () => {
   const widgetInstance = {
     render() {},
   };

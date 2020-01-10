@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/vue';
 import algoliasearch from 'algoliasearch';
 
 storiesOf('ais-index', module)
-  .add('one search box, two indices', () => ({
+  .add('default', () => ({
     template: `
   <div>
     <ais-instant-search :search-client="searchClient" index-name="airbnb">
