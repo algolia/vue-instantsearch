@@ -80,13 +80,13 @@ export const createInstantSearch = instantSearchOptions => {
     const parentIndex = componentInstance.getParentIndex();
     const rootIndex = componentInstance.instantSearchInstance;
 
-    const parent = parentIndex !== rootIndex ? parentIndex : null;
-    const uiState = initialUiState;
+    // API between index & instantsearch isn't the same, so we make sure we
+    // always use an index widget.
+    const parent = parentIndex !== rootIndex ? parentIndex : search.mainIndex;
 
-    // API to get helper & state is different for InstantSearch as Index widget
-    // so we need to call those conditionally only if parentIndex is the widget
-    const helper = parent ? parent.getHelper() : search.helper;
-    const results = parent ? parent.getResults() : search.helper.lastResults;
+    const helper = parent.getHelper();
+    const results = parent.getResults();
+
     const state = results._state;
 
     widget.init({
@@ -97,7 +97,7 @@ export const createInstantSearch = instantSearchOptions => {
       onHistoryChange: () => {},
       instantSearchInstance: search,
       parent,
-      uiState,
+      uiState: initialUiState,
     });
 
     if (widget.$$type === 'ais.index') {
@@ -153,10 +153,6 @@ export const createInstantSearch = instantSearchOptions => {
     // TODO: this is still causing _two_ close to identical requests on the frontend
     // maybe a mismatch of parameters.
     derivedHelpers = Object.keys(derived).reduce((acc, indexId) => {
-      if (indexId === indexName) {
-        return acc;
-      }
-
       // eslint-disable-next-line no-param-reassign
       acc[indexId] = {
         // __forceRender uses lastResults only, we don't want to duplicate
@@ -171,6 +167,17 @@ export const createInstantSearch = instantSearchOptions => {
     }, {});
 
     search.mainHelper = search.helper;
+
+    // init main index here, so force render later works as expected
+    // because main index isn't a vue widget and doesn't get __forceRender
+    search.mainIndex.init({
+      instantSearchInstance: search,
+      parent: null,
+      uiState: initialUiState,
+    });
+    // force set last results on derived helper, since we search before init
+    // TODO: PR for hydrate on index widget
+    search.mainIndex.hydrate(derivedHelpers[indexName].lastResults);
 
     search.hydrated = true;
   };
