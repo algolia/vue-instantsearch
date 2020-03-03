@@ -70,10 +70,6 @@ const searchClient = algoliasearch(
   '6be0576ff61c053d5f9a3225e2a90f76'
 );
 
-if (typeof window === 'object') {
-  window.client = searchClient;
-}
-
 const { instantsearch, rootMixin } = createInstantSearch({
   searchClient,
   indexName: 'instant_search',
