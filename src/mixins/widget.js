@@ -36,7 +36,7 @@ export const createWidgetMixin = ({ connector } = {}) => ({
             'You are using server side rendering with <ais-instant-search> instead of <ais-instant-search-ssr>.'
           );
         }
-        this.instantSearchInstance.__forceRender(this.widget);
+        this.instantSearchInstance.__forceRender(this.widget, this);
       }
     } else if (connector !== true) {
       warn(
