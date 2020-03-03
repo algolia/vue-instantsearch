@@ -126,13 +126,12 @@ export const createInstantSearch = instantSearchOptions => {
     return {
       lastResults: JSON.parse(JSON.stringify(search.helper.lastResults)),
       derived: JSON.parse(
-        JSON.stringify(
-          Object.keys(derivedHelpers).reduce((acc, indexId) => {
-            // eslint-disable-next-line no-param-reassign
-            acc[indexId] = derivedHelpers[indexId].lastResults;
-            return acc;
-          }, {})
-        )
+        JSON.stringify(derivedHelpers, (_key, value) => {
+          if (value.constructor.name === 'DerivedHelper') {
+            return value.lastResults;
+          }
+          return value;
+        })
       ),
     };
   };
