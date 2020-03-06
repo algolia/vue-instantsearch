@@ -89,17 +89,6 @@ export const createInstantSearch = instantSearchOptions => {
 
     const state = results._state;
 
-    widget.init({
-      helper,
-      state,
-      templatesConfig: {},
-      createURL: () => '#',
-      onHistoryChange: () => {},
-      instantSearchInstance: search,
-      parent,
-      uiState: initialUiState,
-    });
-
     if (widget.$$type === 'ais.index') {
       // TODO: requires API in index widget
       widget.hydrate(derivedHelpers[widget.getIndexId()].lastResults);
