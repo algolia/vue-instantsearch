@@ -60,10 +60,8 @@ export const createInstantSearch = instantSearchOptions => {
         instantSearchInstance: search,
         parent: null,
         uiState: initialUiState,
+        derivedHelpers,
       });
-      // force set last results on derived helper, since we search before init
-      // TODO: PR for hydrate on index widget
-      search.mainIndex.hydrate(derivedHelpers[indexName].lastResults);
     });
   };
 
@@ -89,10 +87,14 @@ export const createInstantSearch = instantSearchOptions => {
 
     const state = results._state;
 
-    if (widget.$$type === 'ais.index') {
-      // TODO: requires API in index widget
-      widget.hydrate(derivedHelpers[widget.getIndexId()].lastResults);
-    }
+    // helper gets created in init, but that means it doesn't get the injected
+    // parameters, because those are from the lastResults
+    helper.state = state;
+
+    // in IS.js v3, we used to call .init on the widget, since this
+    // didn't happen on addWidget. Now it does get called and we don't need
+    // to force it anymore.
+    // see index.addWidgets() vs. v3.addWidget()
 
     widget.render({
       helper,
@@ -163,10 +165,8 @@ export const createInstantSearch = instantSearchOptions => {
       instantSearchInstance: search,
       parent: null,
       uiState: initialUiState,
+      derivedHelpers,
     });
-    // force set last results on derived helper, since we search before init
-    // TODO: PR for hydrate on index widget
-    search.mainIndex.hydrate(derivedHelpers[indexName].lastResults);
 
     search.hydrated = true;
   };
