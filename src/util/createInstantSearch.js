@@ -141,8 +141,6 @@ export const createInstantSearch = instantSearchOptions => {
       lastResults._rawResults
     );
 
-    // TODO: this is still causing _two_ close to identical requests on the frontend
-    // maybe a mismatch of parameters.
     derivedHelpers = Object.keys(derived).reduce((acc, indexId) => {
       // eslint-disable-next-line no-param-reassign
       acc[indexId] = {
