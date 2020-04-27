@@ -48,7 +48,8 @@
   },
   "dependencies": {
     "algoliasearch-helper": "^3.1.0",
-    "instantsearch.js": "^4.2.0"
+    "instantsearch.js": "^4.4.0",
+    "vue-server-renderer": "^2.6.11"
   },
   "peerDependencies": {
     "algoliasearch": ">= 3.32.0 < 5",

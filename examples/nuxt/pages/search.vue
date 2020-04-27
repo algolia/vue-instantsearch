@@ -61,7 +61,7 @@ import {
   AisSearchBox,
   AisStats,
   AisPagination,
-  createInstantSearch,
+  createServerRootMixin,
 } from 'vue-instantsearch';
 import algoliasearch from 'algoliasearch/lite';
 
@@ -70,62 +70,44 @@ const searchClient = algoliasearch(
   '6be0576ff61c053d5f9a3225e2a90f76'
 );
 
-const { instantsearch, rootMixin } = createInstantSearch({
-  searchClient,
-  indexName: 'instant_search',
-  initialUiState: {
-    instant_search: {
-      query: 'iphone',
-      page: 3,
-    },
-    refinement: {
-      refinementList: {
-        brand: ['Apple'],
-      },
-    },
-    querySuggestions: {
-      query: 'k',
-      page: 2,
-      configure: {
-        hitsPerPage: 5,
-      },
-    },
-  },
-});
-
 export default {
-  asyncData() {
-    return instantsearch
-      .findResultsState({
+  mixins: [
+    createServerRootMixin({
+      searchClient,
+      indexName: 'instant_search',
+      initialUiState: {
         instant_search: {
-          index: 'instant_search',
           query: 'iphone',
-          page: 2,
+          page: 3,
         },
         refinement: {
-          index: 'instant_search',
-          disjunctiveFacets: ['brand'],
-          disjunctiveFacetsRefinements: { brand: ['Apple'] },
-          // TODO: is this merging needed here? we don't know the shape so I think so.
-          query: 'iphone',
-          page: 2,
+          refinementList: {
+            brand: ['Apple'],
+          },
         },
         querySuggestions: {
-          index: 'instant_search_demo_query_suggestions',
           query: 'k',
-          hitsPerPage: 5,
-          page: 1,
+          page: 2,
+          configure: {
+            hitsPerPage: 5,
+          },
         },
-      })
-      .then(() => ({
-        algoliaState: instantsearch.getState(),
-      }));
+      },
+    }),
+  ],
+
+  serverPrefetch() {
+    return this.instantsearch.findResultsState(this).then(algoliaState => {
+      this.$ssrContext.nuxt.algoliaState = algoliaState;
+    });
   },
   beforeMount() {
-    // Nuxt will merge `asyncData` and `data` on the client
-    instantsearch.hydrate(this.algoliaState);
+    // const results = this.$nuxt.context.nuxtState.algoliaState;
+    // TODO: read from a real Nuxt API, but this.$nuxt.context is undefined
+    const results = window.__NUXT__.algoliaState;
+
+    this.instantsearch.hydrate(results);
   },
-  mixins: [rootMixin],
   components: {
     AisInstantSearchSsr,
     AisIndex,
