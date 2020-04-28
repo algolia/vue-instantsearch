@@ -105,17 +105,22 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
             return [
               indexId,
               {
-                __identifier: 'stringified',
+                // __identifier: 'stringified',
                 // TODO: more efficient way with looping maybe?
                 _state: JSON.parse(JSON.stringify(_state)),
                 _rawResults,
               },
             ];
           })
-          .reduce((acc, [key, val]) => {
-            acc[key] = val;
-            return acc;
-          }, {});
+          .reduce(
+            (acc, [key, val]) => {
+              acc[key] = val;
+              return acc;
+            },
+            {
+              __identifier: 'stringified',
+            }
+          );
       });
   };
 
@@ -124,24 +129,22 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
    * called in widget mixin with (this.widget, this)
    *
    * @param {object} widget The widget instance
-   * @param {object} instantSearchInstance The instantsearch root
    * @param {object} parent The local parent index
    * @returns {void}
    */
-  search.__forceRender = function(widget, instantSearchInstance, parent) {
+  search.__forceRender = function(widget, parent) {
     const localHelper = parent.getHelper();
 
     // TODO: maybe move this code to index widget?
-    let results =
-      instantSearchInstance.__initialSearchResults[parent.getIndexId()];
+    const results = search.__initialSearchResults[parent.getIndexId()];
 
     // TODO: maybe test differently, this happens in a deserialized form on client
-    if (results.__identifier === 'stringified') {
-      results = new SearchResults(
-        new SearchParameters(results._state),
-        results._rawResults
-      );
-    }
+    // if (results.__identifier === 'stringified') {
+    //   results = new SearchResults(
+    //     new SearchParameters(results._state),
+    //     results._rawResults
+    //   );
+    // }
 
     const state = results._state;
 
@@ -151,7 +154,7 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
 
     // TODO: copied from index widget, should be given to all widgets IMO
     const createURL = nextState =>
-      instantSearchInstance._createURL({
+      search._createURL({
         [parent.getIndexId()]: parent
           .getWidgets()
           .filter(w => w.$$type !== 'ais.index')
@@ -173,7 +176,7 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
       state,
       templatesConfig: {},
       createURL,
-      instantSearchInstance,
+      instantSearchInstance: search,
       searchMetadata: {
         isSearchStalled: false,
       },
@@ -193,8 +196,21 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
       return;
     }
 
-    // TODO: either a real API or a different global
-    search.__initialSearchResults = results;
+    if (results.__identifier === 'stringified') {
+      search.__initialSearchResults = Object.keys(results).reduce(
+        (acc, indexId) => {
+          acc[indexId] = new SearchResults(
+            new SearchParameters(results._state),
+            results._rawResults
+          );
+          return acc;
+        },
+        {}
+      );
+    } else {
+      // TODO: either a real API or a different global
+      search.__initialSearchResults = results;
+    }
 
     search.helper = helper;
     search.mainHelper = helper;
@@ -210,14 +226,20 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
   /**
    * marker for conditional code in index
    */
-  search.__isSsrServer = isServer;
+  search.__isServerRendering = isServer;
 
   /* eslint-enable no-param-reassign */
   return search;
 }
 
-export function createServerRootMixin(instantSearchOptions) {
+export function createServerRootMixin(instantSearchOptions = {}) {
   const { searchClient, indexName } = instantSearchOptions;
+
+  if (!searchClient || !indexName) {
+    throw new Error(
+      'createServerRootMixin requires the `searchClient` and `indexName` arguments to be passed'
+    );
+  }
 
   // put this in the user's root Vue instance
   // we can then reuse that InstantSearch instance seamlessly from `ais-instant-search-ssr`
