@@ -1,0 +1,40 @@
+diff --git a/node_modules/instantsearch.js/es/lib/InstantSearch.js b/node_modules/instantsearch.js/es/lib/InstantSearch.js
+index 6e7c7ee..469c7af 100644
+--- a/node_modules/instantsearch.js/es/lib/InstantSearch.js
++++ b/node_modules/instantsearch.js/es/lib/InstantSearch.js
+@@ -88,7 +88,9 @@ function (_EventEmitter) {
+     _defineProperty(_assertThisInitialized(_this), "middleware", []);
+ 
+     _defineProperty(_assertThisInitialized(_this), "scheduleSearch", defer(function () {
+-      _this.mainHelper.search();
++      if (_this.started) {
++        _this.mainHelper.search();
++      }
+     }));
+ 
+     _defineProperty(_assertThisInitialized(_this), "scheduleRender", defer(function () {
+diff --git a/node_modules/instantsearch.js/es/widgets/index/index.js b/node_modules/instantsearch.js/es/widgets/index/index.js
+index 677d6ba..e7cd95a 100644
+--- a/node_modules/instantsearch.js/es/widgets/index/index.js
++++ b/node_modules/instantsearch.js/es/widgets/index/index.js
+@@ -161,7 +161,7 @@ var index = function index(props) {
+             widget.init({
+               helper: helper,
+               parent: _this,
+-              uiState: {},
++              uiState: localInstantSearchInstance._initialUiState,
+               instantSearchInstance: localInstantSearchInstance,
+               state: helper.state,
+               templatesConfig: localInstantSearchInstance.templatesConfig,
+@@ -444,6 +444,11 @@ var index = function index(props) {
+ 
+       helper.on('change', function (_ref15) {
+         var state = _ref15.state;
++
++        if (instantSearchInstance.__isServerRendering && !instantSearchInstance.started) {
++          return;
++        }
++
+         localUiState = getLocalWidgetsState(localWidgets, {
+           searchParameters: state,
+           helper: helper
