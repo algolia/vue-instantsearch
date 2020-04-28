@@ -57,38 +57,41 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
   // TODO: is this the right name?
   // TODO: maybe play with .call / .apply
   search.findResultsState = function(componentInstance) {
-    // componentInstance.$vnode.componentOptions.Ctor.options.fetch = () => {};
-    // componentInstance.$vnode.componentOptions.Ctor.options.serverPrefetch = [];
+    let app;
+    return Promise.resolve()
+      .then(() => {
+        // componentInstance.$vnode.componentOptions.Ctor.options.fetch = () => {};
+        // componentInstance.$vnode.componentOptions.Ctor.options.serverPrefetch = [];
 
-    const extended = componentInstance.$vnode.componentOptions.Ctor.extend({
-      name: 'ais-ssr-root-component',
-    });
+        const extended = componentInstance.$vnode.componentOptions.Ctor.extend({
+          name: 'ais-ssr-root-component',
+        });
 
-    // TODO: one of these options is needed to prevent Nuxt's "fetch" from causing infinite loops
-    // extended.options.fetch = undefined;
-    // extended.options.serverPrefetch = undefined;
-    // extended.options._fetchOnServer = false;
-    // extended.superOptions = {};
+        // TODO: one of these options is needed to prevent Nuxt's "fetch" from causing infinite loops
+        // extended.options.fetch = undefined;
+        // extended.options.serverPrefetch = undefined;
+        // extended.options._fetchOnServer = false;
+        // extended.superOptions = {};
 
-    const app = new Vue(extended);
+        app = new Vue(extended);
 
-    app.$options.serverPrefetch = [];
-    // app.$options.fetch = () => {};
-    // app._fetchOnServer = false;
-    // app.$options._base.__nuxt__fetch__mixin__ = false;
-    // app.$options._fetchOnServer = false;
+        app.$options.serverPrefetch = [];
+        // app.$options.fetch = () => {};
+        // app._fetchOnServer = false;
+        // app.$options._base.__nuxt__fetch__mixin__ = false;
+        // app.$options._fetchOnServer = false;
 
-    app.instantsearch.helper = helper;
-    app.instantsearch.mainHelper = helper;
+        app.instantsearch.helper = helper;
+        app.instantsearch.mainHelper = helper;
 
-    app.instantsearch.mainIndex.init({
-      instantSearchInstance: app.instantsearch,
-      parent: null,
-      // TODO: public api?
-      uiState: app.instantsearch._initialUiState,
-    });
-
-    return renderToString(app)
+        app.instantsearch.mainIndex.init({
+          instantSearchInstance: app.instantsearch,
+          parent: null,
+          // TODO: public api?
+          uiState: app.instantsearch._initialUiState,
+        });
+      })
+      .then(renderToString(app))
       .then(() => searchOnlyWithDerivedHelpers(helper))
       .then(() => {
         const results = {};
@@ -196,21 +199,19 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
       return;
     }
 
-    if (results.__identifier === 'stringified') {
-      search.__initialSearchResults = Object.keys(results).reduce(
-        (acc, indexId) => {
-          acc[indexId] = new SearchResults(
-            new SearchParameters(results._state),
-            results._rawResults
-          );
-          return acc;
-        },
-        {}
-      );
-    } else {
-      // TODO: either a real API or a different global
-      search.__initialSearchResults = results;
-    }
+    const initialResults =
+      results.__identifier === 'stringified'
+        ? Object.keys(results).reduce((acc, indexId) => {
+            acc[indexId] = new SearchResults(
+              new SearchParameters(results._state),
+              results._rawResults
+            );
+            return acc;
+          }, {})
+        : results;
+
+    // TODO: either a real API or a different global
+    search.__initialSearchResults = initialResults;
 
     search.helper = helper;
     search.mainHelper = helper;
