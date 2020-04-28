@@ -28,7 +28,7 @@ it('child widgets get added to their parent index', () => {
     provide() {
       return {
         $_ais_instantSearchInstance: {
-          addWidgets: rootAddWidgets,
+          mainIndex: { addWidgets: rootAddWidgets },
         },
       };
     },
