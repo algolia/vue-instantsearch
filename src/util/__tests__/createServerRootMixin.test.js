@@ -20,6 +20,18 @@ function renderToString(app) {
   );
 }
 
+const forceIsServerMixin = {
+  beforeCreate() {
+    Object.setPrototypeOf(
+      this,
+      new Proxy(Object.getPrototypeOf(this), {
+        get: (target, key, receiver) =>
+          key === '$isServer' ? true : Reflect.get(target, key, receiver),
+      })
+    );
+  },
+};
+
 process.env.VUE_ENV = 'server';
 
 describe('createServerRootMixin', () => {
@@ -151,26 +163,26 @@ describe('createServerRootMixin', () => {
       const searchClient = createFakeClient();
 
       const app = {
-        beforeCreate() {
-          Object.setPrototypeOf(
-            this,
-            new Proxy(Object.getPrototypeOf(this), {
-              get: (target, key, receiver) =>
-                key === '$isServer' ? true : Reflect.get(target, key, receiver),
-            })
-          );
-        },
-
         mixins: [
+          forceIsServerMixin,
           createServerRootMixin({
             searchClient,
             indexName: 'hello',
+            // initialUiState: {
+            //   hello: {
+            //     configure: {
+            //       hitsPerPage: 100,
+            //     },
+            //   },
+            // },
           }),
         ],
         render(h) {
           return h(InstantSearchSsr, {}, [
             h(Configure, {
-              hitsPerPage: 100,
+              attrs: {
+                hitsPerPage: 100,
+              },
             }),
             h(SearchBox),
           ]);
@@ -181,6 +193,7 @@ describe('createServerRootMixin', () => {
       };
 
       const wrapper = new Vue({
+        mixins: [forceIsServerMixin],
         render(h) {
           return h(app);
         },
@@ -190,27 +203,27 @@ describe('createServerRootMixin', () => {
 
       const { instantsearch } = wrapper.$children[0].$data;
 
-      // TODO: it's wrong, should have configure etc. there...
       expect(instantsearch.mainIndex.getWidgetState()).toMatchInlineSnapshot(`
 Object {
-  "hello": Object {},
+  "hello": Object {
+    "configure": Object {
+      "hitsPerPage": 100,
+    },
+  },
 }
 `);
 
-      // TODO: because of that, it's also not right here
-      expect(searchClient.search.mock.calls).toMatchInlineSnapshot(`
+      expect(searchClient.search).toHaveBeenCalledTimes(1);
+      expect(searchClient.search.mock.calls[0][0]).toMatchInlineSnapshot(`
 Array [
-  Array [
-    Array [
-      Object {
-        "indexName": "hello",
-        "params": Object {
-          "facets": Array [],
-          "tagFilters": "",
-        },
-      },
-    ],
-  ],
+  Object {
+    "indexName": "hello",
+    "params": Object {
+      "facets": Array [],
+      "hitsPerPage": 100,
+      "tagFilters": "",
+    },
+  },
 ]
 `);
     });
