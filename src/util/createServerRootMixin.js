@@ -45,8 +45,9 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
   /* eslint-disable no-param-reassign */
 
   const helper = algoliaHelper(searchClient, indexName, {
-    highlightPreTag: '__ais-highlight__',
-    highlightPostTag: '__/ais-highlight__',
+    // It's not required becuase hits will take care of it.
+    // highlightPreTag: '__ais-highlight__',
+    // highlightPostTag: '__/ais-highlight__',
   });
 
   /**
@@ -91,7 +92,7 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
           uiState: app.instantsearch._initialUiState,
         });
       })
-      .then(renderToString(app))
+      .then(() => renderToString(app))
       .then(() => searchOnlyWithDerivedHelpers(helper))
       .then(() => {
         const results = {};
@@ -199,12 +200,14 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
       return;
     }
 
+    const { __identifier, ...rest } = results;
+
     const initialResults =
-      results.__identifier === 'stringified'
-        ? Object.keys(results).reduce((acc, indexId) => {
+      __identifier === 'stringified'
+        ? Object.keys(rest).reduce((acc, indexId) => {
             acc[indexId] = new SearchResults(
-              new SearchParameters(results._state),
-              results._rawResults
+              new SearchParameters(results[indexId]._state),
+              results[indexId]._rawResults
             );
             return acc;
           }, {})
