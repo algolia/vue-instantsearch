@@ -41,21 +41,16 @@ function searchOnlyWithDerivedHelpers(helper) {
   });
 }
 
-function augmentInstantSearch(search, searchClient, indexName, isServer) {
+function augmentInstantSearch(search, searchClient, indexName) {
   /* eslint-disable no-param-reassign */
 
-  const helper = algoliaHelper(searchClient, indexName, {
-    // It's not required becuase hits will take care of it.
-    // highlightPreTag: '__ais-highlight__',
-    // highlightPostTag: '__/ais-highlight__',
-  });
+  const helper = algoliaHelper(searchClient, indexName);
 
   /**
    * main API for SSR, called in asyncData of a root component which contains instantsearch
    * @param {object} componentInstance the calling component's `this`
    * @returns {Promise<void>} xx
    */
-  // TODO: is this the right name?
   // TODO: maybe play with .call / .apply
   search.findResultsState = function(componentInstance) {
     let app;
@@ -142,14 +137,6 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
     // TODO: maybe move this code to index widget?
     const results = search.__initialSearchResults[parent.getIndexId()];
 
-    // TODO: maybe test differently, this happens in a deserialized form on client
-    // if (results.__identifier === 'stringified') {
-    //   results = new SearchResults(
-    //     new SearchParameters(results._state),
-    //     results._rawResults
-    //   );
-    // }
-
     const state = results._state;
 
     // helper gets created in init, but that means it doesn't get the injected
@@ -200,11 +187,12 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
       return;
     }
 
-    const { __identifier, ...rest } = results;
-
     const initialResults =
-      __identifier === 'stringified'
-        ? Object.keys(rest).reduce((acc, indexId) => {
+      results.__identifier === 'stringified'
+        ? Object.keys(results).reduce((acc, indexId) => {
+            if (indexId === '__identifier') {
+              return acc;
+            }
             acc[indexId] = new SearchResults(
               new SearchParameters(results[indexId]._state),
               results[indexId]._rawResults
@@ -226,11 +214,6 @@ function augmentInstantSearch(search, searchClient, indexName, isServer) {
       uiState: search._initialUiState,
     });
   };
-
-  /**
-   * marker for conditional code in index
-   */
-  search.__isServerRendering = isServer;
 
   /* eslint-enable no-param-reassign */
   return search;
@@ -260,8 +243,7 @@ export function createServerRootMixin(instantSearchOptions = {}) {
         instantsearch: augmentInstantSearch(
           instantsearch(instantSearchOptions),
           searchClient,
-          indexName,
-          this.$isServer
+          indexName
         ),
       };
     },

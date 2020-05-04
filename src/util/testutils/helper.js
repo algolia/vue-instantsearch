@@ -1,5 +1,4 @@
 export const createSerializedState = () => ({
-  identifier: 'stringified',
   _rawResults: [
     {
       hits: [

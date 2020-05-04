@@ -8,6 +8,11 @@ import SearchBox from '../../components/SearchBox.vue';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
+import {
+  SearchResults,
+  SearchParameters,
+  AlgoliaSearchHelper,
+} from 'algoliasearch-helper';
 
 jest.unmock('instantsearch.js/es');
 
@@ -129,19 +134,6 @@ describe('createServerRootMixin', () => {
     });
   });
 
-  it('augments instantsearch with __isServerRendering', () => {
-    const app = new Vue({
-      mixins: [
-        createServerRootMixin({
-          searchClient: createFakeClient(),
-          indexName: 'xxx',
-        }),
-      ],
-    });
-
-    expect(app.$data.instantsearch.__isServerRendering).toBe(app.$isServer);
-  });
-
   describe('findResultsState', () => {
     it('provides findResultsState', () => {
       const app = new Vue({
@@ -159,7 +151,7 @@ describe('createServerRootMixin', () => {
       expect(typeof app.$data.instantsearch.findResultsState).toBe('function');
     });
 
-    it.only('detects child widgets', async () => {
+    it('detects child widgets', async () => {
       const searchClient = createFakeClient();
 
       const app = {
@@ -168,13 +160,6 @@ describe('createServerRootMixin', () => {
           createServerRootMixin({
             searchClient,
             indexName: 'hello',
-            // initialUiState: {
-            //   hello: {
-            //     configure: {
-            //       hitsPerPage: 100,
-            //     },
-            //   },
-            // },
           }),
         ],
         render(h) {
@@ -203,7 +188,7 @@ describe('createServerRootMixin', () => {
 
       const { instantsearch } = wrapper.$children[0].$data;
 
-      expect(instantsearch.mainIndex.getWidgetState({})).toMatchInlineSnapshot(`
+      expect(instantsearch.mainIndex.getWidgetState()).toMatchInlineSnapshot(`
 Object {
   "hello": Object {
     "configure": Object {
@@ -231,7 +216,166 @@ Array [
   });
 
   describe('hydrate', () => {
-    // TODO
+    it('sets __initialSearchResults', () => {
+      const serialized = createSerializedState();
+
+      const app = {
+        mixins: [
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'hello',
+          }),
+        ],
+        render(h) {
+          return h(InstantSearchSsr, {}, [
+            h(Configure, {
+              attrs: {
+                hitsPerPage: 100,
+              },
+            }),
+            h(SearchBox),
+          ]);
+        },
+        // in test, beforeCreated doesn't have $data yet, but IRL it does
+        created() {
+          this.instantsearch.hydrate({
+            __identifier: 'stringified',
+            hello: serialized,
+          });
+        },
+      };
+
+      const {
+        vm: { instantsearch },
+      } = mount(app);
+
+      expect(instantsearch.__initialSearchResults).toEqual(
+        expect.objectContaining({ hello: expect.any(SearchResults) })
+      );
+
+      expect(instantsearch.__initialSearchResults.hello).toEqual(
+        expect.objectContaining(serialized)
+      );
+    });
+
+    it('accepts non-stringified results', () => {
+      const serialized = createSerializedState();
+      const nonSerialized = new SearchResults(
+        new SearchParameters(serialized._state),
+        serialized._rawResults
+      );
+
+      const app = {
+        mixins: [
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'movies',
+          }),
+        ],
+        render(h) {
+          return h(InstantSearchSsr, {}, [
+            h(Configure, {
+              attrs: {
+                hitsPerPage: 100,
+              },
+            }),
+            h(SearchBox),
+          ]);
+        },
+        // in test, beforeCreated doesn't have $data yet, but IRL it does
+        created() {
+          this.instantsearch.hydrate({
+            movies: nonSerialized,
+          });
+        },
+      };
+
+      const {
+        vm: { instantsearch },
+      } = mount(app);
+
+      expect(instantsearch.__initialSearchResults).toEqual(
+        expect.objectContaining({ movies: expect.any(SearchResults) })
+      );
+
+      expect(instantsearch.__initialSearchResults.movies).toBe(nonSerialized);
+    });
+
+    it('inits the main index', () => {
+      const serialized = createSerializedState();
+
+      const app = {
+        mixins: [
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'hello',
+          }),
+        ],
+        render(h) {
+          return h(InstantSearchSsr, {}, [
+            h(Configure, {
+              attrs: {
+                hitsPerPage: 100,
+              },
+            }),
+            h(SearchBox),
+          ]);
+        },
+      };
+
+      const {
+        vm: { instantsearch },
+      } = mount(app);
+
+      expect(instantsearch.mainIndex.getHelper()).toBe(null);
+
+      instantsearch.hydrate({
+        __identifier: 'stringified',
+        hello: serialized,
+      });
+
+      expect(instantsearch.mainIndex.getHelper()).toEqual(
+        expect.any(AlgoliaSearchHelper)
+      );
+    });
+
+    it('sets helper & mainHelper', () => {
+      const serialized = createSerializedState();
+
+      const app = {
+        mixins: [
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'hello',
+          }),
+        ],
+        render(h) {
+          return h(InstantSearchSsr, {}, [
+            h(Configure, {
+              attrs: {
+                hitsPerPage: 100,
+              },
+            }),
+            h(SearchBox),
+          ]);
+        },
+      };
+
+      const {
+        vm: { instantsearch },
+      } = mount(app);
+
+      expect(instantsearch.helper).toBe(null);
+      expect(instantsearch.mainHelper).toBe(null);
+
+      instantsearch.hydrate({
+        __identifier: 'stringified',
+        hello: serialized,
+      });
+
+      expect(instantsearch.helper).toEqual(expect.any(AlgoliaSearchHelper));
+      expect(instantsearch.mainHelper).toEqual(expect.any(AlgoliaSearchHelper));
+    });
   });
 
   describe('__forceRender', () => {
