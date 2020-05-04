@@ -14,19 +14,21 @@ index 6e7c7ee..469c7af 100644
 
      _defineProperty(_assertThisInitialized(_this), "scheduleRender", defer(function () {
 diff --git a/node_modules/instantsearch.js/es/widgets/index/index.js b/node_modules/instantsearch.js/es/widgets/index/index.js
-index 677d6ba..4a7a0d5 100644
+index 677d6ba..5bfd193 100644
 --- a/node_modules/instantsearch.js/es/widgets/index/index.js
 +++ b/node_modules/instantsearch.js/es/widgets/index/index.js
-@@ -34,7 +34,7 @@ function isIndexWidget(widget) {
+@@ -34,7 +34,9 @@ function isIndexWidget(widget) {
    return widget.$$type === 'ais.index';
  }
 
 -function getLocalWidgetsState(widgets, widgetStateOptions) {
-+function getLocalWidgetsState(widgets, widgetStateOptions, initialUiState) {
++function getLocalWidgetsState(widgets, widgetStateOptions, _initialUiState) {
++  var initialUiState = _initialUiState || {};
++
    return widgets.filter(function (widget) {
      return !isIndexWidget(widget);
    }).reduce(function (uiState, widget) {
-@@ -43,7 +43,7 @@ function getLocalWidgetsState(widgets, widgetStateOptions) {
+@@ -43,7 +45,7 @@ function getLocalWidgetsState(widgets, widgetStateOptions) {
      }
 
      return widget.getWidgetState(uiState, widgetStateOptions);
@@ -35,16 +37,28 @@ index 677d6ba..4a7a0d5 100644
  }
 
  function getLocalWidgetsSearchParameters(widgets, widgetSearchParametersOptions) {
-@@ -156,12 +156,19 @@ var index = function index(props) {
+@@ -69,9 +71,15 @@ function resetPageFromWidgets(widgets) {
+   }
+
+   indexWidgets.forEach(function (widget) {
+-    var widgetHelper = widget.getHelper(); // @ts-ignore @TODO: remove "ts-ignore" once `resetPage()` is typed in the helper
++    var widgetHelper = widget.getHelper();
++
++    // @ts-ignore remove once resetPage is a helper method
++    widgetHelper._change({
++      // @ts-ignore @TODO: remove "ts-ignore" once `resetPage()` is typed in the helper
++      state: widgetHelper.state.resetPage(),
++      isPageReset: true,
++    });
+
+-    widgetHelper.setState(widgetHelper.state.resetPage());
+     resetPageFromWidgets(widget.getWidgets());
+   });
+ }
+@@ -156,12 +164,13 @@ var index = function index(props) {
            uiState: localUiState,
            initialSearchParameters: helper.state
          }));
-+
-+        // when you add a widget, the local ui state needs to be updated
-+        localUiState = getLocalWidgetsState(localWidgets, {
-+          searchParameters: helper.state,
-+          helper: helper
-+        }, localUiState);
 +
          widgets.forEach(function (widget) {
            if (localInstantSearchInstance && widget.init) {
@@ -56,23 +70,21 @@ index 677d6ba..4a7a0d5 100644
                instantSearchInstance: localInstantSearchInstance,
                state: helper.state,
                templatesConfig: localInstantSearchInstance.templatesConfig,
-@@ -444,6 +451,11 @@ var index = function index(props) {
+@@ -444,10 +453,16 @@ var index = function index(props) {
 
        helper.on('change', function (_ref15) {
          var state = _ref15.state;
++        var isPageReset = _ref15.isPageReset;
 +
-+        if (instantSearchInstance.__isServerRendering && !instantSearchInstance.started) {
-+          return;
++        if (isPageReset) {
++          localUiState.page = undefined;
 +        }
 +
          localUiState = getLocalWidgetsState(localWidgets, {
            searchParameters: state,
            helper: helper
-@@ -501,6 +513,7 @@ var index = function index(props) {
-       derivedHelper = null;
+-        });
++        }, localUiState);
+         instantSearchInstance.onStateChange();
+       });
      },
-     getWidgetState: function getWidgetState(uiState) {
-+      console.log('hi', localUiState)
-       return localWidgets.filter(isIndexWidget).reduce(function (previousUiState, innerIndex) {
-         return innerIndex.getWidgetState(previousUiState);
-       }, _objectSpread({}, uiState, _defineProperty({}, this.getIndexId(), localUiState)));

@@ -203,7 +203,7 @@ describe('createServerRootMixin', () => {
 
       const { instantsearch } = wrapper.$children[0].$data;
 
-      expect(instantsearch.mainIndex.getWidgetState()).toMatchInlineSnapshot(`
+      expect(instantsearch.mainIndex.getWidgetState({})).toMatchInlineSnapshot(`
 Object {
   "hello": Object {
     "configure": Object {
@@ -221,6 +221,7 @@ Array [
     "params": Object {
       "facets": Array [],
       "hitsPerPage": 100,
+      "query": "",
       "tagFilters": "",
     },
   },
