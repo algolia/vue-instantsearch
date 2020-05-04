@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import InstantSearch from '../InstantSearch';
 import { createWidgetMixin } from '../../mixins/widget';
+import { createFakeClient } from '../../util/testutils/client';
 
 jest.unmock('instantsearch.js/es');
 
@@ -19,24 +20,7 @@ it('child widgets get added to its parent instantsearch', () => {
 
   const wrapper = mount(InstantSearch, {
     propsData: {
-      searchClient: {
-        search(requests) {
-          return Promise.resolve({
-            results: requests.map(() => ({
-              query: '',
-              page: 0,
-              hitsPerPage: 20,
-              hits: [],
-              nbHits: 0,
-              nbPages: 0,
-              params: '',
-              exhaustiveNbHits: true,
-              exhaustiveFacetsCount: true,
-              processingTimeMS: 0,
-            })),
-          });
-        },
-      },
+      searchClient: createFakeClient(),
       indexName: 'something',
     },
     slots: {
