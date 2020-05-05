@@ -116,11 +116,11 @@
     },
     {
       "path": "./dist/vue-instantsearch.esm.js",
-      "maxSize": "14.50 kB"
+      "maxSize": "15 kB"
     },
     {
       "path": "./dist/vue-instantsearch.common.js",
-      "maxSize": "14.75 kB"
+      "maxSize": "15.25 kB"
     }
   ],
   "jest": {
