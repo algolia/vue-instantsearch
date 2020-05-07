@@ -10,3 +10,5 @@ coverage
 /website/stories
 /website/examples/*
 !/website/examples/index.html
+
+.idea/
