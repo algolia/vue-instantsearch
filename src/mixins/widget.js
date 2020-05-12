@@ -30,7 +30,6 @@ export const createWidgetMixin = ({ connector } = {}) => ({
       this.getParentIndex().addWidgets([this.widget]);
 
       if (
-        // TODO: change here if we change name of __initialSearchResults
         this.instantSearchInstance.__initialSearchResults &&
         !this.instantSearchInstance.started
       ) {

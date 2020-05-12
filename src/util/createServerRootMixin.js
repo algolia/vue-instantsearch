@@ -41,41 +41,37 @@ function searchOnlyWithDerivedHelpers(helper) {
   });
 }
 
-function augmentInstantSearch(search, searchClient, indexName) {
+function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
   /* eslint-disable no-param-reassign */
 
   const helper = algoliaHelper(searchClient, indexName);
+  const search = instantsearch(instantSearchOptions);
+
+  let resultsState;
 
   /**
    * main API for SSR, called in asyncData of a root component which contains instantsearch
    * @param {object} componentInstance the calling component's `this`
-   * @returns {Promise<void>} xx
+   * @returns {Promise} result of the search, to save for .hydrate
    */
-  // TODO: maybe play with .call / .apply
   search.findResultsState = function(componentInstance) {
     let app;
     return Promise.resolve()
       .then(() => {
-        // componentInstance.$vnode.componentOptions.Ctor.options.fetch = () => {};
-        // componentInstance.$vnode.componentOptions.Ctor.options.serverPrefetch = [];
-
-        const extended = componentInstance.$vnode.componentOptions.Ctor.extend({
+        const options = {
+          serverPrefetch: undefined,
+          fetch: undefined,
+          _base: undefined,
           name: 'ais-ssr-root-component',
-        });
+        };
 
-        // TODO: one of these options is needed to prevent Nuxt's "fetch" from causing infinite loops
-        // extended.options.fetch = undefined;
-        // extended.options.serverPrefetch = undefined;
-        // extended.options._fetchOnServer = false;
-        // extended.superOptions = {};
+        const extended = componentInstance.$vnode
+          ? componentInstance.$vnode.componentOptions.Ctor.extend(options)
+          : Object.assign({}, componentInstance.$options, options);
 
         app = new Vue(extended);
 
         app.$options.serverPrefetch = [];
-        // app.$options.fetch = () => {};
-        // app._fetchOnServer = false;
-        // app.$options._base.__nuxt__fetch__mixin__ = false;
-        // app.$options._fetchOnServer = false;
 
         app.instantsearch.helper = helper;
         app.instantsearch.mainHelper = helper;
@@ -83,7 +79,6 @@ function augmentInstantSearch(search, searchClient, indexName) {
         app.instantsearch.mainIndex.init({
           instantSearchInstance: app.instantsearch,
           parent: null,
-          // TODO: public api?
           uiState: app.instantsearch._initialUiState,
         });
       })
@@ -97,15 +92,12 @@ function augmentInstantSearch(search, searchClient, indexName) {
 
         search.hydrate(results);
 
-        // TODO: leaner serialization, we only need _rawResults & _state as json
-        return Object.keys(results)
+        resultsState = Object.keys(results)
           .map(indexId => {
             const { _state, _rawResults } = results[indexId];
             return [
               indexId,
               {
-                // __identifier: 'stringified',
-                // TODO: more efficient way with looping maybe?
                 _state: JSON.parse(JSON.stringify(_state)),
                 _rawResults,
               },
@@ -120,7 +112,18 @@ function augmentInstantSearch(search, searchClient, indexName) {
               __identifier: 'stringified',
             }
           );
+        return search.getState();
       });
+  };
+
+  /**
+   * @returns {Promise} result state to serialize and enter into .hydrate
+   */
+  search.getState = function() {
+    if (!resultsState) {
+      throw new Error('You need to wait for findResultsState to finish');
+    }
+    return resultsState;
   };
 
   /**
@@ -134,7 +137,6 @@ function augmentInstantSearch(search, searchClient, indexName) {
   search.__forceRender = function(widget, parent) {
     const localHelper = parent.getHelper();
 
-    // TODO: maybe move this code to index widget?
     const results = search.__initialSearchResults[parent.getIndexId()];
 
     const state = results._state;
@@ -201,7 +203,6 @@ function augmentInstantSearch(search, searchClient, indexName) {
           }, {})
         : results;
 
-    // TODO: either a real API or a different global
     search.__initialSearchResults = initialResults;
 
     search.helper = helper;
@@ -210,7 +211,6 @@ function augmentInstantSearch(search, searchClient, indexName) {
     search.mainIndex.init({
       instantSearchInstance: search,
       parent: null,
-      // TODO: make this public?
       uiState: search._initialUiState,
     });
   };
@@ -228,6 +228,12 @@ export function createServerRootMixin(instantSearchOptions = {}) {
     );
   }
 
+  const search = augmentInstantSearch(
+    instantSearchOptions,
+    searchClient,
+    indexName
+  );
+
   // put this in the user's root Vue instance
   // we can then reuse that InstantSearch instance seamlessly from `ais-instant-search-ssr`
   const rootMixin = {
@@ -240,11 +246,7 @@ export function createServerRootMixin(instantSearchOptions = {}) {
       return {
         // this is in data, so that the real & duplicated render do not share
         // the same instantsearch instance.
-        instantsearch: augmentInstantSearch(
-          instantsearch(instantSearchOptions),
-          searchClient,
-          indexName
-        ),
+        instantsearch: search,
       };
     },
   };
