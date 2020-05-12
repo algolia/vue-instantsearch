@@ -6,7 +6,8 @@
     "lint": "vue-cli-service lint",
     "build": "vue-cli-service ssr:build",
     "serve": "vue-cli-service ssr:serve",
-    "start": "cross-env NODE_ENV=production vue-cli-service ssr:serve --mode production"
+    "start": "cross-env NODE_ENV=production vue-cli-service ssr:serve --mode production",
+    "postinstall": "npx patch-package"
   },
   "dependencies": {
     "algoliasearch": "^4.0.1",
