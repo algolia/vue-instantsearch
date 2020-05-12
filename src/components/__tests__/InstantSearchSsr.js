@@ -3,8 +3,6 @@ import instantsearch from 'instantsearch.js/es';
 import Vue from 'vue';
 import InstantSearchSsr from '../InstantSearchSsr';
 import SearchBox from '../SearchBox.vue';
-import { createSerializedState } from '../../util/testutils/helper';
-import { createServerRootMixin } from '../../util/createServerRootMixin';
 import { createFakeClient } from '../../util/testutils/client';
 
 jest.unmock('instantsearch.js/es');
