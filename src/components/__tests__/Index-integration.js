@@ -2,7 +2,6 @@ jest.unmock('instantsearch.js/es');
 import { mount } from '@vue/test-utils';
 import Index from '../Index';
 import instantsearch from 'instantsearch.js/es';
-import { SearchParameters } from 'algoliasearch-helper';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../../util/testutils/client';
 
