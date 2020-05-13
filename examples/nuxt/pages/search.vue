@@ -62,8 +62,7 @@ import {
   AisStats,
   AisPagination,
   createServerRootMixin,
-  // eslint-disable-next-line import/no-unresolved we actually do have this file in the dependencies, so eslint is wrong
-} from 'vue-instantsearch';
+} from 'vue-instantsearch'; // eslint-disable-line import/no-unresolved
 import algoliasearch from 'algoliasearch/lite';
 
 const searchClient = algoliasearch(
