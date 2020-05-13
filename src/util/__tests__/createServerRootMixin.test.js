@@ -334,8 +334,8 @@ Array [
         hello: serialized,
       });
 
-      expect(instantsearch.mainIndex.getHelper()).toEqual(
-        expect.any(AlgoliaSearchHelper)
+      expect(instantsearch.mainIndex.getHelper().constructor.name).toBe(
+        'AlgoliaSearchHelper'
       );
     });
 
