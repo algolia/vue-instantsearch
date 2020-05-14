@@ -307,4 +307,28 @@ describe('refinement', () => {
 
     expect(refine).toHaveBeenLastCalledWith(['100', '106']);
   });
+
+  it('refines correctly when `start` given and user clicks submit without changing input field', () => {
+    const refine = jest.fn();
+    __setState({
+      refine,
+      start: [50, 100],
+      range: {
+        min: 1,
+        max: 5000,
+      },
+    });
+
+    const wrapper = mount(RangeInput, {
+      propsData: {
+        ...defaultProps,
+      },
+    });
+
+    const form = wrapper.find('form');
+    form.trigger('submit');
+
+    expect(refine).toHaveBeenCalledTimes(1);
+    expect(refine).toHaveBeenCalledWith([50, 100]);
+  });
 });

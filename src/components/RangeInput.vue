@@ -11,7 +11,7 @@
     >
       <form
         :class="suit('form')"
-        @submit.prevent="refine({ min: minInput, max: maxInput })"
+        @submit.prevent="refine({ min: minInput || values.min, max: maxInput || values.max })"
       >
         <label :class="suit('label')">
           <slot name="minLabel" />
