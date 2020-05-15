@@ -98,6 +98,10 @@ export default {
       maxInput: undefined,
     };
   },
+  updated() {
+    this.minInput = undefined;
+    this.maxInput = undefined;
+  },
   computed: {
     widgetParams() {
       return {

@@ -331,4 +331,42 @@ describe('refinement', () => {
     expect(refine).toHaveBeenCalledTimes(1);
     expect(refine).toHaveBeenCalledWith([50, 100]);
   });
+
+  it('refines correctly even when state changes', () => {
+    const refine = jest.fn();
+    __setState({
+      ...defaultState,
+      refine,
+    });
+
+    const wrapper = mount(RangeInput, {
+      propsData: {
+        ...defaultProps,
+      },
+    });
+
+    // refine for the first time
+    const minInput = wrapper.find('.ais-RangeInput-input--min');
+    minInput.element.value = 10;
+    minInput.trigger('change');
+
+    const maxInput = wrapper.find('.ais-RangeInput-input--max');
+    maxInput.element.value = 100;
+    maxInput.trigger('change');
+
+    const form = wrapper.find('form');
+    form.trigger('submit');
+
+    expect(refine).toHaveBeenCalledTimes(1);
+    expect(refine).toHaveBeenCalledWith(['10', '100']);
+
+    // update the state
+    wrapper.setData({
+      state: { start: [50, 200] }, // min: 10 -> 50, max: 100 -> 200
+    });
+
+    form.trigger('submit');
+    expect(refine).toHaveBeenCalledTimes(2);
+    expect(refine).toHaveBeenCalledWith([50, 200]);
+  });
 });
