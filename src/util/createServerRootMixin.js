@@ -50,7 +50,7 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
   let resultsState;
 
   /**
-   * main API for SSR, called in asyncData of a root component which contains instantsearch
+   * main API for SSR, called in serverPrefetch of a root component which contains instantsearch
    * @param {object} componentInstance the calling component's `this`
    * @returns {Promise} result of the search, to save for .hydrate
    */
