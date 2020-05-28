@@ -20,6 +20,15 @@ storiesOf('ais-toggle-refinement', module)
       />
     `,
   }))
+  .add('with an on value (with multiple values)', () => ({
+    template: `
+      <ais-toggle-refinement
+        attribute="brand"
+        label="Brands starting with \"i\""
+        :on="['Samsung', 'Metra']"
+      />
+    `,
+  }))
   .add('with an off value', () => ({
     template: `
       <ais-toggle-refinement
