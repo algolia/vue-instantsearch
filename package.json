@@ -30,7 +30,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o website/stories",
     "examples:build": "yarn build && ./examples/build.sh",
-    "website:build": "yarn storybook:build && yarn examples:build",
+    "website:build": "yarn storybook:build && yarn examples:build && ./scripts/clean-node-modules.sh",
     "test": "jest",
     "test:build": "yarn build && bundlesize",
     "test:update": "jest --updateSnapshot",
