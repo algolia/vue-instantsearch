@@ -11,7 +11,7 @@
     >
       <form
         :class="suit('form')"
-        @submit.prevent="refine({ min: minInput || values.min, max: maxInput || values.max })"
+        @submit.prevent="refine({ min: pick(minInput, values.min), max: pick(maxInput, values.max) })"
       >
         <label :class="suit('label')">
           <slot name="minLabel" />
@@ -128,6 +128,13 @@ export default {
     },
   },
   methods: {
+    pick(first, second) {
+      if (first !== null && first !== undefined) {
+        return first;
+      } else {
+        return second;
+      }
+    },
     refine({ min, max }) {
       this.state.refine([min, max]);
     },
