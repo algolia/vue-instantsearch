@@ -29,7 +29,7 @@ function searchOnlyWithDerivedHelpers(helper) {
     helper.searchOnlyWithDerivedHelpers();
 
     // we assume all derived helpers resolve at least in the same tick
-    helper.derivedHelpers[0].on('result', e => {
+    helper.derivedHelpers[0].on('result', () => {
       resolve();
     });
 
