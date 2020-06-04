@@ -98,7 +98,11 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
             return [
               indexId,
               {
-                _state: JSON.parse(JSON.stringify(_state)),
+                // copy just the values of SearchParameters, not the functions
+                _state: Object.keys(_state).reduce((acc, key) => {
+                  acc[key] = _state[key];
+                  return acc;
+                }, {}),
                 _rawResults,
               },
             ];
