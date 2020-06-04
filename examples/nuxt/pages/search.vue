@@ -101,8 +101,6 @@ export default {
     });
   },
   beforeMount() {
-    // const results = this.$nuxt.context.nuxtState.algoliaState;
-    // TODO: read from a real Nuxt API, but this.$nuxt.context is undefined
     const results = window.__NUXT__.algoliaState;
 
     this.instantsearch.hydrate(results);

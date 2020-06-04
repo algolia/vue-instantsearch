@@ -62,7 +62,6 @@ export async function createApp({
               if (typeof window !== 'object') {
                 return;
               }
-              // TODO: handle vue route changes
               this._onPopState = event => {
                 if (this.writeTimer) {
                   window.clearTimeout(this.writeTimer);
@@ -89,7 +88,6 @@ export async function createApp({
               }
 
               // we purposely don't write on dispose, to prevent double entries on navigation
-              // TODO: this should be an option in the real router
             },
           },
         },
