@@ -23,7 +23,7 @@ aliases:
 defaults: &defaults
   working_directory: ~/vue-instantsearch
   docker:
-    - image: circleci/node:8.15.1@sha256:3d32b8457083c33c04eb60fac02c0e39de5bd28de4b95393d7dcb5aa37b20af7
+    - image: circleci/node:12.16.3@sha256:c7601ce2bb49fc4563d4415b8104a8e00d1a314844f13a580fd1f10817e0a561
 
 version: 2
 jobs:
