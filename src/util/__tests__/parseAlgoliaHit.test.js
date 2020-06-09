@@ -1,5 +1,5 @@
 // copied from React InstantSearch
-import { parseAlgoliaHit } from '../highlight';
+import { parseAlgoliaHit } from '../parseAlgoliaHit';
 
 describe('parseAlgoliaHit()', () => {
   it('it does not break when there is a missing attribute', () => {
