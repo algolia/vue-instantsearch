@@ -25,7 +25,7 @@ describe('parseAlgoliaHit()', () => {
 
   it('creates a single element when there is only a tag', () => {
     const textValue = 'foo bar baz';
-    const value = `<em>${textValue}</em>`;
+    const value = `__ais-highlight__${textValue}__/ais-highlight__`;
     const attribute = 'attr';
     const out = parseAlgoliaHit({
       attribute,
@@ -37,7 +37,7 @@ describe('parseAlgoliaHit()', () => {
 
   it('fetches and parses a deep attribute', () => {
     const textValue = 'foo bar baz';
-    const value = `<em>${textValue}</em>`;
+    const value = `__ais-highlight__${textValue}__/ais-highlight__`;
     const hit = {
       lvl0: { lvl1: { lvl2: value } },
       _highlightResult: {
@@ -53,7 +53,8 @@ describe('parseAlgoliaHit()', () => {
   });
 
   it('parses the string and returns the part that are highlighted - 1 big highlight', () => {
-    const str = 'like <em>al</em>golia does <em>al</em>golia';
+    const str =
+      'like __ais-highlight__al__/ais-highlight__golia does __ais-highlight__al__/ais-highlight__golia';
     const hit = createHit('attr', str);
     const parsed = parseAlgoliaHit({
       attribute: 'attr',
@@ -76,7 +77,7 @@ describe('parseAlgoliaHit()', () => {
         tags: [
           { value: 'litterature' },
           { value: 'biology' },
-          { value: '<em>photo</em>graphy' },
+          { value: '__ais-highlight__photo__/ais-highlight__graphy' },
         ],
       },
     };

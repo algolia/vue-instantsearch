@@ -1,9 +1,9 @@
 // copied from React InstantSearch
 import { getPropertyByPath } from 'instantsearch.js/es/lib/utils';
 
-const HIGHLIGHT_TAGS = {
-  highlightPreTag: `<ais-highlight-0000000000>`,
-  highlightPostTag: `</ais-highlight-0000000000>`,
+const TAG_PLACEHOLDER = {
+  highlightPreTag: '__ais-highlight__',
+  highlightPostTag: '__/ais-highlight__',
 };
 
 /**
@@ -65,8 +65,8 @@ function parseHighlightedAttribute({ preTag, postTag, highlightedValue = '' }) {
  * @return {object[]} - An array of {value: string, isHighlighted: boolean}.
  */
 export function parseAlgoliaHit({
-  preTag = '<em>',
-  postTag = '</em>',
+  preTag = TAG_PLACEHOLDER.highlightPreTag,
+  postTag = TAG_PLACEHOLDER.highlightPostTag,
   highlightProperty,
   attribute,
   hit,
