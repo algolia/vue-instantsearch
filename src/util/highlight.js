@@ -1,14 +1,10 @@
 // copied from React InstantSearch
+import { getPropertyByPath } from 'instantsearch.js/es/lib/utils';
+
 const HIGHLIGHT_TAGS = {
   highlightPreTag: `<ais-highlight-0000000000>`,
   highlightPostTag: `</ais-highlight-0000000000>`,
 };
-
-const getPropertyByPath = (object, path) =>
-  (Array.isArray(path)
-    ? path
-    : path.replace(/\[(\d+)]/g, '.$1').split('.')
-  ).reduce((current, key) => (current ? current[key] : undefined), object);
 
 /**
  * Parses an highlighted attribute into an array of objects with the string value, and
