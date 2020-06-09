@@ -149,7 +149,8 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
     // parameters, because those are from the lastResults
     localHelper.state = state;
 
-    // TODO: copied from index widget, should be given to all widgets IMO
+    // TODO: copied from index widget, since it's only accessible once sent to render()
+    // a possible solution is making createURL accessible from the index widget.
     const createURL = nextState =>
       search._createURL({
         [parent.getIndexId()]: parent
