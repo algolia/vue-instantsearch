@@ -92,18 +92,3 @@ export function parseAlgoliaHit({
     highlightedValue: highlightObject.value,
   });
 }
-
-export const highlight = ({
-  attribute,
-  hit,
-  highlightProperty,
-  preTag = HIGHLIGHT_TAGS.highlightPreTag,
-  postTag = HIGHLIGHT_TAGS.highlightPostTag,
-}) =>
-  parseAlgoliaHit({
-    attribute,
-    highlightProperty,
-    hit,
-    preTag,
-    postTag,
-  });
