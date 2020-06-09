@@ -1,5 +1,5 @@
 <template>
-  <highlighter
+  <ais-highlighter
     :hit="hit"
     :attribute="attribute"
     :highlighted-tag-name="highlightedTagName"
@@ -12,12 +12,12 @@
 
 <script>
 import { createSuitMixin } from '../mixins/suit';
-import Highlighter from './Highlighter.vue';
+import AisHighlighter from './Highlighter.vue';
 
 export default {
   name: 'AisSnippet',
   mixins: [createSuitMixin({ name: 'Snippet' })],
-  components: { Highlighter },
+  components: { AisHighlighter },
   props: {
     hit: {
       type: Object,

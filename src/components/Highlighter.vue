@@ -15,6 +15,7 @@
 import { parseAlgoliaHit } from '../util/parseAlgoliaHit';
 
 export default {
+  name: 'AisHighlighter',
   props: {
     hit: {
       type: Object,
