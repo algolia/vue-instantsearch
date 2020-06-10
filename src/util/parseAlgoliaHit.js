@@ -20,14 +20,12 @@ function parseHighlightedAttribute({ preTag, postTag, highlightedValue = '' }) {
   const splitByPreTag = highlightedValue.split(preTag);
   const firstValue = splitByPreTag.shift();
   const elements =
-    firstValue === ''
-      ? []
-      : [{ value: unescape(firstValue), isHighlighted: false }];
+    firstValue === '' ? [] : [{ value: firstValue, isHighlighted: false }];
 
   if (postTag === preTag) {
     let isHighlighted = true;
     splitByPreTag.forEach(split => {
-      elements.push({ value: unescape(split), isHighlighted });
+      elements.push({ value: split, isHighlighted });
       isHighlighted = !isHighlighted;
     });
   } else {
@@ -35,13 +33,13 @@ function parseHighlightedAttribute({ preTag, postTag, highlightedValue = '' }) {
       const splitByPostTag = split.split(postTag);
 
       elements.push({
-        value: unescape(splitByPostTag[0]),
+        value: splitByPostTag[0],
         isHighlighted: true,
       });
 
       if (splitByPostTag[1] !== '') {
         elements.push({
-          value: unescape(splitByPostTag[1]),
+          value: splitByPostTag[1],
           isHighlighted: false,
         });
       }
@@ -84,7 +82,7 @@ export function parseAlgoliaHit({
       parseHighlightedAttribute({
         preTag,
         postTag,
-        highlightedValue: item.value,
+        highlightedValue: unescape(item.value),
       })
     );
   }
@@ -92,6 +90,6 @@ export function parseAlgoliaHit({
   return parseHighlightedAttribute({
     preTag,
     postTag,
-    highlightedValue: highlightObject.value,
+    highlightedValue: unescape(highlightObject.value),
   });
 }
