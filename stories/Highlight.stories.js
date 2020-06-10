@@ -20,8 +20,9 @@ storiesOf('ais-highlight', module)
     <div>
       <ais-hits>
         <div slot="item" slot-scope="{ item }">
-          <p><ais-highlight attribute="categories.0" :hit="item"></ais-highlight></p>
-          <p><ais-highlight attribute="categories.1" :hit="item"></ais-highlight></p>
+          <p v-for="(category, index) in item.categories" :key="index">
+            <ais-highlight :attribute="'categories.' + index" :hit="item"></ais-highlight></p>
+          </p>
         </div>
       </ais-hits>
     </div>
