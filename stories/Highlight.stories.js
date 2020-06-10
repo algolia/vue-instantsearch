@@ -15,6 +15,18 @@ storiesOf('ais-highlight', module)
     </div>
   `,
   }))
+  .add('with array value', () => ({
+    template: `
+    <div>
+      <ais-hits>
+        <div slot="item" slot-scope="{ item }">
+          <p><ais-highlight attribute="categories.0" :hit="item"></ais-highlight></p>
+          <p><ais-highlight attribute="categories.1" :hit="item"></ais-highlight></p>
+        </div>
+      </ais-hits>
+    </div>
+  `,
+  }))
   .add('with highlighted tag name', () => ({
     template: `
     <div>

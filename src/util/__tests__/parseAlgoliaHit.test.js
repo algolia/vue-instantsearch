@@ -138,6 +138,59 @@ describe('parseAlgoliaHit()', () => {
       })
     ).toThrow('`hit`, the matching record, must be provided');
   });
+
+  it('unescapes escaped strings', () => {
+    expect(
+      parseAlgoliaHit({
+        attribute: 'title',
+        hit: {
+          _highlightResult: {
+            title: {
+              value: '&#39;TV&#39; &amp; &lt;Home&gt; &quot;Theater&quot;',
+            },
+          },
+        },
+        highlightProperty: '_highlightResult',
+      })
+    ).toEqual([
+      {
+        isHighlighted: false,
+        value: `'TV' & <Home> "Theater"`,
+      },
+    ]);
+
+    expect(
+      parseAlgoliaHit({
+        attribute: 'categories',
+        hit: {
+          _highlightResult: {
+            categories: [
+              {
+                value: 'TV &amp; Home Theater',
+              },
+              {
+                value: '__ais-highlight__&#39;TV&#39;__/ais-highlight__',
+              },
+            ],
+          },
+        },
+        highlightProperty: '_highlightResult',
+      })
+    ).toEqual([
+      [
+        {
+          isHighlighted: false,
+          value: `TV & Home Theater`,
+        },
+      ],
+      [
+        {
+          isHighlighted: true,
+          value: `'TV'`,
+        },
+      ],
+    ]);
+  });
 });
 
 function createHit(attribute, value) {

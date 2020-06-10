@@ -1,5 +1,6 @@
 // copied from React InstantSearch
 import { getPropertyByPath } from 'instantsearch.js/es/lib/utils';
+import { unescape } from '../util/unescape';
 
 const TAG_PLACEHOLDER = {
   highlightPreTag: '__ais-highlight__',
@@ -19,12 +20,14 @@ function parseHighlightedAttribute({ preTag, postTag, highlightedValue = '' }) {
   const splitByPreTag = highlightedValue.split(preTag);
   const firstValue = splitByPreTag.shift();
   const elements =
-    firstValue === '' ? [] : [{ value: firstValue, isHighlighted: false }];
+    firstValue === ''
+      ? []
+      : [{ value: unescape(firstValue), isHighlighted: false }];
 
   if (postTag === preTag) {
     let isHighlighted = true;
     splitByPreTag.forEach(split => {
-      elements.push({ value: split, isHighlighted });
+      elements.push({ value: unescape(split), isHighlighted });
       isHighlighted = !isHighlighted;
     });
   } else {
@@ -32,13 +35,13 @@ function parseHighlightedAttribute({ preTag, postTag, highlightedValue = '' }) {
       const splitByPostTag = split.split(postTag);
 
       elements.push({
-        value: splitByPostTag[0],
+        value: unescape(splitByPostTag[0]),
         isHighlighted: true,
       });
 
       if (splitByPostTag[1] !== '') {
         elements.push({
-          value: splitByPostTag[1],
+          value: unescape(splitByPostTag[1]),
           isHighlighted: false,
         });
       }
