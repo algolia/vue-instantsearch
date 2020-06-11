@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import renderToString from 'vue-server-renderer/basic';
 import App from './App.vue';
 import { createRouter } from './router';
 import { createServerRootMixin } from 'vue-instantsearch';
@@ -25,75 +26,78 @@ export async function createApp({
 
   const app = new Vue({
     mixins: [
-      createServerRootMixin({
-        searchClient,
-        indexName: 'instant_search',
-        routing: {
-          router: {
-            read() {
-              const url = context
-                ? context.url
-                : typeof window.location === 'object'
-                ? window.location.href
-                : '';
-              const search = url.slice(url.indexOf('?'));
+      createServerRootMixin(
+        {
+          searchClient,
+          indexName: 'instant_search',
+          routing: {
+            router: {
+              read() {
+                const url = context
+                  ? context.url
+                  : typeof window.location === 'object'
+                    ? window.location.href
+                    : '';
+                const search = url.slice(url.indexOf('?'));
 
-              return qs.parse(search, {
-                ignoreQueryPrefix: true,
-              });
-            },
-            write(routeState) {
-              const query = qs.stringify(routeState, {
-                addQueryPrefix: true,
-              });
+                return qs.parse(search, {
+                  ignoreQueryPrefix: true,
+                });
+              },
+              write(routeState) {
+                const query = qs.stringify(routeState, {
+                  addQueryPrefix: true,
+                });
 
-              if (typeof history === 'object') {
-                history.pushState(routeState, null, query);
-              }
-            },
-            createURL(routeState) {
-              const query = qs.stringify(routeState, {
-                addQueryPrefix: true,
-              });
+                if (typeof history === 'object') {
+                  history.pushState(routeState, null, query);
+                }
+              },
+              createURL(routeState) {
+                const query = qs.stringify(routeState, {
+                  addQueryPrefix: true,
+                });
 
-              return query;
-            },
-            onUpdate(callback) {
-              if (typeof window !== 'object') {
-                return;
-              }
-              this._onPopState = event => {
-                if (this.writeTimer) {
-                  window.clearTimeout(this.writeTimer);
-                  this.writeTimer = undefined;
+                return query;
+              },
+              onUpdate(callback) {
+                if (typeof window !== 'object') {
+                  return;
+                }
+                this._onPopState = event => {
+                  if (this.writeTimer) {
+                    window.clearTimeout(this.writeTimer);
+                    this.writeTimer = undefined;
+                  }
+
+                  const routeState = event.state;
+
+                  // At initial load, the state is read from the URL without update.
+                  // Therefore the state object is not available.
+                  // In this case, we fallback and read the URL.
+                  if (!routeState) {
+                    callback(this.read());
+                  } else {
+                    callback(routeState);
+                  }
+                };
+
+                window.addEventListener('popstate', this._onPopState);
+              },
+              dispose() {
+                if (this._onPopState && typeof window == 'object') {
+                  window.removeEventListener('popstate', this._onPopState);
                 }
 
-                const routeState = event.state;
-
-                // At initial load, the state is read from the URL without update.
-                // Therefore the state object is not available.
-                // In this case, we fallback and read the URL.
-                if (!routeState) {
-                  callback(this.read());
-                } else {
-                  callback(routeState);
-                }
-              };
-
-              window.addEventListener('popstate', this._onPopState);
-            },
-            dispose() {
-              if (this._onPopState && typeof window == 'object') {
-                window.removeEventListener('popstate', this._onPopState);
-              }
-
-              // we purposely don't write on dispose, to prevent double entries on navigation
+                // we purposely don't write on dispose, to prevent double entries on navigation
+              },
             },
           },
+          // other options, like
+          // stalledSearchDelay: 50
         },
-        // other options, like
-        // stalledSearchDelay: 50
-      }),
+        renderToString
+      ),
     ],
     serverPrefetch() {
       return this.instantsearch.findResultsState(this);

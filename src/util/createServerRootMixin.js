@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import _renderToString from 'vue-server-renderer/basic';
 import instantsearch from 'instantsearch.js/es';
 import algoliaHelper from 'algoliasearch-helper';
 const { SearchResults, SearchParameters } = algoliaHelper;
@@ -15,7 +14,7 @@ function walkIndex(indexWidget, visit) {
   });
 }
 
-function renderToString(app) {
+function renderToString(app, _renderToString) {
   return new Promise((resolve, reject) =>
     _renderToString(app, (err, res) => {
       if (err) reject(err);
@@ -41,7 +40,12 @@ function searchOnlyWithDerivedHelpers(helper) {
   });
 }
 
-function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
+function augmentInstantSearch(
+  instantSearchOptions,
+  searchClient,
+  indexName,
+  _renderToString
+) {
   /* eslint-disable no-param-reassign */
 
   const helper = algoliaHelper(searchClient, indexName);
@@ -82,7 +86,7 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
           uiState: app.instantsearch._initialUiState,
         });
       })
-      .then(() => renderToString(app))
+      .then(() => renderToString(app, _renderToString))
       .then(() => searchOnlyWithDerivedHelpers(helper))
       .then(() => {
         const results = {};
@@ -224,7 +228,10 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
   return search;
 }
 
-export function createServerRootMixin(instantSearchOptions = {}) {
+export function createServerRootMixin(
+  instantSearchOptions = {},
+  _renderToString
+) {
   const { searchClient, indexName } = instantSearchOptions;
 
   if (!searchClient || !indexName) {
@@ -236,7 +243,8 @@ export function createServerRootMixin(instantSearchOptions = {}) {
   const search = augmentInstantSearch(
     instantSearchOptions,
     searchClient,
-    indexName
+    indexName,
+    _renderToString
   );
 
   // put this in the user's root Vue instance
