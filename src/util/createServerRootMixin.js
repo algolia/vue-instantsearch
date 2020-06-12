@@ -40,12 +40,7 @@ function searchOnlyWithDerivedHelpers(helper) {
   });
 }
 
-function augmentInstantSearch(
-  instantSearchOptions,
-  searchClient,
-  indexName,
-  _renderToString
-) {
+function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
   /* eslint-disable no-param-reassign */
 
   const helper = algoliaHelper(searchClient, indexName);
@@ -59,7 +54,12 @@ function augmentInstantSearch(
    * @returns {Promise} result of the search, to save for .hydrate
    */
   search.findResultsState = function(componentInstance) {
+    const _renderToString = require('vue-server-renderer/basic');
+    if (!_renderToString) {
+      throw new Error('you need to install vue-server-renderer');
+    }
     let app;
+
     return Promise.resolve()
       .then(() => {
         const options = {
@@ -228,10 +228,7 @@ function augmentInstantSearch(
   return search;
 }
 
-export function createServerRootMixin(
-  instantSearchOptions = {},
-  _renderToString
-) {
+export function createServerRootMixin(instantSearchOptions = {}) {
   const { searchClient, indexName } = instantSearchOptions;
 
   if (!searchClient || !indexName) {
@@ -240,17 +237,10 @@ export function createServerRootMixin(
     );
   }
 
-  if (!_renderToString) {
-    throw new Error(
-      'createServerRootMixin requires "vue-server-renderer/basic" as the second argument`'
-    );
-  }
-
   const search = augmentInstantSearch(
     instantSearchOptions,
     searchClient,
-    indexName,
-    _renderToString
+    indexName
   );
 
   // put this in the user's root Vue instance

@@ -64,7 +64,6 @@ import {
   createServerRootMixin,
 } from 'vue-instantsearch'; // eslint-disable-line import/no-unresolved
 import algoliasearch from 'algoliasearch/lite';
-import renderToString from 'vue-server-renderer/basic';
 
 const searchClient = algoliasearch(
   'latency',
@@ -73,31 +72,28 @@ const searchClient = algoliasearch(
 
 export default {
   mixins: [
-    createServerRootMixin(
-      {
-        searchClient,
-        indexName: 'instant_search',
-        initialUiState: {
-          instant_search: {
-            query: 'iphone',
-            page: 3,
+    createServerRootMixin({
+      searchClient,
+      indexName: 'instant_search',
+      initialUiState: {
+        instant_search: {
+          query: 'iphone',
+          page: 3,
+        },
+        refinement: {
+          refinementList: {
+            brand: ['Apple'],
           },
-          refinement: {
-            refinementList: {
-              brand: ['Apple'],
-            },
-          },
-          querySuggestions: {
-            query: 'k',
-            page: 2,
-            configure: {
-              hitsPerPage: 5,
-            },
+        },
+        querySuggestions: {
+          query: 'k',
+          page: 2,
+          configure: {
+            hitsPerPage: 5,
           },
         },
       },
-      renderToString
-    ),
+    }),
   ],
   serverPrefetch() {
     return this.instantsearch.findResultsState(this).then(algoliaState => {

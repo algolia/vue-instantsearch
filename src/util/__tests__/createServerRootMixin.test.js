@@ -46,13 +46,10 @@ describe('createServerRootMixin', () => {
         () =>
           new Vue({
             mixins: [
-              createServerRootMixin(
-                {
-                  searchClient: undefined,
-                  indexName: 'lol',
-                },
-                _renderToString
-              ),
+              createServerRootMixin({
+                searchClient: undefined,
+                indexName: 'lol',
+              }),
             ],
           })
       ).toThrowErrorMatchingInlineSnapshot(
@@ -65,13 +62,10 @@ describe('createServerRootMixin', () => {
         () =>
           new Vue({
             mixins: [
-              createServerRootMixin(
-                {
-                  searchClient: createFakeClient(),
-                  indexName: undefined,
-                },
-                _renderToString
-              ),
+              createServerRootMixin({
+                searchClient: createFakeClient(),
+                indexName: undefined,
+              }),
             ],
           })
       ).toThrowErrorMatchingInlineSnapshot(
@@ -79,32 +73,13 @@ describe('createServerRootMixin', () => {
       );
     });
 
-    it('requires renderToString', () => {
-      expect(
-        () =>
-          new Vue({
-            mixins: [
-              createServerRootMixin({
-                searchClient: createFakeClient(),
-                indexName: 'instant_search',
-              }),
-            ],
-          })
-      ).toThrowErrorMatchingInlineSnapshot(
-        `"createServerRootMixin requires \\"vue-server-renderer/basic\\" as the second argument\`"`
-      );
-    });
-
     it('creates an instantsearch instance on "data"', () => {
       const app = new Vue({
         mixins: [
-          createServerRootMixin(
-            {
-              searchClient: createFakeClient(),
-              indexName: 'lol',
-            },
-            _renderToString
-          ),
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'lol',
+          }),
         ],
       });
 
@@ -118,13 +93,10 @@ describe('createServerRootMixin', () => {
     it('provides the instantsearch instance ', () => {
       const App = {
         mixins: [
-          createServerRootMixin(
-            {
-              searchClient: createFakeClient(),
-              indexName: 'myIndexName',
-            },
-            _renderToString
-          ),
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'myIndexName',
+          }),
         ],
         render(h) {
           return h('div', {}, this.$slots.default);
@@ -166,13 +138,10 @@ describe('createServerRootMixin', () => {
     it('provides findResultsState', () => {
       const app = new Vue({
         mixins: [
-          createServerRootMixin(
-            {
-              searchClient: createFakeClient(),
-              indexName: 'hello',
-            },
-            _renderToString
-          ),
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'hello',
+          }),
         ],
         render(h) {
           return h(InstantSearchSsr);
@@ -188,13 +157,10 @@ describe('createServerRootMixin', () => {
       const app = {
         mixins: [
           forceIsServerMixin,
-          createServerRootMixin(
-            {
-              searchClient,
-              indexName: 'hello',
-            },
-            _renderToString
-          ),
+          createServerRootMixin({
+            searchClient,
+            indexName: 'hello',
+          }),
         ],
         render(h) {
           return h(InstantSearchSsr, {}, [
@@ -255,13 +221,10 @@ Array [
 
       const app = {
         mixins: [
-          createServerRootMixin(
-            {
-              searchClient: createFakeClient(),
-              indexName: 'hello',
-            },
-            _renderToString
-          ),
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'hello',
+          }),
         ],
         render(h) {
           return h(InstantSearchSsr, {}, [
@@ -304,13 +267,10 @@ Array [
 
       const app = {
         mixins: [
-          createServerRootMixin(
-            {
-              searchClient: createFakeClient(),
-              indexName: 'movies',
-            },
-            _renderToString
-          ),
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'movies',
+          }),
         ],
         render(h) {
           return h(InstantSearchSsr, {}, [
@@ -346,13 +306,10 @@ Array [
 
       const app = {
         mixins: [
-          createServerRootMixin(
-            {
-              searchClient: createFakeClient(),
-              indexName: 'hello',
-            },
-            _renderToString
-          ),
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'hello',
+          }),
         ],
         render(h) {
           return h(InstantSearchSsr, {}, [
@@ -387,13 +344,10 @@ Array [
 
       const app = {
         mixins: [
-          createServerRootMixin(
-            {
-              searchClient: createFakeClient(),
-              indexName: 'hello',
-            },
-            _renderToString
-          ),
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'hello',
+          }),
         ],
         render(h) {
           return h(InstantSearchSsr, {}, [
@@ -428,13 +382,10 @@ Array [
     it('calls render on widget', () => {
       const app = new Vue({
         mixins: [
-          createServerRootMixin(
-            {
-              searchClient: createFakeClient(),
-              indexName: 'lol',
-            },
-            _renderToString
-          ),
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'lol',
+          }),
         ],
       });
 
@@ -485,13 +436,10 @@ Object {
     it('has a fake createURL', () => {
       const app = new Vue({
         mixins: [
-          createServerRootMixin(
-            {
-              searchClient: createFakeClient(),
-              indexName: 'lol',
-            },
-            _renderToString
-          ),
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'lol',
+          }),
         ],
       });
 
