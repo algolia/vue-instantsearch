@@ -236,7 +236,13 @@ export function createServerRootMixin(
 
   if (!searchClient || !indexName) {
     throw new Error(
-      'createServerRootMixin requires the `searchClient` and `indexName` arguments to be passed'
+      'createServerRootMixin requires `searchClient` and `indexName` in the first argument'
+    );
+  }
+
+  if (!_renderToString) {
+    throw new Error(
+      'createServerRootMixin requires "vue-server-renderer/basic" as the second argument`'
     );
   }
 

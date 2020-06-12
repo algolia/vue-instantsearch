@@ -56,7 +56,7 @@ describe('createServerRootMixin', () => {
             ],
           })
       ).toThrowErrorMatchingInlineSnapshot(
-        `"createServerRootMixin requires the \`searchClient\` and \`indexName\` arguments to be passed"`
+        `"createServerRootMixin requires \`searchClient\` and \`indexName\` in the first argument"`
       );
     });
 
@@ -75,7 +75,23 @@ describe('createServerRootMixin', () => {
             ],
           })
       ).toThrowErrorMatchingInlineSnapshot(
-        `"createServerRootMixin requires the \`searchClient\` and \`indexName\` arguments to be passed"`
+        `"createServerRootMixin requires \`searchClient\` and \`indexName\` in the first argument"`
+      );
+    });
+
+    it('requires renderToString', () => {
+      expect(
+        () =>
+          new Vue({
+            mixins: [
+              createServerRootMixin({
+                searchClient: createFakeClient(),
+                indexName: 'instant_search',
+              }),
+            ],
+          })
+      ).toThrowErrorMatchingInlineSnapshot(
+        `"createServerRootMixin requires \\"vue-server-renderer/basic\\" as the second argument\`"`
       );
     });
 
