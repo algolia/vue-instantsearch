@@ -54,10 +54,16 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
    * @returns {Promise} result of the search, to save for .hydrate
    */
   search.findResultsState = function(componentInstance) {
-    const _renderToString = require('vue-server-renderer/basic');
+    let _renderToString;
+    try {
+      _renderToString = require('vue-server-renderer/basic');
+    } catch (e) {
+      // error is handled by regular if, in case it's `undefined`
+    }
     if (!_renderToString) {
       throw new Error('you need to install vue-server-renderer');
     }
+
     let app;
 
     return Promise.resolve()
