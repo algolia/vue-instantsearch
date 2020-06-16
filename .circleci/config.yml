@@ -93,5 +93,4 @@ workflows:
           filters:
             branches:
               only:
-                - next
                 - master
