@@ -68,6 +68,18 @@ jobs:
             yarn run examples:build
             yarn run test:e2e:saucelabs
 
+  shipjs_trigger:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install_yarn_version
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run:
+          name: Triggering Ship.js to Release
+          command: yarn shipjs trigger
+
 workflows:
   version: 2
   ci:
@@ -75,3 +87,11 @@ workflows:
       - test_build
       - test_unit
       - test_e2e
+  release_if_needed:
+    jobs:
+      - shipjs_trigger:
+          filters:
+            branches:
+              only:
+                - next
+                - master
