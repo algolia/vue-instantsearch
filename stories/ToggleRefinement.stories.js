@@ -24,7 +24,7 @@ storiesOf('ais-toggle-refinement', module)
     template: `
       <ais-toggle-refinement
         attribute="brand"
-        label="Brands starting with \"i\""
+        label="Metra or Samsung"
         :on="['Samsung', 'Metra']"
       />
     `,
