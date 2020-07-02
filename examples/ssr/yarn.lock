@@ -886,6 +886,11 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
+"@types/googlemaps@^3.39.6":
+  version "3.39.8"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.39.8.tgz#3bca2344e1b050425a7cce4411f8330dddb75540"
+  integrity sha512-z03u79t1v8QIktoUXypWD06Fzl499/hA162hurA+eCDlWXxFynuU+hMZIaferILF5Gzr4PMX1ShHszT666sUHQ==
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.0.0-beta.2":
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@vue/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-1.0.0-beta.2.tgz#f3e20d77b89ddb7a4b9b7a75372f05cd3ac22d92"
@@ -4508,11 +4513,12 @@ instantsearch.css@^7.1.1:
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.1.1.tgz#64fa9f07ff39ab088b00cd3f0fa3ea697d2215f7"
   integrity sha512-8+2FLbZk9uK+VRFJ4tXByMNX9KTsPOrY/nkw4oe+8HH+jcHoVMQkUdxbFu7mSUHUdZjh5kK9Xk8IQau1Sy+VKw==
 
-instantsearch.js@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.5.0.tgz#6777df96ea2ccaa330dd3b6cfaee378be643e29f"
-  integrity sha512-i1z+tK8r0qVpEh7fRNqeX/BWUOdsfyIgsqL74CkVIRNUE6CMnAjz6MujtiBVtfyeimpHYzQESp0NxQ8ZRpk88g==
+instantsearch.js@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.7.0.tgz#4062b98daf7278e51028d1453dc5d629cb708702"
+  integrity sha512-OkTcyHLcSu6eymWmVXsu2Tt0GRtkoRQXM+SCxj+nyvBY3y3hmGDjcb8bzkrACrhfR8SDbpEUiBGI1IUHjtvOGA==
   dependencies:
+    "@types/googlemaps" "^3.39.6"
     algoliasearch-helper "^3.1.1"
     classnames "^2.2.5"
     events "^1.1.0"
@@ -5121,14 +5127,6 @@ lodash.memoize@^4.1.2:
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
 
-lodash.template@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.template/-/lodash.template-4.4.0.tgz#e73a0385c8355591746e020b99679c690e68fba0"
-  integrity sha1-5zoDhcg1VZF0bgILmWecaQ5o+6A=
-  dependencies:
-    lodash._reinterpolate "~3.0.0"
-    lodash.templatesettings "^4.0.0"
-
 lodash.template@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.template/-/lodash.template-4.5.0.tgz#f976195cf3f347d0d5f52483569fe8031ccce8ab"
@@ -5155,9 +5153,9 @@ lodash.uniq@^4.5.0:
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
 lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 log-symbols@^2.2.0:
   version "2.2.0"
@@ -7338,7 +7336,7 @@ send@0.16.2:
     range-parser "~1.2.0"
     statuses "~1.4.0"
 
-serialize-javascript@^1.3.0, serialize-javascript@^1.4.0:
+serialize-javascript@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-1.5.0.tgz#1aa336162c88a890ddad5384baebc93a655161fe"
   integrity sha512-Ga8c8NjAAp46Br4+0oZ2WxJCwIzwP60Gq1YPgU+39PiTVxyed/iKE/zyZI6+UlVYH5Q4PaQdHhcegIFPZTUfoQ==
@@ -8403,11 +8401,10 @@ vue-hot-reload-api@^2.3.0:
   integrity sha512-AA86yKZ5uOKz87/q1UpngEXhbRkaYg1b7HMMVRobNV1IVKqZe8oLIzo6iMocVwZXnYitlGwf2k4ZRLOZlS8oPQ==
 
 "vue-instantsearch@file:../..":
-  version "3.0.0-beta.0"
+  version "3.1.0"
   dependencies:
     algoliasearch-helper "^3.1.0"
-    instantsearch.js "^4.5.0"
-    vue-server-renderer "^2.6.11"
+    instantsearch.js "^4.7.0"
 
 vue-loader@^15.6.2:
   version "15.7.0"
@@ -8437,20 +8434,6 @@ vue-server-renderer@^2.6.11:
     lodash.uniq "^4.5.0"
     resolve "^1.2.0"
     serialize-javascript "^2.1.2"
-    source-map "0.5.6"
-
-vue-server-renderer@^2.6.7:
-  version "2.6.7"
-  resolved "https://registry.yarnpkg.com/vue-server-renderer/-/vue-server-renderer-2.6.7.tgz#ff40f69a439da8993a6e171b7d58575bfbeefb79"
-  integrity sha512-CVtGR+bE63y4kyIeOcCEF2UNKquSquFQAsTHZ5R1cGM4L4Z0BXgAUEcngTOy8kN+tubt3c1zpRvbrok/bHKeDg==
-  dependencies:
-    chalk "^1.1.3"
-    hash-sum "^1.0.2"
-    he "^1.1.0"
-    lodash.template "^4.4.0"
-    lodash.uniq "^4.5.0"
-    resolve "^1.2.0"
-    serialize-javascript "^1.3.0"
     source-map "0.5.6"
 
 vue-style-loader@^4.1.0:
