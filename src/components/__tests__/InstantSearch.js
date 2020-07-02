@@ -9,8 +9,6 @@ jest.mock('../../util/warn');
 
 beforeEach(() => {
   jest.clearAllMocks();
-  warn.mockReset();
-  warn.mockRestore();
 });
 
 it('passes props to InstantSearch.js', () => {
