@@ -1,13 +1,13 @@
 <template>
-  <span
-    :class="suit()"
-  >
+  <span :class="suit()">
     <component
       v-for="({ value, isHighlighted }, index) in parsedHighlights"
       :class="[isHighlighted && suit('highlighted')]"
       :key="index"
       :is="isHighlighted ? highlightedTagName : textNode"
-    >{{ value }}</component>
+    ><template v-if="value === ' '">
+      {{ value }}
+    </template><template v-else>{{ value }}</template></component>
   </span>
 </template>
 
@@ -40,7 +40,7 @@ export default {
         functional: true,
         render(createElement, context) {
           const slots = context.slots();
-          return slots.default;
+          return slots.default || ' ';
         },
       },
     };
