@@ -5,9 +5,7 @@
       :class="[isHighlighted && suit('highlighted')]"
       :key="index"
       :is="isHighlighted ? highlightedTagName : textNode"
-    ><template v-if="value === ' '">
-      {{ value }}
-    </template><template v-else>{{ value }}</template></component>
+    ><template v-if="value === ' '"> {{ value }} </template><template v-else>{{ value }}</template></component>
   </span>
 </template>
 
