@@ -40,7 +40,7 @@ export default {
         functional: true,
         render(createElement, context) {
           const slots = context.slots();
-          return slots.default || ' ';
+          return slots.default;
         },
       },
     };
