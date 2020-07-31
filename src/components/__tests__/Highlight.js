@@ -97,6 +97,6 @@ test('retains whitespace nodes', () => {
   });
 
   expect(wrapper.html()).toBe(
-    `<span class="ais-Highlight">con<marquee class="ais-Highlight-highlighted">tent</marquee>   <marquee class="ais-Highlight-highlighted">search</marquee>ing</span>`
+    `<span class="ais-Highlight">con<marquee class="ais-Highlight-highlighted">tent</marquee>  <marquee class="ais-Highlight-highlighted">search</marquee>ing</span>`
   );
 });
