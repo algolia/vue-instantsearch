@@ -886,6 +886,11 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
+"@types/googlemaps@^3.39.6":
+  version "3.39.11"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.39.11.tgz#5b075b7708276b788fd424e48fb3e34670eddab8"
+  integrity sha512-GRgIICsibETwIC3IiK1U7dluJ/+vpdhIrySiyhTgZhe6Jqwz24GZePWqSvWepZer0NafmILEGe2U4CNAuwCpbw==
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.0.0-beta.2":
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@vue/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-1.0.0-beta.2.tgz#f3e20d77b89ddb7a4b9b7a75372f05cd3ac22d92"
@@ -3308,14 +3313,16 @@ eslint-scope@^4.0.0:
     estraverse "^4.1.1"
 
 eslint-utils@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/eslint-utils/-/eslint-utils-1.3.1.tgz#9a851ba89ee7c460346f97cf8939c7298827e512"
-  integrity sha512-Z7YjnIldX+2XMcjr7ZkgEsOj/bREONV60qYeB/bjMAqqqZ4zxKyWX+BOUkdmRmA9riiIPVvo5x86m5elviOk0Q==
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/eslint-utils/-/eslint-utils-1.4.3.tgz#74fec7c54d0776b6f67e0251040b5806564e981f"
+  integrity sha512-fbBN5W2xdY45KulGXmLHZ3c3FHfVYmKg0IrAKGOkT/464PQsx2UeIzfz1RmEci+KLm1bBaAzZAh8+/E+XAeZ8Q==
+  dependencies:
+    eslint-visitor-keys "^1.1.0"
 
-eslint-visitor-keys@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#3f3180fb2e291017716acb4c9d6d5b5c34a6a81d"
-  integrity sha512-qzm/XxIbxm/FHyH341ZrbnMUpe+5Bocte9xkmFMzPMjRaZMcXww+MpBptFvtU+79L362nqiLhekCxCxDPaUMBQ==
+eslint-visitor-keys@^1.0.0, eslint-visitor-keys@^1.1.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.3.0.tgz#30ebd1ef7c2fdff01c3a4f151044af25fab0523e"
+  integrity sha512-6J72N8UNa462wa/KFODt/PJ3IU60SDpC3QXC1Hjc1BXXpfL2C9R5+AU7jhe0F6GREqVMh4Juu+NY7xn+6dipUQ==
 
 eslint@^4.19.1:
   version "4.19.1"
@@ -4508,11 +4515,12 @@ instantsearch.css@^7.1.1:
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.1.1.tgz#64fa9f07ff39ab088b00cd3f0fa3ea697d2215f7"
   integrity sha512-8+2FLbZk9uK+VRFJ4tXByMNX9KTsPOrY/nkw4oe+8HH+jcHoVMQkUdxbFu7mSUHUdZjh5kK9Xk8IQau1Sy+VKw==
 
-instantsearch.js@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.5.0.tgz#6777df96ea2ccaa330dd3b6cfaee378be643e29f"
-  integrity sha512-i1z+tK8r0qVpEh7fRNqeX/BWUOdsfyIgsqL74CkVIRNUE6CMnAjz6MujtiBVtfyeimpHYzQESp0NxQ8ZRpk88g==
+instantsearch.js@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.7.0.tgz#4062b98daf7278e51028d1453dc5d629cb708702"
+  integrity sha512-OkTcyHLcSu6eymWmVXsu2Tt0GRtkoRQXM+SCxj+nyvBY3y3hmGDjcb8bzkrACrhfR8SDbpEUiBGI1IUHjtvOGA==
   dependencies:
+    "@types/googlemaps" "^3.39.6"
     algoliasearch-helper "^3.1.1"
     classnames "^2.2.5"
     events "^1.1.0"
@@ -5120,14 +5128,6 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
-
-lodash.template@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.template/-/lodash.template-4.4.0.tgz#e73a0385c8355591746e020b99679c690e68fba0"
-  integrity sha1-5zoDhcg1VZF0bgILmWecaQ5o+6A=
-  dependencies:
-    lodash._reinterpolate "~3.0.0"
-    lodash.templatesettings "^4.0.0"
 
 lodash.template@^4.5.0:
   version "4.5.0"
@@ -7338,7 +7338,7 @@ send@0.16.2:
     range-parser "~1.2.0"
     statuses "~1.4.0"
 
-serialize-javascript@^1.3.0, serialize-javascript@^1.4.0:
+serialize-javascript@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-1.5.0.tgz#1aa336162c88a890ddad5384baebc93a655161fe"
   integrity sha512-Ga8c8NjAAp46Br4+0oZ2WxJCwIzwP60Gq1YPgU+39PiTVxyed/iKE/zyZI6+UlVYH5Q4PaQdHhcegIFPZTUfoQ==
@@ -8403,11 +8403,10 @@ vue-hot-reload-api@^2.3.0:
   integrity sha512-AA86yKZ5uOKz87/q1UpngEXhbRkaYg1b7HMMVRobNV1IVKqZe8oLIzo6iMocVwZXnYitlGwf2k4ZRLOZlS8oPQ==
 
 "vue-instantsearch@file:../..":
-  version "3.0.0-beta.0"
+  version "3.2.0"
   dependencies:
     algoliasearch-helper "^3.1.0"
-    instantsearch.js "^4.5.0"
-    vue-server-renderer "^2.6.11"
+    instantsearch.js "^4.7.0"
 
 vue-loader@^15.6.2:
   version "15.7.0"
@@ -8437,20 +8436,6 @@ vue-server-renderer@^2.6.11:
     lodash.uniq "^4.5.0"
     resolve "^1.2.0"
     serialize-javascript "^2.1.2"
-    source-map "0.5.6"
-
-vue-server-renderer@^2.6.7:
-  version "2.6.7"
-  resolved "https://registry.yarnpkg.com/vue-server-renderer/-/vue-server-renderer-2.6.7.tgz#ff40f69a439da8993a6e171b7d58575bfbeefb79"
-  integrity sha512-CVtGR+bE63y4kyIeOcCEF2UNKquSquFQAsTHZ5R1cGM4L4Z0BXgAUEcngTOy8kN+tubt3c1zpRvbrok/bHKeDg==
-  dependencies:
-    chalk "^1.1.3"
-    hash-sum "^1.0.2"
-    he "^1.1.0"
-    lodash.template "^4.4.0"
-    lodash.uniq "^4.5.0"
-    resolve "^1.2.0"
-    serialize-javascript "^1.3.0"
     source-map "0.5.6"
 
 vue-style-loader@^4.1.0:
