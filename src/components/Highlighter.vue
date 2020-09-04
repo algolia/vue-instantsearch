@@ -4,13 +4,25 @@
       v-for="({ value, isHighlighted }, index) in parsedHighlights"
       :class="[isHighlighted && suit('highlighted')]"
       :key="index"
-      :is="isHighlighted ? highlightedTagName : textNode"
+      :is="isHighlighted ? highlightedTagName : TextNode"
     >{{ value }}</component>
   </span>
 </template>
 
 <script>
-import { parseAlgoliaHit } from '../util/parseAlgoliaHit';
+import { parseAlgoliaHit } from "../util/parseAlgoliaHit";
+import * as Vue from "vue";
+
+const TextNode =
+  Vue.version && Vue.version.split(".")[0] === "3"
+    ? (props, context) => context.slots.default()
+    : {
+        functional: true,
+        render(createElement, context) {
+          const slots = context.slots();
+          return slots.default;
+        }
+      };
 
 export default {
   name: 'AisHighlighter',
@@ -33,15 +45,7 @@ export default {
     postTag: { type: String, required: true },
   },
   data() {
-    return {
-      textNode: {
-        functional: true,
-        render(createElement, context) {
-          const slots = context.slots();
-          return slots.default;
-        },
-      },
-    };
+    return { TextNode };
   },
   computed: {
     parsedHighlights() {
