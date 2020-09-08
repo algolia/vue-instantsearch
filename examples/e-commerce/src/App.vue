@@ -123,6 +123,7 @@
                 <template slot="default">
                   <ais-range-input attribute="price">
                     <div slot-scope="{ currentRefinement, range, refine, canRefine }">
+                      {{ { range, currentRefinement, canRefine } }}
                       <vue-slider
                         :min="range.min"
                         :max="range.max"
@@ -515,8 +516,8 @@ export default {
     formatNumber,
     toValue(value, range) {
       return [
-        value.min !== null ? value.min : range.min,
-        value.max !== null ? value.max : range.max,
+        value.min != null ? value.min : range.min,
+        value.max != null ? value.max : range.max,
       ];
     },
     getSelectedHitsPerPageValue() {
