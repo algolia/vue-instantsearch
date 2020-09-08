@@ -65,11 +65,7 @@ jobs:
       - run:
           name: End-2-End tests
           command: |
-            yarn run build
-            (
-              cd examples/e-commerce
-              yarn build
-            )
+            yarn examples:build e-commerce
             yarn run test:e2e:saucelabs
 
   shipjs_trigger:
