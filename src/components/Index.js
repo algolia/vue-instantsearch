@@ -1,6 +1,7 @@
 import { createSuitMixin } from '../mixins/suit';
 import { createWidgetMixin } from '../mixins/widget';
 import indexWidget from 'instantsearch.js/es/widgets/index/index';
+import * as Vue from 'vue';
 
 // wrapped in a dummy function, since indexWidget doesn't render
 const connectIndex = () => indexWidget;
@@ -28,8 +29,14 @@ export default {
       required: false,
     },
   },
-  render(createElement) {
-    return createElement('div', {}, this.$slots.default);
+  render(h) {
+    return (Vue.h || h)(
+      'div',
+      {},
+      typeof this.$slots.default === 'function'
+        ? this.$slots.default()
+        : this.$slots.default
+    );
   },
   computed: {
     widgetParams() {

@@ -1,6 +1,7 @@
 import { createWidgetMixin } from '../mixins/widget';
 import { createSuitMixin } from '../mixins/suit';
 import { connectConfigure } from 'instantsearch.js/es/connectors';
+import * as Vue from 'vue';
 
 export default {
   inheritAttrs: false,
@@ -17,17 +18,22 @@ export default {
     },
   },
   render(createElement) {
-    if (!this.state || !this.$scopedSlots.default) {
+    const slot =
+      'default' in this.$slots
+        ? this.$slots.default
+        : this.$scopedSlots.default;
+
+    if (!this.state || !slot) {
       return null;
     }
 
-    return createElement(
+    return (Vue.h || createElement)(
       'div',
       {
         class: this.suit(),
       },
       [
-        this.$scopedSlots.default({
+        slot({
           refine: this.state.refine,
           searchParameters: this.state.widgetParams.searchParameters,
         }),
