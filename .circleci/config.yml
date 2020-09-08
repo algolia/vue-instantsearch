@@ -70,6 +70,8 @@ jobs:
               cd examples/e-commerce
               yarn
               yarn build
+              mkdir -p ../../website/examples/$name
+              cp -R dist/* ../../website/examples/$name
             )
             yarn run test:e2e:saucelabs
 
