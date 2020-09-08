@@ -123,7 +123,6 @@
                 <template slot="default">
                   <ais-range-input attribute="price">
                     <div slot-scope="{ currentRefinement, range, refine, canRefine }">
-                      {{ { range, currentRefinement, canRefine } }}
                       <vue-slider
                         :min="range.min"
                         :max="range.max"
@@ -303,7 +302,6 @@
               <div
                 slot-scope="{
                   currentRefinement,
-                  nbPages,
                   pages,
                   isFirstPage,
                   isLastPage,
