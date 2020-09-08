@@ -68,6 +68,7 @@ jobs:
             yarn run build
             (
               cd examples/e-commerce
+              yarn
               yarn build
             )
             yarn run test:e2e:saucelabs
