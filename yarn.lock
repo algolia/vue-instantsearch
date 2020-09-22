@@ -15676,6 +15676,11 @@ vuetify@1.5.3:
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.3.tgz#4bdc0a72ade1cd3521dc0c08a363ea40b914443e"
   integrity sha512-4V3i4HwKdt//1vAEiex3DpHsLwX3oHCIx/gpukSYvBGJUgHILUZ5JOEOAQJ1yvMV1w3P+dsmvlmRdthjci5VRg==
 
+vuex@3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.5.1.tgz#f1b8dcea649bc25254cf4f4358081dbf5da18b3d"
+  integrity sha512-w7oJzmHQs0FM9LXodfskhw9wgKBiaB+totOdb8sNzbTB2KDCEEwEs29NzBZFh/lmEK1t5tDmM1vtsO7ubG1DFw==
+
 walker@~1.0.5:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/walker/-/walker-1.0.7.tgz#2f7f9b8fd10d677262b18a884e28d19618e028fb"
