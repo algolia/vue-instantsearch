@@ -22,7 +22,7 @@
     "src"
   ],
   "main": "dist/vue-instantsearch.common.js",
-  "module": "dist/vue-instantsearch.esm.js",
+  "module": "es/instantsearch.js",
   "sideEffects": false,
   "repository": "https://github.com/algolia/vue-instantsearch",
   "scripts": {
@@ -112,10 +112,6 @@
     {
       "path": "./dist/vue-instantsearch.js",
       "maxSize": "48.00 kB"
-    },
-    {
-      "path": "./dist/vue-instantsearch.esm.js",
-      "maxSize": "15.75 kB"
     },
     {
       "path": "./dist/vue-instantsearch.common.js",

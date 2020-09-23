@@ -6,11 +6,28 @@ import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
 import json from 'rollup-plugin-json';
+import { version } from './package.json';
 
 const processEnv = conf => ({
   // parenthesis to avoid syntax errors in places where {} is interpreted as a block
   'process.env': `(${JSON.stringify(conf)})`,
 });
+
+const plugins = [
+  commonjs(),
+  vue({ compileTemplate: true, css: false }),
+  json(),
+  buble({
+    transforms: {
+      dangerousForOf: true,
+    },
+  }),
+  replace(processEnv({ NODE_ENV: 'production', VUE_IS_VERSION: version })),
+  terser({
+    sourcemap: true,
+  }),
+  filesize(),
+];
 
 export default [
   {
@@ -28,26 +45,26 @@ export default [
         format: 'cjs',
         exports: 'named',
       },
+    ],
+    plugins: [...plugins],
+  },
+  {
+    input: 'src/instantsearch.js',
+    external: [
+      'algoliasearch-helper',
+      'instantsearch.js/es',
+      'instantsearch.js/es/connectors',
+      'vue',
+    ],
+    output: [
       {
         sourcemap: true,
-        file: `dist/vue-instantsearch.esm.js`,
+        dir: `es`,
         format: 'es',
       },
     ],
-    plugins: [
-      commonjs(),
-      vue({ compileTemplate: true, css: false }),
-      json(),
-      buble({
-        transforms: {
-          dangerousForOf: true,
-        },
-      }),
-      terser({
-        sourcemap: true,
-      }),
-      filesize(),
-    ],
+    preserveModules: true,
+    plugins: [...plugins],
   },
   {
     input: 'src/instantsearch.umd.js',
@@ -65,23 +82,11 @@ export default [
       },
     ],
     plugins: [
-      vue({ compileTemplate: true, css: false }),
-      json(),
+      ...plugins,
       resolve({
         browser: true,
         preferBuiltins: false,
       }),
-      buble({
-        transforms: {
-          dangerousForOf: true,
-        },
-      }),
-      replace(processEnv({ NODE_ENV: 'production' })),
-      commonjs(),
-      terser({
-        sourcemap: true,
-      }),
-      filesize(),
     ],
   },
 ];
