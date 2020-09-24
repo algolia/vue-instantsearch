@@ -1,4 +1,5 @@
 import { createSuitMixin } from '../mixins/suit';
+import { version } from '../../package.json'; // rollup does pick only what needed from json
 import { _objectSpread } from './polyfills';
 import Vue from 'vue';
 
@@ -38,9 +39,7 @@ export const createInstantSearchComponent = component =>
         const searchClient = this.instantSearchInstance.client;
         if (typeof searchClient.addAlgoliaAgent === 'function') {
           searchClient.addAlgoliaAgent(`Vue (${Vue.version})`);
-          searchClient.addAlgoliaAgent(
-            `Vue InstantSearch (${process.env.VUE_IS_VERSION})`
-          );
+          searchClient.addAlgoliaAgent(`Vue InstantSearch (${version})`);
         }
       },
       mounted() {

@@ -6,7 +6,6 @@ import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
 import json from 'rollup-plugin-json';
-import { version } from './package.json';
 
 const processEnv = conf => ({
   // parenthesis to avoid syntax errors in places where {} is interpreted as a block
@@ -22,7 +21,7 @@ const plugins = [
       dangerousForOf: true,
     },
   }),
-  replace(processEnv({ NODE_ENV: 'production', VUE_IS_VERSION: version })),
+  replace(processEnv({ NODE_ENV: 'production' })),
   terser({
     sourcemap: true,
   }),
