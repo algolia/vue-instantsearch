@@ -26,7 +26,7 @@
   "sideEffects": false,
   "repository": "https://github.com/algolia/vue-instantsearch",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rm -rf dist es && rollup -c",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o website/stories",
     "examples:build": "yarn build && ./examples/build.sh",
