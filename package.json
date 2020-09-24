@@ -19,7 +19,8 @@
   "version": "3.2.0",
   "files": [
     "dist",
-    "src"
+    "src",
+    "es"
   ],
   "main": "dist/vue-instantsearch.common.js",
   "module": "es/src/instantsearch.js",
