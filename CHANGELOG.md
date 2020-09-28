@@ -4,7 +4,7 @@
 ### Bug Fixes
 
 * **RatingMenu:** use unique keys ([80ff944](https://github.com/algolia/vue-instantsearch/commit/80ff94480ff3e9759ccf4dad8b1da28821b9c254))
-
+* **Tree Shaking:** allow modern bundlers to remove parts of Vue InstantSearch which aren't used ([(#866)](https://github.com/algolia/vue-instantsearch/pulls/866))
 
 ### Features
 
