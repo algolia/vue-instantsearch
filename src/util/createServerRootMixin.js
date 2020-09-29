@@ -76,14 +76,17 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
           // copy over global Vue APIs
           router: componentInstance.$router,
           store: componentInstance.$store,
-          propsData: componentInstance.$options.propsData,
         };
 
-        const extended = componentInstance.$vnode
+        const Extended = componentInstance.$vnode
           ? componentInstance.$vnode.componentOptions.Ctor.extend(options)
-          : Object.assign({}, componentInstance.$options, options);
+          : Vue.component(
+              Object.assign({}, componentInstance.$options, options)
+            );
 
-        app = new Vue(extended);
+        app = new Extended({
+          propsData: componentInstance.$options.propsData,
+        });
 
         app.$options.serverPrefetch = [];
 
