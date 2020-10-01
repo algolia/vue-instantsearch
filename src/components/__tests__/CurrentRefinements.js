@@ -168,7 +168,7 @@ describe.each([
 });
 
 it('calls the Panel mixin with `canRefine`', () => {
-  __setState({ items: [] });
+  __setState({ items: [{}] });
 
   const wrapper = mount(CurrentRefinements);
 
@@ -179,11 +179,13 @@ it('calls the Panel mixin with `canRefine`', () => {
 
   wrapper.setData({
     state: {
-      canRefine: false,
+      items: [],
     },
   });
 
   expect(mapStateToCanRefine()).toBe(false);
+
+  expect(wrapper.vm.mapStateToCanRefine({})).toBe(false);
 });
 
 it('calls `refine` with a refinement', () => {
