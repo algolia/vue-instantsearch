@@ -167,6 +167,25 @@ describe.each([
   });
 });
 
+it('calls the Panel mixin with `canRefine`', () => {
+  __setState({ items: [] });
+
+  const wrapper = mount(CurrentRefinements);
+
+  const mapStateToCanRefine = () =>
+    wrapper.vm.mapStateToCanRefine(wrapper.vm.state);
+
+  expect(mapStateToCanRefine()).toBe(true);
+
+  wrapper.setData({
+    state: {
+      canRefine: false,
+    },
+  });
+
+  expect(mapStateToCanRefine()).toBe(false);
+});
+
 it('calls `refine` with a refinement', () => {
   const spies = [jest.fn(), jest.fn()];
 
@@ -222,7 +241,7 @@ describe('custom render', () => {
           v-for="item in items"
           :key="item.attribute"
           >
-          {{item.label}}: 
+          {{item.label}}:
           <button
             v-for="refinement in item.refinements"
             @click="item.refine(refinement)"
@@ -237,7 +256,7 @@ describe('custom render', () => {
 
   const itemScopedSlot = `
     <div slot-scope="{ item, refine }">
-      {{item.label}}: 
+      {{item.label}}:
       <button
         v-for="refinement in item.refinements"
         @click="item.refine(refinement)"
