@@ -332,7 +332,8 @@ it('calls the Panel mixin with `canRefine`', () => {
       canRefine: false,
     },
   });
-     expect(mapStateToCanRefine()).toBe(false); 
+  expect(mapStateToCanRefine()).toBe(false);
+
   expect(wrapper.vm.mapStateToCanRefine({})).toBe(false);
 });
 
