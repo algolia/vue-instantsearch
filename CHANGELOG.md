@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* **panel:** safely access state in mapStateToCanRefine ([#876](https://github.com/algolia/vue-instantsearch/issues/876)) ([435c7d3](https://github.com/algolia/vue-instantsearch/commit/435c7d3d890a0c78d5a37670a926abf29e0f8bff)), closes [#871](https://github.com/algolia/vue-instantsearch/issues/871) [#875](https://github.com/algolia/vue-instantsearch/issues/875) [#874](https://github.com/algolia/vue-instantsearch/issues/874)
+* **panel:** safely access state in mapStateToCanRefine ([#876](https://github.com/algolia/vue-instantsearch/issues/876)) ([435c7d3](https://github.com/algolia/vue-instantsearch/commit/435c7d3d890a0c78d5a37670a926abf29e0f8bff)), closes [#874](https://github.com/algolia/vue-instantsearch/issues/874)
 
 
 
