@@ -88,6 +88,9 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
           propsData: componentInstance.$options.propsData,
         });
 
+        // https://stackoverflow.com/a/48195006/3185307
+        app.$slots = componentInstance.$slots;
+
         app.$options.serverPrefetch = [];
 
         app.instantsearch.helper = helper;
