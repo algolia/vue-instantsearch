@@ -90,6 +90,7 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
 
         // https://stackoverflow.com/a/48195006/3185307
         app.$slots = componentInstance.$slots;
+        app.$scopedSlots = componentInstance.$scopedSlots;
 
         app.$options.serverPrefetch = [];
 
