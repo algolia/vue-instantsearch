@@ -91,6 +91,7 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
         // https://stackoverflow.com/a/48195006/3185307
         app.$slots = componentInstance.$slots;
         app.$scopedSlots = componentInstance.$scopedSlots;
+        app.$root = componentInstance.$root;
 
         app.$options.serverPrefetch = [];
 
@@ -163,6 +164,12 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
     const localHelper = parent.getHelper();
 
     const results = search.__initialSearchResults[parent.getIndexId()];
+
+    // this happens when a different InstantSearch gets rendered initially,
+    // after the hydrate finished. There's thus no initial results available.
+    if (!results) {
+      return;
+    }
 
     const state = results._state;
 
