@@ -18,7 +18,7 @@ storiesOf('ais-smart-sort', module)
   .add('with custom text', () => ({
     template: `
       <ais-smart-sort>
-        <template slot="text" slot-scope={ isSmartSorted }>
+        <template slot="text" slot-scope="{ isSmartSorted }">
           {{ isSmartSorted
                ? 'We removed some search results to show you the most relevant ones'
                : 'Currently showing all results' }}
