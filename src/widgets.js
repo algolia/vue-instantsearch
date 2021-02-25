@@ -42,3 +42,4 @@ export {
   default as AisToggleRefinement,
 } from './components/ToggleRefinement.vue';
 export { default as AisVoiceSearch } from './components/VoiceSearch.vue';
+export { default as AisSmartSort } from './components/SmartSort.vue';
