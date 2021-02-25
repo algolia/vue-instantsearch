@@ -13,6 +13,7 @@
       >
         <slot
           name="text"
+          :is-smart-sorted="state.isSmartSorted"
         />
       </div>
       <button
