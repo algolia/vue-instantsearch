@@ -1,16 +1,13 @@
 <template>
   <div
-    v-if="state"
+    v-if="state && state.isVirtualReplica"
     :class="suit()"
   >
     <slot
       :is-smart-sorted="state.isSmartSorted"
-      :is-virtual-replica="state.isVirtualReplica"
       :refine="state.refine"
     >
-      <div
-        :class="suit('text')"
-      >
+      <div :class="suit('text')">
         <slot
           name="text"
           :is-smart-sorted="state.isSmartSorted"
