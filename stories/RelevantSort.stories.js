@@ -2,7 +2,7 @@ import algoliasearch from 'algoliasearch/lite';
 import { storiesOf } from '@storybook/vue';
 import { previewWrapper } from './utils';
 
-storiesOf('ais-smart-sort', module)
+storiesOf('ais-relevant-sort', module)
   .addDecorator(
     previewWrapper({
       searchClient: algoliasearch(
@@ -13,16 +13,16 @@ storiesOf('ais-smart-sort', module)
     })
   )
   .add('default', () => ({
-    template: '<ais-smart-sort></ais-smart-sort>',
+    template: '<ais-relevant-sort></ais-relevant-sort>',
   }))
   .add('with custom text', () => ({
     template: `
-      <ais-smart-sort>
-        <template slot="text" slot-scope="{ isSmartSorted }">
-          {{ isSmartSorted
+      <ais-relevant-sort>
+        <template slot="text" slot-scope="{ isRelevantSorted }">
+          {{ isRelevantSorted
                ? 'We removed some search results to show you the most relevant ones'
                : 'Currently showing all results' }}
         </template>
-      </ais-smart-sort>
+      </ais-relevant-sort>
     `,
   }));

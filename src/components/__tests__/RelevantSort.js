@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import SmartSort from '../SmartSort.vue';
+import RelevantSort from '../RelevantSort.vue';
 import { __setState } from '../../mixins/widget';
 jest.mock('../../mixins/widget');
 
@@ -7,25 +7,25 @@ describe('renders correctly', () => {
   test('no virtual replica', () => {
     __setState({
       isVirtualReplica: false,
-      isSmartSorted: false,
+      isRelevantSorted: false,
     });
-    const wrapper = mount(SmartSort);
+    const wrapper = mount(RelevantSort);
     expect(wrapper.html()).toMatchInlineSnapshot(`undefined`);
   });
 
-  test('not smart sorted', () => {
+  test('not relevant sorted', () => {
     __setState({
       isVirtualReplica: true,
-      isSmartSorted: false,
+      isRelevantSorted: false,
     });
-    const wrapper = mount(SmartSort);
+    const wrapper = mount(RelevantSort);
     expect(wrapper.html()).toMatchInlineSnapshot(`
 
-<div class="ais-SmartSort">
-  <div class="ais-SmartSort-text">
+<div class="ais-RelevantSort">
+  <div class="ais-RelevantSort-text">
   </div>
   <button type="button"
-          class="ais-SmartSort-button"
+          class="ais-RelevantSort-button"
   >
     See relevant results
   </button>
@@ -34,19 +34,19 @@ describe('renders correctly', () => {
 `);
   });
 
-  test('smart sorted', () => {
+  test('relevant sorted', () => {
     __setState({
       isVirtualReplica: true,
-      isSmartSorted: true,
+      isRelevantSorted: true,
     });
-    const wrapper = mount(SmartSort);
+    const wrapper = mount(RelevantSort);
     expect(wrapper.html()).toMatchInlineSnapshot(`
 
-<div class="ais-SmartSort">
-  <div class="ais-SmartSort-text">
+<div class="ais-RelevantSort">
+  <div class="ais-RelevantSort-text">
   </div>
   <button type="button"
-          class="ais-SmartSort-button"
+          class="ais-RelevantSort-button"
   >
     See all results
   </button>
@@ -58,14 +58,14 @@ describe('renders correctly', () => {
 
 it("calls the connector's refine function with 0 and undefined", () => {
   __setState({
-    isSmartSorted: true,
+    isRelevantSorted: true,
     isVirtualReplica: true,
     refine: jest.fn(() => {
-      wrapper.vm.state.isSmartSorted = !wrapper.vm.state.isSmartSorted;
+      wrapper.vm.state.isRelevantSorted = !wrapper.vm.state.isRelevantSorted;
     }),
   });
 
-  const wrapper = mount(SmartSort);
+  const wrapper = mount(RelevantSort);
 
   const button = wrapper.find('button');
 

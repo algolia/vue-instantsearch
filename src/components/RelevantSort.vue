@@ -4,13 +4,13 @@
     :class="suit()"
   >
     <slot
-      :is-smart-sorted="state.isSmartSorted"
+      :is-relevant-sorted="state.isRelevantSorted"
       :refine="state.refine"
     >
       <div :class="suit('text')">
         <slot
           name="text"
-          :is-smart-sorted="state.isSmartSorted"
+          :is-relevant-sorted="state.isRelevantSorted"
         />
       </div>
       <button
@@ -20,27 +20,27 @@
       >
         <slot
           name="button"
-          :is-smart-sorted="state.isSmartSorted"
-        >{{ state.isSmartSorted ? 'See all results' : 'See relevant results' }}</slot>
+          :is-relevant-sorted="state.isRelevantSorted"
+        >{{ state.isRelevantSorted ? 'See all results' : 'See relevant results' }}</slot>
       </button>
     </slot>
   </div>
 </template>
 
 <script>
-import { connectSmartSort } from 'instantsearch.js/es/connectors';
+import { connectRelevantSort } from 'instantsearch.js/es/connectors';
 import { createWidgetMixin } from '../mixins/widget';
 import { createSuitMixin } from '../mixins/suit';
 
 export default {
-  name: 'AisSmartSort',
+  name: 'AisRelevantSort',
   mixins: [
-    createSuitMixin({ name: 'SmartSort' }),
-    createWidgetMixin({ connector: connectSmartSort }),
+    createSuitMixin({ name: 'RelevantSort' }),
+    createWidgetMixin({ connector: connectRelevantSort }),
   ],
   methods: {
     refine() {
-      if (this.state.isSmartSorted) {
+      if (this.state.isRelevantSorted) {
         this.state.refine(0);
       } else {
         this.state.refine(undefined);
