@@ -7892,10 +7892,10 @@ instantsearch.css@7.3.1:
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.3.1.tgz#7ab74a8f355091ae040947a9cf5438f379026622"
   integrity sha512-/kaMDna5D+Q9mImNBHEhb9HgHATDOFKYii7N1Iwvrj+lmD9gBJLqVhUw67gftq2O0QI330pFza+CRscIwB1wQQ==
 
-instantsearch.js@^4.16.0:
-  version "4.16.0"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.16.0.tgz#c45a22fee4565600f83e5a6b8fc3923a957a2de7"
-  integrity sha512-b0lJMfb+TdvDsNczFId43GXwJlIfSkChL2tY4tWCJtHZElbyqgaAZF+4o0iecg2THz7Xk+mrmpuLtoWgTZlvpQ==
+instantsearch.js@^4.16.1:
+  version "4.16.1"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.16.1.tgz#78e00d2256c89693a94f58ebfc5f0864953b7ec8"
+  integrity sha512-NfwNOb+Ftj7Y+h6lW7iCd5SXWKIHQZ981ldSddEHbgTexbdJEyxgWhaF8c3HajCySp8wZPD2gj9KpNQy/BsUgQ==
   dependencies:
     "@types/googlemaps" "^3.39.6"
     algoliasearch-helper "^3.4.4"

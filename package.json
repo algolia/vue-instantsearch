@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "algoliasearch-helper": "^3.1.0",
-    "instantsearch.js": "^4.16.0"
+    "instantsearch.js": "^4.16.1"
   },
   "peerDependencies": {
     "algoliasearch": ">= 3.32.0 < 5",
