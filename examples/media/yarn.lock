@@ -802,6 +802,11 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
+"@types/googlemaps@^3.39.6":
+  version "3.43.3"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.43.3.tgz#70cf962154a160fe78bcd69d6ccc296dd9175b1f"
+  integrity sha512-ZWNoz/O8MPEpiajvj7QiqCY8tTLFNqNZ/a+s+zTV58wFVNAvvqV4bdGfnsjTb5Cs4V6wEsLrX8XRhmnyYJ2Tdg==
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.0.0-beta.2":
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@vue/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-1.0.0-beta.2.tgz#f3e20d77b89ddb7a4b9b7a75372f05cd3ac22d92"
@@ -1258,6 +1263,13 @@ algoliasearch-helper@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/algoliasearch-helper/-/algoliasearch-helper-3.1.0.tgz#f8725bd6f0d1f515955d720ccd617a3af4ac695f"
   integrity sha512-d48U2GIsGJr/fVV+W7Z1Ud6GWLSblKQgA71M254YNtxvniKFsbI0Z6hQZ/8yodfGWHjJ4dETeb7ihGKQaXihUw==
+  dependencies:
+    events "^1.1.1"
+
+algoliasearch-helper@^3.4.4:
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/algoliasearch-helper/-/algoliasearch-helper-3.4.4.tgz#f2eb46bc4d2f6fed82c7201b8ac4ce0a1988ae67"
+  integrity sha512-OjyVLjykaYKCMxxRMZNiwLp8CS310E0qAeIY2NaublcmLAh8/SL19+zYHp7XCLtMem2ZXwl3ywMiA32O9jszuw==
   dependencies:
     events "^1.1.1"
 
@@ -4285,6 +4297,20 @@ inquirer@^3.0.6:
     string-width "^2.1.0"
     strip-ansi "^4.0.0"
     through "^2.3.6"
+
+instantsearch.js@^4.16.1:
+  version "4.17.0"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.17.0.tgz#88296fc8632ce9c2bafeb1971c10b7ba0ec8c141"
+  integrity sha512-kIojyq0guxjVtqUUchGSNlDnXyPxqGzD2w2IHKhhbvFTAMzBQSwP8ELtqtJwDXE49Hel7Y/B/1TsE5bPMAsapQ==
+  dependencies:
+    "@types/googlemaps" "^3.39.6"
+    algoliasearch-helper "^3.4.4"
+    classnames "^2.2.5"
+    events "^1.1.0"
+    hogan.js "^3.0.2"
+    preact "^10.0.0"
+    prop-types "^15.5.10"
+    qs "^6.5.1"
 
 instantsearch.js@^4.2.0:
   version "4.2.0"
@@ -8135,13 +8161,13 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
   integrity sha512-2j/t+wIbyVMP5NvctQoSUvLkYKoWAAk2QlQiilrM2a6/ulzFgdcLUJfTvs4XQ/3eZhHiBmmEojbjmM4AzZj8JA==
 
-vue-instantsearch@^3.0.0-beta.0:
-  version "3.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/vue-instantsearch/-/vue-instantsearch-3.0.0-beta.0.tgz#ee487b14bc9840f8a66f97af0853fb8a64ac5994"
-  integrity sha512-ncud15H7d+AyU7jf0x5o+ThO5QnAUH5ndWQDItbfzTP2qg4wWtaMBqly5HRrDGvVQSYhi/fRZyuVfRnVGUV40g==
+vue-instantsearch@3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/vue-instantsearch/-/vue-instantsearch-3.5.0.tgz#f7b16f0ec39035944212731424c004fc6cd211c5"
+  integrity sha512-L9fBCyUD1SM6z9ZD1JiM1yRyTqBtIzKRgxO/oRDPmFfccuh6BGwKAFBmDfbH0aZFPPI1C6i81xDSVGuwheJUnA==
   dependencies:
     algoliasearch-helper "^3.1.0"
-    instantsearch.js "^4.2.0"
+    instantsearch.js "^4.16.1"
 
 vue-loader@^15.6.2:
   version "15.7.0"
