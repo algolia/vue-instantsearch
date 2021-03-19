@@ -14,7 +14,7 @@ function build_example {
     name=$(basename "$dir")
     echo "building example: $name"
     cd $name
-    if [[ "$name" != "nuxt" && "$name" != "ssr" ]]; then
+    if [[ "$name" != "ssr" ]]; then
       yarn
       yarn build
       mkdir -p ../../website/examples/$name
