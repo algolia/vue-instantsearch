@@ -16,7 +16,7 @@ function build_example {
     cd $name
     if [[ "$name" != "ssr" ]]; then
       yarn
-      yarn build
+      [[ "$name" == "nuxt" ]] && yarn generate || yarn build
       mkdir -p ../../website/examples/$name
       cp -R dist/* ../../website/examples/$name
     else

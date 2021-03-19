@@ -2,7 +2,6 @@
 
 module.exports = {
   target: 'static',
-  mode: 'spa',
   router: {
     base: '/examples/nuxt/',
   },
