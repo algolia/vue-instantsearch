@@ -37,6 +37,12 @@ export const createInstantSearchComponent = component =>
         middlewares: {
           immediate: true,
           handler(next, prev) {
+            (prev || [])
+              .filter(middleware => (next || []).indexOf(middleware) === -1)
+              .forEach(middlewareToRemove => {
+                this.instantSearchInstance.unuse(middlewareToRemove);
+              });
+
             (next || [])
               .filter(middleware => (prev || []).indexOf(middleware) === -1)
               .forEach(middlewareToAdd => {

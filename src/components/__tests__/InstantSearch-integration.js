@@ -3,8 +3,10 @@ import { mount } from '@vue/test-utils';
 import InstantSearch from '../InstantSearch';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../../util/testutils/client';
-
+import SearchBox from '../SearchBox.vue';
 jest.unmock('instantsearch.js/es');
+
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 it('child widgets get added to its parent instantsearch', () => {
   const widgetInstance = {
@@ -35,13 +37,19 @@ it('child widgets get added to its parent instantsearch', () => {
 });
 
 describe('middlewares', () => {
+  const createFakeMiddleware = () => {
+    const middlewareSpy = {
+      onStateChange: jest.fn(),
+      subscribe: jest.fn(),
+      unsubscribe: jest.fn(),
+    };
+    const middleware = jest.fn(() => middlewareSpy);
+
+    return [middleware, middlewareSpy];
+  };
+
   it('subscribes middlewares', async () => {
-    const subscribe = jest.fn();
-    const middleware = () => ({
-      subscribe,
-      unsubscribe: () => {},
-      onStateChange: () => {},
-    });
+    const [middleware, middlewareSpy] = createFakeMiddleware();
 
     mount(InstantSearch, {
       propsData: {
@@ -52,43 +60,129 @@ describe('middlewares', () => {
     });
     await Vue.nextTick();
 
-    expect(subscribe).toHaveBeenCalledTimes(1);
+    expect(middlewareSpy.subscribe).toHaveBeenCalledTimes(1);
   });
 
   it('subscribes newly added middleware', async () => {
-    const subscribe1 = jest.fn();
-    const unsubscribe1 = jest.fn();
-    const middleware1 = () => ({
-      subscribe: subscribe1,
-      unsubscribe: unsubscribe1,
-      onStateChange: () => {},
-    });
+    const [middleware1, middlewareSpy1] = createFakeMiddleware();
 
-    const wrapper = mount(InstantSearch, {
-      propsData: {
-        searchClient: createFakeClient(),
-        indexName: 'indexName',
-        middlewares: [middleware1],
+    const wrapper = mount({
+      components: {
+        AisInstantSearch: InstantSearch,
+        AisSearchBox: SearchBox,
+      },
+      template: `
+        <ais-instant-search
+          :search-client="searchClient"
+          :index-name="indexName"
+          :middlewares="middlewares"
+        >
+          <ais-search-box />
+        </ais-instant-search>
+      `,
+      data() {
+        return {
+          searchClient: createFakeClient(),
+          indexName: 'indexName',
+          middlewares: [middleware1],
+        };
       },
     });
-    await Vue.nextTick();
-    expect(subscribe1).toHaveBeenCalledTimes(1);
 
-    const subscribe2 = jest.fn();
-    const unsubscribe2 = jest.fn();
-    const middleware2 = () => ({
-      subscribe: subscribe2,
-      unsubscribe: unsubscribe2,
-      onStateChange: () => {},
+    await wait(20);
+    expect(middlewareSpy1.subscribe).toHaveBeenCalledTimes(1);
+
+    await wrapper.find('input').setValue('a');
+    await Vue.nextTick();
+
+    expect(middlewareSpy1.onStateChange).toHaveBeenCalledTimes(1);
+    expect(middlewareSpy1.onStateChange).toHaveBeenCalledWith({
+      uiState: { indexName: { query: 'a' } },
     });
-    wrapper.setProps({
+
+    const [middleware2, middlewareSpy2] = createFakeMiddleware();
+    wrapper.setData({
       middlewares: [middleware1, middleware2],
     });
     await Vue.nextTick();
 
-    expect(subscribe1).toHaveBeenCalledTimes(1);
-    expect(subscribe2).toHaveBeenCalledTimes(1);
-    expect(unsubscribe1).toHaveBeenCalledTimes(0);
-    expect(unsubscribe2).toHaveBeenCalledTimes(0);
+    expect(middlewareSpy2.subscribe).toHaveBeenCalledTimes(1);
+    expect(middlewareSpy2.onStateChange).toHaveBeenCalledTimes(0);
+
+    await wrapper.find('input').setValue('b');
+    await Vue.nextTick();
+
+    expect(middlewareSpy1.onStateChange).toHaveBeenCalledTimes(2);
+    expect(middlewareSpy1.onStateChange).toHaveBeenCalledWith({
+      uiState: { indexName: { query: 'b' } },
+    });
+    expect(middlewareSpy2.onStateChange).toHaveBeenCalledTimes(1);
+    expect(middlewareSpy2.onStateChange).toHaveBeenCalledWith({
+      uiState: { indexName: { query: 'b' } },
+    });
+
+    expect(middlewareSpy1.unsubscribe).toHaveBeenCalledTimes(0);
+    expect(middlewareSpy2.unsubscribe).toHaveBeenCalledTimes(0);
+  });
+
+  it('unsubscribes removed middleware', async () => {
+    const [middleware1, middlewareSpy1] = createFakeMiddleware();
+    const [middleware2, middlewareSpy2] = createFakeMiddleware();
+
+    const wrapper = mount({
+      components: {
+        AisInstantSearch: InstantSearch,
+        AisSearchBox: SearchBox,
+      },
+      template: `
+        <ais-instant-search
+          :search-client="searchClient"
+          :index-name="indexName"
+          :middlewares="middlewares"
+        >
+          <ais-search-box />
+        </ais-instant-search>
+      `,
+      data() {
+        return {
+          searchClient: createFakeClient(),
+          indexName: 'indexName',
+          middlewares: [middleware1, middleware2],
+        };
+      },
+    });
+
+    await wait(20);
+    expect(middlewareSpy1.subscribe).toHaveBeenCalledTimes(1);
+    expect(middlewareSpy2.subscribe).toHaveBeenCalledTimes(1);
+
+    await wrapper.find('input').setValue('a');
+    await Vue.nextTick();
+
+    expect(middlewareSpy1.onStateChange).toHaveBeenCalledTimes(1);
+    expect(middlewareSpy1.onStateChange).toHaveBeenCalledWith({
+      uiState: { indexName: { query: 'a' } },
+    });
+    expect(middlewareSpy2.onStateChange).toHaveBeenCalledTimes(1);
+    expect(middlewareSpy2.onStateChange).toHaveBeenCalledWith({
+      uiState: { indexName: { query: 'a' } },
+    });
+
+    wrapper.setData({
+      middlewares: [middleware1],
+    });
+    await Vue.nextTick();
+
+    expect(middlewareSpy1.unsubscribe).toHaveBeenCalledTimes(0);
+    expect(middlewareSpy2.unsubscribe).toHaveBeenCalledTimes(1);
+
+    await wrapper.find('input').setValue('b');
+    await Vue.nextTick();
+
+    expect(middlewareSpy1.onStateChange).toHaveBeenCalledTimes(2);
+    expect(middlewareSpy1.onStateChange).toHaveBeenCalledWith({
+      uiState: { indexName: { query: 'b' } },
+    });
+    expect(middlewareSpy2.onStateChange).toHaveBeenCalledTimes(1);
   });
 });
