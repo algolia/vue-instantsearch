@@ -1,4 +1,5 @@
 import instantsearch from 'instantsearch.js/es';
+import { h as createElementVue3 } from 'vue';
 import { createInstantSearchComponent } from '../util/createInstantSearchComponent';
 import { warn } from '../util/warn';
 
@@ -87,16 +88,29 @@ export default createInstantSearchComponent({
       }),
     };
   },
-  render(createElement) {
-    return createElement(
-      'div',
-      {
-        class: {
-          [this.suit()]: true,
-          [this.suit('', 'ssr')]: false,
+  render(createElementVue2) {
+    if (createElementVue3) {
+      return createElementVue3(
+        'div',
+        {
+          class: {
+            [this.suit()]: true,
+            [this.suit('', 'ssr')]: false,
+          },
         },
-      },
-      this.$slots.default
-    );
+        this.$slots.default()
+      );
+    } else {
+      return createElementVue2(
+        'div',
+        {
+          class: {
+            [this.suit()]: true,
+            [this.suit('', 'ssr')]: false,
+          },
+        },
+        this.$slots.default
+      );
+    }
   },
 });
