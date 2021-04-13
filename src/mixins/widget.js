@@ -68,9 +68,9 @@ Read more on using connectors: https://alg.li/vue-custom`
   },
   methods: {
     getParentIndex() {
-      return (
-        this.getProvidedParentIndex() || this.instantSearchInstance.mainIndex
-      );
+      return this.getProvidedParentIndex
+        ? this.getProvidedParentIndex()
+        : this.instantSearchInstance.mainIndex;
     },
     updateState(state = {}, isFirstRender) {
       if (!isFirstRender) {
