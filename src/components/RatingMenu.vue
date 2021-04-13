@@ -33,7 +33,7 @@
           :class="[suit('item'), item.isRefined && suit('item', 'selected')]"
         >
           <a
-            :href="state.createURL(item)"
+            :href="state.createURL(item.value)"
             :aria-label="`${item.value} & Up`"
             :class="suit('link')"
             @click.prevent="state.refine(item.value)"
@@ -45,7 +45,7 @@
                 width="24"
                 height="24"
                 :class="[suit('starIcon'), suit('starIcon--full')]"
-                :key="n"
+                :key="n + '-full'"
               >
                 <use xlink:href="#ais-RatingMenu-starSymbol" />
               </svg>
@@ -56,7 +56,7 @@
                 aria-hidden="true"
                 width="24"
                 height="24"
-                :key="n"
+                :key="n + '-empty'"
               >
                 <use xlink:href="#ais-RatingMenu-starEmptySymbol" />
               </svg>
@@ -88,7 +88,7 @@ export default {
     createSuitMixin({ name: 'RatingMenu' }),
     createWidgetMixin({ connector: connectRatingMenu }),
     createPanelConsumerMixin({
-      mapStateToCanRefine: state => !state.hasNoResults,
+      mapStateToCanRefine: state => state.hasNoResults === false,
     }),
   ],
   props: {

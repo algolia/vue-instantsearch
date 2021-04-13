@@ -40,7 +40,39 @@ function searchOnlyWithDerivedHelpers(helper) {
   });
 }
 
-function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
+function defaultCloneComponent(componentInstance) {
+  const options = {
+    serverPrefetch: undefined,
+    fetch: undefined,
+    _base: undefined,
+    name: 'ais-ssr-root-component',
+    // copy over global Vue APIs
+    router: componentInstance.$router,
+    store: componentInstance.$store,
+  };
+
+  const Extended = componentInstance.$vnode
+    ? componentInstance.$vnode.componentOptions.Ctor.extend(options)
+    : Vue.component(Object.assign({}, componentInstance.$options, options));
+
+  const app = new Extended({
+    propsData: componentInstance.$options.propsData,
+  });
+
+  // https://stackoverflow.com/a/48195006/3185307
+  app.$slots = componentInstance.$slots;
+  app.$root = componentInstance.$root;
+  app.$options.serverPrefetch = [];
+
+  return app;
+}
+
+function augmentInstantSearch(
+  instantSearchOptions,
+  searchClient,
+  indexName,
+  cloneComponent
+) {
   /* eslint-disable no-param-reassign */
 
   const helper = algoliaHelper(searchClient, indexName);
@@ -68,20 +100,7 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
 
     return Promise.resolve()
       .then(() => {
-        const options = {
-          serverPrefetch: undefined,
-          fetch: undefined,
-          _base: undefined,
-          name: 'ais-ssr-root-component',
-        };
-
-        const extended = componentInstance.$vnode
-          ? componentInstance.$vnode.componentOptions.Ctor.extend(options)
-          : Object.assign({}, componentInstance.$options, options);
-
-        app = new Vue(extended);
-
-        app.$options.serverPrefetch = [];
+        app = cloneComponent(componentInstance);
 
         app.instantsearch.helper = helper;
         app.instantsearch.mainHelper = helper;
@@ -153,55 +172,29 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
 
     const results = search.__initialSearchResults[parent.getIndexId()];
 
+    // this happens when a different InstantSearch gets rendered initially,
+    // after the hydrate finished. There's thus no initial results available.
+    if (!results) {
+      return;
+    }
+
     const state = results._state;
 
     // helper gets created in init, but that means it doesn't get the injected
     // parameters, because those are from the lastResults
     localHelper.state = state;
 
-    // TODO: copied from index widget, since it's only accessible once sent to render()
-    // a possible solution is making createURL accessible from the index widget.
-    const createURL = nextState =>
-      search._createURL({
-        [parent.getIndexId()]: parent
-          .getWidgets()
-          .filter(w => w.$$type !== 'ais.index')
-          .reduce((uiState, w) => {
-            if (!w.getWidgetState) {
-              return uiState;
-            }
-
-            return w.getWidgetState(uiState, {
-              searchParameters: nextState,
-              helper: localHelper,
-            });
-          }, {}),
-      });
-
-    function resolveScopedResultsFromWidgets(widgets) {
-      const indexWidgets = widgets.filter(w => w.$$type === 'ais.index');
-
-      return indexWidgets.reduce(
-        (scopedResults, current) =>
-          scopedResults.concat(
-            {
-              indexId: current.getIndexId(),
-              results: search.__initialSearchResults[current.getIndexId()],
-              helper: current.getHelper(),
-            },
-            ...resolveScopedResultsFromWidgets(current.getWidgets())
-          ),
-        []
-      );
-    }
-
     widget.render({
       helper: localHelper,
       results,
-      scopedResults: resolveScopedResultsFromWidgets([parent]),
+      scopedResults: parent.getScopedResults().map(result =>
+        Object.assign(result, {
+          results: search.__initialSearchResults[result.indexId],
+        })
+      ),
       state,
       templatesConfig: {},
-      createURL,
+      createURL: parent.createURL,
       instantSearchInstance: search,
       searchMetadata: {
         isSearchStalled: false,
@@ -253,7 +246,11 @@ function augmentInstantSearch(instantSearchOptions, searchClient, indexName) {
 }
 
 export function createServerRootMixin(instantSearchOptions = {}) {
-  const { searchClient, indexName } = instantSearchOptions;
+  const {
+    searchClient,
+    indexName,
+    $cloneComponent = defaultCloneComponent,
+  } = instantSearchOptions;
 
   if (!searchClient || !indexName) {
     throw new Error(
@@ -264,7 +261,8 @@ export function createServerRootMixin(instantSearchOptions = {}) {
   const search = augmentInstantSearch(
     instantSearchOptions,
     searchClient,
-    indexName
+    indexName,
+    $cloneComponent
   );
 
   // put this in the user's root Vue instance
