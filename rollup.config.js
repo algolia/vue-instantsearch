@@ -13,8 +13,8 @@ const processEnv = conf => ({
 });
 
 const plugins = [
-  commonjs(),
   vue({ compileTemplate: true, css: false }),
+  commonjs(),
   json(),
   buble({
     transforms: {
