@@ -501,7 +501,7 @@ it('exposes send-event method for insights middleware', () => {
     scopedSlots: {
       default: `
       <div slot-scope="{ sendEvent }">
-        <button @click="sendEvent()">Click</button>
+        <button @click="sendEvent()">Send Event</button>
       </div>
       `,
     },
