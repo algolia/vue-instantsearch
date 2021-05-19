@@ -7,10 +7,7 @@ function getVueAttribute(vnode) {
     if (vnode.componentOptions.propsData.attribute) {
       return vnode.componentOptions.propsData.attribute;
     }
-    if (
-      vnode.componentOptions &&
-      Array.isArray(vnode.componentOptions.propsData.attributes)
-    ) {
+    if (Array.isArray(vnode.componentOptions.propsData.attributes)) {
       return vnode.componentOptions.propsData.attributes[0];
     }
   }
