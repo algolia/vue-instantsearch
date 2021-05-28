@@ -21,12 +21,13 @@
     "dist",
     "src"
   ],
-  "main": "dist/vue2/cjs/vue-instantsearch.common.js",
-  "module": "dist/vue2/es/src/instantsearch.js",
+  "main": "dist/vue2/cjs",
+  "module": "dist/vue2/es",
   "sideEffects": false,
   "repository": "https://github.com/algolia/vue-instantsearch",
   "scripts": {
     "build": "rm -rf dist && rollup -c",
+    "postbuild": "./scripts/generate-entry-for-esm.sh",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o website/stories",
     "examples:build": "yarn build && ./examples/build.sh",

@@ -7,6 +7,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
 import json from 'rollup-plugin-json';
+import fs from 'fs';
 
 const processEnv = conf => ({
   // parenthesis to avoid syntax errors in places where {} is interpreted as a block
@@ -42,7 +43,7 @@ const makeConfigs = ({ vuePlugin, outputDir }) => {
       output: [
         {
           sourcemap: true,
-          file: `${outputDir}/cjs/vue-instantsearch.common.js`,
+          file: `${outputDir}/cjs/index.js`,
           format: 'cjs',
           exports: 'named',
         },
@@ -73,7 +74,7 @@ const makeConfigs = ({ vuePlugin, outputDir }) => {
       output: [
         {
           sourcemap: true,
-          file: `${outputDir}/umd/vue-instantsearch.js`,
+          file: `${outputDir}/umd/index.js`,
           format: 'umd',
           name: 'VueInstantSearch',
           exports: 'named',
