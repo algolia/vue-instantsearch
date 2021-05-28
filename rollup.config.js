@@ -1,4 +1,5 @@
-import vue from 'rollup-plugin-vue';
+import vueV2 from 'rollup-plugin-vue2';
+import vueV3 from 'rollup-plugin-vue3';
 import buble from 'rollup-plugin-buble';
 import filesize from 'rollup-plugin-filesize';
 import resolve from 'rollup-plugin-node-resolve';
@@ -12,80 +13,93 @@ const processEnv = conf => ({
   'process.env': `(${JSON.stringify(conf)})`,
 });
 
-const plugins = [
-  vue({ compileTemplate: true, css: false }),
-  commonjs(),
-  json(),
-  buble({
-    transforms: {
-      dangerousForOf: true,
+const makeConfigs = ({ vuePlugin, outputDir }) => {
+  const plugins = [
+    vuePlugin({ compileTemplate: true, css: false }),
+    commonjs(),
+    json(),
+    buble({
+      transforms: {
+        dangerousForOf: true,
+      },
+    }),
+    replace(processEnv({ NODE_ENV: 'production' })),
+    terser({
+      sourcemap: true,
+    }),
+    filesize(),
+  ];
+
+  return [
+    {
+      input: 'src/instantsearch.js',
+      external: [
+        'algoliasearch-helper',
+        'instantsearch.js/es',
+        'instantsearch.js/es/connectors',
+        'vue',
+      ],
+      output: [
+        {
+          sourcemap: true,
+          file: `${outputDir}/cjs/vue-instantsearch.common.js`,
+          format: 'cjs',
+          exports: 'named',
+        },
+      ],
+      plugins: [...plugins],
     },
-  }),
-  replace(processEnv({ NODE_ENV: 'production' })),
-  terser({
-    sourcemap: true,
-  }),
-  filesize(),
-];
+    {
+      input: 'src/instantsearch.js',
+      external: [
+        'algoliasearch-helper',
+        'instantsearch.js/es',
+        'instantsearch.js/es/connectors',
+        'vue',
+      ],
+      output: [
+        {
+          sourcemap: true,
+          dir: `${outputDir}/es`,
+          format: 'es',
+        },
+      ],
+      preserveModules: true,
+      plugins: [...plugins],
+    },
+    {
+      input: 'src/instantsearch.umd.js',
+      external: ['vue'],
+      output: [
+        {
+          sourcemap: true,
+          file: `${outputDir}/umd/vue-instantsearch.js`,
+          format: 'umd',
+          name: 'VueInstantSearch',
+          exports: 'named',
+          globals: {
+            vue: 'Vue',
+          },
+        },
+      ],
+      plugins: [
+        ...plugins,
+        resolve({
+          browser: true,
+          preferBuiltins: false,
+        }),
+      ],
+    },
+  ];
+};
 
 export default [
-  {
-    input: 'src/instantsearch.js',
-    external: [
-      'algoliasearch-helper',
-      'instantsearch.js/es',
-      'instantsearch.js/es/connectors',
-      'vue',
-    ],
-    output: [
-      {
-        sourcemap: true,
-        file: `dist/vue-instantsearch.common.js`,
-        format: 'cjs',
-        exports: 'named',
-      },
-    ],
-    plugins: [...plugins],
-  },
-  {
-    input: 'src/instantsearch.js',
-    external: [
-      'algoliasearch-helper',
-      'instantsearch.js/es',
-      'instantsearch.js/es/connectors',
-      'vue',
-    ],
-    output: [
-      {
-        sourcemap: true,
-        dir: `es`,
-        format: 'es',
-      },
-    ],
-    preserveModules: true,
-    plugins: [...plugins],
-  },
-  {
-    input: 'src/instantsearch.umd.js',
-    external: ['vue'],
-    output: [
-      {
-        sourcemap: true,
-        file: `dist/vue-instantsearch.js`,
-        format: 'umd',
-        name: 'VueInstantSearch',
-        exports: 'named',
-        globals: {
-          vue: 'Vue',
-        },
-      },
-    ],
-    plugins: [
-      ...plugins,
-      resolve({
-        browser: true,
-        preferBuiltins: false,
-      }),
-    ],
-  },
+  ...makeConfigs({
+    vuePlugin: vueV2,
+    outputDir: 'dist/vue2',
+  }),
+  ...makeConfigs({
+    vuePlugin: vueV3,
+    outputDir: 'dist/vue3',
+  }),
 ];
