@@ -1,6 +1,7 @@
 import { createSuitMixin } from '../mixins/suit';
 import { version } from '../../package.json'; // rollup does pick only what needed from json
 import { _objectSpread } from './polyfills';
+import { getVueVersion } from './getVueVersion';
 
 export const createInstantSearchComponent = component =>
   _objectSpread(
@@ -78,11 +79,3 @@ export const createInstantSearchComponent = component =>
     },
     component
   );
-
-function getVueVersion() {
-  if (typeof window !== 'undefined' && typeof window.Vue !== 'undefined') {
-    return window.Vue.version; // for umd
-  } else {
-    return require('vue').version;
-  }
-}
