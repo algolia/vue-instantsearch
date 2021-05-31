@@ -10,19 +10,18 @@
 </template>
 
 <script>
-import { parseAlgoliaHit } from "../util/parseAlgoliaHit";
-import * as Vue from "vue";
+import { isVue3 } from 'vue-demi';
+import { parseAlgoliaHit } from '../util/parseAlgoliaHit';
 
-const TextNode =
-  Vue.version && Vue.version.split(".")[0] === "3"
-    ? (props, context) => context.slots.default()
-    : {
-        functional: true,
-        render(createElement, context) {
-          const slots = context.slots();
-          return slots.default;
-        }
-      };
+const TextNode = isVue3
+  ? (props, context) => context.slots.default()
+  : {
+      functional: true,
+      render(createElement, context) {
+        const slots = context.slots();
+        return slots.default;
+      },
+    };
 
 export default {
   name: 'AisHighlighter',
