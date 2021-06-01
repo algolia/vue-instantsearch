@@ -7,100 +7,96 @@ import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
 import json from 'rollup-plugin-json';
-import fs from 'fs';
+
+if (process.env.VUE_VERSION !== 'vue2' && process.env.VUE_VERSION !== 'vue3') {
+  throw new Error(
+    'The environment variable VUE_VERSION (`vue2` | `vue3`) is required.'
+  );
+}
 
 const processEnv = conf => ({
   // parenthesis to avoid syntax errors in places where {} is interpreted as a block
   'process.env': `(${JSON.stringify(conf)})`,
 });
 
-const makeConfigs = ({ vuePlugin, outputDir }) => {
-  const plugins = [
-    vuePlugin({ compileTemplate: true, css: false }),
-    commonjs(),
-    json(),
-    buble({
-      transforms: {
-        dangerousForOf: true,
-      },
-    }),
-    replace(processEnv({ NODE_ENV: 'production' })),
-    terser({
-      sourcemap: true,
-    }),
-    filesize(),
-  ];
+const vuePlugin = process.env.VUE_VERSION === 'vue3' ? vueV3 : vueV2;
+const outputDir =
+  process.env.VUE_VERSION === 'vue3' ? 'dist/vue3' : 'dist/vue2';
 
-  return [
-    {
-      input: 'src/instantsearch.js',
-      external: [
-        'algoliasearch-helper',
-        'instantsearch.js/es',
-        'instantsearch.js/es/connectors',
-        'vue',
-      ],
-      output: [
-        {
-          sourcemap: true,
-          file: `${outputDir}/cjs/index.js`,
-          format: 'cjs',
-          exports: 'named',
-        },
-      ],
-      plugins: [...plugins],
+const plugins = [
+  vuePlugin({ compileTemplate: true, css: false }),
+  commonjs(),
+  json(),
+  buble({
+    transforms: {
+      dangerousForOf: true,
     },
-    {
-      input: 'src/instantsearch.js',
-      external: [
-        'algoliasearch-helper',
-        'instantsearch.js/es',
-        'instantsearch.js/es/connectors',
-        'vue',
-      ],
-      output: [
-        {
-          sourcemap: true,
-          dir: `${outputDir}/es`,
-          format: 'es',
-        },
-      ],
-      preserveModules: true,
-      plugins: [...plugins],
-    },
-    {
-      input: 'src/instantsearch.umd.js',
-      external: ['vue'],
-      output: [
-        {
-          sourcemap: true,
-          file: `${outputDir}/umd/index.js`,
-          format: 'umd',
-          name: 'VueInstantSearch',
-          exports: 'named',
-          globals: {
-            vue: 'Vue',
-          },
-        },
-      ],
-      plugins: [
-        ...plugins,
-        resolve({
-          browser: true,
-          preferBuiltins: false,
-        }),
-      ],
-    },
-  ];
-};
+  }),
+  replace(processEnv({ NODE_ENV: 'production' })),
+  terser({
+    sourcemap: true,
+  }),
+  filesize(),
+];
 
 export default [
-  ...makeConfigs({
-    vuePlugin: vueV2,
-    outputDir: 'dist/vue2',
-  }),
-  ...makeConfigs({
-    vuePlugin: vueV3,
-    outputDir: 'dist/vue3',
-  }),
+  {
+    input: 'src/instantsearch.js',
+    external: [
+      'algoliasearch-helper',
+      'instantsearch.js/es',
+      'instantsearch.js/es/connectors',
+      'vue',
+    ],
+    output: [
+      {
+        sourcemap: true,
+        file: `${outputDir}/cjs/index.js`,
+        format: 'cjs',
+        exports: 'named',
+      },
+    ],
+    plugins: [...plugins],
+  },
+  {
+    input: 'src/instantsearch.js',
+    external: [
+      'algoliasearch-helper',
+      'instantsearch.js/es',
+      'instantsearch.js/es/connectors',
+      'vue',
+    ],
+    output: [
+      {
+        sourcemap: true,
+        dir: `${outputDir}/es`,
+        format: 'es',
+      },
+    ],
+    preserveModules: true,
+    plugins: [...plugins],
+  },
+  {
+    input: 'src/instantsearch.umd.js',
+    external: ['vue'],
+    output: [
+      {
+        sourcemap: true,
+        file: `${outputDir}/umd/index.js`,
+        format: 'umd',
+        name: 'VueInstantSearch',
+        exports: 'named',
+        globals: {
+          vue: 'Vue',
+        },
+      },
+    ],
+    plugins: [
+      ...plugins,
+      resolve({
+        browser: true,
+        preferBuiltins: false,
+      }),
+    ],
+  },
 ];
