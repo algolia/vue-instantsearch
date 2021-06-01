@@ -119,11 +119,11 @@
   },
   "bundlesize": [
     {
-      "path": "./dist/vue2/umd/vue-instantsearch.js",
+      "path": "./dist/vue2/umd/index.js",
       "maxSize": "53.00 kB"
     },
     {
-      "path": "./dist/vue2/cjs/vue-instantsearch.common.js",
+      "path": "./dist/vue2/cjs/index.js",
       "maxSize": "16.50 kB"
     }
   ],
