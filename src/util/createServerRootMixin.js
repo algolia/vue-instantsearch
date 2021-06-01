@@ -1,9 +1,6 @@
-import {
-  component as defineComponentVue2,
-  defineComponent as defineComponentVue3,
-} from 'vue';
 import instantsearch from 'instantsearch.js/es';
 import algoliaHelper from 'algoliasearch-helper';
+import { isVue3, defineComponent, Vue2 } from 'vue-demi';
 const { SearchResults, SearchParameters } = algoliaHelper;
 import { warn } from './warn';
 
@@ -56,7 +53,7 @@ function defaultCloneComponent(componentInstance) {
 
   const Extended = componentInstance.$vnode
     ? componentInstance.$vnode.componentOptions.Ctor.extend(options)
-    : (defineComponentVue3 || defineComponentVue2)(
+    : (isVue3 ? defineComponent : Vue2.component)(
         Object.assign({}, componentInstance.$options, options)
       );
 
