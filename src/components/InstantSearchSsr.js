@@ -1,5 +1,5 @@
 import { createInstantSearchComponent } from '../util/createInstantSearchComponent';
-import * as Vue from 'vue';
+import { isVue3, h } from 'vue-demi';
 
 export default createInstantSearchComponent({
   name: 'AisInstantSearchSsr',
@@ -15,8 +15,8 @@ export default createInstantSearchComponent({
       instantSearchInstance: this.$_ais_ssrInstantSearchInstance,
     };
   },
-  render(h) {
-    return (Vue.h || h)(
+  render(createElement) {
+    return (isVue3 ? h : createElement)(
       'div',
       {
         class: {
@@ -24,9 +24,7 @@ export default createInstantSearchComponent({
           [this.suit('', 'ssr')]: true,
         },
       },
-      typeof this.$slots.default === 'function'
-        ? this.$slots.default()
-        : this.$slots.default
+      isVue3 ? this.$slots.default() : this.$slots.default
     );
   },
 });
