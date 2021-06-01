@@ -15556,10 +15556,10 @@ vue-class-component@^7.0.1:
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.0.1.tgz#7af2225c600667c7042b60712eefdf41dfc6de63"
   integrity sha512-YIihdl7YmceEOjSwcxLhCXCNA3TKC2FStuMcjtuzhUAgw5x5d1T5gZTmVQHGyOaQsaKffL4GlZzYN3dlMYl53w==
 
-vue-demi@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.9.1.tgz#25d6e1ebd4d4010757ff3571e2bf6a1d7bf3de82"
-  integrity sha512-7s1lufRD2l369eFWPjgLvhqCRk0XzGWJsQc7K4q+0mZtixyGIvsK1Cg88P4NcaRIEiBuuN4q1NN4SZKFKwQswA==
+"vue-demi@npm:@eunjae-lee/vue-demi@0.9.2":
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/@eunjae-lee/vue-demi/-/vue-demi-0.9.2.tgz#234bb04c3cd0a5c85894cf8f2ac9a9bdb183d315"
+  integrity sha512-6q6RPme8/ZXscocbnMGc/xC+cKDgKLL36OaT15y0wBt/iIfXFrircucBatCIustAxSNtxTMRXHqEri3nS/pw4w==
 
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
