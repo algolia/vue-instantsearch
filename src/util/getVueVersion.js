@@ -1,5 +1,4 @@
-import { isVue3, Vue2 } from 'vue-demi';
-import { version } from 'vue';
+import { isVue3, Vue2, version } from 'vue-demi';
 
 export function getVueVersion() {
   if (isVue3) {

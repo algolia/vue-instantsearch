@@ -854,6 +854,13 @@
     "@vue/compiler-dom" "3.0.11"
     "@vue/shared" "3.0.11"
 
+"@vue/composition-api@^1.0.0-beta.1":
+  version "1.0.0-rc.10"
+  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.0.0-rc.10.tgz#a98e2b810613531bbbbd3b4c0a9fc46198cc931d"
+  integrity sha512-ftm4OU8H1Ipw64gxIVqzlCW9lJrtr9iOJME0/KJ/fWmVGy55Qbd0uIgIttOkCdLL94A5cjTSbJFTQhu9jBDRXw==
+  dependencies:
+    tslib "^2.2.0"
+
 "@vue/shared@3.0.11":
   version "3.0.11"
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.0.11.tgz#20d22dd0da7d358bb21c17f9bde8628152642c77"
@@ -15436,6 +15443,11 @@ tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==
 
+tslib@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
+  integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
+
 tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
@@ -15930,10 +15942,12 @@ vue-class-component@^7.0.1:
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.0.1.tgz#7af2225c600667c7042b60712eefdf41dfc6de63"
   integrity sha512-YIihdl7YmceEOjSwcxLhCXCNA3TKC2FStuMcjtuzhUAgw5x5d1T5gZTmVQHGyOaQsaKffL4GlZzYN3dlMYl53w==
 
-"vue-demi@npm:@eunjae-lee/vue-demi@0.9.3":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@eunjae-lee/vue-demi/-/vue-demi-0.9.3.tgz#40bc053a7089845a3eea7da224d08237afbaeedc"
-  integrity sha512-EYogDQ9qjQqAIHEDIBk7lyO/w8Q1Efu91F2s/qMOZMB+xDuR0thfSsst/dA6beuynqHfVLqGM+prvpPk8cs3Mw==
+"vue-demi@npm:@eunjae-lee/vue-demi@0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@eunjae-lee/vue-demi/-/vue-demi-0.10.2.tgz#cdfaebb3087590f1d20a76bf0b1d5592024f327a"
+  integrity sha512-f2Ymmdcvz9p7MLoZcxhxEfLgUykdL0f3VKBb++lWi+cBh2J3W/OLYvL6eJmvshcpunP7xcOJaeQ+IpM1fcECcg==
+  dependencies:
+    "@vue/composition-api" "^1.0.0-beta.1"
 
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
