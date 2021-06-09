@@ -11,7 +11,10 @@ export const createWidgetMixin = ({ connector } = {}) => ({
         );
       },
     },
-    getProvidedParentIndex: '$_ais_getParentIndex',
+    getProvidedParentIndex: {
+      from: '$_ais_getParentIndex',
+      default: undefined,
+    },
   },
   data() {
     return {
