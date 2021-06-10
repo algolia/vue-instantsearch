@@ -15942,10 +15942,10 @@ vue-class-component@^7.0.1:
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.0.1.tgz#7af2225c600667c7042b60712eefdf41dfc6de63"
   integrity sha512-YIihdl7YmceEOjSwcxLhCXCNA3TKC2FStuMcjtuzhUAgw5x5d1T5gZTmVQHGyOaQsaKffL4GlZzYN3dlMYl53w==
 
-"vue-demi@npm:@eunjae-lee/vue-demi@0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@eunjae-lee/vue-demi/-/vue-demi-0.10.2.tgz#cdfaebb3087590f1d20a76bf0b1d5592024f327a"
-  integrity sha512-f2Ymmdcvz9p7MLoZcxhxEfLgUykdL0f3VKBb++lWi+cBh2J3W/OLYvL6eJmvshcpunP7xcOJaeQ+IpM1fcECcg==
+"vue-demi@npm:@eunjae-lee/vue-demi@0.10.4":
+  version "0.10.4"
+  resolved "https://registry.yarnpkg.com/@eunjae-lee/vue-demi/-/vue-demi-0.10.4.tgz#e84fc32d1e9b5b526eb35eda9ba1e18c4433e599"
+  integrity sha512-LijumvAg232nhyXt/4FoHi7At5yvlRqiyQqREdLAYlU+5LfUrhCAWpC37NiUCatUrdn8RrThCfwlKsh49M5XYA==
   dependencies:
     "@vue/composition-api" "^1.0.0-beta.1"
 
