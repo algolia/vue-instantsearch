@@ -3,3 +3,4 @@ docs/
 coverage/
 dist/
 examples/*/node_modules/*
+scripts/es-index-template.js
