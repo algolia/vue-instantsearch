@@ -1,7 +1,7 @@
 <template>
   <div :class="[suit(), !canRefine && suit('', 'noRefinement')]">
     <div
-      v-if="headerSlot"
+      v-if="getSlot('header')"
       :class="suit('header')"
     >
       <slot
@@ -13,7 +13,7 @@
       <slot :has-refinements="canRefine" />
     </div>
     <div
-      v-if="footerSlot"
+      v-if="getSlot('footer')"
       :class="suit('footer')"
     >
       <slot
@@ -32,17 +32,11 @@ import { createSuitMixin } from '../mixins/suit';
 export default {
   name: 'AisPanel',
   mixins: [createSuitMixin({ name: 'Panel' }), createPanelProviderMixin()],
-  computed: {
-    headerSlot() {
-      // $scopedSlots doesn't exist in Vue3
+  methods: {
+    getSlot(name) {
       return isVue3
-        ? this.$slots.header
-        : this.$slots.header || this.$scopedSlots.header;
-    },
-    footerSlot() {
-      return isVue3
-        ? this.$slots.footer
-        : this.$slots.footer || this.$scopedSlots.footer;
+        ? this.$slots[name]
+        : this.$slots[name] || this.$scopedSlots[name];
     },
   },
 };
