@@ -64,7 +64,7 @@ jobs:
       - run:
           name: Install Vue3
           command: |
-            yarn remove vue
+            yarn remove vue vue-template-compiler
             yarn add vue@3.0.0 -D -E
       - run:
           name: Switch to Vue3 mode
