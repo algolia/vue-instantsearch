@@ -37,7 +37,7 @@ export default {
   props: {
     transformItems: {
       type: Function,
-      required: true,
+      default: undefined,
     },
   },
   render(createElement) {
