@@ -59,7 +59,8 @@ export default {
 
     // by default, render everything, but hidden so that the routing doesn't disappear
     if (!this.state) {
-      const allComponents = Array.from(components.values());
+      const allComponents = [];
+      components.forEach(component => allComponents.push(component));
 
       return createElement(
         'div',
