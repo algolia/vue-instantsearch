@@ -2,13 +2,14 @@ import { createWidgetMixin } from '../mixins/widget';
 import { EXPERIMENTAL_connectDynamicWidgets } from 'instantsearch.js/es/connectors';
 import { createSuitMixin } from '../mixins/suit';
 
-function getVueAttribute(vnode) {
-  if (vnode.componentOptions && vnode.componentOptions.propsData) {
-    if (vnode.componentOptions.propsData.attribute) {
-      return vnode.componentOptions.propsData.attribute;
+function getWidgetAttribute(vnode) {
+  const props = vnode.componentOptions && vnode.componentOptions.propsData;
+  if (props) {
+    if (props.attribute) {
+      return props.attribute;
     }
-    if (Array.isArray(vnode.componentOptions.propsData.attributes)) {
-      return vnode.componentOptions.propsData.attributes[0];
+    if (Array.isArray(props.attributes)) {
+      return props.attributes[0];
     }
   }
 
@@ -20,7 +21,7 @@ function getVueAttribute(vnode) {
   if (Array.isArray(children)) {
     // return first child with a truthy attribute
     return children.reduce(
-      (acc, curr) => acc || getVueAttribute(curr),
+      (acc, curr) => acc || getWidgetAttribute(curr),
       undefined
     );
   }
@@ -43,7 +44,7 @@ export default {
   render(createElement) {
     const components = new Map();
     (this.$slots.default || []).forEach(vnode => {
-      const attribute = getVueAttribute(vnode);
+      const attribute = getWidgetAttribute(vnode);
       if (attribute) {
         components.set(
           attribute,
