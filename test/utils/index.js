@@ -13,7 +13,7 @@ export const mount = isVue3
           provide,
         },
       });
-      wrapper.destroy = () => wrapper.unmount();
+      wrapper.destroy = wrapper.unmount;
       return wrapper;
     }
   : require('@vue/test-utils').mount;
