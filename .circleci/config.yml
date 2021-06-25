@@ -39,13 +39,41 @@ jobs:
           name: Build & Test packages size
           command: yarn test:build
 
-  test_unit:
+  test_unit_vue2:
     <<: *defaults
     steps:
       - checkout
       - run: *install_yarn_version
       - restore_cache: *restore_yarn_cache
       - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run:
+          name: Lint & Code styles
+          command: yarn lint
+      - run:
+          name: Unit Tests
+          command: yarn test --maxWorkers=4
+
+  test_unit_vue3:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install_yarn_version
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - run:
+          name: Install Vue3
+          command: |
+            yarn remove vue vue-jest vue-template-compiler babel-preset-es2015
+            yarn add vue@3.0.6 vue-jest@5.0.0-alpha.10 vue-loader@16.1.2 jest@26.6.3 babel-jest@25.2.6 @babel/preset-env@7.14.5 -D -E
+            rm .babelrc
+            echo "// eslint-disable-next-line import/no-commonjs" > babel.config.js
+            echo "module.exports = {" >> babel.config.js
+            echo "  presets: ['@babel/preset-env']," >> babel.config.js
+            echo "};" >> babel.config.js
+      - run:
+          name: Switch to Vue3 mode
+          command: yarn vue-demi-switch 3
       - save_cache: *save_yarn_cache
       - run:
           name: Lint & Code styles
@@ -85,7 +113,8 @@ workflows:
   ci:
     jobs:
       - test_build
-      - test_unit
+      - test_unit_vue2
+      - test_unit_vue3
       - test_e2e
   release_if_needed:
     jobs:
