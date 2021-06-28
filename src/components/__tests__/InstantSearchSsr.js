@@ -1,4 +1,4 @@
-import { mount } from '../../../test/utils';
+import { createComponent, mount } from '../../../test/utils';
 import instantsearch from 'instantsearch.js/es';
 import Vue from 'vue';
 import InstantSearchSsr from '../InstantSearchSsr';
@@ -57,11 +57,11 @@ it('does not start too many times', async () => {
     searchClient: createFakeClient(),
   });
 
-  const Wrapper = {
+  const Wrapper = createComponent({
     render(h) {
       return h(InstantSearchSsr);
     },
-  };
+  });
 
   mount(Wrapper, {
     provide: {
