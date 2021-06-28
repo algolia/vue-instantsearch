@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { mount } from '../../../test/utils';
+import { mount, nextTick } from '../../../test/utils';
 import instantsearch from 'instantsearch.js/es';
 import InstantSearch from '../InstantSearch';
 import { version } from '../../../package.json';
@@ -87,7 +87,7 @@ it('calls `start` on the next tick', async () => {
     },
   });
 
-  await Vue.nextTick();
+  await nextTick();
   expect(wrapper.vm.instantSearchInstance.start).toHaveBeenCalledTimes(1);
 });
 
@@ -316,7 +316,7 @@ it('disposes the instantsearch instance on unmount', async () => {
     },
   });
 
-  await Vue.nextTick();
+  await nextTick();
 
   expect(wrapper.vm.instantSearchInstance.started).toBe(true);
 

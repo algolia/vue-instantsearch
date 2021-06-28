@@ -2,6 +2,7 @@ import {
   isVue3,
   h,
   createApp as createAppVue3,
+  nextTick as nextTickVue3,
   Vue2,
 } from '../../src/util/vue';
 
@@ -45,3 +46,5 @@ export const createComponent = props => {
 
   return component;
 };
+
+export const nextTick = () => (isVue3 ? nextTickVue3() : Vue2.nextTick());

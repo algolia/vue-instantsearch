@@ -1,6 +1,5 @@
-import { createComponent, mount } from '../../../test/utils';
+import { createComponent, mount, nextTick } from '../../../test/utils';
 import instantsearch from 'instantsearch.js/es';
-import Vue from 'vue';
 import InstantSearchSsr from '../InstantSearchSsr';
 import SearchBox from '../SearchBox.vue';
 import { createFakeClient } from '../../util/testutils/client';
@@ -87,11 +86,11 @@ it('does not start too many times', async () => {
   // does not yet call again, since same instance needs to unmount first
   expect(startSpy).toHaveBeenCalledTimes(0);
 
-  await Vue.nextTick();
+  await nextTick();
 
   expect(startSpy).toHaveBeenCalledTimes(1);
 
-  await Vue.nextTick();
+  await nextTick();
 
   // doesn't get called any more times
   expect(startSpy).toHaveBeenCalledTimes(1);
@@ -133,7 +132,7 @@ it('does not dispose if not yet started', async () => {
       default: SearchBox,
     },
   });
-  await Vue.nextTick();
+  await nextTick();
 
   wrapperTwo.destroy();
 
