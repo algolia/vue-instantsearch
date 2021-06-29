@@ -68,9 +68,9 @@ it('calls `refine` with the `value` on `change`', async () => {
     propsData: defaultProps,
   });
 
-  // This is bad👇🏽 but the only way for now to trigger changes
-  // on a select: https://github.com/vuejs/vue-test-utils/issues/260
-  wrapper.vm.selected = 20;
+  await wrapper.setData({
+    selected: 20,
+  });
 
   await wrapper.find('select').trigger('change');
 
