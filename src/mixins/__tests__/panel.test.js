@@ -1,5 +1,6 @@
 import { mount } from '../../../test/utils';
 import mitt from 'mitt';
+import Vue from 'vue';
 import {
   createPanelProviderMixin,
   createPanelConsumerMixin,
@@ -87,7 +88,7 @@ describe('createPanelProviderMixin', () => {
 describe('createPanelConsumerMixin', () => {
   const mapStateToCanRefine = state => state.attributeName;
 
-  it('emits PANEL_CHANGE_EVENT on `state.attributeName` change', () => {
+  it('emits PANEL_CHANGE_EVENT on `state.attributeName` change', async () => {
     const emitter = createFakeEmitter();
     const Test = createFakeComponent();
 
@@ -102,22 +103,31 @@ describe('createPanelConsumerMixin', () => {
       },
     });
 
-    wrapper.vm.state = {
-      attributeName: false,
-    };
+    console.log('set data1');
+    await wrapper.setData({
+      state: {
+        attributeName: false,
+      },
+    });
 
     expect(emitter.emit).toHaveBeenCalledTimes(1);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, false);
 
-    wrapper.vm.state = {
-      attributeName: true,
-    };
+    console.log('state before set date2', JSON.stringify(wrapper.vm.state));
+    console.log('set data2');
+    await wrapper.setData({
+      state: {
+        attributeName: true,
+      },
+    });
+
+    console.log('state after set date2', JSON.stringify(wrapper.vm.state));
 
     expect(emitter.emit).toHaveBeenCalledTimes(2);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, true);
   });
 
-  it('emits once when both values are set', () => {
+  it('emits once when both values are set', async () => {
     const emitter = createFakeEmitter();
     const Test = createFakeComponent();
 
@@ -132,21 +142,25 @@ describe('createPanelConsumerMixin', () => {
       },
     });
 
-    wrapper.vm.state = {
-      attributeName: false,
-    };
+    await wrapper.setData({
+      state: {
+        attributeName: false,
+      },
+    });
 
     expect(emitter.emit).toHaveBeenCalledTimes(1);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, false);
 
-    wrapper.vm.state = {
-      attributeName: false,
-    };
+    await wrapper.setData({
+      state: {
+        attributeName: false,
+      },
+    });
 
     expect(emitter.emit).toHaveBeenCalledTimes(1);
   });
 
-  it('emits once on init of the component', () => {
+  it('emits once on init of the component', async () => {
     const emitter = createFakeEmitter();
     const Test = createFakeComponent();
 
@@ -161,15 +175,17 @@ describe('createPanelConsumerMixin', () => {
       },
     });
 
-    wrapper.vm.state = {
-      attributeName: true,
-    };
+    await wrapper.setData({
+      state: {
+        attributeName: true,
+      },
+    });
 
     expect(emitter.emit).toHaveBeenCalledTimes(1);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, true);
   });
 
-  it('do not emit when the next value is not set', () => {
+  it('do not emit when the next value is not set', async () => {
     const emitter = createFakeEmitter();
     const Test = createFakeComponent();
 
@@ -184,19 +200,23 @@ describe('createPanelConsumerMixin', () => {
       },
     });
 
-    wrapper.vm.state = {
-      attributeName: true,
-    };
+    await wrapper.setData({
+      state: {
+        attributeName: true,
+      },
+    });
 
     expect(emitter.emit).toHaveBeenCalledTimes(1);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, true);
 
-    wrapper.vm.state = null;
+    await wrapper.setData({
+      state: {},
+    });
 
     expect(emitter.emit).toHaveBeenCalledTimes(1);
   });
 
-  it('do not emit when the previous and next value are equal', () => {
+  it('do not emit when the previous and next value are equal', async () => {
     const emitter = createFakeEmitter();
     const Test = createFakeComponent();
 
@@ -211,23 +231,29 @@ describe('createPanelConsumerMixin', () => {
       },
     });
 
-    wrapper.vm.state = {
-      attributeName: true,
-    };
+    await wrapper.setData({
+      state: {
+        attributeName: true,
+      },
+    });
 
     expect(emitter.emit).toHaveBeenCalledTimes(1);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, true);
 
-    wrapper.vm.state = {
-      attributeName: false,
-    };
+    await wrapper.setData({
+      state: {
+        attributeName: false,
+      },
+    });
 
     expect(emitter.emit).toHaveBeenCalledTimes(2);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, false);
 
-    wrapper.vm.state = {
-      attributeName: false,
-    };
+    await wrapper.setData({
+      state: {
+        attributeName: false,
+      },
+    });
 
     expect(emitter.emit).toHaveBeenCalledTimes(2);
   });

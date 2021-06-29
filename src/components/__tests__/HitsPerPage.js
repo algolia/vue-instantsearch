@@ -58,7 +58,7 @@ it('renders correctly', () => {
   expect(wrapper.html()).toMatchSnapshot();
 });
 
-it('calls `refine` with the `value` on `change`', () => {
+it('calls `refine` with the `value` on `change`', async () => {
   __setState({
     ...defaultState,
     refine: jest.fn(),
@@ -72,12 +72,12 @@ it('calls `refine` with the `value` on `change`', () => {
   // on a select: https://github.com/vuejs/vue-test-utils/issues/260
   wrapper.vm.selected = 20;
 
-  wrapper.find('select').trigger('change');
+  await wrapper.find('select').trigger('change');
 
   expect(wrapper.vm.state.refine).toHaveBeenLastCalledWith(20);
 });
 
-it('calls the Panel mixin with `hasNoResults`', () => {
+it('calls the Panel mixin with `hasNoResults`', async () => {
   __setState({
     ...defaultState,
     hasNoResults: false,
@@ -92,7 +92,7 @@ it('calls the Panel mixin with `hasNoResults`', () => {
 
   expect(mapStateToCanRefine()).toBe(true);
 
-  wrapper.setData({
+  await wrapper.setData({
     state: {
       hasNoResults: true,
     },
