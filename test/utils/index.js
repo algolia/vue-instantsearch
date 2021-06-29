@@ -8,7 +8,14 @@ import {
 
 export const mount = isVue3
   ? (component, options = {}) => {
-      const { propsData, mixins, provide, ...restOptions } = options;
+      const {
+        propsData,
+        mixins,
+        provide,
+        slots,
+        scopedSlots,
+        ...restOptions
+      } = options;
       // If we `import` this, it will try to import Vue3-only APIs like `defineComponent`,
       // and jest will fail. So we need to `require` it.
       const wrapper = require('@vue/test-utils2').mount(component, {
@@ -17,6 +24,10 @@ export const mount = isVue3
         global: {
           mixins,
           provide,
+        },
+        slots: {
+          ...slots,
+          ...scopedSlots,
         },
       });
       wrapper.destroy = wrapper.unmount;
