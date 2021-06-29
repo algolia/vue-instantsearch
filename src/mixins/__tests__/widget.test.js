@@ -186,7 +186,7 @@ describe('on child index', () => {
 
     mount(Test, {
       provide: {
-        $_ais_instantSearchInstance: () => instance,
+        $_ais_instantSearchInstance: instance,
         $_ais_getParentIndex: () => indexWidget,
       },
       data: () => ({
