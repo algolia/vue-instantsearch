@@ -269,8 +269,13 @@ it('Does not allow a change in `routing`', async () => {
   });
 
   // Vue catches this error and throws it to the console
-  expect(global.console.error.mock.calls[0][0]).toMatchInlineSnapshot(`
+  expect(
+    global.console.error.mock.calls[
+      global.console.error.mock.calls.length - 1
+    ][0]
+  ).toMatchInlineSnapshot(`
 [Error: routing configuration can not be changed dynamically at this point.
+
 Please open a new issue: https://github.com/algolia/vue-instantsearch/issues/new?template=feature.md]
 `);
 });
