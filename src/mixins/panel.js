@@ -60,10 +60,6 @@ export const createPanelConsumerMixin = ({ mapStateToCanRefine }) => ({
     state: {
       immediate: true,
       handler(nextState, previousState) {
-        console.log(
-          'state watch handler',
-          JSON.stringify({ nextState, previousState }, null, 2)
-        );
         if (!nextState) {
           return;
         }

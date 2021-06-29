@@ -103,7 +103,6 @@ describe('createPanelConsumerMixin', () => {
       },
     });
 
-    console.log('set data1');
     await wrapper.setData({
       state: {
         attributeName: false,
@@ -113,15 +112,13 @@ describe('createPanelConsumerMixin', () => {
     expect(emitter.emit).toHaveBeenCalledTimes(1);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, false);
 
-    console.log('state before set date2', JSON.stringify(wrapper.vm.state));
-    console.log('set data2');
-    await wrapper.setData({
-      state: {
-        attributeName: true,
-      },
-    });
-
-    console.log('state after set date2', JSON.stringify(wrapper.vm.state));
+    // ↓ this should be replaceable with `wrapper.setData()` but it didn't
+    // trigger the watcher in `createPanelConsumerMixin`.
+    // It's probably a bug from vue-test-utils.
+    // https://github.com/vuejs/vue-test-utils/issues/1756
+    // https://github.com/vuejs/vue-test-utils/issues/149
+    wrapper.vm.$set(wrapper.vm, 'state', { attributeName: true });
+    await Vue.nextTick();
 
     expect(emitter.emit).toHaveBeenCalledTimes(2);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, true);
@@ -209,9 +206,8 @@ describe('createPanelConsumerMixin', () => {
     expect(emitter.emit).toHaveBeenCalledTimes(1);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, true);
 
-    await wrapper.setData({
-      state: {},
-    });
+    wrapper.vm.$set(wrapper.vm, 'state', null);
+    await Vue.nextTick();
 
     expect(emitter.emit).toHaveBeenCalledTimes(1);
   });
@@ -240,20 +236,14 @@ describe('createPanelConsumerMixin', () => {
     expect(emitter.emit).toHaveBeenCalledTimes(1);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, true);
 
-    await wrapper.setData({
-      state: {
-        attributeName: false,
-      },
-    });
+    wrapper.vm.$set(wrapper.vm, 'state', { attributeName: false });
+    await Vue.nextTick();
 
     expect(emitter.emit).toHaveBeenCalledTimes(2);
     expect(emitter.emit).toHaveBeenLastCalledWith(PANEL_CHANGE_EVENT, false);
 
-    await wrapper.setData({
-      state: {
-        attributeName: false,
-      },
-    });
+    wrapper.vm.$set(wrapper.vm, 'state', { attributeName: false });
+    await Vue.nextTick();
 
     expect(emitter.emit).toHaveBeenCalledTimes(2);
   });
