@@ -406,4 +406,15 @@ it('updates DOM when attributesToRender changes', () => {
 </div>
 
 `);
+
+  attributesToRender = [];
+
+  wrapper.vm.$forceUpdate();
+
+  expect(wrapper.html()).toMatchInlineSnapshot(`
+
+<div class="ais-DynamicWidgets">
+</div>
+
+`);
 });
