@@ -618,8 +618,8 @@ describe('custom default render', () => {
   it('renders correctly with a show more button toggled', async () => {
     __setState({
       ...defaultState,
-      toggleShowMore: async () => {
-        await wrapper.setData({
+      toggleShowMore: () => {
+        wrapper.setData({
           state: {
             isShowingMore: true,
           },
@@ -692,8 +692,8 @@ describe('custom default render', () => {
   it('calls toggleShowMore on button click', async () => {
     __setState({
       ...defaultState,
-      toggleShowMore: async () => {
-        await wrapper.setData({ state: { isShowingMore: true } });
+      toggleShowMore: () => {
+        wrapper.setData({ state: { isShowingMore: true } });
       },
     });
 
@@ -747,8 +747,8 @@ describe('custom showMoreLabel render', () => {
   it('renders correctly with a custom show more label toggled', async () => {
     __setState({
       ...defaultState,
-      toggleShowMore: async () => {
-        await wrapper.setData({ state: { isShowingMore: true } });
+      toggleShowMore: () => {
+        wrapper.setData({ state: { isShowingMore: true } });
       },
     });
 
