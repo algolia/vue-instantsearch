@@ -9,7 +9,7 @@
       </p>
       <p>
         Fill in the slot, and get access to the following things on the
-        <code>slot-scope</code>:
+        <code>v-slot</code>:
       </p>
       <pre>results: {{ Object.keys(state.results) }}</pre>
       <pre>state: {{ Object.keys(state.state) }}</pre>
