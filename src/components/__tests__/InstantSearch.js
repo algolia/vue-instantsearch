@@ -78,13 +78,13 @@ See more info here: https://www.algolia.com/doc/api-reference/widgets/instantsea
     );
   } else {
     expect(global.console.error.mock.calls[0][0]).toMatchInlineSnapshot(`
-      "[Vue warn]: Invalid prop: custom validator check failed for prop \\"apiKey\\".
+"[Vue warn]: Invalid prop: custom validator check failed for prop \\"apiKey\\".
 
-      found in
+found in
 
-      ---> <AisInstantSearch>
-             <Root>"
-        `);
+---> <AisInstantSearch>
+       <Root>"
+`);
 
     expect(global.console.error.mock.calls[1][0]).toMatchInlineSnapshot(`
 "[Vue warn]: Invalid prop: custom validator check failed for prop \\"appId\\".
@@ -93,7 +93,7 @@ found in
 
 ---> <AisInstantSearch>
        <Root>"
-          `);
+`);
   }
 });
 
@@ -258,7 +258,7 @@ found in
 
 ---> <AisInstantSearch>
        <Root>"
-          `);
+`);
   }
 
   expect(warn)
