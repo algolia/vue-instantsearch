@@ -1,4 +1,4 @@
-import { isVue3 } from 'vue-demi';
+import { isVue3 } from '../util/vue-utils';
 import { warn } from '../util/warn';
 
 export const createWidgetMixin = ({ connector } = {}) => ({

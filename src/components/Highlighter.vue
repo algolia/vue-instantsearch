@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { isVue3 } from 'vue-demi';
+import { isVue3 } from '../util/vue-utils';
 import { parseAlgoliaHit } from '../util/parseAlgoliaHit';
 
 const TextNode = isVue3
