@@ -1,4 +1,4 @@
-import { isVue3, Vue2, createApp } from 'vue-demi';
+import { isVue3, Vue2, createApp } from '../util/vue';
 import InstantSearch from '../instantsearch';
 
 const renderlessComponents = ['AisExperimentalConfigureRelatedItems'];
