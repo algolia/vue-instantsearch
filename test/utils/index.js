@@ -43,14 +43,7 @@ export const createApp = props => {
   }
 };
 
-export const createComponent = props => {
-  const component = { ...props };
-  if (props.render) {
-    component.render = createElementV2 =>
-      props.render(isVue3 ? h : createElementV2);
-  }
-
-  return component;
-};
+export const renderCompat = fn => createElementV2 =>
+  isVue3 ? fn(h) : fn(createElementV2);
 
 export const nextTick = () => (isVue3 ? nextTickVue3() : Vue2.nextTick());
