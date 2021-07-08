@@ -1,4 +1,4 @@
-import { createComponent, mount, nextTick } from '../../../test/utils';
+import { renderCompat, mount, nextTick } from '../../../test/utils';
 import instantsearch from 'instantsearch.js/es';
 import InstantSearchSsr from '../InstantSearchSsr';
 import SearchBox from '../SearchBox.vue';
@@ -60,11 +60,9 @@ it('does not start too many times', async () => {
     searchClient: createFakeClient(),
   });
 
-  const Wrapper = createComponent({
-    render(h) {
-      return h(InstantSearchSsr);
-    },
-  });
+  const Wrapper = {
+    render: renderCompat(h => h(InstantSearchSsr)),
+  };
 
   mount(Wrapper, {
     provide: {
