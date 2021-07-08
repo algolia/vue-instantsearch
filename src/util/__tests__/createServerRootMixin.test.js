@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import { isVue3, h as createElementVue3 } from 'vue-demi';
 import { mount, createComponent, createApp } from '../../../test/utils';
 import _renderToString from 'vue-server-renderer/basic';
 import Router from 'vue-router';
@@ -11,6 +10,7 @@ import SearchBox from '../../components/SearchBox.vue';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
+import { isVue3 } from 'vue-demi';
 import {
   SearchResults,
   SearchParameters,
@@ -386,13 +386,12 @@ Array [
               indexName: 'hello',
             }),
           ],
-          render(h) {
-            return h(
-              InstantSearchSsr,
-              {},
-              isVue3 ? this.$slots.default() : this.$slots.default
-            );
-          },
+          components: { InstantSearchSsr },
+          template: `
+            <InstantSearchSsr>
+              <slot />
+            </InstantSearchSsr>
+          `,
           serverPrefetch() {
             return (
               this.instantsearch
@@ -415,17 +414,12 @@ Array [
 
       const wrapper = createApp({
         mixins: [forceIsServerMixin],
-        render(h) {
-          return h(App, [
-            h('template', { slot: 'default' }, [
-              h(Configure, {
-                attrs: {
-                  hitsPerPage: 100,
-                },
-              }),
-            ]),
-          ]);
-        },
+        components: { App, Configure },
+        template: `
+          <App>
+            <Configure :hits-per-page.camel="100" />
+          </App>
+        `,
       });
 
       await renderToString(wrapper);
