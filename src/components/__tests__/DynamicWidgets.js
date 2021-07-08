@@ -115,7 +115,7 @@ it('renders nothing without children', () => {
 `);
 });
 
-it('renders nothing with empty items', () => {
+it('renders nothing with empty attributesToRender', () => {
   const localVue = createLocalVue();
 
   localVue.use(plugin);
@@ -134,7 +134,6 @@ it('renders nothing with empty items', () => {
     },
     stubs: {
       'ais-refinement-list': MockRefinementList,
-      'ais-menu': MockMenu,
     },
   });
 
