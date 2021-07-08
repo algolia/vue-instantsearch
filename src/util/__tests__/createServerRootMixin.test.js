@@ -7,10 +7,10 @@ import { createServerRootMixin } from '../createServerRootMixin';
 import InstantSearchSsr from '../../components/InstantSearchSsr';
 import Configure from '../../components/Configure';
 import SearchBox from '../../components/SearchBox.vue';
+import { isVue3, h as createElementV3 } from '../vue';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
-import { isVue3 } from 'vue-demi';
 import {
   SearchResults,
   SearchParameters,
@@ -497,38 +497,36 @@ Array [
       // there are two renders of App, each with an assertion
       expect.assertions(2);
 
-      const App = Vue.component(
-        'App',
-        createComponent({
-          mixins: [
-            forceIsServerMixin,
-            createServerRootMixin({
-              searchClient,
-              indexName: 'hello',
+      const App = {
+        mixins: [
+          forceIsServerMixin,
+          createServerRootMixin({
+            searchClient,
+            indexName: 'hello',
+          }),
+        ],
+        components: { InstantSearchSsr, Configure, SearchBox },
+        render(createElementV2) {
+          expect(this.$root).toBe(wrapper);
+          const h = isVue3 ? createElementV3 : createElementV2;
+          return h(InstantSearchSsr, {}, [
+            h(Configure, {
+              attrs: {
+                hitsPerPage: 100,
+              },
             }),
-          ],
-          render(h) {
-            expect(this.$root).toBe(wrapper);
-
-            return h(InstantSearchSsr, {}, [
-              h(Configure, {
-                attrs: {
-                  hitsPerPage: 100,
-                },
-              }),
-              h(SearchBox),
-            ]);
-          },
-          serverPrefetch() {
-            return this.instantsearch.findResultsState(this);
-          },
-        })
-      );
+            h(SearchBox),
+          ]);
+        },
+        serverPrefetch() {
+          return this.instantsearch.findResultsState(this);
+        },
+      };
 
       const wrapper = createApp({
         mixins: [forceIsServerMixin],
-        render(h) {
-          return h(App);
+        render(createElementV2) {
+          return isVue3 ? createElementV3(App) : createElementV2(App);
         },
       });
 
