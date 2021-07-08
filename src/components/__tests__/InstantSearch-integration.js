@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { mount } from '@vue/test-utils';
+import { mount } from '../../../test/utils';
 import InstantSearch from '../InstantSearch';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../../util/testutils/client';
@@ -101,7 +101,7 @@ describe('middlewares', () => {
     });
 
     const [middleware2, middlewareSpy2] = createFakeMiddleware();
-    wrapper.setData({
+    await wrapper.setData({
       middlewares: [middleware1, middleware2],
     });
     await Vue.nextTick();
@@ -168,7 +168,7 @@ describe('middlewares', () => {
       uiState: { indexName: { query: 'a' } },
     });
 
-    wrapper.setData({
+    await wrapper.setData({
       middlewares: [middleware1],
     });
     await Vue.nextTick();

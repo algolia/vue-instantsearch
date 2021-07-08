@@ -1,3 +1,5 @@
-import Vue from 'vue';
+import { isVue2, Vue2 } from './src/util/vue';
 
-Vue.config.productionTip = false;
+if (isVue2) {
+  Vue2.config.productionTip = false;
+}

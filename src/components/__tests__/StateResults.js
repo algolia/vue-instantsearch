@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils';
+import { mount } from '../../../test/utils';
 import StateResults from '../StateResults.vue';
 import { __setState } from '../../mixins/widget';
 jest.mock('../../mixins/widget');
@@ -21,7 +21,7 @@ it('renders explanation if no slot is used', () => {
 it("doesn't render if no results", () => {
   __setState({});
   const wrapper = mount(StateResults);
-  expect(wrapper.html()).toBeUndefined();
+  expect(wrapper.html()).toBe('');
 });
 
 it('gives state & results to default slot', () => {
@@ -66,18 +66,20 @@ it('allows default slot to render whatever they want', () => {
     results,
   });
 
-  const wrapper = mount(StateResults, {
-    scopedSlots: {
-      default: `
-      <template slot-scope="{ state: { query }, results: { page } }">
-        <p v-if="query">
-          Query is here, page is {{ page }}
-        </p>
-        <p v-else>
-          There's no query
-        </p>
-      </template>`,
-    },
+  const wrapper = mount({
+    components: { StateResults },
+    template: `
+      <StateResults>
+        <template v-slot="{ state: { query }, results: { page } }">
+          <p v-if="query">
+            Query is here, page is {{ page }}
+          </p>
+          <p v-else>
+            There's no query
+          </p>
+        </template>
+      </StateResults>
+    `,
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
@@ -105,18 +107,20 @@ it('allows default slot to render whatever they want (truthy query)', () => {
     results,
   });
 
-  const wrapper = mount(StateResults, {
-    scopedSlots: {
-      default: `
-      <template slot-scope="{ results: { query } }">
-        <p v-if="query">
-          Query is here
-        </p>
-        <p v-else>
-          There's no query
-        </p>
-      </template>`,
-    },
+  const wrapper = mount({
+    components: { StateResults },
+    template: `
+      <StateResults>
+        <template v-slot="{ results: { query } }">
+          <p v-if="query">
+            Query is here
+          </p>
+          <p v-else>
+            There's no query
+          </p>
+        </template>
+      </StateResults>
+    `,
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
@@ -144,18 +148,20 @@ it('allows default slot to render whatever they want (falsy query)', () => {
     results,
   });
 
-  const wrapper = mount(StateResults, {
-    scopedSlots: {
-      default: `
-      <template slot-scope="{ results: { query } }">
-        <p v-if="query">
-          Query is here
-        </p>
-        <p v-else>
-          There's no query
-        </p>
-      </template>`,
-    },
+  const wrapper = mount({
+    components: { StateResults },
+    template: `
+      <StateResults>
+        <template v-slot="{ results: { query } }">
+          <p v-if="query">
+            Query is here
+          </p>
+          <p v-else>
+            There's no query
+          </p>
+        </template>
+      </StateResults>
+    `,
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
@@ -180,18 +186,20 @@ describe('legacy spread props', () => {
       state: {},
     });
 
-    const wrapper = mount(StateResults, {
-      scopedSlots: {
-        default: `
-        <template slot-scope="{ query }">
-          <p v-if="query">
-            Query is here
-          </p>
-          <p v-else>
-            There's no query
-          </p>
-        </template>`,
-      },
+    const wrapper = mount({
+      components: { StateResults },
+      template: `
+        <StateResults>
+          <template v-slot="{ query }">
+            <p v-if="query">
+              Query is here
+            </p>
+            <p v-else>
+              There's no query
+            </p>
+          </template>
+        </StateResults>
+      `,
     });
 
     expect(wrapper.html()).toMatchInlineSnapshot(`
@@ -215,18 +223,20 @@ describe('legacy spread props', () => {
       state: {},
     });
 
-    const wrapper = mount(StateResults, {
-      scopedSlots: {
-        default: `
-        <template slot-scope="{ query }">
-          <p v-if="query">
-            Query is here
-          </p>
-          <p v-else>
-            There's no query
-          </p>
-        </template>`,
-      },
+    const wrapper = mount({
+      components: { StateResults },
+      template: `
+        <StateResults>
+          <template v-slot="{ query }">
+            <p v-if="query">
+              Query is here
+            </p>
+            <p v-else>
+              There's no query
+            </p>
+          </template>
+        </StateResults>
+      `,
     });
 
     expect(wrapper.html()).toMatchInlineSnapshot(`

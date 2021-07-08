@@ -1,10 +1,10 @@
-import { mount, createLocalVue } from '@vue/test-utils';
+import { mount } from '../../../test/utils';
 import { createWidgetMixin } from '../widget';
 
-const createFakeComponent = localVue =>
-  localVue.component('Test', {
-    render: () => null,
-  });
+const createFakeComponent = (props = {}) => ({
+  render: () => null,
+  ...props,
+});
 
 const createFakeInstance = () => ({
   addWidgets: jest.fn(),
@@ -20,19 +20,18 @@ const createFakeIndexWidget = () => ({
 
 describe('on root index', () => {
   it('adds a widget on create', () => {
-    const localVue = createLocalVue();
     const instance = createFakeInstance();
-    const Test = createFakeComponent(localVue);
-
     const widget = { render: () => {} };
     const factory = jest.fn(() => widget);
     const connector = jest.fn(() => factory);
+    const Test = createFakeComponent({
+      mixins: [createWidgetMixin({ connector })],
+    });
     const widgetParams = {
       attribute: 'brand',
     };
 
     mount(Test, {
-      mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
       },
@@ -47,22 +46,21 @@ describe('on root index', () => {
   });
 
   it('removes a widget on destroy', () => {
-    const localVue = createLocalVue();
     const instance = createFakeInstance();
-    const Test = createFakeComponent(localVue);
-
     const widget = {
       render: () => {},
       dispose: () => {},
     };
     const factory = jest.fn(() => widget);
     const connector = jest.fn(() => factory);
+    const Test = createFakeComponent({
+      mixins: [createWidgetMixin({ connector })],
+    });
     const widgetParams = {
       attribute: 'brand',
     };
 
     const wrapper = mount(Test, {
-      mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
       },
@@ -78,17 +76,17 @@ describe('on root index', () => {
     expect(instance.mainIndex.removeWidgets).toHaveBeenCalledWith([widget]);
   });
 
-  it('updates widget on widget params change', () => {
-    const localVue = createLocalVue();
+  it('updates widget on widget params change', async () => {
     const instance = createFakeInstance();
-    const Test = createFakeComponent(localVue);
-
     const widget = {
       render: () => {},
       dispose: () => {},
     };
     const factory = jest.fn(() => widget);
     const connector = jest.fn(() => factory);
+    const Test = createFakeComponent({
+      mixins: [createWidgetMixin({ connector })],
+    });
 
     const widgetParams = {
       attribute: 'brand',
@@ -99,7 +97,6 @@ describe('on root index', () => {
     };
 
     const wrapper = mount(Test, {
-      mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
       },
@@ -109,15 +106,17 @@ describe('on root index', () => {
     });
 
     // Simulate render
-    wrapper.vm.state = {
-      items: [],
-    };
+    await wrapper.setData({
+      state: { items: [] },
+    });
 
     expect(instance.mainIndex.addWidgets).toHaveBeenCalledTimes(1);
     expect(instance.mainIndex.addWidgets).toHaveBeenCalledWith([widget]);
 
     // Simulate widget params update
-    wrapper.vm.widgetParams = nextWidgetParams;
+    await wrapper.setData({
+      widgetParams: nextWidgetParams,
+    });
 
     expect(wrapper.vm.state).toBe(null);
 
@@ -132,13 +131,13 @@ describe('on root index', () => {
   });
 
   it('updates local state on connector render', () => {
-    const localVue = createLocalVue();
     const instance = createFakeInstance();
-    const Test = createFakeComponent(localVue);
-
     const widget = { render: () => {} };
     const factory = jest.fn(() => widget);
     const connector = jest.fn(() => factory);
+    const Test = createFakeComponent({
+      mixins: [createWidgetMixin({ connector })],
+    });
     const widgetParams = {
       attribute: 'brand',
     };
@@ -148,7 +147,6 @@ describe('on root index', () => {
     };
 
     const wrapper = mount(Test, {
-      mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
       },
@@ -174,20 +172,19 @@ describe('on root index', () => {
 
 describe('on child index', () => {
   it('adds a widget on create', () => {
-    const localVue = createLocalVue();
     const instance = createFakeInstance();
     const indexWidget = createFakeIndexWidget();
-    const Test = createFakeComponent(localVue);
-
     const widget = { render: () => {} };
     const factory = jest.fn(() => widget);
     const connector = jest.fn(() => factory);
     const widgetParams = {
       attribute: 'brand',
     };
+    const Test = createFakeComponent({
+      mixins: [createWidgetMixin({ connector })],
+    });
 
     mount(Test, {
-      mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
         $_ais_getParentIndex: () => indexWidget,
@@ -203,23 +200,22 @@ describe('on child index', () => {
   });
 
   it('removes a widget on destroy', () => {
-    const localVue = createLocalVue();
     const instance = createFakeInstance();
     const indexWidget = createFakeIndexWidget();
-    const Test = createFakeComponent(localVue);
-
     const widget = {
       render: () => {},
       dispose: () => {},
     };
     const factory = jest.fn(() => widget);
     const connector = jest.fn(() => factory);
+    const Test = createFakeComponent({
+      mixins: [createWidgetMixin({ connector })],
+    });
     const widgetParams = {
       attribute: 'brand',
     };
 
     const wrapper = mount(Test, {
-      mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
         $_ais_getParentIndex: () => indexWidget,
@@ -236,18 +232,18 @@ describe('on child index', () => {
     expect(indexWidget.removeWidgets).toHaveBeenCalledWith([widget]);
   });
 
-  it('updates widget on widget params change', () => {
-    const localVue = createLocalVue();
+  it('updates widget on widget params change', async () => {
     const instance = createFakeInstance();
     const indexWidget = createFakeIndexWidget();
-    const Test = createFakeComponent(localVue);
-
     const widget = {
       render: () => {},
       dispose: () => {},
     };
     const factory = jest.fn(() => widget);
     const connector = jest.fn(() => factory);
+    const Test = createFakeComponent({
+      mixins: [createWidgetMixin({ connector })],
+    });
 
     const widgetParams = {
       attribute: 'brand',
@@ -258,7 +254,6 @@ describe('on child index', () => {
     };
 
     const wrapper = mount(Test, {
-      mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
         $_ais_getParentIndex: () => indexWidget,
@@ -269,15 +264,17 @@ describe('on child index', () => {
     });
 
     // Simulate render
-    wrapper.vm.state = {
-      items: [],
-    };
+    await wrapper.setData({
+      state: { items: [] },
+    });
 
     expect(indexWidget.addWidgets).toHaveBeenCalledTimes(1);
     expect(indexWidget.addWidgets).toHaveBeenCalledWith([widget]);
 
     // Simulate widget params update
-    wrapper.vm.widgetParams = nextWidgetParams;
+    await wrapper.setData({
+      widgetParams: nextWidgetParams,
+    });
 
     expect(wrapper.vm.state).toBe(null);
 
@@ -292,14 +289,14 @@ describe('on child index', () => {
   });
 
   it('updates local state on connector render', () => {
-    const localVue = createLocalVue();
     const instance = createFakeInstance();
     const indexWidget = createFakeIndexWidget();
-    const Test = createFakeComponent(localVue);
-
     const widget = { render: () => {} };
     const factory = jest.fn(() => widget);
     const connector = jest.fn(() => factory);
+    const Test = createFakeComponent({
+      mixins: [createWidgetMixin({ connector })],
+    });
     const widgetParams = {
       attribute: 'brand',
     };
@@ -309,7 +306,6 @@ describe('on child index', () => {
     };
 
     const wrapper = mount(Test, {
-      mixins: [createWidgetMixin({ connector })],
       provide: {
         $_ais_instantSearchInstance: instance,
         $_ais_getParentIndex: () => indexWidget,
