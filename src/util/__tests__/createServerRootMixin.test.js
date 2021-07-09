@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { mount } from '../../../test/utils';
+import { mount, createApp, renderCompat } from '../../../test/utils';
 import _renderToString from 'vue-server-renderer/basic';
 import Router from 'vue-router';
 import Vuex from 'vuex';
@@ -7,6 +7,7 @@ import { createServerRootMixin } from '../createServerRootMixin';
 import InstantSearchSsr from '../../components/InstantSearchSsr';
 import Configure from '../../components/Configure';
 import SearchBox from '../../components/SearchBox.vue';
+import { isVue3, h as createElementV3 } from '../vue';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
@@ -44,55 +45,54 @@ process.env.VUE_ENV = 'server';
 describe('createServerRootMixin', () => {
   describe('creation', () => {
     it('requires searchClient', () => {
-      expect(
-        () =>
-          new Vue({
-            mixins: [
-              createServerRootMixin({
-                searchClient: undefined,
-                indexName: 'lol',
-              }),
-            ],
-          })
+      expect(() =>
+        createApp({
+          mixins: [
+            createServerRootMixin({
+              searchClient: undefined,
+              indexName: 'lol',
+            }),
+          ],
+        })
       ).toThrowErrorMatchingInlineSnapshot(
         `"createServerRootMixin requires \`searchClient\` and \`indexName\` in the first argument"`
       );
     });
 
     it('requires indexName', () => {
-      expect(
-        () =>
-          new Vue({
-            mixins: [
-              createServerRootMixin({
-                searchClient: createFakeClient(),
-                indexName: undefined,
-              }),
-            ],
-          })
+      expect(() =>
+        createApp({
+          mixins: [
+            createServerRootMixin({
+              searchClient: createFakeClient(),
+              indexName: undefined,
+            }),
+          ],
+        })
       ).toThrowErrorMatchingInlineSnapshot(
         `"createServerRootMixin requires \`searchClient\` and \`indexName\` in the first argument"`
       );
     });
 
     it('creates an instantsearch instance on "data"', () => {
-      const app = new Vue({
+      const App = {
         mixins: [
           createServerRootMixin({
             searchClient: createFakeClient(),
             indexName: 'lol',
           }),
         ],
-      });
+      };
 
-      expect(app.$data).toEqual({
+      const wrapper = mount(App);
+      expect(wrapper.vm.$data).toEqual({
         instantsearch: expect.objectContaining({
           start: expect.any(Function),
         }),
       });
     });
 
-    it('provides the instantsearch instance ', () => {
+    it('provides the instantsearch instance ', done => {
       const App = {
         mixins: [
           createServerRootMixin({
@@ -100,45 +100,44 @@ describe('createServerRootMixin', () => {
             indexName: 'myIndexName',
           }),
         ],
-        render(h) {
-          return h('div', {}, this.$slots.default);
-        },
+        template: `<div><slot /></div>`,
       };
 
       const Child = {
         mixins: [createWidgetMixin({ connector: true })],
-        render(h) {
-          return h('p', {}, this.instantSearchInstance.indexName);
+        mounted() {
+          expect(this.instantSearchInstance).toEqual(
+            expect.objectContaining({
+              start: expect.any(Function),
+              dispose: expect.any(Function),
+              mainIndex: expect.any(Object),
+              addWidgets: expect.any(Function),
+              removeWidgets: expect.any(Function),
+            })
+          );
+          done();
+        },
+        render() {
+          return null;
         },
       };
 
-      const wrapper = mount(App, {
-        slots: {
-          default: {
-            render(h) {
-              return h(InstantSearchSsr, [h(Child)]);
-            },
-          },
-        },
+      mount({
+        components: { App, InstantSearchSsr, Child },
+        template: `
+          <App>
+            <InstantSearchSsr>
+              <Child />
+            </InstantSearchSsr>
+          </App>
+        `,
       });
-
-      expect(wrapper.html()).toMatchInlineSnapshot(`
-
-<div>
-  <div class="ais-InstantSearch ais-InstantSearch--ssr">
-    <p>
-      myIndexName
-    </p>
-  </div>
-</div>
-
-`);
     });
   });
 
   describe('findResultsState', () => {
     it('provides findResultsState', () => {
-      const app = new Vue({
+      const app = createApp({
         mixins: [
           createServerRootMixin({
             searchClient: createFakeClient(),
@@ -164,22 +163,22 @@ describe('createServerRootMixin', () => {
             indexName: 'hello',
           }),
         ],
-        render(h) {
-          return h(InstantSearchSsr, {}, [
+        render: renderCompat(h =>
+          h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
                 hitsPerPage: 100,
               },
             }),
             h(SearchBox),
-          ]);
-        },
+          ])
+        ),
         serverPrefetch() {
           return this.instantsearch.findResultsState(this);
         },
       };
 
-      const wrapper = new Vue({
+      const wrapper = createApp({
         mixins: [forceIsServerMixin],
         render(h) {
           return h(app);
@@ -224,7 +223,7 @@ Array [
       // there are two renders of App, each with an assertion
       expect.assertions(2);
 
-      const App = Vue.component('App', {
+      const App = {
         mixins: [
           forceIsServerMixin,
           createServerRootMixin({
@@ -236,24 +235,24 @@ Array [
           expect(this.$router).toBe(router);
           return {};
         },
-        render(h) {
-          return h(InstantSearchSsr, {}, [
+        render: renderCompat(h =>
+          h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
                 hitsPerPage: 100,
               },
             }),
             h(SearchBox),
-          ]);
-        },
+          ])
+        ),
         serverPrefetch() {
           return this.instantsearch.findResultsState(this);
         },
-      });
+      };
 
       Vue.use(Router);
 
-      const wrapper = new Vue({
+      const wrapper = createApp({
         mixins: [forceIsServerMixin],
         router,
         render(h) {
@@ -274,7 +273,7 @@ Array [
       // there are two renders of App, each with an assertion
       expect.assertions(2);
 
-      const App = Vue.component('App', {
+      const App = {
         mixins: [
           forceIsServerMixin,
           createServerRootMixin({
@@ -286,22 +285,22 @@ Array [
           expect(this.$store).toBe(store);
           return {};
         },
-        render(h) {
-          return h(InstantSearchSsr, {}, [
+        render: renderCompat(h =>
+          h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
                 hitsPerPage: 100,
               },
             }),
             h(SearchBox),
-          ]);
-        },
+          ])
+        ),
         serverPrefetch() {
           return this.instantsearch.findResultsState(this);
         },
-      });
+      };
 
-      const wrapper = new Vue({
+      const wrapper = createApp({
         mixins: [forceIsServerMixin],
         store,
         render(h) {
@@ -320,7 +319,7 @@ Array [
 
       const someProp = { data: Math.random() };
 
-      const App = Vue.component('App', {
+      const App = {
         mixins: [
           forceIsServerMixin,
           createServerRootMixin({
@@ -338,22 +337,22 @@ Array [
             },
           },
         },
-        render(h) {
-          return h(InstantSearchSsr, {}, [
+        render: renderCompat(h =>
+          h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
                 hitsPerPage: 100,
               },
             }),
             h(SearchBox),
-          ]);
-        },
+          ])
+        ),
         serverPrefetch() {
           return this.instantsearch.findResultsState(this);
         },
-      });
+      };
 
-      const wrapper = new Vue({
+      const wrapper = createApp({
         mixins: [forceIsServerMixin],
         render(h) {
           return h(App, { props: { someProp } });
@@ -368,7 +367,7 @@ Array [
 
       expect.assertions(2);
 
-      const App = Vue.component('App', {
+      const App = {
         mixins: [
           forceIsServerMixin,
           createServerRootMixin({
@@ -376,9 +375,12 @@ Array [
             indexName: 'hello',
           }),
         ],
-        render(h) {
-          return h(InstantSearchSsr, {}, this.$slots.default);
-        },
+        components: { InstantSearchSsr },
+        template: `
+            <InstantSearchSsr>
+              <slot />
+            </InstantSearchSsr>
+          `,
         serverPrefetch() {
           return (
             this.instantsearch
@@ -396,21 +398,16 @@ Array [
               })
           );
         },
-      });
+      };
 
-      const wrapper = new Vue({
+      const wrapper = createApp({
         mixins: [forceIsServerMixin],
-        render(h) {
-          return h(App, [
-            h('template', { slot: 'default' }, [
-              h(Configure, {
-                attrs: {
-                  hitsPerPage: 100,
-                },
-              }),
-            ]),
-          ]);
-        },
+        components: { App, Configure },
+        template: `
+          <App>
+            <Configure :hits-per-page.camel="100" />
+          </App>
+        `,
       });
 
       await renderToString(wrapper);
@@ -423,7 +420,7 @@ Array [
 
       expect.assertions(2);
 
-      const App = Vue.component('App', {
+      const App = {
         mixins: [
           forceIsServerMixin,
           createServerRootMixin({
@@ -431,11 +428,9 @@ Array [
             indexName: 'hello',
           }),
         ],
-        render(h) {
-          return h(InstantSearchSsr, {}, [
-            this.$scopedSlots.default({ test: true }),
-          ]);
-        },
+        render: renderCompat(h =>
+          h(InstantSearchSsr, {}, [this.$scopedSlots.default({ test: true })])
+        ),
         serverPrefetch() {
           return (
             this.instantsearch
@@ -453,9 +448,9 @@ Array [
               })
           );
         },
-      });
+      };
 
-      const wrapper = new Vue({
+      const wrapper = createApp({
         mixins: [forceIsServerMixin],
         render(h) {
           return h(App, {
@@ -485,7 +480,7 @@ Array [
       // there are two renders of App, each with an assertion
       expect.assertions(2);
 
-      const App = Vue.component('App', {
+      const App = {
         mixins: [
           forceIsServerMixin,
           createServerRootMixin({
@@ -493,9 +488,10 @@ Array [
             indexName: 'hello',
           }),
         ],
-        render(h) {
+        components: { InstantSearchSsr, Configure, SearchBox },
+        render(createElementV2) {
           expect(this.$root).toBe(wrapper);
-
+          const h = isVue3 ? createElementV3 : createElementV2;
           return h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
@@ -508,12 +504,12 @@ Array [
         serverPrefetch() {
           return this.instantsearch.findResultsState(this);
         },
-      });
+      };
 
-      const wrapper = new Vue({
+      const wrapper = createApp({
         mixins: [forceIsServerMixin],
-        render(h) {
-          return h(App);
+        render(createElementV2) {
+          return isVue3 ? createElementV3(App) : createElementV2(App);
         },
       });
 
@@ -532,16 +528,16 @@ Array [
             indexName: 'hello',
           }),
         ],
-        render(h) {
-          return h(InstantSearchSsr, {}, [
+        render: renderCompat(h =>
+          h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
                 hitsPerPage: 100,
               },
             }),
             h(SearchBox),
-          ]);
-        },
+          ])
+        ),
         // in test, beforeCreated doesn't have $data yet, but IRL it does
         created() {
           this.instantsearch.hydrate({
@@ -578,16 +574,16 @@ Array [
             indexName: 'movies',
           }),
         ],
-        render(h) {
-          return h(InstantSearchSsr, {}, [
+        render: renderCompat(h =>
+          h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
                 hitsPerPage: 100,
               },
             }),
             h(SearchBox),
-          ]);
-        },
+          ])
+        ),
         // in test, beforeCreated doesn't have $data yet, but IRL it does
         created() {
           this.instantsearch.hydrate({
@@ -617,16 +613,16 @@ Array [
             indexName: 'hello',
           }),
         ],
-        render(h) {
-          return h(InstantSearchSsr, {}, [
+        render: renderCompat(h =>
+          h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
                 hitsPerPage: 100,
               },
             }),
             h(SearchBox),
-          ]);
-        },
+          ])
+        ),
       };
 
       const {
@@ -655,16 +651,16 @@ Array [
             indexName: 'hello',
           }),
         ],
-        render(h) {
-          return h(InstantSearchSsr, {}, [
+        render: renderCompat(h =>
+          h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
                 hitsPerPage: 100,
               },
             }),
             h(SearchBox),
-          ]);
-        },
+          ])
+        ),
       };
 
       const {
@@ -686,7 +682,7 @@ Array [
 
   describe('__forceRender', () => {
     it('calls render on widget', () => {
-      const app = new Vue({
+      const app = createApp({
         mixins: [
           createServerRootMixin({
             searchClient: createFakeClient(),
@@ -755,7 +751,7 @@ Object {
 
     describe('createURL', () => {
       it('returns # if instantsearch has no routing', () => {
-        const app = new Vue({
+        const app = createApp({
           mixins: [
             createServerRootMixin({
               searchClient: createFakeClient(),
@@ -786,7 +782,7 @@ Object {
       });
 
       it('allows for widgets without getWidgetState', () => {
-        const app = new Vue({
+        const app = createApp({
           mixins: [
             createServerRootMixin({
               searchClient: createFakeClient(),
