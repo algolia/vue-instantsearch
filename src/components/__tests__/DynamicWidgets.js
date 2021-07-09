@@ -99,7 +99,7 @@ it('renders all children without state', () => {
 
 it('renders nothing without children', () => {
   __setState({
-    attributesToRender: [],
+    attributesToRender: ['something-that-does-not-show'],
   });
 
   const wrapper = mount(DynamicWidgets, {
