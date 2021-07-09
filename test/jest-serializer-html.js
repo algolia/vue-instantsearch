@@ -2,7 +2,7 @@
 const toDiffableHtml = require('diffable-html');
 
 function sortAttributes(names) {
-  return names.sort(); // sort desc to keep compatibility with vue 2
+  return names.sort(); // sort asc to keep compatibility with vue 2
 }
 
 // eslint-disable-next-line import/no-commonjs
