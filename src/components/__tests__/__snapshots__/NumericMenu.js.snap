@@ -142,9 +142,9 @@ exports[`default render renders correctly 1`] = `
   <ul class="ais-NumericMenu-list">
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value
         >
         <span class="ais-NumericMenu-labelText">
@@ -154,9 +154,9 @@ exports[`default render renders correctly 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22end%22:10%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -166,9 +166,9 @@ exports[`default render renders correctly 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22start%22:10,%22end%22:100%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -178,9 +178,9 @@ exports[`default render renders correctly 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22start%22:100,%22end%22:500%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -190,9 +190,9 @@ exports[`default render renders correctly 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22start%22:500%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -211,9 +211,9 @@ exports[`default render renders correctly with a selected value 1`] = `
   <ul class="ais-NumericMenu-list">
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value
         >
         <span class="ais-NumericMenu-labelText">
@@ -223,9 +223,9 @@ exports[`default render renders correctly with a selected value 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22end%22:10%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -235,9 +235,9 @@ exports[`default render renders correctly with a selected value 1`] = `
     </li>
     <li class="ais-NumericMenu-item ais-NumericMenu-item--selected">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22start%22:10,%22end%22:100%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -247,9 +247,9 @@ exports[`default render renders correctly with a selected value 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22start%22:100,%22end%22:500%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -259,9 +259,9 @@ exports[`default render renders correctly with a selected value 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22start%22:500%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -280,9 +280,9 @@ exports[`default render renders correctly without refinement 1`] = `
   <ul class="ais-NumericMenu-list">
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value
         >
         <span class="ais-NumericMenu-labelText">
@@ -292,9 +292,9 @@ exports[`default render renders correctly without refinement 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22end%22:10%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -304,9 +304,9 @@ exports[`default render renders correctly without refinement 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22start%22:10,%22end%22:100%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -316,9 +316,9 @@ exports[`default render renders correctly without refinement 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22start%22:100,%22end%22:500%7D"
         >
         <span class="ais-NumericMenu-labelText">
@@ -328,9 +328,9 @@ exports[`default render renders correctly without refinement 1`] = `
     </li>
     <li class="ais-NumericMenu-item">
       <label class="ais-NumericMenu-label">
-        <input type="radio"
+        <input class="ais-NumericMenu-radio"
                name="brand"
-               class="ais-NumericMenu-radio"
+               type="radio"
                value="%7B%22start%22:500%7D"
         >
         <span class="ais-NumericMenu-labelText">

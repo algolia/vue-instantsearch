@@ -67,26 +67,26 @@ it('renders all children without state', () => {
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
 
-<div hidden="hidden"
-     class="ais-DynamicWidgets"
+<div class="ais-DynamicWidgets"
+     hidden="hidden"
 >
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-refinement-list"
-         attribute="test1"
+    <div attribute="test1"
+         widget-name="ais-refinement-list"
     >
     </div>
   </div>
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-menu"
-         attribute="test2"
+    <div attribute="test2"
+         widget-name="ais-menu"
     >
     </div>
   </div>
   <div class="ais-DynamicWidgets-widget">
     <div class="ais-Panel">
       <div class="ais-Panel-body">
-        <div widget-name="ais-hierarchical-menu"
-             attributes="test3,test4"
+        <div attributes="test3,test4"
+             widget-name="ais-hierarchical-menu"
         >
         </div>
       </div>
@@ -175,8 +175,8 @@ it('renders attributesToRender (menu)', () => {
 
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-menu"
-         attribute="test1"
+    <div attribute="test1"
+         widget-name="ais-menu"
     >
     </div>
   </div>
@@ -215,8 +215,8 @@ it('renders attributesToRender (refinement list)', () => {
 
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-refinement-list"
-         attribute="test2"
+    <div attribute="test2"
+         widget-name="ais-refinement-list"
     >
     </div>
   </div>
@@ -259,8 +259,8 @@ it('renders attributesToRender (panel)', () => {
   <div class="ais-DynamicWidgets-widget">
     <div class="ais-Panel">
       <div class="ais-Panel-body">
-        <div widget-name="ais-refinement-list"
-             attribute="test2"
+        <div attribute="test2"
+             widget-name="ais-refinement-list"
         >
         </div>
       </div>
@@ -305,8 +305,8 @@ it('renders attributesToRender (hierarchical menu)', () => {
 
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-hierarchical-menu"
-         attributes="test1,test2"
+    <div attributes="test1,test2"
+         widget-name="ais-hierarchical-menu"
     >
     </div>
   </div>
@@ -353,8 +353,8 @@ it('updates DOM when attributesToRender changes', () => {
 
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-hierarchical-menu"
-         attributes="test1,test2"
+    <div attributes="test1,test2"
+         widget-name="ais-hierarchical-menu"
     >
     </div>
   </div>
@@ -370,8 +370,8 @@ it('updates DOM when attributesToRender changes', () => {
 
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-menu"
-         attribute="test3"
+    <div attribute="test3"
+         widget-name="ais-menu"
     >
     </div>
   </div>
@@ -387,16 +387,16 @@ it('updates DOM when attributesToRender changes', () => {
 
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-hierarchical-menu"
-         attributes="test1,test2"
+    <div attributes="test1,test2"
+         widget-name="ais-hierarchical-menu"
     >
     </div>
   </div>
   <div class="ais-DynamicWidgets-widget">
     <div class="ais-Panel">
       <div class="ais-Panel-body">
-        <div widget-name="ais-refinement-list"
-             attribute="test4"
+        <div attribute="test4"
+             widget-name="ais-refinement-list"
         >
         </div>
       </div>

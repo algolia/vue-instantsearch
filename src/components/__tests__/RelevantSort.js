@@ -24,8 +24,8 @@ describe('renders correctly', () => {
 <div class="ais-RelevantSort">
   <div class="ais-RelevantSort-text">
   </div>
-  <button type="button"
-          class="ais-RelevantSort-button"
+  <button class="ais-RelevantSort-button"
+          type="button"
   >
     See relevant results
   </button>
@@ -45,8 +45,8 @@ describe('renders correctly', () => {
 <div class="ais-RelevantSort">
   <div class="ais-RelevantSort-text">
   </div>
-  <button type="button"
-          class="ais-RelevantSort-button"
+  <button class="ais-RelevantSort-button"
+          type="button"
   >
     See all results
   </button>

@@ -6,81 +6,81 @@ exports[`renders correctly another page 1`] = `
   <ul class="ais-Pagination-list">
     <li class="ais-Pagination-item ais-Pagination-item--firstPage">
       <a aria-label="First"
-         href="#"
          class="ais-Pagination-link"
+         href="#"
       >
         ‹‹
       </a>
     </li>
     <li class="ais-Pagination-item ais-Pagination-item--previousPage">
       <a aria-label="Previous"
-         href="#"
          class="ais-Pagination-link"
+         href="#"
       >
         ‹
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         4
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         5
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         6
       </a>
     </li>
     <li class="ais-Pagination-item ais-Pagination-item--selected">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         7
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         8
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         9
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         10
       </a>
     </li>
     <li class="ais-Pagination-item ais-Pagination-item--nextPage">
       <a aria-label="Next"
-         href="#"
          class="ais-Pagination-link"
+         href="#"
       >
         ›
       </a>
     </li>
     <li class="ais-Pagination-item ais-Pagination-item--lastPage">
       <a aria-label="Last"
-         href="#"
          class="ais-Pagination-link"
+         href="#"
       >
         ››
       </a>
@@ -109,66 +109,66 @@ exports[`renders correctly first page 1`] = `
       </span>
     </li>
     <li class="ais-Pagination-item ais-Pagination-item--selected">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         1
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         2
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         3
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         4
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         5
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         6
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         7
       </a>
     </li>
     <li class="ais-Pagination-item ais-Pagination-item--nextPage">
       <a aria-label="Next"
-         href="#"
          class="ais-Pagination-link"
+         href="#"
       >
         ›
       </a>
     </li>
     <li class="ais-Pagination-item ais-Pagination-item--lastPage">
       <a aria-label="Last"
-         href="#"
          class="ais-Pagination-link"
+         href="#"
       >
         ››
       </a>
@@ -184,65 +184,65 @@ exports[`renders correctly last page 1`] = `
   <ul class="ais-Pagination-list">
     <li class="ais-Pagination-item ais-Pagination-item--firstPage">
       <a aria-label="First"
-         href="#"
          class="ais-Pagination-link"
+         href="#"
       >
         ‹‹
       </a>
     </li>
     <li class="ais-Pagination-item ais-Pagination-item--previousPage">
       <a aria-label="Previous"
-         href="#"
          class="ais-Pagination-link"
+         href="#"
       >
         ‹
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         4
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         5
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         6
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         7
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         8
       </a>
     </li>
     <li class="ais-Pagination-item">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         9
       </a>
     </li>
     <li class="ais-Pagination-item ais-Pagination-item--selected">
-      <a href="#"
-         class="ais-Pagination-link"
+      <a class="ais-Pagination-link"
+         href="#"
       >
         10
       </a>

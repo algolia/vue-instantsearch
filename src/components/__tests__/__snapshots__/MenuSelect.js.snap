@@ -37,8 +37,8 @@ exports[`custom item slot renders correctly 1`] = `
 
 <div class="ais-MenuSelect">
   <select class="ais-MenuSelect-select">
-    <option value
-            class="ais-MenuSelect-option"
+    <option class="ais-MenuSelect-option"
+            value
     >
       See all
     </option>
@@ -72,8 +72,8 @@ exports[`default render renders correctly 1`] = `
 
 <div class="ais-MenuSelect">
   <select class="ais-MenuSelect-select">
-    <option value
-            class="ais-MenuSelect-option"
+    <option class="ais-MenuSelect-option"
+            value
     >
       See all
     </option>
@@ -101,8 +101,8 @@ exports[`default render renders correctly with custom label 1`] = `
 
 <div class="ais-MenuSelect">
   <select class="ais-MenuSelect-select">
-    <option value
-            class="ais-MenuSelect-option"
+    <option class="ais-MenuSelect-option"
+            value
     >
       <span>
         None
@@ -132,8 +132,8 @@ exports[`default render renders correctly without refinements 1`] = `
 
 <div class="ais-MenuSelect ais-MenuSelect--noRefinement">
   <select class="ais-MenuSelect-select">
-    <option value
-            class="ais-MenuSelect-option"
+    <option class="ais-MenuSelect-option"
+            value
     >
       See all
     </option>

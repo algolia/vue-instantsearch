@@ -30,8 +30,8 @@ exports[`renders correctly 1`] = `
 exports[`renders correctly on the first page 1`] = `
 
 <div class="ais-InfiniteHits">
-  <button disabled="disabled"
-          class="ais-InfiniteHits-loadPrevious ais-InfiniteHits-loadPrevious--disabled"
+  <button class="ais-InfiniteHits-loadPrevious ais-InfiniteHits-loadPrevious--disabled"
+          disabled="disabled"
   >
     Show previous results
   </button>
@@ -79,8 +79,8 @@ exports[`renders correctly on the last page 1`] = `
       objectID: 00005, index: 4
     </li>
   </ol>
-  <button disabled="disabled"
-          class="ais-InfiniteHits-loadMore ais-InfiniteHits-loadMore--disabled"
+  <button class="ais-InfiniteHits-loadMore ais-InfiniteHits-loadMore--disabled"
+          disabled="disabled"
   >
     Show more results
   </button>
