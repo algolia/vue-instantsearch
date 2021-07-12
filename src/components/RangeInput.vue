@@ -92,7 +92,7 @@ export default {
     precision: {
       type: Number,
       required: false,
-      default: undefined,
+      default: 0,
     },
   },
   data() {

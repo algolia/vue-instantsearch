@@ -58,7 +58,7 @@ export default {
     on: {
       type: [String, Number, Boolean, Array],
       required: false,
-      default: undefined,
+      default: true,
     },
     off: {
       type: [String, Number, Boolean, Array],
