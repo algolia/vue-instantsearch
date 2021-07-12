@@ -80,17 +80,19 @@ export default {
     min: {
       type: Number,
       required: false,
+      // @major: remove this default
       default: -Infinity,
     },
     max: {
       type: Number,
       required: false,
+      // @major: remove this default
       default: Infinity,
     },
     precision: {
       type: Number,
       required: false,
-      default: 0,
+      default: undefined,
     },
   },
   data() {
