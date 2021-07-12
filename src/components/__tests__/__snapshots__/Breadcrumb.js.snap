@@ -202,8 +202,8 @@ exports[`default render renders correctly with an URL for the href 1`] = `
 <div class="ais-Breadcrumb">
   <ul class="ais-Breadcrumb-list">
     <li class="ais-Breadcrumb-item">
-      <a href="/undefined"
-         class="ais-Breadcrumb-link"
+      <a class="ais-Breadcrumb-link"
+         href="/undefined"
       >
         Home
       </a>
@@ -214,8 +214,8 @@ exports[`default render renders correctly with an URL for the href 1`] = `
       >
         &gt;
       </span>
-      <a href="/TV &amp; Home Theater"
-         class="ais-Breadcrumb-link"
+      <a class="ais-Breadcrumb-link"
+         href="/TV &amp; Home Theater"
       >
         TV &amp; Home Theater
       </a>
