@@ -1,7 +1,8 @@
 import {
   isVue3,
   h,
-  createApp as createAppVue3,
+  createApp as _createApp,
+  createSSRApp as _createSSRApp,
   nextTick as nextTickVue3,
   Vue2,
 } from '../../src/util/vue-compat';
@@ -37,7 +38,15 @@ export const mount = isVue3
 
 export const createApp = props => {
   if (isVue3) {
-    return createAppVue3(props);
+    return _createApp(props);
+  } else {
+    return new Vue2(props);
+  }
+};
+
+export const createSSRApp = props => {
+  if (isVue3) {
+    return _createSSRApp(props);
   } else {
     return new Vue2(props);
   }
