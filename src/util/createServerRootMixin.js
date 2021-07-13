@@ -1,6 +1,6 @@
 import instantsearch from 'instantsearch.js/es';
 import algoliaHelper from 'algoliasearch-helper';
-import { isVue3, Vue2, defineComponent } from '../util/vue-compat';
+import { isVue3, isVue2, Vue2, createSSRApp } from '../util/vue-compat';
 const { SearchResults, SearchParameters } = algoliaHelper;
 import { warn } from './warn';
 
@@ -14,13 +14,33 @@ function walkIndex(indexWidget, visit) {
   });
 }
 
-function renderToString(app, _renderToString) {
-  return new Promise((resolve, reject) =>
-    _renderToString(app, (err, res) => {
-      if (err) reject(err);
-      resolve(res);
-    })
-  );
+export function renderToString(app) {
+  let _renderToString;
+  try {
+    _renderToString = isVue3
+      ? require('@vue/server-renderer').renderToString
+      : require('vue-server-renderer/basic');
+  } catch (e) {
+    // error is handled by regular if, in case it's `undefined`
+  }
+  if (!_renderToString) {
+    if (isVue3) {
+      throw new Error('you need to install @vue/server-renderer');
+    } else {
+      throw new Error('you need to install vue-server-renderer');
+    }
+  }
+
+  if (isVue3) {
+    return _renderToString(app);
+  } else {
+    return new Promise((resolve, reject) =>
+      _renderToString(app, (err, res) => {
+        if (err) reject(err);
+        resolve(res);
+      })
+    );
+  }
 }
 
 function searchOnlyWithDerivedHelpers(helper) {
@@ -40,7 +60,7 @@ function searchOnlyWithDerivedHelpers(helper) {
   });
 }
 
-function defaultCloneComponent(componentInstance) {
+function defaultCloneComponent(componentInstance, { mixins = [] } = {}) {
   const options = {
     serverPrefetch: undefined,
     fetch: undefined,
@@ -51,20 +71,34 @@ function defaultCloneComponent(componentInstance) {
     store: componentInstance.$store,
   };
 
-  const Extended = componentInstance.$vnode
-    ? componentInstance.$vnode.componentOptions.Ctor.extend(options)
-    : (isVue3 ? defineComponent : Vue2.component)(
-        Object.assign({}, componentInstance.$options, options)
-      );
+  let app;
 
-  const app = new Extended({
-    propsData: componentInstance.$options.propsData,
-  });
+  if (isVue3) {
+    // FIXME: I need to pass `componentInstance.$options.propsData` to this app but
+    // `propsData` doesn't exist any more in vue 3.
+    // So I need to find out where I should get this from.
+    const appOptions = Object.assign({}, componentInstance.$options, options);
+    appOptions.mixins = [...appOptions.mixins, ...mixins];
+    app = createSSRApp(appOptions);
+  } else {
+    const Extended = componentInstance.$vnode
+      ? componentInstance.$vnode.componentOptions.Ctor.extend(options)
+      : Vue2.component(Object.assign({}, componentInstance.$options, options));
+
+    app = new Extended({
+      propsData: componentInstance.$options.propsData,
+      mixins: [...mixins],
+    });
+  }
 
   // https://stackoverflow.com/a/48195006/3185307
   app.$slots = componentInstance.$slots;
   app.$root = componentInstance.$root;
-  app.$options.serverPrefetch = [];
+  if (isVue2) {
+    app.$options.serverPrefetch = [];
+  } else {
+    // FIXME: ???
+  }
 
   return app;
 }
@@ -88,36 +122,35 @@ function augmentInstantSearch(
    * @returns {Promise} result of the search, to save for .hydrate
    */
   search.findResultsState = function(componentInstance) {
-    let _renderToString;
-    try {
-      _renderToString = require('vue-server-renderer/basic');
-    } catch (e) {
-      // error is handled by regular if, in case it's `undefined`
-    }
-    if (!_renderToString) {
-      throw new Error('you need to install vue-server-renderer');
-    }
-
     let app;
+    let renderedApp;
 
     return Promise.resolve()
       .then(() => {
-        app = cloneComponent(componentInstance);
+        app = cloneComponent(componentInstance, {
+          mixins: [
+            {
+              created() {
+                // eslint-disable-next-line consistent-this
+                renderedApp = this;
+                this.instantsearch.helper = helper;
+                this.instantsearch.mainHelper = helper;
 
-        app.instantsearch.helper = helper;
-        app.instantsearch.mainHelper = helper;
-
-        app.instantsearch.mainIndex.init({
-          instantSearchInstance: app.instantsearch,
-          parent: null,
-          uiState: app.instantsearch._initialUiState,
+                this.instantsearch.mainIndex.init({
+                  instantSearchInstance: this.instantsearch,
+                  parent: null,
+                  uiState: this.instantsearch._initialUiState,
+                });
+              },
+            },
+          ],
         });
       })
-      .then(() => renderToString(app, _renderToString))
+      .then(() => renderToString(app))
       .then(() => searchOnlyWithDerivedHelpers(helper))
       .then(() => {
         const results = {};
-        walkIndex(app.instantsearch.mainIndex, widget => {
+        walkIndex(renderedApp.instantsearch.mainIndex, widget => {
           results[widget.getIndexId()] = widget.getResults();
         });
 

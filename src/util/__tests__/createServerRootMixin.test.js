@@ -1,13 +1,14 @@
 import Vue from 'vue';
-import { mount, createApp, renderCompat } from '../../../test/utils';
-import _renderToString from 'vue-server-renderer/basic';
+import { mount, createSSRApp, renderCompat } from '../../../test/utils';
 import Router from 'vue-router';
 import Vuex from 'vuex';
-import { createServerRootMixin } from '../createServerRootMixin';
+import {
+  createServerRootMixin,
+  renderToString,
+} from '../createServerRootMixin';
 import InstantSearchSsr from '../../components/InstantSearchSsr';
 import Configure from '../../components/Configure';
 import SearchBox from '../../components/SearchBox.vue';
-import { isVue3, h as createElementV3 } from '../vue';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
@@ -18,15 +19,6 @@ import {
 } from 'algoliasearch-helper';
 
 jest.unmock('instantsearch.js/es');
-
-function renderToString(app) {
-  return new Promise((resolve, reject) =>
-    _renderToString(app, {}, (err, res) => {
-      if (err) reject(err);
-      resolve(res);
-    })
-  );
-}
 
 const forceIsServerMixin = {
   beforeCreate() {
@@ -46,7 +38,7 @@ describe('createServerRootMixin', () => {
   describe('creation', () => {
     it('requires searchClient', () => {
       expect(() =>
-        createApp({
+        createSSRApp({
           mixins: [
             createServerRootMixin({
               searchClient: undefined,
@@ -61,7 +53,7 @@ describe('createServerRootMixin', () => {
 
     it('requires indexName', () => {
       expect(() =>
-        createApp({
+        createSSRApp({
           mixins: [
             createServerRootMixin({
               searchClient: createFakeClient(),
@@ -136,24 +128,28 @@ describe('createServerRootMixin', () => {
   });
 
   describe('findResultsState', () => {
-    it('provides findResultsState', () => {
-      const app = createApp({
+    it('provides findResultsState', async done => {
+      const app = createSSRApp({
         mixins: [
+          forceIsServerMixin,
           createServerRootMixin({
             searchClient: createFakeClient(),
             indexName: 'hello',
           }),
         ],
-        render(h) {
-          return h(InstantSearchSsr);
+        render: renderCompat(h => h(InstantSearchSsr, {})),
+        created() {
+          expect(typeof this.instantsearch.findResultsState).toBe('function');
+          done();
         },
       });
 
-      expect(typeof app.$data.instantsearch.findResultsState).toBe('function');
+      await renderToString(app);
     });
 
     it('detects child widgets', async () => {
       const searchClient = createFakeClient();
+      let mainIndex;
 
       const app = {
         mixins: [
@@ -176,20 +172,19 @@ describe('createServerRootMixin', () => {
         serverPrefetch() {
           return this.instantsearch.findResultsState(this);
         },
+        created() {
+          mainIndex = this.instantsearch.mainIndex;
+        },
       };
 
-      const wrapper = createApp({
+      const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
-        render(h) {
-          return h(app);
-        },
+        render: renderCompat(h => h(app)),
       });
 
       await renderToString(wrapper);
 
-      const { instantsearch } = wrapper.$children[0].$data;
-
-      expect(instantsearch.mainIndex.getWidgetState()).toMatchInlineSnapshot(`
+      expect(mainIndex.getWidgetState()).toMatchInlineSnapshot(`
 Object {
   "hello": Object {
     "configure": Object {
@@ -252,12 +247,10 @@ Array [
 
       Vue.use(Router);
 
-      const wrapper = createApp({
+      const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
         router,
-        render(h) {
-          return h(App);
-        },
+        render: renderCompat(h => h(App)),
       });
 
       await renderToString(wrapper);
@@ -300,12 +293,10 @@ Array [
         },
       };
 
-      const wrapper = createApp({
+      const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
         store,
-        render(h) {
-          return h(App);
-        },
+        render: renderCompat(h => h(App)),
       });
 
       await renderToString(wrapper);
@@ -352,11 +343,9 @@ Array [
         },
       };
 
-      const wrapper = createApp({
+      const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
-        render(h) {
-          return h(App, { props: { someProp } });
-        },
+        render: renderCompat(h => h(App, { props: { someProp } })),
       });
 
       await renderToString(wrapper);
@@ -400,7 +389,7 @@ Array [
         },
       };
 
-      const wrapper = createApp({
+      const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
         components: { App, Configure },
         template: `
@@ -450,10 +439,10 @@ Array [
         },
       };
 
-      const wrapper = createApp({
+      const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
-        render(h) {
-          return h(App, {
+        render: renderCompat(h =>
+          h(App, {
             scopedSlots: {
               default({ test }) {
                 if (test) {
@@ -466,8 +455,8 @@ Array [
                 return null;
               },
             },
-          });
-        },
+          })
+        ),
       });
 
       await renderToString(wrapper);
@@ -489,9 +478,8 @@ Array [
           }),
         ],
         components: { InstantSearchSsr, Configure, SearchBox },
-        render(createElementV2) {
+        render: renderCompat(h => {
           expect(this.$root).toBe(wrapper);
-          const h = isVue3 ? createElementV3 : createElementV2;
           return h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
@@ -500,17 +488,15 @@ Array [
             }),
             h(SearchBox),
           ]);
-        },
+        }),
         serverPrefetch() {
           return this.instantsearch.findResultsState(this);
         },
       };
 
-      const wrapper = createApp({
+      const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
-        render(createElementV2) {
-          return isVue3 ? createElementV3(App) : createElementV2(App);
-        },
+        render: renderCompat(h => h(App)),
       });
 
       await renderToString(wrapper);
@@ -682,7 +668,7 @@ Array [
 
   describe('__forceRender', () => {
     it('calls render on widget', () => {
-      const app = createApp({
+      const app = createSSRApp({
         mixins: [
           createServerRootMixin({
             searchClient: createFakeClient(),
@@ -751,7 +737,7 @@ Object {
 
     describe('createURL', () => {
       it('returns # if instantsearch has no routing', () => {
-        const app = createApp({
+        const app = createSSRApp({
           mixins: [
             createServerRootMixin({
               searchClient: createFakeClient(),
@@ -782,7 +768,7 @@ Object {
       });
 
       it('allows for widgets without getWidgetState', () => {
-        const app = createApp({
+        const app = createSSRApp({
           mixins: [
             createServerRootMixin({
               searchClient: createFakeClient(),
