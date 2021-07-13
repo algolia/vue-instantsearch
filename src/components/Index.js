@@ -33,7 +33,9 @@ export default {
     return (isVue3 ? h : createElement)(
       'div',
       {},
-      isVue3 ? this.$slots.default() : this.$slots.default
+      isVue3
+        ? this.$slots.default && this.$slots.default()
+        : this.$slots.default
     );
   },
   computed: {

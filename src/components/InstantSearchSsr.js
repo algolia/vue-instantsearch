@@ -24,7 +24,9 @@ export default createInstantSearchComponent({
           [this.suit('', 'ssr')]: true,
         },
       },
-      isVue3 ? this.$slots.default() : this.$slots.default
+      isVue3
+        ? this.$slots.default && this.$slots.default()
+        : this.$slots.default
     );
   },
 });
