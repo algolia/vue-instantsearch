@@ -88,11 +88,7 @@
     "instantsearch-e2e-tests": "algolia/instantsearch-e2e-tests#v1.3.0",
     "instantsearch.css": "7.3.1",
     "jest": "23.6.0",
-<<<<<<< HEAD
     "jest-serializer-html": "7.1.0",
-=======
-    "jest-serializer-html": "6.0.0",
->>>>>>> 55900f2 (Revert "chore: intentionally sort attributes desc in the snapshot tests to keep one set of snapshots for both vue 2 and vue 3")
     "jest-vue-preprocessor": "1.4.0",
     "jest-watch-typeahead": "0.2.1",
     "lodash": "4.17.19",

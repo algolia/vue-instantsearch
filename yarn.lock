@@ -5261,21 +5261,10 @@ diff@^4.0.1:
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.1.tgz#0c667cb467ebbb5cea7f14f135cc2dba7780a8ff"
   integrity sha512-s2+XdvhPCOF01LRQBC8hf4vhbVmI2CGS5aZnxLJlT5FtdhPCDFq80q++zK2KlrVorVDdL5BOGZ/VfLrVtYNF+Q==
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 diffable-html@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/diffable-html/-/diffable-html-4.1.0.tgz#e7a2d1de187c4e23a59751b4e4c17483a058c696"
   integrity sha512-++kyNek+YBLH8cLXS+iTj/Hiy2s5qkRJEJ8kgu/WHbFrVY2vz9xPFUT+fii2zGF0m1CaojDlQJjkfrCt7YWM1g==
-=======
-diffable-html@4.0.0:
-=======
-diffable-html@^4.0.0:
->>>>>>> 55900f2 (Revert "chore: intentionally sort attributes desc in the snapshot tests to keep one set of snapshots for both vue 2 and vue 3")
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/diffable-html/-/diffable-html-4.0.0.tgz#eb44a189785115bacd04829f31658fcd3c0ce590"
-  integrity sha512-keJdgy2qBkdrrnwP1YE6e834d4Y+mV0aRFzk8w7WzyAJVbQVfcJltSmUWB3r/NOoO/0jt7RdJlvy5ioyqvmQcw==
->>>>>>> 48ed0c3 (chore: intentionally sort attributes desc in the snapshot tests to keep one set of snapshots for both vue 2 and vue 3)
   dependencies:
     htmlparser2 "^3.9.2"
 
@@ -8982,8 +8971,6 @@ jest-runtime@^23.6.0:
     write-file-atomic "^2.1.0"
     yargs "^11.0.0"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 jest-serializer-html@7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/jest-serializer-html/-/jest-serializer-html-7.1.0.tgz#0cfea8a03b9b82bc420fd2cb969bd76713a87c08"
@@ -8991,17 +8978,6 @@ jest-serializer-html@7.1.0:
   dependencies:
     diffable-html "^4.1.0"
 
-=======
->>>>>>> 48ed0c3 (chore: intentionally sort attributes desc in the snapshot tests to keep one set of snapshots for both vue 2 and vue 3)
-=======
-jest-serializer-html@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/jest-serializer-html/-/jest-serializer-html-6.0.0.tgz#39ce49a42b3937d1687f93923814d21b47ae9a85"
-  integrity sha512-S855oT9Yt1T07I45+uRaLsH22TR5lAvgqBxKreqDKs6QmcaxzapGgKamc4J2KxMrPc2uDdWcuOaprcjIuVUxvQ==
-  dependencies:
-    diffable-html "^4.0.0"
-
->>>>>>> 55900f2 (Revert "chore: intentionally sort attributes desc in the snapshot tests to keep one set of snapshots for both vue 2 and vue 3")
 jest-serializer@^23.0.1:
   version "23.0.1"
   resolved "https://registry.yarnpkg.com/jest-serializer/-/jest-serializer-23.0.1.tgz#a3776aeb311e90fe83fab9e533e85102bd164165"
