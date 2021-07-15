@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`rendering displays correctly with a max 1`] = `
-
 <div class="ais-RangeInput">
   <form class="ais-RangeInput-form">
     <label class="ais-RangeInput-label">
@@ -32,11 +31,9 @@ exports[`rendering displays correctly with a max 1`] = `
     </button>
   </form>
 </div>
-
 `;
 
 exports[`rendering displays correctly with a min 1`] = `
-
 <div class="ais-RangeInput">
   <form class="ais-RangeInput-form">
     <label class="ais-RangeInput-label">
@@ -67,11 +64,9 @@ exports[`rendering displays correctly with a min 1`] = `
     </button>
   </form>
 </div>
-
 `;
 
 exports[`rendering displays correctly with a min and a max 1`] = `
-
 <div class="ais-RangeInput">
   <form class="ais-RangeInput-form">
     <label class="ais-RangeInput-label">
@@ -102,11 +97,9 @@ exports[`rendering displays correctly with a min and a max 1`] = `
     </button>
   </form>
 </div>
-
 `;
 
 exports[`rendering displays correctly with default 1`] = `
-
 <div class="ais-RangeInput">
   <form class="ais-RangeInput-form">
     <label class="ais-RangeInput-label">
@@ -137,5 +130,4 @@ exports[`rendering displays correctly with default 1`] = `
     </button>
   </form>
 </div>
-
 `;

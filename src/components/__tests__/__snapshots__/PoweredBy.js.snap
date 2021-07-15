@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`has proper HTML rendering (dark) 1`] = `
-
 <div class="ais-PoweredBy">
   <a aria-label="search by Algolia"
      class="ais-PoweredBy-link"
@@ -32,11 +31,9 @@ exports[`has proper HTML rendering (dark) 1`] = `
     </svg>
   </a>
 </div>
-
 `;
 
 exports[`has proper HTML rendering 1`] = `
-
 <div class="ais-PoweredBy">
   <a aria-label="search by Algolia"
      class="ais-PoweredBy-link"
@@ -67,5 +64,4 @@ exports[`has proper HTML rendering 1`] = `
     </svg>
   </a>
 </div>
-
 `;

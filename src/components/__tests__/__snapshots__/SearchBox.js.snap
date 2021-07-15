@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders HTML correctly 1`] = `
-
 <div class="ais-SearchBox">
   <form action
         class="ais-SearchBox-form"
@@ -56,5 +55,4 @@ exports[`renders HTML correctly 1`] = `
     </button>
   </form>
 </div>
-
 `;

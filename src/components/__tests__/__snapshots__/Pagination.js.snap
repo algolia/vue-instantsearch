@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly another page 1`] = `
-
 <div class="ais-Pagination">
   <ul class="ais-Pagination-list">
     <li class="ais-Pagination-item ais-Pagination-item--firstPage">
@@ -87,11 +86,9 @@ exports[`renders correctly another page 1`] = `
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`renders correctly first page 1`] = `
-
 <div class="ais-Pagination">
   <ul class="ais-Pagination-list">
     <li class="ais-Pagination-item ais-Pagination-item--firstPage ais-Pagination-item--disabled">
@@ -175,11 +172,9 @@ exports[`renders correctly first page 1`] = `
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`renders correctly last page 1`] = `
-
 <div class="ais-Pagination">
   <ul class="ais-Pagination-list">
     <li class="ais-Pagination-item ais-Pagination-item--firstPage">
@@ -263,5 +258,4 @@ exports[`renders correctly last page 1`] = `
     </li>
   </ul>
 </div>
-
 `;

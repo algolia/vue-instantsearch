@@ -42,8 +42,7 @@
     "lint": "eslint --ext .js,.vue .",
     "lint:fix": "eslint --ext .js,.vue . --fix",
     "format": "prettier --write '**/*.{js,md,vue,css}'",
-    "release": "shipjs prepare",
-    "postinstall": "patch-package"
+    "release": "shipjs prepare"
   },
   "dependencies": {
     "algoliasearch-helper": "^3.1.0",
@@ -74,7 +73,6 @@
     "bundlesize": "0.17.1",
     "concurrently": "4.1.0",
     "conventional-changelog-cli": "2.0.12",
-    "diffable-html": "4.0.0",
     "eslint": "5.14.1",
     "eslint-config-algolia": "13.2.3",
     "eslint-config-prettier": "3.1.0",
@@ -85,6 +83,7 @@
     "instantsearch-e2e-tests": "algolia/instantsearch-e2e-tests#v1.3.0",
     "instantsearch.css": "7.3.1",
     "jest": "23.6.0",
+    "jest-serializer-html": "7.1.0",
     "jest-vue-preprocessor": "1.4.0",
     "jest-watch-typeahead": "0.2.1",
     "lodash": "4.17.19",

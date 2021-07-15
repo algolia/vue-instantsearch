@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`custom default render renders correctly 1`] = `
-
 <div class="ais-ClearRefinements">
   <div class>
     <a>
@@ -9,11 +8,9 @@ exports[`custom default render renders correctly 1`] = `
     </a>
   </div>
 </div>
-
 `;
 
 exports[`custom default render renders correctly with an URL for the href 1`] = `
-
 <div class="ais-ClearRefinements">
   <div class>
     <a href="/clear/refinements">
@@ -21,11 +18,9 @@ exports[`custom default render renders correctly with an URL for the href 1`] = 
     </a>
   </div>
 </div>
-
 `;
 
 exports[`custom default render renders correctly without refinement 1`] = `
-
 <div class="ais-ClearRefinements">
   <div class="no-refinement">
     <a>
@@ -33,11 +28,9 @@ exports[`custom default render renders correctly without refinement 1`] = `
     </a>
   </div>
 </div>
-
 `;
 
 exports[`custom resetLabel render renders correctly with a custom reset label 1`] = `
-
 <div class="ais-ClearRefinements">
   <button class="ais-ClearRefinements-button"
           type="reset"
@@ -47,11 +40,9 @@ exports[`custom resetLabel render renders correctly with a custom reset label 1`
     </span>
   </button>
 </div>
-
 `;
 
 exports[`default render renders correctly 1`] = `
-
 <div class="ais-ClearRefinements">
   <button class="ais-ClearRefinements-button"
           type="reset"
@@ -59,11 +50,9 @@ exports[`default render renders correctly 1`] = `
     Clear refinements
   </button>
 </div>
-
 `;
 
 exports[`default render renders correctly without refinements 1`] = `
-
 <div class="ais-ClearRefinements">
   <button class="ais-ClearRefinements-button ais-ClearRefinements-button--disabled"
           disabled="disabled"
@@ -72,5 +61,4 @@ exports[`default render renders correctly without refinements 1`] = `
     Clear refinements
   </button>
 </div>
-
 `;

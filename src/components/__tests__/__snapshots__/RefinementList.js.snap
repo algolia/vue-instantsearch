@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`allows search bar classes override when it's searchable 1`] = `
-
 <div class="ais-RefinementList">
   <div class="ais-RefinementList-searchBox">
     <form action
@@ -159,20 +158,16 @@ exports[`allows search bar classes override when it's searchable 1`] = `
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`renders correctly (empty) 1`] = `
-
 <div class="ais-RefinementList ais-RefinementList--noRefinement">
   <ul class="ais-RefinementList-list">
   </ul>
 </div>
-
 `;
 
 exports[`renders correctly 1`] = `
-
 <div class="ais-RefinementList">
   <ul class="ais-RefinementList-list">
     <li class="ais-RefinementList-item">
@@ -261,11 +256,9 @@ exports[`renders correctly 1`] = `
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`renders correctly when it's searchable 1`] = `
-
 <div class="ais-RefinementList">
   <div class="ais-RefinementList-searchBox">
     <form action
@@ -423,5 +416,4 @@ exports[`renders correctly when it's searchable 1`] = `
     </li>
   </ul>
 </div>
-
 `;

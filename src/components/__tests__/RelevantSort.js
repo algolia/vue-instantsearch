@@ -20,7 +20,6 @@ describe('renders correctly', () => {
     });
     const wrapper = mount(RelevantSort);
     expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-RelevantSort">
   <div class="ais-RelevantSort-text">
   </div>
@@ -30,7 +29,6 @@ describe('renders correctly', () => {
     See relevant results
   </button>
 </div>
-
 `);
   });
 
@@ -41,7 +39,6 @@ describe('renders correctly', () => {
     });
     const wrapper = mount(RelevantSort);
     expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-RelevantSort">
   <div class="ais-RelevantSort-text">
   </div>
@@ -51,7 +48,6 @@ describe('renders correctly', () => {
     See all results
   </button>
 </div>
-
 `);
   });
 });

@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-
 <div class="ais-RatingMenu">
   <svg style="display: none;"
        xmlns="http://www.w3.org/2000/svg"
@@ -242,11 +241,9 @@ exports[`renders correctly 1`] = `
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`renders correctly when refined 1`] = `
-
 <div class="ais-RatingMenu">
   <svg style="display: none;"
        xmlns="http://www.w3.org/2000/svg"
@@ -487,5 +484,4 @@ exports[`renders correctly when refined 1`] = `
     </li>
   </ul>
 </div>
-
 `;

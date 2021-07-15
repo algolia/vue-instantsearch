@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`custom default render renders correctly 1`] = `
-
 <div class="ais-NumericMenu">
   <ul class>
     <li class>
@@ -31,11 +30,9 @@ exports[`custom default render renders correctly 1`] = `
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`custom default render renders correctly with a selected value 1`] = `
-
 <div class="ais-NumericMenu">
   <ul class>
     <li class>
@@ -65,11 +62,9 @@ exports[`custom default render renders correctly with a selected value 1`] = `
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`custom default render renders correctly with an URL for the href 1`] = `
-
 <div class="ais-NumericMenu">
   <ul class>
     <li class>
@@ -99,11 +94,9 @@ exports[`custom default render renders correctly with an URL for the href 1`] = 
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`custom default render renders correctly without refinement 1`] = `
-
 <div class="ais-NumericMenu ais-NumericMenu--noRefinement">
   <ul class="no-refinement">
     <li class>
@@ -133,11 +126,9 @@ exports[`custom default render renders correctly without refinement 1`] = `
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`default render renders correctly 1`] = `
-
 <div class="ais-NumericMenu">
   <ul class="ais-NumericMenu-list">
     <li class="ais-NumericMenu-item">
@@ -202,11 +193,9 @@ exports[`default render renders correctly 1`] = `
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`default render renders correctly with a selected value 1`] = `
-
 <div class="ais-NumericMenu">
   <ul class="ais-NumericMenu-list">
     <li class="ais-NumericMenu-item">
@@ -271,11 +260,9 @@ exports[`default render renders correctly with a selected value 1`] = `
     </li>
   </ul>
 </div>
-
 `;
 
 exports[`default render renders correctly without refinement 1`] = `
-
 <div class="ais-NumericMenu ais-NumericMenu--noRefinement">
   <ul class="ais-NumericMenu-list">
     <li class="ais-NumericMenu-item">
@@ -340,5 +327,4 @@ exports[`default render renders correctly without refinement 1`] = `
     </li>
   </ul>
 </div>
-
 `;

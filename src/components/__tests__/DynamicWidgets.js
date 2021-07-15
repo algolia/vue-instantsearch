@@ -66,7 +66,6 @@ it('renders all children without state', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets"
      hidden="hidden"
 >
@@ -93,7 +92,6 @@ it('renders all children without state', () => {
     </div>
   </div>
 </div>
-
 `);
 });
 
@@ -108,10 +106,8 @@ it('renders nothing without children', () => {
     },
   });
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets">
 </div>
-
 `);
 });
 
@@ -138,10 +134,8 @@ it('renders nothing with empty attributesToRender', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets">
 </div>
-
 `);
 });
 
@@ -172,7 +166,6 @@ it('renders attributesToRender (menu)', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
     <div attribute="test1"
@@ -181,7 +174,6 @@ it('renders attributesToRender (menu)', () => {
     </div>
   </div>
 </div>
-
 `);
 });
 
@@ -212,7 +204,6 @@ it('renders attributesToRender (refinement list)', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
     <div attribute="test2"
@@ -221,7 +212,6 @@ it('renders attributesToRender (refinement list)', () => {
     </div>
   </div>
 </div>
-
 `);
 });
 
@@ -254,7 +244,6 @@ it('renders attributesToRender (panel)', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
     <div class="ais-Panel">
@@ -267,7 +256,6 @@ it('renders attributesToRender (panel)', () => {
     </div>
   </div>
 </div>
-
 `);
 });
 
@@ -302,7 +290,6 @@ it('renders attributesToRender (hierarchical menu)', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
     <div attributes="test1,test2"
@@ -311,7 +298,6 @@ it('renders attributesToRender (hierarchical menu)', () => {
     </div>
   </div>
 </div>
-
 `);
 });
 
@@ -350,7 +336,6 @@ it('updates DOM when attributesToRender changes', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
     <div attributes="test1,test2"
@@ -359,7 +344,6 @@ it('updates DOM when attributesToRender changes', () => {
     </div>
   </div>
 </div>
-
 `);
 
   attributesToRender = ['test3'];
@@ -367,7 +351,6 @@ it('updates DOM when attributesToRender changes', () => {
   wrapper.vm.$forceUpdate();
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
     <div attribute="test3"
@@ -376,7 +359,6 @@ it('updates DOM when attributesToRender changes', () => {
     </div>
   </div>
 </div>
-
 `);
 
   attributesToRender = ['test1', 'test4'];
@@ -384,7 +366,6 @@ it('updates DOM when attributesToRender changes', () => {
   wrapper.vm.$forceUpdate();
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
     <div attributes="test1,test2"
@@ -403,7 +384,6 @@ it('updates DOM when attributesToRender changes', () => {
     </div>
   </div>
 </div>
-
 `);
 
   attributesToRender = [];
@@ -411,9 +391,7 @@ it('updates DOM when attributesToRender changes', () => {
   wrapper.vm.$forceUpdate();
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-
 <div class="ais-DynamicWidgets">
 </div>
-
 `);
 });

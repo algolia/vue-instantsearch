@@ -1,7 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-
 <div class="ais-Template">
   <button class="ais-Template-button">
     example refine
@@ -352,5 +351,4 @@ exports[`renders correctly 1`] = `
     </span>
   </span>
 </div>
-
 `;

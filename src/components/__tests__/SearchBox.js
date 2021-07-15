@@ -190,7 +190,6 @@ test('overriding slots', () => {
   );
 
   expect(wrapper.find('.ais-SearchBox-submit').html()).toMatchInlineSnapshot(`
-
 <button class="ais-SearchBox-submit"
         hidden="hidden"
         title="Search"
@@ -200,10 +199,8 @@ test('overriding slots', () => {
     SUBMIT
   </span>
 </button>
-
 `);
   expect(wrapper.find('.ais-SearchBox-reset').html()).toMatchInlineSnapshot(`
-
 <button class="ais-SearchBox-reset"
         hidden="hidden"
         title="Clear"
@@ -213,16 +210,13 @@ test('overriding slots', () => {
     RESET
   </span>
 </button>
-
 `);
   expect(wrapper.find('.ais-SearchBox-loadingIndicator').html())
     .toMatchInlineSnapshot(`
-
 <span class="ais-SearchBox-loadingIndicator">
   <span>
     LOADING...
   </span>
 </span>
-
 `);
 });
