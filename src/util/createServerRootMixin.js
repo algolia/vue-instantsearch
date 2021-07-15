@@ -66,10 +66,12 @@ function defaultCloneComponent(componentInstance, { mixins = [] } = {}) {
     fetch: undefined,
     _base: undefined,
     name: 'ais-ssr-root-component',
-    // copy over global Vue APIs
-    router: componentInstance.$router,
-    store: componentInstance.$store,
   };
+  if (isVue2) {
+    // copy over global Vue APIs
+    options.router = componentInstance.$router;
+    options.store = componentInstance.$store;
+  }
 
   let app;
 
@@ -83,6 +85,12 @@ function defaultCloneComponent(componentInstance, { mixins = [] } = {}) {
     // So we cannot pass exactly the propsData only.
     // FIXME: Maybe we need to get the list of props in `createServerRootMixin`.
     app = createSSRApp(appOptions, { ...componentInstance });
+    if (componentInstance.$router) {
+      app.use(componentInstance.$router);
+    }
+    if (componentInstance.$store) {
+      app.use(componentInstance.$store);
+    }
   } else {
     const Extended = componentInstance.$vnode
       ? componentInstance.$vnode.componentOptions.Ctor.extend(options)

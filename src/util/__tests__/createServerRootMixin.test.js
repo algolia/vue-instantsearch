@@ -75,6 +75,7 @@ describe('createServerRootMixin', () => {
             indexName: 'lol',
           }),
         ],
+        render: () => null,
       };
 
       const wrapper = mount(App);
@@ -85,7 +86,7 @@ describe('createServerRootMixin', () => {
       });
     });
 
-    it('provides the instantsearch instance ', done => {
+    it('provides the instantsearch instance', done => {
       const App = {
         mixins: [
           createServerRootMixin({
@@ -161,6 +162,17 @@ describe('createServerRootMixin', () => {
           }),
         ],
         render: renderCompat(h =>
+          /**
+           * This code triggers this warning in Vue 3:
+           * > Non-function value encountered for default slot. Prefer function slots for better performance.
+           *
+           * To fix it, replace the third argument
+           * > [h(...), h(...)]
+           * with
+           * > { default: () => [h(...), h(...)] }
+           *
+           * but it's not important (and not compatible in vue2), we're leaving it as-is.
+           */
           h(InstantSearchSsr, {}, [
             h(
               Configure,
@@ -223,7 +235,7 @@ Array [
         const Router4 = require('vue-router4');
         router = Router4.createRouter({
           history: Router4.createMemoryHistory(),
-          routes: [],
+          routes: [{ path: '', component: {} }],
         });
       } else {
         router = new Router({});
@@ -270,8 +282,8 @@ Array [
 
       const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
-        router,
         render: renderCompat(h => h(App)),
+        ...(isVue2 ? { router } : {}),
       });
       if (isVue3) {
         wrapper.use(router);
@@ -325,7 +337,7 @@ Array [
 
       const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
-        store,
+        ...(isVue2 ? { store } : {}),
         render: renderCompat(h => h(App)),
       });
 
