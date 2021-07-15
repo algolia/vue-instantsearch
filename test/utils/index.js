@@ -3,7 +3,7 @@ import {
   h,
   createApp as _createApp,
   createSSRApp as _createSSRApp,
-  nextTick as nextTickVue3,
+  nextTick as _nextTick,
   Vue2,
 } from '../../src/util/vue-compat';
 
@@ -52,7 +52,10 @@ export const createSSRApp = props => {
   }
 };
 
-export const renderCompat = fn => createElementV2 =>
-  isVue3 ? fn(h) : fn(createElementV2);
+export function renderCompat(fn) {
+  return function(createElementV2) {
+    return isVue3 ? fn.call(this, h) : fn.call(this, createElementV2);
+  };
+}
 
-export const nextTick = () => (isVue3 ? nextTickVue3() : Vue2.nextTick());
+export const nextTick = () => (isVue3 ? _nextTick() : Vue2.nextTick());

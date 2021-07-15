@@ -12,7 +12,7 @@ import SearchBox from '../../components/SearchBox.vue';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
-import { isVue3, Vue2 } from '../vue-compat';
+import { isVue3, isVue2, Vue2 } from '../vue-compat';
 import {
   SearchResults,
   SearchParameters,
@@ -162,9 +162,16 @@ describe('createServerRootMixin', () => {
         ],
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
-            h(Configure, {
-              hitsPerPage: 100,
-            }),
+            h(
+              Configure,
+              isVue3
+                ? { hitsPerPage: 100 }
+                : {
+                    attrs: {
+                      hitsPerPage: 100,
+                    },
+                  }
+            ),
             h(SearchBox),
           ])
         ),
@@ -225,6 +232,10 @@ Array [
       // there are two renders of App, each with an assertion
       expect.assertions(2);
 
+      if (isVue2) {
+        Vue2.use(Router);
+      }
+
       const App = {
         mixins: [
           forceIsServerMixin,
@@ -239,9 +250,16 @@ Array [
         },
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
-            h(Configure, {
-              hitsPerPage: 100,
-            }),
+            h(
+              Configure,
+              isVue3
+                ? { hitsPerPage: 100 }
+                : {
+                    attrs: {
+                      hitsPerPage: 100,
+                    },
+                  }
+            ),
             h(SearchBox),
           ])
         ),
@@ -257,8 +275,6 @@ Array [
       });
       if (isVue3) {
         wrapper.use(router);
-      } else {
-        Vue2.use(Router);
       }
 
       await renderToString(wrapper);
@@ -267,6 +283,9 @@ Array [
     it('forwards vuex', async () => {
       const searchClient = createFakeClient();
 
+      if (isVue2) {
+        Vue2.use(Vuex);
+      }
       const store = isVue3 ? createStore() : new Vuex.Store();
 
       // there are two renders of App, each with an assertion
@@ -286,9 +305,16 @@ Array [
         },
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
-            h(Configure, {
-              hitsPerPage: 100,
-            }),
+            h(
+              Configure,
+              isVue3
+                ? { hitsPerPage: 100 }
+                : {
+                    attrs: {
+                      hitsPerPage: 100,
+                    },
+                  }
+            ),
             h(SearchBox),
           ])
         ),
@@ -305,8 +331,6 @@ Array [
 
       if (isVue3) {
         wrapper.use(store);
-      } else {
-        Vue2.use(Vuex);
       }
 
       await renderToString(wrapper);
@@ -340,9 +364,16 @@ Array [
         },
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
-            h(Configure, {
-              hitsPerPage: 100,
-            }),
+            h(
+              Configure,
+              isVue3
+                ? { hitsPerPage: 100 }
+                : {
+                    attrs: {
+                      hitsPerPage: 100,
+                    },
+                  }
+            ),
             h(SearchBox),
           ])
         ),
@@ -485,13 +516,19 @@ Array [
             indexName: 'hello',
           }),
         ],
-        components: { InstantSearchSsr, Configure, SearchBox },
-        render: renderCompat(h => {
+        render: renderCompat(function(h) {
           expect(this.$root).toBe(wrapper);
           return h(InstantSearchSsr, {}, [
-            h(Configure, {
-              hitsPerPage: 100,
-            }),
+            h(
+              Configure,
+              isVue3
+                ? { hitsPerPage: 100 }
+                : {
+                    attrs: {
+                      hitsPerPage: 100,
+                    },
+                  }
+            ),
             h(SearchBox),
           ]);
         }),
@@ -522,9 +559,16 @@ Array [
         ],
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
-            h(Configure, {
-              hitsPerPage: 100,
-            }),
+            h(
+              Configure,
+              isVue3
+                ? { hitsPerPage: 100 }
+                : {
+                    attrs: {
+                      hitsPerPage: 100,
+                    },
+                  }
+            ),
             h(SearchBox),
           ])
         ),
@@ -566,9 +610,16 @@ Array [
         ],
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
-            h(Configure, {
-              hitsPerPage: 100,
-            }),
+            h(
+              Configure,
+              isVue3
+                ? { hitsPerPage: 100 }
+                : {
+                    attrs: {
+                      hitsPerPage: 100,
+                    },
+                  }
+            ),
             h(SearchBox),
           ])
         ),
@@ -603,9 +654,16 @@ Array [
         ],
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
-            h(Configure, {
-              hitsPerPage: 100,
-            }),
+            h(
+              Configure,
+              isVue3
+                ? { hitsPerPage: 100 }
+                : {
+                    attrs: {
+                      hitsPerPage: 100,
+                    },
+                  }
+            ),
             h(SearchBox),
           ])
         ),
@@ -639,9 +697,16 @@ Array [
         ],
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
-            h(Configure, {
-              hitsPerPage: 100,
-            }),
+            h(
+              Configure,
+              isVue3
+                ? { hitsPerPage: 100 }
+                : {
+                    attrs: {
+                      hitsPerPage: 100,
+                    },
+                  }
+            ),
             h(SearchBox),
           ])
         ),
