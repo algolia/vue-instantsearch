@@ -115,11 +115,13 @@
     "vue-json-tree": "0.3.3",
     "vue-loader": "14.2.2",
     "vue-router": "3.4.3",
+    "vue-router4": "npm:vue-router@4.0.0",
     "vue-server-renderer": "^2.6.11",
     "vue-slider-component": "3.0.15",
     "vue-template-compiler": "2.6.0",
     "vuetify": "1.5.3",
-    "vuex": "3.5.1"
+    "vuex": "3.5.1",
+    "vuex4": "npm:vuex@4.0.0"
   },
   "bundlesize": [
     {
