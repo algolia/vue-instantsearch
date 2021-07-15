@@ -4,7 +4,7 @@ import {
   createApp as createAppVue3,
   nextTick as nextTickVue3,
   Vue2,
-} from '../../src/util/vue';
+} from '../../src/util/vue-compat';
 
 export const mount = isVue3
   ? (component, options = {}) => {

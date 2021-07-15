@@ -1,4 +1,4 @@
-import { isVue3, Vue2, createApp } from '../util/vue';
+import { isVue3, Vue2, createApp } from '../util/vue-compat';
 import InstantSearch from '../instantsearch';
 
 const renderlessComponents = ['AisExperimentalConfigureRelatedItems'];

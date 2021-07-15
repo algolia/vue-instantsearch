@@ -1,4 +1,4 @@
-import { isVue3, version as vueVersion } from '../../util/vue';
+import { isVue3, version as vueVersion } from '../../util/vue-compat';
 import { mount, nextTick } from '../../../test/utils';
 import instantsearch from 'instantsearch.js/es';
 import InstantSearch from '../InstantSearch';

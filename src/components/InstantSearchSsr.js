@@ -1,5 +1,5 @@
 import { createInstantSearchComponent } from '../util/createInstantSearchComponent';
-import { isVue3, h } from '../util/vue';
+import { isVue3, h } from '../util/vue-compat';
 
 export default createInstantSearchComponent({
   name: 'AisInstantSearchSsr',
