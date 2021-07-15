@@ -1,0 +1,32 @@
+diff --git a/node_modules/diffable-html/dist/diffable-html.js b/node_modules/diffable-html/dist/diffable-html.js
+index 0d7d767..98fbad8 100644
+--- a/node_modules/diffable-html/dist/diffable-html.js
++++ b/node_modules/diffable-html/dist/diffable-html.js
+@@ -21,7 +21,7 @@ var voidElements = [
+   'track',
+   'wbr' ];
+ 
+-var format = function(html) {
++var format = function(html, { sortAttributes = undefined } = {}) {
+   var elements = [];
+   var indentSize = 2;
+ 
+@@ -115,6 +115,9 @@ var format = function(html) {
+ 
+   var appendAttributes = function (attributes, tagName) {
+     var names = Object.keys(attributes);
++    if (typeof sortAttributes === 'function') {
++      names = sortAttributes(names);
++    }
+ 
+     if (names.length === 1) {
+       appendAttribute(names[0], attributes[names[0]]);
+@@ -125,7 +128,7 @@ var format = function(html) {
+     }
+ 
+     var firstAttribute = true;
+-    for (var name in attributes) {
++    for (var name of names) {
+       if (firstAttribute === true) {
+         firstAttribute = false;
+         appendAttribute(name, attributes[name]);
