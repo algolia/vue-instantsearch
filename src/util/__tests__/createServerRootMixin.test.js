@@ -1,6 +1,5 @@
 import { mount, createSSRApp, renderCompat } from '../../../test/utils';
 import Router from 'vue-router';
-import { createRouter, createMemoryHistory } from 'vue-router4';
 import Vuex from 'vuex';
 import { createStore } from 'vuex4';
 import {
@@ -212,10 +211,16 @@ Array [
 
     it('forwards router', async () => {
       const searchClient = createFakeClient();
-
-      const router = isVue3
-        ? createRouter({ history: createMemoryHistory(), routes: [] })
-        : new Router({});
+      let router;
+      if (isVue3) {
+        const Router4 = require('vue-router4');
+        router = Router4.createRouter({
+          history: Router4.createMemoryHistory(),
+          routes: [],
+        });
+      } else {
+        router = new Router({});
+      }
 
       // there are two renders of App, each with an assertion
       expect.assertions(2);
