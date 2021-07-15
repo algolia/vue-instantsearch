@@ -716,10 +716,15 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/googlemaps@^3.39.6":
-  version "3.39.7"
-  resolved "https://registry.npmjs.org/@types/googlemaps/-/googlemaps-3.39.7.tgz#70c1af22839976cfd462858c882b54f3006f0b08"
-  integrity sha512-U8ZjnjfGiZXzun8jIDOZ/5Gt5Ky07B9pBhFbgzten1S364bnuueFsCt5e5V7Wn55o26NkLWgc6becL+j401bRw==
+"@types/google.maps@^3.45.3":
+  version "3.45.6"
+  resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.45.6.tgz#441a7bc76424243b307596fc8d282a435a979ebd"
+  integrity sha512-BzGzxs8UXFxeP8uN/0nRgGbsbpYQxSCKsv/7S8OitU7wwhfFcqQSm5aAcL1nbwueMiJ/VVmIZKPq69s0kX5W+Q==
+
+"@types/hogan.js@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/hogan.js/-/hogan.js-3.0.0.tgz#bf26560f39a38224ab6d0491b06f72c8fbe0953d"
+  integrity sha512-djkvb/AN43c3lIGCojNQ1FBS9VqqKhcTns5RQnHw4xBT/csy0jAssAsOiJ8NfaaioZaeKYE7XkVRxE5NeSZcaA==
 
 "@types/http-cache-semantics@*":
   version "4.0.0"
@@ -1245,10 +1250,10 @@ algoliasearch-helper@^3.1.0:
   dependencies:
     events "^1.1.1"
 
-algoliasearch-helper@^3.4.4:
-  version "3.4.4"
-  resolved "https://registry.yarnpkg.com/algoliasearch-helper/-/algoliasearch-helper-3.4.4.tgz#f2eb46bc4d2f6fed82c7201b8ac4ce0a1988ae67"
-  integrity sha512-OjyVLjykaYKCMxxRMZNiwLp8CS310E0qAeIY2NaublcmLAh8/SL19+zYHp7XCLtMem2ZXwl3ywMiA32O9jszuw==
+algoliasearch-helper@^3.5.4:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/algoliasearch-helper/-/algoliasearch-helper-3.5.4.tgz#21b20ab8a258daa9dde9aef2daa5e8994cd66077"
+  integrity sha512-t+FLhXYnPZiwjYe5ExyN962HQY8mi3KwRju3Lyf6OBgtRdx30d6mqvtClXf5NeBihH45Xzj6t4Y5YyvAI432XA==
   dependencies:
     events "^1.1.1"
 
@@ -5256,10 +5261,10 @@ diff@^4.0.1:
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.1.tgz#0c667cb467ebbb5cea7f14f135cc2dba7780a8ff"
   integrity sha512-s2+XdvhPCOF01LRQBC8hf4vhbVmI2CGS5aZnxLJlT5FtdhPCDFq80q++zK2KlrVorVDdL5BOGZ/VfLrVtYNF+Q==
 
-diffable-html@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/diffable-html/-/diffable-html-4.0.0.tgz#eb44a189785115bacd04829f31658fcd3c0ce590"
-  integrity sha512-keJdgy2qBkdrrnwP1YE6e834d4Y+mV0aRFzk8w7WzyAJVbQVfcJltSmUWB3r/NOoO/0jt7RdJlvy5ioyqvmQcw==
+diffable-html@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/diffable-html/-/diffable-html-4.1.0.tgz#e7a2d1de187c4e23a59751b4e4c17483a058c696"
+  integrity sha512-++kyNek+YBLH8cLXS+iTj/Hiy2s5qkRJEJ8kgu/WHbFrVY2vz9xPFUT+fii2zGF0m1CaojDlQJjkfrCt7YWM1g==
   dependencies:
     htmlparser2 "^3.9.2"
 
@@ -8114,18 +8119,18 @@ instantsearch.css@7.3.1:
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.3.1.tgz#7ab74a8f355091ae040947a9cf5438f379026622"
   integrity sha512-/kaMDna5D+Q9mImNBHEhb9HgHATDOFKYii7N1Iwvrj+lmD9gBJLqVhUw67gftq2O0QI330pFza+CRscIwB1wQQ==
 
-instantsearch.js@^4.20.0:
-  version "4.20.0"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.20.0.tgz#e7ed763a8380384ff59a88f3b56a01c5dedf0fca"
-  integrity sha512-fO3oqt/WEsUvdx8LB9Fm/MH9pLbl3gHV3ALnFOvbwdIpg+HRe5zZv3C/bE8E0SuTbZo2C6Fxg6rC0MEMTxNVGA==
+instantsearch.js@^4.25.0:
+  version "4.25.0"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.25.0.tgz#0c631479afa0826af0adee120dc2bbb68e1caeb3"
+  integrity sha512-146u/zlu+lHjMgykKnvYr5yvM4xB/CHN8jmf5872gYNfjoZlmQ6GAoYwrgRjQrbLAbIZ6hhpXkDhwmoptmvUgQ==
   dependencies:
-    "@types/googlemaps" "^3.39.6"
-    algoliasearch-helper "^3.4.4"
+    "@types/google.maps" "^3.45.3"
+    "@types/hogan.js" "^3.0.0"
+    algoliasearch-helper "^3.5.4"
     classnames "^2.2.5"
     events "^1.1.0"
     hogan.js "^3.0.2"
     preact "^10.0.0"
-    prop-types "^15.5.10"
     qs "^6.5.1"
 
 interpret@^1.0.0:
@@ -8966,12 +8971,12 @@ jest-runtime@^23.6.0:
     write-file-atomic "^2.1.0"
     yargs "^11.0.0"
 
-jest-serializer-html@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/jest-serializer-html/-/jest-serializer-html-6.0.0.tgz#39ce49a42b3937d1687f93923814d21b47ae9a85"
-  integrity sha512-S855oT9Yt1T07I45+uRaLsH22TR5lAvgqBxKreqDKs6QmcaxzapGgKamc4J2KxMrPc2uDdWcuOaprcjIuVUxvQ==
+jest-serializer-html@7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/jest-serializer-html/-/jest-serializer-html-7.1.0.tgz#0cfea8a03b9b82bc420fd2cb969bd76713a87c08"
+  integrity sha512-xYL2qC7kmoYHJo8MYqJkzrl/Fdlx+fat4U1AqYg+kafqwcKPiMkOcjWHPKhueuNEgr+uemhGc+jqXYiwCyRyLA==
   dependencies:
-    diffable-html "^4.0.0"
+    diffable-html "^4.1.0"
 
 jest-serializer@^23.0.1:
   version "23.0.1"
