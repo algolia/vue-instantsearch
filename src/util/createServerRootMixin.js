@@ -74,12 +74,15 @@ function defaultCloneComponent(componentInstance, { mixins = [] } = {}) {
   let app;
 
   if (isVue3) {
-    // FIXME: I need to pass `componentInstance.$options.propsData` to this app but
-    // `propsData` doesn't exist any more in vue 3.
-    // So I need to find out where I should get this from.
     const appOptions = Object.assign({}, componentInstance.$options, options);
     appOptions.mixins = [...appOptions.mixins, ...mixins];
-    app = createSSRApp(appOptions);
+    // Unlike Vue 2, there is no componentInstance.$options.propsData in Vue 3.
+    // The only way to pass the propsData is to spread componentInstance
+    // in the second argument, hoping the rest wouldn't make any side effect.
+    // At this point, we don't even have the definition of the props.
+    // So we cannot pass exactly the propsData only.
+    // FIXME: Maybe we need to get the list of props in `createServerRootMixin`.
+    app = createSSRApp(appOptions, { ...componentInstance });
   } else {
     const Extended = componentInstance.$vnode
       ? componentInstance.$vnode.componentOptions.Ctor.extend(options)

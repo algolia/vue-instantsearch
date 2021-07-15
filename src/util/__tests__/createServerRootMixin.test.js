@@ -1,7 +1,8 @@
-import Vue from 'vue';
 import { mount, createSSRApp, renderCompat } from '../../../test/utils';
 import Router from 'vue-router';
+import { createRouter, createMemoryHistory } from 'vue-router4';
 import Vuex from 'vuex';
+import { createStore } from 'vuex4';
 import {
   createServerRootMixin,
   renderToString,
@@ -12,6 +13,7 @@ import SearchBox from '../../components/SearchBox.vue';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
+import { isVue3, Vue2 } from '../vue-compat';
 import {
   SearchResults,
   SearchParameters,
@@ -162,9 +164,7 @@ describe('createServerRootMixin', () => {
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
             h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
+              hitsPerPage: 100,
             }),
             h(SearchBox),
           ])
@@ -213,7 +213,9 @@ Array [
     it('forwards router', async () => {
       const searchClient = createFakeClient();
 
-      const router = new Router({});
+      const router = isVue3
+        ? createRouter({ history: createMemoryHistory(), routes: [] })
+        : new Router({});
 
       // there are two renders of App, each with an assertion
       expect.assertions(2);
@@ -233,9 +235,7 @@ Array [
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
             h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
+              hitsPerPage: 100,
             }),
             h(SearchBox),
           ])
@@ -245,13 +245,16 @@ Array [
         },
       };
 
-      Vue.use(Router);
-
       const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
         router,
         render: renderCompat(h => h(App)),
       });
+      if (isVue3) {
+        wrapper.use(router);
+      } else {
+        Vue2.use(Router);
+      }
 
       await renderToString(wrapper);
     });
@@ -259,9 +262,7 @@ Array [
     it('forwards vuex', async () => {
       const searchClient = createFakeClient();
 
-      Vue.use(Vuex);
-
-      const store = new Vuex.Store();
+      const store = isVue3 ? createStore() : new Vuex.Store();
 
       // there are two renders of App, each with an assertion
       expect.assertions(2);
@@ -281,9 +282,7 @@ Array [
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
             h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
+              hitsPerPage: 100,
             }),
             h(SearchBox),
           ])
@@ -298,6 +297,12 @@ Array [
         store,
         render: renderCompat(h => h(App)),
       });
+
+      if (isVue3) {
+        wrapper.use(store);
+      } else {
+        Vue2.use(Vuex);
+      }
 
       await renderToString(wrapper);
     });
@@ -331,9 +336,7 @@ Array [
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
             h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
+              hitsPerPage: 100,
             }),
             h(SearchBox),
           ])
@@ -345,7 +348,9 @@ Array [
 
       const wrapper = createSSRApp({
         mixins: [forceIsServerMixin],
-        render: renderCompat(h => h(App, { props: { someProp } })),
+        render: renderCompat(h =>
+          h(App, isVue3 ? { someProp } : { props: { someProp } })
+        ),
       });
 
       await renderToString(wrapper);
@@ -447,9 +452,7 @@ Array [
               default({ test }) {
                 if (test) {
                   return h(Configure, {
-                    attrs: {
-                      hitsPerPage: 100,
-                    },
+                    hitsPerPage: 100,
                   });
                 }
                 return null;
@@ -482,9 +485,7 @@ Array [
           expect(this.$root).toBe(wrapper);
           return h(InstantSearchSsr, {}, [
             h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
+              hitsPerPage: 100,
             }),
             h(SearchBox),
           ]);
@@ -517,9 +518,7 @@ Array [
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
             h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
+              hitsPerPage: 100,
             }),
             h(SearchBox),
           ])
@@ -563,9 +562,7 @@ Array [
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
             h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
+              hitsPerPage: 100,
             }),
             h(SearchBox),
           ])
@@ -602,9 +599,7 @@ Array [
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
             h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
+              hitsPerPage: 100,
             }),
             h(SearchBox),
           ])
@@ -640,9 +635,7 @@ Array [
         render: renderCompat(h =>
           h(InstantSearchSsr, {}, [
             h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
+              hitsPerPage: 100,
             }),
             h(SearchBox),
           ])
