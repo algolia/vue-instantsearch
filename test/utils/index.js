@@ -50,11 +50,6 @@ export const createComponent = props => {
       props.render(isVue3 ? h : createElementV2);
   }
 
-  if (props.slots?.default?.render) {
-    component.slots.default.render = createElementV2 =>
-      props.render(isVue3 ? h : createElementV2);
-  }
-
   return component;
 };
 

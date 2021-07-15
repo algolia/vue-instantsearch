@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { isVue3, h as createElementVue3 } from 'vue-demi';
 import { mount, createComponent, createApp } from '../../../test/utils';
 import _renderToString from 'vue-server-renderer/basic';
 import Router from 'vue-router';
@@ -74,7 +75,7 @@ describe('createServerRootMixin', () => {
     });
 
     it('creates an instantsearch instance on "data"', () => {
-      const app = createApp({
+      const App = createComponent({
         mixins: [
           createServerRootMixin({
             searchClient: createFakeClient(),
@@ -83,14 +84,15 @@ describe('createServerRootMixin', () => {
         ],
       });
 
-      expect(app.$data).toEqual({
+      const wrapper = mount(App);
+      expect(wrapper.vm.$data).toEqual({
         instantsearch: expect.objectContaining({
           start: expect.any(Function),
         }),
       });
     });
 
-    it('provides the instantsearch instance ', () => {
+    it('provides the instantsearch instance ', done => {
       const App = createComponent({
         mixins: [
           createServerRootMixin({
@@ -98,40 +100,38 @@ describe('createServerRootMixin', () => {
             indexName: 'myIndexName',
           }),
         ],
-        render(h) {
-          return h('div', {}, this.$slots.default);
-        },
+        template: `<div><slot /></div>`,
       });
 
-      const Child = createComponent({
+      const Child = {
         mixins: [createWidgetMixin({ connector: true })],
-        render(h) {
-          return h('p', {}, this.instantSearchInstance.indexName);
+        mounted() {
+          expect(this.instantSearchInstance).toEqual(
+            expect.objectContaining({
+              start: expect.any(Function),
+              dispose: expect.any(Function),
+              mainIndex: expect.any(Object),
+              addWidgets: expect.any(Function),
+              removeWidgets: expect.any(Function),
+            })
+          );
+          done();
         },
+        render() {
+          return null;
+        },
+      };
+
+      mount({
+        components: { App, InstantSearchSsr, Child },
+        template: `
+          <App>
+            <InstantSearchSsr>
+              <Child />
+            </InstantSearchSsr>
+          </App>
+        `,
       });
-
-      const wrapper = mount(
-        App,
-        createComponent({
-          slots: {
-            default: {
-              render(h) {
-                return h(InstantSearchSsr, [h(Child)]);
-              },
-            },
-          },
-        })
-      );
-
-      expect(wrapper.html()).toMatchInlineSnapshot(`
-<div>
-  <div class="ais-InstantSearch ais-InstantSearch--ssr">
-    <p>
-      myIndexName
-    </p>
-  </div>
-</div>
-`);
     });
   });
 
@@ -387,7 +387,11 @@ Array [
             }),
           ],
           render(h) {
-            return h(InstantSearchSsr, {}, this.$slots.default);
+            return h(
+              InstantSearchSsr,
+              {},
+              isVue3 ? this.$slots.default() : this.$slots.default
+            );
           },
           serverPrefetch() {
             return (
