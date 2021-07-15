@@ -127,15 +127,10 @@
     "brotli-size": "4.0.0"
   },
   "jest": {
-    "setupFiles": [
-      "<rootDir>/jest.setup.js"
-    ],
+    "setupTestFrameworkScriptFile": "./jest.setup.js",
     "moduleFileExtensions": [
       "js",
       "vue"
-    ],
-    "snapshotSerializers": [
-      "./test/jest-serializer-html"
     ],
     "moduleNameMapper": {
       "^instantsearch.js/es$": "<rootDir>/__mocks__/instantsearch-es.js"
