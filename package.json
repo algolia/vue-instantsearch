@@ -148,9 +148,6 @@
       "js",
       "vue"
     ],
-    "moduleNameMapper": {
-      "^instantsearch.js/es$": "<rootDir>/__mocks__/instantsearch-es.js"
-    },
     "transformIgnorePatterns": [
       "node_modules/(?!(instantsearch\\.js|vue-json-tree))"
     ],
