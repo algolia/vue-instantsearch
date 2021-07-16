@@ -404,6 +404,7 @@ Array [
       await renderToString(wrapper);
     });
 
+    // FIXME: make these work with Vue 3
     if (isVue2) {
       it('forwards slots', async done => {
         const searchClient = createFakeClient();
