@@ -405,7 +405,6 @@ it('provides the instantsearch instance', done => {
     },
   };
 
-  // https://github.com/vuejs/vue-test-utils-next/issues/727
   mount({
     components: { ParentComponent, ChildComponent },
     data() {
