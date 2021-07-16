@@ -1,6 +1,7 @@
 import instantsearch from 'instantsearch.js/es';
 import algoliaHelper from 'algoliasearch-helper';
 import { isVue3, isVue2, Vue2, createSSRApp } from '../util/vue-compat';
+import { _objectSpread } from '../util/polyfills';
 const { SearchResults, SearchParameters } = algoliaHelper;
 import { warn } from './warn';
 
@@ -84,7 +85,7 @@ function defaultCloneComponent(componentInstance, { mixins = [] } = {}) {
     // At this point, we don't even have the definition of the props.
     // So we cannot pass exactly the propsData only.
     // FIXME: Maybe we need to get the list of props in `createServerRootMixin`.
-    app = createSSRApp(appOptions, { ...componentInstance });
+    app = createSSRApp(appOptions, _objectSpread({}, componentInstance));
     if (componentInstance.$router) {
       app.use(componentInstance.$router);
     }
