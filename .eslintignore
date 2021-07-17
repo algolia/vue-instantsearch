@@ -4,3 +4,5 @@ coverage/
 dist/
 examples/*/node_modules/*
 scripts/es-index-template.js
+website/examples/*
+website/stories/*
