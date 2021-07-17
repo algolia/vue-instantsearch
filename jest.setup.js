@@ -14,8 +14,11 @@ expect.addSnapshotSerializer(
 );
 
 const toHaveBooleanAttribute = attribute => wrapper => {
-  // vue2: https://codesandbox.io/s/optimistic-blackwell-enw30
-  // vue3: https://codesandbox.io/s/affectionate-vaughan-f6sf0
+  // :hidden="true" becomes
+  // hidden="hidden" in Vue 2 and
+  // hidden="" in Vue 3.
+
+  // So we need this to write correct tests to match them in both versions.
   const value = wrapper.attributes(attribute);
   if ((isVue2 && value === attribute) || (isVue3 && value === '')) {
     return { pass: true };
