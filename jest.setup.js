@@ -13,10 +13,27 @@ expect.addSnapshotSerializer(
   })
 );
 
+const toHaveBooleanAttribute = attribute => wrapper => {
+  // vue2: https://codesandbox.io/s/optimistic-blackwell-enw30
+  // vue3: https://codesandbox.io/s/affectionate-vaughan-f6sf0
+  const value = wrapper.attributes(attribute);
+  if ((isVue2 && value === attribute) || (isVue3 && value === '')) {
+    return { pass: true };
+  } else {
+    return {
+      pass: false,
+      message: () => `expected ${wrapper} to have \`${attribute}\` attribute`,
+    };
+  }
+};
+
 expect.extend({
-  toHaveEmptyHTML: received => {
-    const html = received.html();
-    if ((isVue2 && html === '') || (isVue3 && html === '<!---->')) {
+  toHaveEmptyHTML: wrapper => {
+    const html = wrapper.html();
+    if (
+      (isVue2 && html === '') ||
+      (isVue3 && ['<!---->', '<!--v-if-->'].includes(html))
+    ) {
       return {
         pass: true,
       };
@@ -27,4 +44,7 @@ expect.extend({
       };
     }
   },
+  toBeDisabled: toHaveBooleanAttribute('disabled'),
+  toBeHidden: toHaveBooleanAttribute('hidden'),
+  toBeAutofocused: toHaveBooleanAttribute('autofocus'),
 });

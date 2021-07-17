@@ -53,29 +53,29 @@ it('renders all children without state', () => {
   expect(wrapper.classes()).toContain('ais-DynamicWidgets');
   expect(wrapper).toBeHidden();
   expect(wrapper.element.innerHTML).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets-widget">
-      <div widget-name="ais-refinement-list">
-        test1
+<div class="ais-DynamicWidgets-widget">
+  <div widget-name="ais-refinement-list">
+    test1
+  </div>
+</div>
+<div class="ais-DynamicWidgets-widget">
+  <div widget-name="ais-menu">
+    test2
+  </div>
+</div>
+<div class="ais-DynamicWidgets-widget">
+  <div class="ais-Panel">
+    <div class="ais-Panel-body">
+      <div widget-name="ais-hierarchical-menu">
+        [
+  "test3",
+  "test4"
+]
       </div>
     </div>
-    <div class="ais-DynamicWidgets-widget">
-      <div widget-name="ais-menu">
-        test2
-      </div>
-    </div>
-    <div class="ais-DynamicWidgets-widget">
-      <div class="ais-Panel">
-        <div class="ais-Panel-body">
-          <div widget-name="ais-hierarchical-menu">
-            [
-      "test3",
-      "test4"
-    ]
-          </div>
-        </div>
-      </div>
-    </div>
-  `);
+  </div>
+</div>
+`);
 });
 
 it('renders nothing without children', () => {
@@ -89,9 +89,9 @@ it('renders nothing without children', () => {
     },
   });
   expect(wrapper.html()).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets">
-    </div>
-  `);
+<div class="ais-DynamicWidgets">
+</div>
+`);
 });
 
 it('renders nothing with empty attributesToRender', () => {
@@ -112,9 +112,9 @@ it('renders nothing with empty attributesToRender', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets">
-    </div>
-  `);
+<div class="ais-DynamicWidgets">
+</div>
+`);
 });
 
 it('renders attributesToRender (menu)', () => {
@@ -137,14 +137,14 @@ it('renders attributesToRender (menu)', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets">
-      <div class="ais-DynamicWidgets-widget">
-        <div widget-name="ais-menu">
-          test1
-        </div>
-      </div>
+<div class="ais-DynamicWidgets">
+  <div class="ais-DynamicWidgets-widget">
+    <div widget-name="ais-menu">
+      test1
     </div>
-  `);
+  </div>
+</div>
+`);
 });
 
 it('renders attributesToRender (refinement list)', () => {
@@ -167,14 +167,14 @@ it('renders attributesToRender (refinement list)', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets">
-      <div class="ais-DynamicWidgets-widget">
-        <div widget-name="ais-refinement-list">
-          test2
-        </div>
-      </div>
+<div class="ais-DynamicWidgets">
+  <div class="ais-DynamicWidgets-widget">
+    <div widget-name="ais-refinement-list">
+      test2
     </div>
-  `);
+  </div>
+</div>
+`);
 });
 
 it('renders attributesToRender (panel)', () => {
@@ -200,18 +200,18 @@ it('renders attributesToRender (panel)', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets">
-      <div class="ais-DynamicWidgets-widget">
-        <div class="ais-Panel">
-          <div class="ais-Panel-body">
-            <div widget-name="ais-refinement-list">
-              test2
-            </div>
-          </div>
+<div class="ais-DynamicWidgets">
+  <div class="ais-DynamicWidgets-widget">
+    <div class="ais-Panel">
+      <div class="ais-Panel-body">
+        <div widget-name="ais-refinement-list">
+          test2
         </div>
       </div>
     </div>
-  `);
+  </div>
+</div>
+`);
 });
 
 it('renders attributesToRender (hierarchical menu)', () => {
@@ -239,17 +239,17 @@ it('renders attributesToRender (hierarchical menu)', () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets">
-      <div class="ais-DynamicWidgets-widget">
-        <div widget-name="ais-hierarchical-menu">
-          [
-          "test1",
-          "test2"
-          ]
-        </div>
-      </div>
+<div class="ais-DynamicWidgets">
+  <div class="ais-DynamicWidgets-widget">
+    <div widget-name="ais-hierarchical-menu">
+      [
+      "test1",
+      "test2"
+      ]
     </div>
-  `);
+  </div>
+</div>
+`);
 });
 
 it('updates DOM when attributesToRender changes', async () => {
@@ -281,64 +281,64 @@ it('updates DOM when attributesToRender changes', async () => {
   });
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets">
-      <div class="ais-DynamicWidgets-widget">
-        <div widget-name="ais-hierarchical-menu">
-          [
-          "test1",
-          "test2"
-          ]
-        </div>
-      </div>
+<div class="ais-DynamicWidgets">
+  <div class="ais-DynamicWidgets-widget">
+    <div widget-name="ais-hierarchical-menu">
+      [
+      "test1",
+      "test2"
+      ]
     </div>
-  `);
+  </div>
+</div>
+`);
 
   attributesToRender = ['test3'];
   wrapper.vm.$forceUpdate();
   await nextTick();
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets">
-      <div class="ais-DynamicWidgets-widget">
-        <div widget-name="ais-menu">
-          test3
-        </div>
-      </div>
+<div class="ais-DynamicWidgets">
+  <div class="ais-DynamicWidgets-widget">
+    <div widget-name="ais-menu">
+      test3
     </div>
-  `);
+  </div>
+</div>
+`);
 
   attributesToRender = ['test1', 'test4'];
   wrapper.vm.$forceUpdate();
   await nextTick();
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets">
-      <div class="ais-DynamicWidgets-widget">
-        <div widget-name="ais-hierarchical-menu">
-          [
-          "test1",
-          "test2"
-          ]
-        </div>
-      </div>
-      <div class="ais-DynamicWidgets-widget">
-        <div class="ais-Panel">
-          <div class="ais-Panel-body">
-            <div widget-name="ais-refinement-list">
-              test4
-            </div>
-          </div>
+<div class="ais-DynamicWidgets">
+  <div class="ais-DynamicWidgets-widget">
+    <div widget-name="ais-hierarchical-menu">
+      [
+      "test1",
+      "test2"
+      ]
+    </div>
+  </div>
+  <div class="ais-DynamicWidgets-widget">
+    <div class="ais-Panel">
+      <div class="ais-Panel-body">
+        <div widget-name="ais-refinement-list">
+          test4
         </div>
       </div>
     </div>
-  `);
+  </div>
+</div>
+`);
 
   attributesToRender = [];
   wrapper.vm.$forceUpdate();
   await nextTick();
 
   expect(wrapper.html()).toMatchInlineSnapshot(`
-    <div class="ais-DynamicWidgets">
-    </div>
-  `);
+<div class="ais-DynamicWidgets">
+</div>
+`);
 });
