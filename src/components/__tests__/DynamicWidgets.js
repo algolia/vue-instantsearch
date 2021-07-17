@@ -50,27 +50,29 @@ it('renders all children without state', () => {
     },
   });
 
-  expect(wrapper.classes()).toContain('ais-DynamicWidgets');
-  expect(wrapper).toBeHidden();
-  expect(wrapper.element.innerHTML).toMatchInlineSnapshot(`
-<div class="ais-DynamicWidgets-widget">
-  <div widget-name="ais-refinement-list">
-    test1
+  expect(wrapper.htmlCompat()).toMatchInlineSnapshot(`
+<div class="ais-DynamicWidgets"
+     hidden="hidden"
+>
+  <div class="ais-DynamicWidgets-widget">
+    <div widget-name="ais-refinement-list">
+      test1
+    </div>
   </div>
-</div>
-<div class="ais-DynamicWidgets-widget">
-  <div widget-name="ais-menu">
-    test2
+  <div class="ais-DynamicWidgets-widget">
+    <div widget-name="ais-menu">
+      test2
+    </div>
   </div>
-</div>
-<div class="ais-DynamicWidgets-widget">
-  <div class="ais-Panel">
-    <div class="ais-Panel-body">
-      <div widget-name="ais-hierarchical-menu">
-        [
-  "test3",
-  "test4"
-]
+  <div class="ais-DynamicWidgets-widget">
+    <div class="ais-Panel">
+      <div class="ais-Panel-body">
+        <div widget-name="ais-hierarchical-menu">
+          [
+          "test3",
+          "test4"
+          ]
+        </div>
       </div>
     </div>
   </div>
