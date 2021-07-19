@@ -7,21 +7,21 @@ jest.mock('../../mixins/widget');
 const MockRefinementList = {
   props: { attribute: { type: String } },
   template: `
-    <div widget-name="ais-refinement-list">{{ attribute }}</div>
+    <div widget-name="ais-refinement-list" :attribute="attribute" />
   `,
 };
 
 const MockMenu = {
   props: { attribute: { type: String } },
   template: `
-    <div widget-name="ais-menu">{{ attribute }}</div>
+    <div widget-name="ais-menu" :attribute="attribute" />
   `,
 };
 
 const MockHierarchicalMenu = {
   props: { attributes: { type: Array } },
   template: `
-    <div widget-name="ais-hierarchical-menu">{{ attributes }}</div>
+    <div widget-name="ais-hierarchical-menu" :attributes="attributes.join(',')" />
   `,
 };
 
@@ -55,23 +55,23 @@ it('renders all children without state', () => {
      hidden="hidden"
 >
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-refinement-list">
-      test1
+    <div attribute="test1"
+         widget-name="ais-refinement-list"
+    >
     </div>
   </div>
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-menu">
-      test2
+    <div attribute="test2"
+         widget-name="ais-menu"
+    >
     </div>
   </div>
   <div class="ais-DynamicWidgets-widget">
     <div class="ais-Panel">
       <div class="ais-Panel-body">
-        <div widget-name="ais-hierarchical-menu">
-          [
-          "test3",
-          "test4"
-          ]
+        <div attributes="test3,test4"
+             widget-name="ais-hierarchical-menu"
+        >
         </div>
       </div>
     </div>
@@ -141,8 +141,9 @@ it('renders attributesToRender (menu)', () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-menu">
-      test1
+    <div attribute="test1"
+         widget-name="ais-menu"
+    >
     </div>
   </div>
 </div>
@@ -171,8 +172,9 @@ it('renders attributesToRender (refinement list)', () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-refinement-list">
-      test2
+    <div attribute="test2"
+         widget-name="ais-refinement-list"
+    >
     </div>
   </div>
 </div>
@@ -206,8 +208,9 @@ it('renders attributesToRender (panel)', () => {
   <div class="ais-DynamicWidgets-widget">
     <div class="ais-Panel">
       <div class="ais-Panel-body">
-        <div widget-name="ais-refinement-list">
-          test2
+        <div attribute="test2"
+             widget-name="ais-refinement-list"
+        >
         </div>
       </div>
     </div>
@@ -243,11 +246,9 @@ it('renders attributesToRender (hierarchical menu)', () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-hierarchical-menu">
-      [
-      "test1",
-      "test2"
-      ]
+    <div attributes="test1,test2"
+         widget-name="ais-hierarchical-menu"
+    >
     </div>
   </div>
 </div>
@@ -285,11 +286,9 @@ it('updates DOM when attributesToRender changes', async () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-hierarchical-menu">
-      [
-      "test1",
-      "test2"
-      ]
+    <div attributes="test1,test2"
+         widget-name="ais-hierarchical-menu"
+    >
     </div>
   </div>
 </div>
@@ -302,8 +301,9 @@ it('updates DOM when attributesToRender changes', async () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-menu">
-      test3
+    <div attribute="test3"
+         widget-name="ais-menu"
+    >
     </div>
   </div>
 </div>
@@ -316,18 +316,17 @@ it('updates DOM when attributesToRender changes', async () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div widget-name="ais-hierarchical-menu">
-      [
-      "test1",
-      "test2"
-      ]
+    <div attributes="test1,test2"
+         widget-name="ais-hierarchical-menu"
+    >
     </div>
   </div>
   <div class="ais-DynamicWidgets-widget">
     <div class="ais-Panel">
       <div class="ais-Panel-body">
-        <div widget-name="ais-refinement-list">
-          test4
+        <div attribute="test4"
+             widget-name="ais-refinement-list"
+        >
         </div>
       </div>
     </div>
