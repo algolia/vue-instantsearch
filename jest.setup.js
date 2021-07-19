@@ -13,6 +13,23 @@ expect.addSnapshotSerializer(
   })
 );
 
+const toHaveEmptyHTML = wrapper => {
+  const html = wrapper.html();
+  if (
+    (isVue2 && html === '') ||
+    (isVue3 && ['<!---->', '<!--v-if-->'].includes(html))
+  ) {
+    return {
+      pass: true,
+    };
+  } else {
+    return {
+      pass: false,
+      message: () => `expected ${html} to be an empty HTML string`,
+    };
+  }
+};
+
 const toHaveBooleanAttribute = attribute => wrapper => {
   // :hidden="true" becomes
   // hidden="hidden" in Vue 2 and
@@ -31,22 +48,7 @@ const toHaveBooleanAttribute = attribute => wrapper => {
 };
 
 expect.extend({
-  toHaveEmptyHTML: wrapper => {
-    const html = wrapper.html();
-    if (
-      (isVue2 && html === '') ||
-      (isVue3 && ['<!---->', '<!--v-if-->'].includes(html))
-    ) {
-      return {
-        pass: true,
-      };
-    } else {
-      return {
-        pass: false,
-        message: () => `expected ${html} to be an empty HTML string`,
-      };
-    }
-  },
+  toHaveEmptyHTML,
   toBeDisabled: toHaveBooleanAttribute('disabled'),
   toBeHidden: toHaveBooleanAttribute('hidden'),
   toBeAutofocused: toHaveBooleanAttribute('autofocus'),
