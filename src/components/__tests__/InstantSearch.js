@@ -28,9 +28,6 @@ it('passes props to InstantSearch.js', () => {
       stalledSearchDelay: 250,
       searchFunction,
     },
-    slots: {
-      default: '',
-    },
   });
 
   expect(instantsearch).toHaveBeenCalledWith({
@@ -56,9 +53,6 @@ it('throws on usage of appId or apiKey', () => {
       apiKey: 'bla',
       appId: 'blabla',
       indexName: 'something',
-    },
-    slots: {
-      default: '',
     },
   });
 
@@ -103,9 +97,6 @@ it('calls `start` on the next tick', async () => {
       searchClient: {},
       indexName: 'something',
     },
-    slots: {
-      default: '',
-    },
   });
 
   await nextTick();
@@ -117,9 +108,6 @@ it('renders correctly (empty)', () => {
     propsData: {
       searchClient: {},
       indexName: 'bla',
-    },
-    slots: {
-      default: '',
     },
   });
 
@@ -146,9 +134,6 @@ it('Allows a change in `index-name`', async () => {
       searchClient: {},
       indexName: 'bla',
     },
-    slots: {
-      default: '',
-    },
   });
 
   await wrapper.setProps({
@@ -167,9 +152,6 @@ it('Allows a change in `search-client`', async () => {
     propsData: {
       searchClient: {},
       indexName: 'bla',
-    },
-    slots: {
-      default: '',
     },
   });
 
@@ -196,9 +178,6 @@ it('Allows a change in `search-function`', async () => {
       indexName: 'bla',
       searchFunction: oldValue,
     },
-    slots: {
-      default: '',
-    },
   });
 
   expect(wrapper.vm.instantSearchInstance._searchFunction).toEqual(oldValue);
@@ -217,9 +196,6 @@ it('Allows a change in `stalled-search-delay`', async () => {
       indexName: 'bla',
       searchFunction: () => {},
       stalledSearchDelay: 200,
-    },
-    slots: {
-      default: '',
     },
   });
 
@@ -240,9 +216,6 @@ it('does not allow `routing` to be a boolean', () => {
       searchClient: {},
       indexName: 'bla',
       routing: true,
-    },
-    slots: {
-      default: '',
     },
   });
 
@@ -274,9 +247,6 @@ it('warns when `routing` does not have `router` or `stateMapping`', () => {
       indexName: 'indexName',
       routing: {},
     },
-    slots: {
-      default: '',
-    },
   });
 
   expect(warn)
@@ -292,18 +262,12 @@ it('does not warn when `routing` have either `router` or `stateMapping`', () => 
       indexName: 'indexName',
       routing: { router: {} },
     },
-    slots: {
-      default: '',
-    },
   });
   mount(InstantSearch, {
     propsData: {
       searchClient: {},
       indexName: 'indexName',
       routing: { stateMapping: {} },
-    },
-    slots: {
-      default: '',
     },
   });
 
@@ -315,9 +279,6 @@ it('Does not allow a change in `routing`', () => {
     propsData: {
       searchClient: {},
       indexName: 'bla',
-    },
-    slots: {
-      default: '',
     },
   });
 
@@ -340,7 +301,6 @@ it('will call client.addAlgoliaAgent if present', () => {
       searchClient: client,
       indexName: 'bla',
     },
-    slots: { default: '' },
   });
 
   expect(client.addAlgoliaAgent).toHaveBeenCalledTimes(2);
@@ -357,7 +317,6 @@ it('will not call client.addAlgoliaAgent if not function (so nothing to assert)'
         searchClient: { addAlgoliaAgent: true },
         indexName: 'bla',
       },
-      slots: { default: '' },
     })
   ).not.toThrow();
 });
@@ -368,7 +327,6 @@ it('disposes the instantsearch instance on unmount', async () => {
       searchClient: {},
       indexName: 'something',
     },
-    slots: { default: '' },
   });
 
   await nextTick();
