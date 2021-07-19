@@ -1,6 +1,7 @@
 import { mount } from '../../../test/utils';
 import Index from '../Index';
 import { __setWidget } from '../../mixins/widget';
+import { Vue2, isVue3, isVue2 } from '../../util/vue-compat';
 jest.mock('../../mixins/widget');
 
 beforeEach(() => {
@@ -71,12 +72,25 @@ it('provides the index widget', done => {
     },
   };
 
-  mount({
-    components: { Index, ChildComponent },
-    template: `
+  if (isVue2) {
+    Vue2.config.errorHandler = done;
+  }
+
+  mount(
+    {
+      components: { Index, ChildComponent },
+      template: `
       <Index index-name="something">
         <ChildComponent />
       </Index>
     `,
-  });
+    },
+    isVue3 && {
+      global: {
+        config: {
+          errorHandler: done,
+        },
+      },
+    }
+  );
 });
