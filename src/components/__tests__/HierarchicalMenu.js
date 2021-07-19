@@ -435,10 +435,6 @@ describe('default render', () => {
       propsData: defaultProps,
     });
 
-    // wrapper.at(index) is deprecated at VTU@2.
-    // VTU@1: wrapper.at(index)
-    // VTU@2: wrapper[index]
-    // For simplicity, I've used `nth-child` modifier.
     await wrapper
       .find(
         '.ais-HierarchicalMenu-list--lvl2 .ais-HierarchicalMenu-item:nth-child(2) a'
