@@ -170,9 +170,6 @@ describe('default render', () => {
     });
 
     expect(wrapper.findAll('.ais-Menu-item--selected')).toHaveLength(1);
-    // In vue 3, .text() returned 'Samsung25',
-    // whereas in vue 2, it wass 'Samsung 25'.
-    // Thus, just checking the snapshot ↓
     expect(wrapper.find('.ais-Menu-item--selected .ais-Menu-link').html())
       .toMatchInlineSnapshot(`
 <a class="ais-Menu-link">
