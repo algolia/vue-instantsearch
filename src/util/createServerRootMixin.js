@@ -107,8 +107,6 @@ function defaultCloneComponent(componentInstance, { mixins = [] } = {}) {
   app.$root = componentInstance.$root;
   if (isVue2) {
     app.$options.serverPrefetch = [];
-  } else {
-    // FIXME: ???
   }
 
   return app;
