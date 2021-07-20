@@ -75,7 +75,7 @@ export default {
           {
             class: [this.suit()],
           },
-          isVue3 ? { hidden: true } : { attrs: { hidden: true } }
+          { attrs: { hidden: true } }
         ),
         allComponents
       );
