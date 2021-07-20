@@ -1,4 +1,4 @@
-import { mount, createSSRApp, renderCompat } from '../../../test/utils';
+import { mount, createSSRApp } from '../../../test/utils';
 import Router from 'vue-router';
 import Vuex from 'vuex';
 import { createStore } from 'vuex4';
@@ -12,7 +12,7 @@ import SearchBox from '../../components/SearchBox.vue';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
-import { isVue3, isVue2, Vue2 } from '../vue-compat';
+import { isVue3, isVue2, Vue2, renderCompat } from '../vue-compat';
 import {
   SearchResults,
   SearchParameters,

@@ -1,7 +1,7 @@
 import instantsearch from 'instantsearch.js/es';
 import { createInstantSearchComponent } from '../util/createInstantSearchComponent';
 import { warn } from '../util/warn';
-import { isVue3, h } from '../util/vue-compat';
+import { isVue3, renderCompat } from '../util/vue-compat';
 
 const oldApiWarning = `Vue InstantSearch: You used the prop api-key or app-id.
 These have been replaced by search-client.
@@ -88,8 +88,8 @@ export default createInstantSearchComponent({
       }),
     };
   },
-  render(createElement) {
-    return (isVue3 ? h : createElement)(
+  render: renderCompat(function(h) {
+    return h(
       'div',
       {
         class: {
@@ -101,5 +101,5 @@ export default createInstantSearchComponent({
         ? this.$slots.default && this.$slots.default()
         : this.$slots.default
     );
-  },
+  }),
 });
