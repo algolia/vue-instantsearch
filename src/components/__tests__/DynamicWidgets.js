@@ -7,21 +7,42 @@ jest.mock('../../mixins/widget');
 const MockRefinementList = {
   props: { attribute: { type: String } },
   template: `
-    <div widget-name="ais-refinement-list" :attribute="attribute" />
+    <div>
+      {{
+        JSON.stringify({
+          widgetName: "ais-refinement-list",
+          attribute,
+        }, null, 2)
+      }}
+    </div>
   `,
 };
 
 const MockMenu = {
   props: { attribute: { type: String } },
   template: `
-    <div widget-name="ais-menu" :attribute="attribute" />
+    <div>
+      {{
+        JSON.stringify({
+          widgetName: "ais-menu",
+          attribute,
+        }, null, 2)
+      }}
+    </div>
   `,
 };
 
 const MockHierarchicalMenu = {
   props: { attributes: { type: Array } },
   template: `
-    <div widget-name="ais-hierarchical-menu" :attributes="attributes.join(',')" />
+    <div>
+      {{
+        JSON.stringify({
+          widgetName: "ais-hierarchical-menu",
+          attributes
+        }, null, 2)
+      }}
+    </div>
   `,
 };
 
@@ -55,23 +76,32 @@ it('renders all children without state', () => {
      hidden="hidden"
 >
   <div class="ais-DynamicWidgets-widget">
-    <div attribute="test1"
-         widget-name="ais-refinement-list"
-    >
+    <div>
+      {
+      "widgetName": "ais-refinement-list",
+      "attribute": "test1"
+      }
     </div>
   </div>
   <div class="ais-DynamicWidgets-widget">
-    <div attribute="test2"
-         widget-name="ais-menu"
-    >
+    <div>
+      {
+      "widgetName": "ais-menu",
+      "attribute": "test2"
+      }
     </div>
   </div>
   <div class="ais-DynamicWidgets-widget">
     <div class="ais-Panel">
       <div class="ais-Panel-body">
-        <div attributes="test3,test4"
-             widget-name="ais-hierarchical-menu"
-        >
+        <div>
+          {
+          "widgetName": "ais-hierarchical-menu",
+          "attributes": [
+          "test3",
+          "test4"
+          ]
+          }
         </div>
       </div>
     </div>
@@ -141,9 +171,11 @@ it('renders attributesToRender (menu)', () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div attribute="test1"
-         widget-name="ais-menu"
-    >
+    <div>
+      {
+      "widgetName": "ais-menu",
+      "attribute": "test1"
+      }
     </div>
   </div>
 </div>
@@ -172,9 +204,11 @@ it('renders attributesToRender (refinement list)', () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div attribute="test2"
-         widget-name="ais-refinement-list"
-    >
+    <div>
+      {
+      "widgetName": "ais-refinement-list",
+      "attribute": "test2"
+      }
     </div>
   </div>
 </div>
@@ -208,9 +242,11 @@ it('renders attributesToRender (panel)', () => {
   <div class="ais-DynamicWidgets-widget">
     <div class="ais-Panel">
       <div class="ais-Panel-body">
-        <div attribute="test2"
-             widget-name="ais-refinement-list"
-        >
+        <div>
+          {
+          "widgetName": "ais-refinement-list",
+          "attribute": "test2"
+          }
         </div>
       </div>
     </div>
@@ -246,9 +282,14 @@ it('renders attributesToRender (hierarchical menu)', () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div attributes="test1,test2"
-         widget-name="ais-hierarchical-menu"
-    >
+    <div>
+      {
+      "widgetName": "ais-hierarchical-menu",
+      "attributes": [
+      "test1",
+      "test2"
+      ]
+      }
     </div>
   </div>
 </div>
@@ -286,9 +327,14 @@ it('updates DOM when attributesToRender changes', async () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div attributes="test1,test2"
-         widget-name="ais-hierarchical-menu"
-    >
+    <div>
+      {
+      "widgetName": "ais-hierarchical-menu",
+      "attributes": [
+      "test1",
+      "test2"
+      ]
+      }
     </div>
   </div>
 </div>
@@ -301,9 +347,11 @@ it('updates DOM when attributesToRender changes', async () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div attribute="test3"
-         widget-name="ais-menu"
-    >
+    <div>
+      {
+      "widgetName": "ais-menu",
+      "attribute": "test3"
+      }
     </div>
   </div>
 </div>
@@ -316,17 +364,24 @@ it('updates DOM when attributesToRender changes', async () => {
   expect(wrapper.html()).toMatchInlineSnapshot(`
 <div class="ais-DynamicWidgets">
   <div class="ais-DynamicWidgets-widget">
-    <div attributes="test1,test2"
-         widget-name="ais-hierarchical-menu"
-    >
+    <div>
+      {
+      "widgetName": "ais-hierarchical-menu",
+      "attributes": [
+      "test1",
+      "test2"
+      ]
+      }
     </div>
   </div>
   <div class="ais-DynamicWidgets-widget">
     <div class="ais-Panel">
       <div class="ais-Panel-body">
-        <div attribute="test4"
-             widget-name="ais-refinement-list"
-        >
+        <div>
+          {
+          "widgetName": "ais-refinement-list",
+          "attribute": "test4"
+          }
         </div>
       </div>
     </div>
