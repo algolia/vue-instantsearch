@@ -132,7 +132,6 @@ function augmentInstantSearch(
    */
   search.findResultsState = function(componentInstance) {
     let app;
-    let renderedApp;
 
     return Promise.resolve()
       .then(() => {
@@ -140,8 +139,6 @@ function augmentInstantSearch(
           mixins: [
             {
               created() {
-                // eslint-disable-next-line consistent-this
-                renderedApp = this;
                 this.instantsearch.helper = helper;
                 this.instantsearch.mainHelper = helper;
 
@@ -159,7 +156,7 @@ function augmentInstantSearch(
       .then(() => searchOnlyWithDerivedHelpers(helper))
       .then(() => {
         const results = {};
-        walkIndex(renderedApp.instantsearch.mainIndex, widget => {
+        walkIndex(app.instantsearch.mainIndex, widget => {
           results[widget.getIndexId()] = widget.getResults();
         });
 
