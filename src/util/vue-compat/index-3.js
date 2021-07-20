@@ -12,3 +12,7 @@ export function renderCompat(fn) {
     return fn.call(this, Vue.h);
   };
 }
+
+export function getDefaultSlot(component) {
+  return component.$slots.default && component.$slots.default();
+}

@@ -13,6 +13,10 @@ export function renderCompat(fn) {
   };
 }
 
+export function getDefaultSlot(component) {
+  return component.$slots.default;
+}
+
 // Vue3-only APIs
 export const computed = undefined;
 export const createApp = undefined;

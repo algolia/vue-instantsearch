@@ -2,7 +2,7 @@ import { createWidgetMixin } from '../mixins/widget';
 import { EXPERIMENTAL_connectDynamicWidgets } from 'instantsearch.js/es/connectors';
 import { createSuitMixin } from '../mixins/suit';
 import { _objectSpread } from '../util/polyfills';
-import { isVue3, renderCompat } from '../util/vue-compat';
+import { isVue3, renderCompat, getDefaultSlot } from '../util/vue-compat';
 
 function getWidgetAttribute(vnode) {
   const props = isVue3
@@ -53,11 +53,8 @@ export default {
   },
   render: renderCompat(function(h) {
     const components = new Map();
-    const defaultSlot = isVue3
-      ? this.$slots.default && this.$slots.default()
-      : this.$slots.default;
 
-    (defaultSlot || []).forEach(vnode => {
+    (getDefaultSlot(this) || []).forEach(vnode => {
       const attribute = getWidgetAttribute(vnode);
       if (attribute) {
         components.set(
