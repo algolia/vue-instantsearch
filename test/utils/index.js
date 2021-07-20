@@ -1,6 +1,5 @@
 import {
   isVue3,
-  h,
   createApp as _createApp,
   createSSRApp as _createSSRApp,
   nextTick as _nextTick,
