@@ -375,7 +375,6 @@ describe('custom default render', () => {
     expect(selected.element.selected).toBe(true);
 
     for (let i = 0; i < options.length; i++) {
-      // `[i]` is for VTU@2, and `.at(i)` is for VTU@1.
       expect((options[i] || options.at(i)).element.selected).toBe(false);
     }
   });
