@@ -198,29 +198,29 @@ describe('createServerRootMixin', () => {
       await renderToString(wrapper);
 
       expect(mainIndex.getWidgetState()).toMatchInlineSnapshot(`
-        Object {
-          "hello": Object {
-            "configure": Object {
-              "hitsPerPage": 100,
-            },
-          },
-        }
-      `);
+Object {
+  "hello": Object {
+    "configure": Object {
+      "hitsPerPage": 100,
+    },
+  },
+}
+`);
 
       expect(searchClient.search).toHaveBeenCalledTimes(1);
       expect(searchClient.search.mock.calls[0][0]).toMatchInlineSnapshot(`
-        Array [
-          Object {
-            "indexName": "hello",
-            "params": Object {
-              "facets": Array [],
-              "hitsPerPage": 100,
-              "query": "",
-              "tagFilters": "",
-            },
-          },
-        ]
-      `);
+Array [
+  Object {
+    "indexName": "hello",
+    "params": Object {
+      "facets": Array [],
+      "hitsPerPage": 100,
+      "query": "",
+      "tagFilters": "",
+    },
+  },
+]
+`);
     });
 
     it('returns correct results state', async done => {
@@ -816,25 +816,25 @@ describe('createServerRootMixin', () => {
           instantSearchInstance: expect.anything(),
         },
         `
-        Object {
-          "createURL": [Function],
-          "helper": Anything,
-          "instantSearchInstance": Anything,
-          "results": Anything,
-          "scopedResults": ArrayContaining [
-            ObjectContaining {
-              "helper": Anything,
-              "indexId": Any<String>,
-              "results": Anything,
-            },
-          ],
-          "searchMetadata": Object {
-            "isSearchStalled": false,
-          },
-          "state": Anything,
-          "templatesConfig": Object {},
-        }
-      `
+Object {
+  "createURL": [Function],
+  "helper": Anything,
+  "instantSearchInstance": Anything,
+  "results": Anything,
+  "scopedResults": ArrayContaining [
+    ObjectContaining {
+      "helper": Anything,
+      "indexId": Any<String>,
+      "results": Anything,
+    },
+  ],
+  "searchMetadata": Object {
+    "isSearchStalled": false,
+  },
+  "state": Anything,
+  "templatesConfig": Object {},
+}
+`
       );
     });
 
