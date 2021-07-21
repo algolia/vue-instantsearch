@@ -198,29 +198,100 @@ describe('createServerRootMixin', () => {
       await renderToString(wrapper);
 
       expect(mainIndex.getWidgetState()).toMatchInlineSnapshot(`
-Object {
-  "hello": Object {
-    "configure": Object {
-      "hitsPerPage": 100,
-    },
-  },
-}
-`);
+        Object {
+          "hello": Object {
+            "configure": Object {
+              "hitsPerPage": 100,
+            },
+          },
+        }
+      `);
 
       expect(searchClient.search).toHaveBeenCalledTimes(1);
       expect(searchClient.search.mock.calls[0][0]).toMatchInlineSnapshot(`
-Array [
-  Object {
-    "indexName": "hello",
-    "params": Object {
-      "facets": Array [],
-      "hitsPerPage": 100,
-      "query": "",
-      "tagFilters": "",
-    },
-  },
-]
-`);
+        Array [
+          Object {
+            "indexName": "hello",
+            "params": Object {
+              "facets": Array [],
+              "hitsPerPage": 100,
+              "query": "",
+              "tagFilters": "",
+            },
+          },
+        ]
+      `);
+    });
+
+    it('returns correct results state', async done => {
+      const searchClient = createFakeClient();
+
+      const app = {
+        mixins: [
+          forceIsServerMixin,
+          createServerRootMixin({
+            searchClient,
+            indexName: 'hello',
+          }),
+        ],
+        render: renderCompat(h =>
+          /**
+           * This code triggers this warning in Vue 3:
+           * > Non-function value encountered for default slot. Prefer function slots for better performance.
+           *
+           * To fix it, replace the third argument
+           * > [h(...), h(...)]
+           * with
+           * > { default: () => [h(...), h(...)] }
+           *
+           * but it's not important (and not compatible in vue2), we're leaving it as-is.
+           */
+          h(InstantSearchSsr, {}, [
+            h(Configure, {
+              attrs: {
+                hitsPerPage: 100,
+              },
+            }),
+            h(SearchBox),
+          ])
+        ),
+        async serverPrefetch() {
+          const state = await this.instantsearch.findResultsState(this);
+          expect(state).toEqual({
+            __identifier: 'stringified',
+            hello: {
+              _rawResults: [
+                {
+                  query: '',
+                },
+              ],
+              _state: {
+                disjunctiveFacets: [],
+                disjunctiveFacetsRefinements: {},
+                facets: [],
+                facetsExcludes: {},
+                facetsRefinements: {},
+                hierarchicalFacets: [],
+                hierarchicalFacetsRefinements: {},
+                hitsPerPage: 100,
+                index: 'hello',
+                numericRefinements: {},
+                query: '',
+                tagRefinements: [],
+              },
+            },
+          });
+          done();
+          return state;
+        },
+      };
+
+      const wrapper = createSSRApp({
+        mixins: [forceIsServerMixin],
+        render: renderCompat(h => h(app)),
+      });
+
+      await renderToString(wrapper);
     });
 
     it('forwards router', async () => {
@@ -745,25 +816,25 @@ Array [
           instantSearchInstance: expect.anything(),
         },
         `
-Object {
-  "createURL": [Function],
-  "helper": Anything,
-  "instantSearchInstance": Anything,
-  "results": Anything,
-  "scopedResults": ArrayContaining [
-    ObjectContaining {
-      "helper": Anything,
-      "indexId": Any<String>,
-      "results": Anything,
-    },
-  ],
-  "searchMetadata": Object {
-    "isSearchStalled": false,
-  },
-  "state": Anything,
-  "templatesConfig": Object {},
-}
-`
+        Object {
+          "createURL": [Function],
+          "helper": Anything,
+          "instantSearchInstance": Anything,
+          "results": Anything,
+          "scopedResults": ArrayContaining [
+            ObjectContaining {
+              "helper": Anything,
+              "indexId": Any<String>,
+              "results": Anything,
+            },
+          ],
+          "searchMetadata": Object {
+            "isSearchStalled": false,
+          },
+          "state": Anything,
+          "templatesConfig": Object {},
+        }
+      `
       );
     });
 
