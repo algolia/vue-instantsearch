@@ -235,17 +235,6 @@ Array [
           }),
         ],
         render: renderCompat(h =>
-          /**
-           * This code triggers this warning in Vue 3:
-           * > Non-function value encountered for default slot. Prefer function slots for better performance.
-           *
-           * To fix it, replace the third argument
-           * > [h(...), h(...)]
-           * with
-           * > { default: () => [h(...), h(...)] }
-           *
-           * but it's not important (and not compatible in vue2), we're leaving it as-is.
-           */
           h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
