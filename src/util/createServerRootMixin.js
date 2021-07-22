@@ -15,13 +15,18 @@ function walkIndex(indexWidget, visit) {
   });
 }
 
-export function renderToString(app) {
+export async function renderToString(app) {
   if (isVue3) {
-    return import('@vue/server-renderer')
-      .then(module => module.renderToString(app))
-      .catch(() => {
-        throw new Error('you need to install @vue/server-renderer');
-      });
+    let module;
+    try {
+      module = await import('@vue/server-renderer');
+    } catch (err) {
+      // error is handled by regular if, in case it's `undefined`
+    }
+    if (!module) {
+      throw new Error('you need to install @vue/server-renderer');
+    }
+    return module.renderToString(app);
   } else {
     let _renderToString;
     try {
