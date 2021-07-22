@@ -2,7 +2,10 @@ import { mount, createSSRApp } from '../../../test/utils';
 import Router from 'vue-router';
 import Vuex from 'vuex';
 import { createStore } from 'vuex4';
-import { createServerRootMixin } from '../createServerRootMixin';
+import {
+  createServerRootMixin,
+  renderToString,
+} from '../createServerRootMixin';
 import InstantSearchSsr from '../../components/InstantSearchSsr';
 import Configure from '../../components/Configure';
 import SearchBox from '../../components/SearchBox.vue';
@@ -10,7 +13,6 @@ import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
 import { isVue3, isVue2, Vue2, renderCompat } from '../vue-compat';
-import { renderToString } from '../renderToString';
 import {
   SearchResults,
   SearchParameters,
