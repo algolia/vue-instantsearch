@@ -16,25 +16,22 @@ function walkIndex(indexWidget, visit) {
 }
 
 export function renderToString(app) {
-  let _renderToString;
-  try {
-    _renderToString = isVue3
-      ? require('@vue/server-renderer').renderToString
-      : require('vue-server-renderer/basic');
-  } catch (e) {
-    // error is handled by regular if, in case it's `undefined`
-  }
-  if (!_renderToString) {
-    if (isVue3) {
-      throw new Error('you need to install @vue/server-renderer');
-    } else {
+  if (isVue3) {
+    return import('@vue/server-renderer')
+      .then(module => module.renderToString(app))
+      .catch(() => {
+        throw new Error('you need to install @vue/server-renderer');
+      });
+  } else {
+    let _renderToString;
+    try {
+      _renderToString = require('vue-server-renderer/basic');
+    } catch (err) {
+      // error is handled by regular if, in case it's `undefined`
+    }
+    if (!_renderToString) {
       throw new Error('you need to install vue-server-renderer');
     }
-  }
-
-  if (isVue3) {
-    return _renderToString(app);
-  } else {
     return new Promise((resolve, reject) =>
       _renderToString(app, (err, res) => {
         if (err) reject(err);
