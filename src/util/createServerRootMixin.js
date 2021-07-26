@@ -134,7 +134,7 @@ function augmentInstantSearch(
    */
   search.findResultsState = function(componentInstance) {
     let app;
-    let clonedComponentInstance;
+    let renderedComponentInstance;
 
     return Promise.resolve()
       .then(() => {
@@ -143,7 +143,7 @@ function augmentInstantSearch(
             {
               created() {
                 // eslint-disable-next-line consistent-this
-                clonedComponentInstance = this;
+                renderedComponentInstance = this;
                 this.instantsearch.helper = helper;
                 this.instantsearch.mainHelper = helper;
 
@@ -161,7 +161,7 @@ function augmentInstantSearch(
       .then(() => searchOnlyWithDerivedHelpers(helper))
       .then(() => {
         const results = {};
-        walkIndex(clonedComponentInstance.instantsearch.mainIndex, widget => {
+        walkIndex(renderedComponentInstance.instantsearch.mainIndex, widget => {
           results[widget.getIndexId()] = widget.getResults();
         });
 
