@@ -4,11 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "serve": "vue-cli-service serve",
     "build": "yarn build:client && yarn build:server",
     "build:client": "SSR_TARGET=client vue-cli-service build --dest dist/client",
-    "build:server": "SSR_TARGET=server vue-cli-service build --dest dist/server",
-    "lint": "vue-cli-service lint"
+    "build:server": "SSR_TARGET=server vue-cli-service build --dest dist/server"
   },
   "dependencies": {
     "@vue/server-renderer": "^3.1.5",
@@ -27,24 +25,7 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.1.5",
-    "babel-eslint": "^10.1.0",
-    "cross-env": "^7.0.2",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
+    "cross-env": "^7.0.2"
   },
   "browserslist": [
     "> 1%",
