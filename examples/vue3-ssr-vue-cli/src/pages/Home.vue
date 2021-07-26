@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>hello</p>
     <header class="header">
       <h1 class="header-title">
         <a href="/">
