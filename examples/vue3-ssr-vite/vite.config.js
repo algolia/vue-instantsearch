@@ -1,5 +1,5 @@
-const vuePlugin = require('@vitejs/plugin-vue')
-const vueJsx = require('@vitejs/plugin-vue-jsx')
+const vuePlugin = require('@vitejs/plugin-vue');
+const vueJsx = require('@vitejs/plugin-vue-jsx');
 
 /**
  * @type {import('vite').UserConfig}
@@ -13,4 +13,4 @@ module.exports = {
     external: ['algoliasearch-helper', 'qs', 'hogan.js'],
     noExternal: ['vue-instantsearch', 'instantsearch.js'],
   },
-}
+};

@@ -1,5 +1,5 @@
-import { renderToString } from "@vue/server-renderer";
-import { createApp } from "./app";
+import { renderToString } from '@vue/server-renderer';
+import { createApp } from './app';
 
 export async function render({ url }) {
   const { app, router, getResultsState } = createApp({ context: { url } });

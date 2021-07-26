@@ -4,12 +4,12 @@
 
 <script>
 export default {
-  async setup() {
+  setup() {
     return {
-      msg: 'About'
-    }
-  }
-}
+      msg: 'About',
+    };
+  },
+};
 </script>
 
 <style scoped>

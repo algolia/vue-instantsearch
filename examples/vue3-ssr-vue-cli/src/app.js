@@ -1,14 +1,14 @@
-import { createSSRApp, h } from "vue";
-import algoliasearch from "algoliasearch/lite";
-import { createServerRootMixin } from "vue-instantsearch/dist/vue3/es";
-import qs from "qs";
-import App from "./App.vue";
-import { createRouter } from "./router";
+import { createSSRApp, h } from 'vue';
+import algoliasearch from 'algoliasearch/lite';
+import { createServerRootMixin } from 'vue-instantsearch/dist/vue3/es';
+import qs from 'qs';
+import App from './App.vue';
+import { createRouter } from './router';
 
 export function createApp({ context } = {}) {
   const searchClient = algoliasearch(
-    "latency",
-    "6be0576ff61c053d5f9a3225e2a90f76"
+    'latency',
+    '6be0576ff61c053d5f9a3225e2a90f76'
   );
 
   let resultsState;
@@ -17,26 +17,30 @@ export function createApp({ context } = {}) {
   const app = createSSRApp({
     mixins: [
       createServerRootMixin({
-        indexName: "instant_search",
+        indexName: 'instant_search',
         searchClient,
         routing: {
           router: {
             read() {
-              const url = context
-                ? context.url
-                : typeof window === "object" &&
-                  typeof window.location === "object"
-                ? window.location.href
-                : "";
+              let url;
+              if (context) {
+                url = context.url;
+              } else {
+                url =
+                  typeof window === 'object' &&
+                  typeof window.location === 'object'
+                    ? window.location.href
+                    : '';
+              }
 
-              const search = url.slice(url.indexOf("?"));
+              const search = url.slice(url.indexOf('?'));
               return qs.parse(search, {
-                ignoreQueryPrefix: true
+                ignoreQueryPrefix: true,
               });
             },
             write(routeState) {
               router.push({
-                query: routeState
+                query: routeState,
               });
             },
             createURL(routeState) {
@@ -54,19 +58,19 @@ export function createApp({ context } = {}) {
                   callback(routeState);
                 }
               };
-              window.addEventListener("popstate", this._onPopState);
+              window.addEventListener('popstate', this._onPopState);
             },
             dispose() {
-              window.removeEventListener("popstate", this._onPopState);
+              window.removeEventListener('popstate', this._onPopState);
               this.write();
-            }
+            },
           },
           stateMapping: {
             stateToRoute(uiState) {
               return Object.keys(uiState).reduce(
                 (state, indexId) => ({
                   ...state,
-                  [indexId]: getIndexStateWithoutConfigure(uiState[indexId])
+                  [indexId]: getIndexStateWithoutConfigure(uiState[indexId]),
                 }),
                 {}
               );
@@ -75,27 +79,26 @@ export function createApp({ context } = {}) {
               return Object.keys(routeState).reduce(
                 (state, indexId) => ({
                   ...state,
-                  [indexId]: getIndexStateWithoutConfigure(routeState[indexId])
+                  [indexId]: getIndexStateWithoutConfigure(routeState[indexId]),
                 }),
                 {}
               );
-            }
-          }
-        }
-      })
+            },
+          },
+        },
+      }),
     ],
     async serverPrefetch() {
       resultsState = await this.instantsearch.findResultsState(this);
-      console.log("# resultsState", resultsState);
       return resultsState;
     },
     beforeMount() {
-      if (typeof window === "object" && window.__ALGOLIA_STATE__) {
+      if (typeof window === 'object' && window.__ALGOLIA_STATE__) {
         this.instantsearch.hydrate(window.__ALGOLIA_STATE__);
         delete window.__ALGOLIA_STATE__;
       }
     },
-    render: () => h(App)
+    render: () => h(App),
   });
   app.use(router);
 

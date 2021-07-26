@@ -32,10 +32,16 @@
               <template v-slot:item="{ item }">
                 <article>
                   <h1>
-                    <ais-highlight :hit="item" attribute="name" />
+                    <ais-highlight
+                      :hit="item"
+                      attribute="name"
+                    />
                   </h1>
                   <p>
-                    <ais-highlight :hit="item" attribute="description" />
+                    <ais-highlight
+                      :hit="item"
+                      attribute="description"
+                    />
                   </p>
                 </article>
               </template>
@@ -59,8 +65,8 @@ import {
   AisSearchBox,
   AisHits,
   AisHighlight,
-  AisPagination
-} from "vue-instantsearch/dist/vue3/es";
+  AisPagination,
+} from 'vue-instantsearch/dist/vue3/es';
 
 export default {
   components: {
@@ -70,8 +76,8 @@ export default {
     AisSearchBox,
     AisHits,
     AisHighlight,
-    AisPagination
-  }
+    AisPagination,
+  },
 };
 </script>
 
@@ -83,8 +89,8 @@ h1 {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 em {
@@ -113,7 +119,7 @@ em {
 }
 
 .header-title::after {
-  content: " ▸ ";
+  content: ' ▸ ';
   padding: 0 0.5rem;
 }
 

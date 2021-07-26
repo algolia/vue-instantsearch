@@ -32,10 +32,16 @@
               <template v-slot:item="{ item }">
                 <article>
                   <h1>
-                    <ais-highlight :hit="item" attribute="name" />
+                    <ais-highlight
+                      :hit="item"
+                      attribute="name"
+                    />
                   </h1>
                   <p>
-                    <ais-highlight :hit="item" attribute="description" />
+                    <ais-highlight
+                      :hit="item"
+                      attribute="description"
+                    />
                   </p>
                 </article>
               </template>
@@ -60,7 +66,7 @@ import {
   AisHits,
   AisHighlight,
   AisPagination,
-} from 'vue-instantsearch/dist/vue3/es'
+} from 'vue-instantsearch/dist/vue3/es';
 
 export default {
   components: {
@@ -73,9 +79,9 @@ export default {
     AisPagination,
   },
   data() {
-    return {}
+    return {};
   },
-}
+};
 </script>
 
 <style scoped>
