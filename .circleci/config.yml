@@ -20,6 +20,13 @@ aliases:
     name: Install dependencies
     command: yarn install
 
+  - &run_yarn_lint
+    name: Lint & Code styles
+    command: |
+      (cd examples/vue3-ssr-vite && yarn install)
+      (cd examples/vue3-ssr-vue-cli && yarn install)
+      yarn lint
+
 defaults: &defaults
   working_directory: ~/vue-instantsearch
   docker:
@@ -47,9 +54,7 @@ jobs:
       - restore_cache: *restore_yarn_cache
       - run: *run_yarn_install
       - save_cache: *save_yarn_cache
-      - run:
-          name: Lint & Code styles
-          command: yarn lint
+      - run: *run_yarn_lint
       - run:
           name: Unit Tests
           command: yarn test --maxWorkers=4
@@ -65,9 +70,7 @@ jobs:
           name: Install Vue3
           command: ./scripts/test-vue3.sh
       - save_cache: *save_yarn_cache
-      - run:
-          name: Lint & Code styles
-          command: yarn lint
+      - run: *run_yarn_lint
       - run:
           name: Unit Tests
           command: yarn test --maxWorkers=4
