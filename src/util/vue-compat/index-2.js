@@ -17,10 +17,10 @@ export function getDefaultSlot(component) {
   return component.$slots.default;
 }
 
-export function renderToString(app) {
+export async function renderToString(app) {
   let _renderToString;
   try {
-    _renderToString = require('vue-server-renderer/basic');
+    _renderToString = await import('vue-server-renderer/basic');
   } catch (err) {
     // error is handled by regular if, in case it's `undefined`
   }
