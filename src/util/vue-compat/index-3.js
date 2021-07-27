@@ -33,6 +33,8 @@ export function getDefaultSlot(component) {
 export async function renderToString(app) {
   let module;
   try {
+    // It's an optional peer dependency, so it might be there.
+    // eslint-disable-next-line import/no-unresolved
     module = await import('@vue/server-renderer');
   } catch (err) {
     // error is handled by regular if, in case it's `undefined`
