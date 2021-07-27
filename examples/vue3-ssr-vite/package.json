@@ -12,7 +12,7 @@
     "algoliasearch": "^4.9.3",
     "qs": "6.5.1",
     "vue": "^3.1.5",
-    "vue-instantsearch": "https://pkg.csb.dev/algolia/vue-instantsearch/commit/6cc0d9b5/vue-instantsearch",
+    "vue-instantsearch": "file:../../",
     "vue-router": "^4.0.10"
   },
   "devDependencies": {
