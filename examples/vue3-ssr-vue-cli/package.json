@@ -15,7 +15,7 @@
     "express": "^4.17.1",
     "qs": "6.5.1",
     "vue": "^3.1.5",
-    "vue-instantsearch": "file:../../",
+    "vue-instantsearch": "https://pkg.csb.dev/algolia/vue-instantsearch/commit/6cc0d9b5/vue-instantsearch",
     "vue-router": "^4.0.10",
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-node-externals": "^2.5.1"
