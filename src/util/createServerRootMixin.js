@@ -1,6 +1,12 @@
 import instantsearch from 'instantsearch.js/es';
 import algoliaHelper from 'algoliasearch-helper';
-import { isVue3, isVue2, Vue2, createSSRApp } from '../util/vue-compat';
+import {
+  isVue3,
+  isVue2,
+  Vue2,
+  createSSRApp,
+  renderToString,
+} from '../util/vue-compat';
 import { _objectSpread } from '../util/polyfills';
 const { SearchResults, SearchParameters } = algoliaHelper;
 import { warn } from './warn';
@@ -13,37 +19,6 @@ function walkIndex(indexWidget, visit) {
     visit(widget);
     walkIndex(widget, visit);
   });
-}
-
-export async function renderToString(app) {
-  if (isVue3) {
-    let module;
-    try {
-      module = await import('@vue/server-renderer');
-    } catch (err) {
-      // error is handled by regular if, in case it's `undefined`
-    }
-    if (!module) {
-      throw new Error('you need to install @vue/server-renderer');
-    }
-    return module.renderToString(app);
-  } else {
-    let _renderToString;
-    try {
-      _renderToString = require('vue-server-renderer/basic');
-    } catch (err) {
-      // error is handled by regular if, in case it's `undefined`
-    }
-    if (!_renderToString) {
-      throw new Error('you need to install vue-server-renderer');
-    }
-    return new Promise((resolve, reject) =>
-      _renderToString(app, (err, res) => {
-        if (err) reject(err);
-        resolve(res);
-      })
-    );
-  }
 }
 
 function searchOnlyWithDerivedHelpers(helper) {

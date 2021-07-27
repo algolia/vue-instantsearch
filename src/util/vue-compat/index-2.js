@@ -17,6 +17,24 @@ export function getDefaultSlot(component) {
   return component.$slots.default;
 }
 
+export function renderToString(app) {
+  let _renderToString;
+  try {
+    _renderToString = require('vue-server-renderer/basic');
+  } catch (err) {
+    // error is handled by regular if, in case it's `undefined`
+  }
+  if (!_renderToString) {
+    throw new Error('you need to install vue-server-renderer');
+  }
+  return new Promise((resolve, reject) =>
+    _renderToString(app, (err, res) => {
+      if (err) reject(err);
+      resolve(res);
+    })
+  );
+}
+
 // Vue3-only APIs
 export const computed = undefined;
 export const createApp = undefined;

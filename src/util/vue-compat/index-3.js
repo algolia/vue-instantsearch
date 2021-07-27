@@ -29,3 +29,16 @@ export function renderCompat(fn) {
 export function getDefaultSlot(component) {
   return component.$slots.default && component.$slots.default();
 }
+
+export async function renderToString(app) {
+  let module;
+  try {
+    module = await import('@vue/server-renderer');
+  } catch (err) {
+    // error is handled by regular if, in case it's `undefined`
+  }
+  if (!module) {
+    throw new Error('you need to install @vue/server-renderer');
+  }
+  return module.renderToString(app);
+}
