@@ -1,3 +1,34 @@
+# [4.0.0-beta.0](https://github.com/algolia/vue-instantsearch/compare/v3.8.1...v4.0.0-beta.0) (2021-07-29)
+
+
+### Bug Fixes
+
+* **vue 3:** do not pass props for cloned component in vue 3 ([#1029](https://github.com/algolia/vue-instantsearch/issues/1029)) ([d76c308](https://github.com/algolia/vue-instantsearch/commit/d76c308a811d4c2184e81c2cf9f2feba1b5e6c9f))
+* **vue 3:** fix Panel ([#1002](https://github.com/algolia/vue-instantsearch/issues/1002)) ([48228cb](https://github.com/algolia/vue-instantsearch/commit/48228cbd1039f312128b68897d3add4f9ddf6a4b))
+* **vue 3:** fix renderToString for vue 2 and update babel config for jest ([#1027](https://github.com/algolia/vue-instantsearch/issues/1027)) ([bda15b0](https://github.com/algolia/vue-instantsearch/commit/bda15b0007333d5b24224b9142f39be40cf84ec5))
+* **vue 3:** fix unit tests for panel ([#1000](https://github.com/algolia/vue-instantsearch/issues/1000)) ([ca728b8](https://github.com/algolia/vue-instantsearch/commit/ca728b87969625db287937f6dc0c0f5219ed8078))
+* **vue 3:** fixes createServerRootMixin ([#1024](https://github.com/algolia/vue-instantsearch/issues/1024)) ([837055d](https://github.com/algolia/vue-instantsearch/commit/837055d6b40acef0c085bf3c5c634ca9261dd238))
+* **vue 3:** update @vue/test-utils and use setData for array items ([#1028](https://github.com/algolia/vue-instantsearch/issues/1028)) ([686a9a7](https://github.com/algolia/vue-instantsearch/commit/686a9a74f05a0af7bc171b3a2fcb8b3fee95abb1))
+* **vue 3:** update @vue/test-utils for vue2 and fix test cases ([#1006](https://github.com/algolia/vue-instantsearch/issues/1006)) ([f2e4359](https://github.com/algolia/vue-instantsearch/commit/f2e435905ca1d724f0879b505e77835d6fa7c5f6))
+* **vue 3:** update the implementation of createServerRootMixin ([#1020](https://github.com/algolia/vue-instantsearch/issues/1020)) ([684ba11](https://github.com/algolia/vue-instantsearch/commit/684ba117b3d815f0af7ed13ec2a2c01ee3e2589d))
+* fix wrong imports from vue-demi ([65b1b7b](https://github.com/algolia/vue-instantsearch/commit/65b1b7b9c874c92b06fe48510ebdd7887ab5642b))
+* Revert "feat(vue 3): support inject without `this` ([#951](https://github.com/algolia/vue-instantsearch/issues/951))" ([5d87a85](https://github.com/algolia/vue-instantsearch/commit/5d87a85d32437211290c422fb20230399719ede9))
+
+
+### Features
+
+* **vue 3:** compat for both versions of v-model ([#849](https://github.com/algolia/vue-instantsearch/issues/849)) ([9ae2112](https://github.com/algolia/vue-instantsearch/commit/9ae2112511465ae608c5e7eee19e9ba9e071de09))
+* **vue 3:** make highlighter compatible ([#850](https://github.com/algolia/vue-instantsearch/issues/850)) ([4a1191f](https://github.com/algolia/vue-instantsearch/commit/4a1191f7bbdb170a1fce8cd8e708d23c191691f3))
+* **vue 3:** make render function of JS files compatible ([#855](https://github.com/algolia/vue-instantsearch/issues/855)) ([48f24c3](https://github.com/algolia/vue-instantsearch/commit/48f24c377439e32fe17b79621207b5bdf3e7cd85))
+* **vue 3:** migrate from Vue.default.version to a fallback ([#847](https://github.com/algolia/vue-instantsearch/issues/847)) ([247260e](https://github.com/algolia/vue-instantsearch/commit/247260e10a4b58037ff540a9d9cf618c47d78f9b))
+* **vue 3:** prevent error by migrating events to mitt ([#848](https://github.com/algolia/vue-instantsearch/issues/848)) ([d79cdde](https://github.com/algolia/vue-instantsearch/commit/d79cdde1193c77ac8452a57aa1dd75f5675dab9b))
+* **vue 3:** rename beforeDestroy to beforeUnmount ([#998](https://github.com/algolia/vue-instantsearch/issues/998)) ([626567a](https://github.com/algolia/vue-instantsearch/commit/626567a9b4abcde19f9d177b9e55c82fbce9954d))
+* **vue 3:** support both defineComponent and component ([#948](https://github.com/algolia/vue-instantsearch/issues/948)) ([3e9db5e](https://github.com/algolia/vue-instantsearch/commit/3e9db5eb0a69ad605b021994e2ae9d120e8ae1bb))
+* **vue 3:** support inject without `this` ([#951](https://github.com/algolia/vue-instantsearch/issues/951)) ([cf7f20a](https://github.com/algolia/vue-instantsearch/commit/cf7f20abf7d3ecea8ff0a22f197785a3f8cb4df6))
+* **vue 3:** update rollup-plugin-vue ([#952](https://github.com/algolia/vue-instantsearch/issues/952)) ([b931ac0](https://github.com/algolia/vue-instantsearch/commit/b931ac07e5103cd6e74d32eaeb01d09257563dc2))
+
+
+
 ## [3.8.1](https://github.com/algolia/vue-instantsearch/compare/v3.8.0...v3.8.1) (2021-07-12)
 
 
