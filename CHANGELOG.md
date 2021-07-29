@@ -2,9 +2,9 @@
 
 Vue InstantSearch now supports Vue 3.
 
-## Breaking Change for Vue 2 users
+## Breaking Change for Vue 2 users with SSR
 
-If you're using SSR, from now on, Vue InstantSearch dynamically imports `vue-server-renderer/basic` instead of `require()`.
+From now on, Vue InstantSearch [dynamically imports](https://github.com/algolia/vue-instantsearch/blob/b3ad4a3fc49e1e7470a0e6dd383c24b1dcb0b5bd/src/util/vue-compat/index-2.js#L23:L23) `vue-server-renderer/basic` instead of `require()`.
 
 * If you're using CJS output of Vue InstantSearch, it doesn't change anything for you because it gets transpiled to `require` for CJS output.
 * If you're using ESM output, it should probably be okay. We've tested "dynamic import" with Vue 2 (vue-cli) and Nuxt and it worked fine.
