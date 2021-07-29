@@ -1,3 +1,7 @@
+# [4.0.0-beta.1](https://github.com/algolia/vue-instantsearch/compare/v4.0.0-beta.0...v4.0.0-beta.1) (2021-07-29)
+
+
+
 # [4.0.0-beta.0](https://github.com/algolia/vue-instantsearch/compare/v3.8.1...v4.0.0-beta.0) (2021-07-29)
 
 Vue InstantSearch now supports Vue 3.
