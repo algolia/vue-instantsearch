@@ -113,3 +113,4 @@ workflows:
             branches:
               only:
                 - master
+                - feat/vue3-compat
