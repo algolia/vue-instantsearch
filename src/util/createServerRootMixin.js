@@ -7,7 +7,6 @@ import {
   createSSRApp,
   renderToString,
 } from '../util/vue-compat';
-import { _objectSpread } from '../util/polyfills';
 const { SearchResults, SearchParameters } = algoliaHelper;
 import { warn } from './warn';
 
