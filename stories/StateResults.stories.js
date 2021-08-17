@@ -7,7 +7,7 @@ storiesOf('ais-state-results', module)
       indexName: 'demo-query-rules',
       filters: '<ais-refinement-list attribute="genre" />',
       hits: `
-      <template v-slot="{ items }">
+      <template v-slot="{ state: { items } }">
         <ol class="playground-hits">
           <li
             v-for="item in items"

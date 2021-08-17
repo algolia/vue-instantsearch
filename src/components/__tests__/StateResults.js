@@ -44,7 +44,6 @@ it('gives state & results to default slot', () => {
   mount(StateResults, {
     scopedSlots: {
       default: props => {
-        expect(props).toEqual(expect.objectContaining(results));
         expect(props.results).toEqual(results);
         expect(props.state).toEqual(state);
       },
@@ -184,7 +183,7 @@ describe('legacy spread props', () => {
       components: { StateResults },
       template: `
         <StateResults>
-          <template v-slot="{ query }">
+          <template v-slot="{ results: { query }}">
             <p v-if="query">
               Query is here
             </p>
@@ -219,7 +218,7 @@ describe('legacy spread props', () => {
       components: { StateResults },
       template: `
         <StateResults>
-          <template v-slot="{ query }">
+          <template v-slot="{ results: { query } }">
             <p v-if="query">
               Query is here
             </p>

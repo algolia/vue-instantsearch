@@ -3,7 +3,10 @@
     :class="suit()"
     v-if="state && state.state && state.results"
   >
-    <slot v-bind="stateResults">
+    <slot
+      :state="state.state"
+      :results="state.results"
+    >
       <p>
         Use this component to have a different layout based on a certain state.
       </p>
@@ -19,7 +22,6 @@
 <script>
 import { createSuitMixin } from '../mixins/suit';
 import { createWidgetMixin } from '../mixins/widget';
-import { _objectSpread } from '../util/polyfills';
 import connectStateResults from '../connectors/connectStateResults';
 
 export default {
@@ -28,12 +30,5 @@ export default {
     createWidgetMixin({ connector: connectStateResults }),
     createSuitMixin({ name: 'StateResults' }),
   ],
-  computed: {
-    stateResults() {
-      // @MAJOR: replace v-bind="stateResults" with :state="state.state" :results="state.results"
-      const { state, results } = this.state;
-      return _objectSpread({}, results, { results, state });
-    },
-  },
 };
 </script>
