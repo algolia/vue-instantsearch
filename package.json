@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "algoliasearch-helper": "^3.1.0",
-    "instantsearch.js": "^4.25.0",
+    "instantsearch.js": "^4.27.2",
     "mitt": "^2.1.0"
   },
   "peerDependencies": {
