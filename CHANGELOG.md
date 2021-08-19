@@ -3,8 +3,8 @@
 
 ### Bug Fixes
 
-* **range-input:** remove default min and max values from `ais-range-input` ([#1036](https://github.com/algolia/vue-instantsearch/issues/1036)) ([38987ac](https://github.com/algolia/vue-instantsearch/commit/38987ac74548baf239a7ca25d34743b4027704cd))
-* **vue 3:** let users pass renderToString to createServerRootMixin ([#1035](https://github.com/algolia/vue-instantsearch/issues/1035)) ([bc5f58a](https://github.com/algolia/vue-instantsearch/commit/bc5f58a81a205e856207e6cf1e45bc8d11605efd))
+* **range-input:** remove default min and max values from `ais-range-input` (BREAKING CHANGE) ([#1036](https://github.com/algolia/vue-instantsearch/issues/1036)) ([38987ac](https://github.com/algolia/vue-instantsearch/commit/38987ac74548baf239a7ca25d34743b4027704cd))
+* **Server-side rendering:** let users pass renderToString to createServerRootMixin (BREAKING CHANGE) ([#1035](https://github.com/algolia/vue-instantsearch/issues/1035)) ([bc5f58a](https://github.com/algolia/vue-instantsearch/commit/bc5f58a81a205e856207e6cf1e45bc8d11605efd))
 
 
 
