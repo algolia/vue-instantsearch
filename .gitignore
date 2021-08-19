@@ -1,5 +1,6 @@
 dist/
 es/
+vue3/
 yarn-error.log
 node_modules/
 coverage
