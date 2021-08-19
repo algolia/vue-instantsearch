@@ -8,5 +8,3 @@ examples/*/node_modules/*
 scripts/es-index-template.js
 website/examples/*
 website/stories/*
-examples/vue3-ssr-vite
-examples/vue3-ssr-vue-cli
