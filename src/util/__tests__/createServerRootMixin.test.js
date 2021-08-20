@@ -182,9 +182,9 @@ describe('createServerRootMixin', () => {
         ),
         serverPrefetch() {
           expect(() =>
-            this.instantsearch.findResultsState(this)
+            this.instantsearch.findResultsState({ component: this })
           ).toThrowErrorMatchingInlineSnapshot(
-            `"findResultsState requires \`renderToString: (componentInstance) => Promise<string>\` in the second argument."`
+            `"findResultsState requires \`renderToString: (component) => Promise<string>\` in the first argument."`
           );
         },
       };
@@ -231,7 +231,10 @@ describe('createServerRootMixin', () => {
           ])
         ),
         serverPrefetch() {
-          return this.instantsearch.findResultsState(this, renderToString);
+          return this.instantsearch.findResultsState({
+            component: this,
+            renderToString,
+          });
         },
         created() {
           mainIndex = this.instantsearch.mainIndex;
@@ -293,10 +296,10 @@ Array [
           ])
         ),
         async serverPrefetch() {
-          const state = await this.instantsearch.findResultsState(
-            this,
-            renderToString
-          );
+          const state = await this.instantsearch.findResultsState({
+            component: this,
+            renderToString,
+          });
           expect(state).toEqual({
             __identifier: 'stringified',
             hello: {
@@ -377,7 +380,10 @@ Array [
           ])
         ),
         serverPrefetch() {
-          return this.instantsearch.findResultsState(this, renderToString);
+          return this.instantsearch.findResultsState({
+            component: this,
+            renderToString,
+          });
         },
       };
 
@@ -427,7 +433,10 @@ Array [
           ])
         ),
         serverPrefetch() {
-          return this.instantsearch.findResultsState(this, renderToString);
+          return this.instantsearch.findResultsState({
+            component: this,
+            renderToString,
+          });
         },
       };
 
@@ -482,7 +491,10 @@ Array [
             ])
           ),
           serverPrefetch() {
-            return this.instantsearch.findResultsState(this, renderToString);
+            return this.instantsearch.findResultsState({
+              component: this,
+              renderToString,
+            });
           },
         };
 
@@ -516,7 +528,7 @@ Array [
           serverPrefetch() {
             return (
               this.instantsearch
-                .findResultsState(this, renderToString)
+                .findResultsState({ component: this, renderToString })
                 .then(res => {
                   expect(
                     this.instantsearch.mainIndex.getWidgets().map(w => w.$$type)
@@ -566,7 +578,7 @@ Array [
           serverPrefetch() {
             return (
               this.instantsearch
-                .findResultsState(this, renderToString)
+                .findResultsState({ component: this, renderToString })
                 .then(res => {
                   expect(
                     this.instantsearch.mainIndex.getWidgets().map(w => w.$$type)
@@ -630,7 +642,10 @@ Array [
             ]);
           }),
           serverPrefetch() {
-            return this.instantsearch.findResultsState(this, renderToString);
+            return this.instantsearch.findResultsState({
+              component: this,
+              renderToString,
+            });
           },
         };
 
