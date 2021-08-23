@@ -2,4 +2,9 @@ _book/
 docs/
 coverage/
 dist/
+vue2/
+vue3/
 examples/*/node_modules/*
+scripts/es-index-template.js
+website/examples/*
+website/stories/*

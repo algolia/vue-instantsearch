@@ -39,13 +39,31 @@ jobs:
           name: Build & Test packages size
           command: yarn test:build
 
-  test_unit:
+  test_unit_vue2:
     <<: *defaults
     steps:
       - checkout
       - run: *install_yarn_version
       - restore_cache: *restore_yarn_cache
       - run: *run_yarn_install
+      - save_cache: *save_yarn_cache
+      - run:
+          name: Lint & Code styles
+          command: yarn lint
+      - run:
+          name: Unit Tests
+          command: yarn test --maxWorkers=4
+
+  test_unit_vue3:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install_yarn_version
+      - restore_cache: *restore_yarn_cache
+      - run: *run_yarn_install
+      - run:
+          name: Install Vue3
+          command: ./scripts/test-vue3.sh
       - save_cache: *save_yarn_cache
       - run:
           name: Lint & Code styles
@@ -85,7 +103,8 @@ workflows:
   ci:
     jobs:
       - test_build
-      - test_unit
+      - test_unit_vue2
+      - test_unit_vue3
       - test_e2e
   release_if_needed:
     jobs:
@@ -94,3 +113,4 @@ workflows:
             branches:
               only:
                 - master
+                - feat/vue3-compat
