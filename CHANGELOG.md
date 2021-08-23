@@ -1,3 +1,7 @@
+# [4.0.0](https://github.com/algolia/vue-instantsearch/compare/v4.0.0-beta.3...v4.0.0) (2021-08-23)
+
+
+
 # [4.0.0-beta.3](https://github.com/algolia/vue-instantsearch/compare/v4.0.0-beta.2...v4.0.0-beta.3) (2021-08-20)
 
 
