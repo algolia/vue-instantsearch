@@ -8,7 +8,10 @@ import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
 import json from 'rollup-plugin-json';
 
-if (process.env.VUE_VERSION !== 'vue2' && process.env.VUE_VERSION !== 'vue3') {
+const isVue2 = process.env.VUE_VERSION === 'vue2';
+const isVue3 = process.env.VUE_VERSION === 'vue3';
+
+if (!isVue2 && !isVue3) {
   throw new Error(
     'The environment variable VUE_VERSION (`vue2` | `vue3`) is required.'
   );
@@ -19,10 +22,20 @@ const processEnv = conf => ({
   'process.env': `(${JSON.stringify(conf)})`,
 });
 
-const vuePlugin = process.env.VUE_VERSION === 'vue3' ? vueV3 : vueV2;
-const outputDir = process.env.VUE_VERSION === 'vue3' ? 'vue3' : 'vue2';
+const vuePlugin = isVue3 ? vueV3 : vueV2;
+const outputDir = isVue3 ? 'vue3' : 'vue2';
+
+const excludeCompositionsAPI = {
+  load(id){
+    if (id.endsWith("/src/compositions/index.js")) {
+      return ''
+    }
+    return null;
+  }
+}
 
 const plugins = [
+  isVue2 && excludeCompositionsAPI,
   vuePlugin({ compileTemplate: true, css: false }),
   commonjs(),
   json(),

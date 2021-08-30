@@ -3,3 +3,5 @@ export { createWidgetMixin } from './mixins/widget';
 export * from './widgets';
 export { plugin as default } from './plugin';
 export { createServerRootMixin } from './util/createServerRootMixin';
+
+export * from './compositions';
