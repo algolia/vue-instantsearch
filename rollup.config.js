@@ -26,13 +26,13 @@ const vuePlugin = isVue3 ? vueV3 : vueV2;
 const outputDir = isVue3 ? 'vue3' : 'vue2';
 
 const excludeCompositionsAPI = {
-  load(id){
-    if (id.endsWith("/src/compositions/index.js")) {
-      return ''
+  load(id) {
+    if (id.endsWith('/src/compositions/index.js')) {
+      return '';
     }
     return null;
-  }
-}
+  },
+};
 
 const plugins = [
   isVue2 && excludeCompositionsAPI,
