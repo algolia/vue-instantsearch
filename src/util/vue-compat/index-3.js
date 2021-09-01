@@ -12,6 +12,7 @@ export {
   nextTick,
   inject,
   ref,
+  isRef,
   watch,
   onMounted,
   onUnmounted,

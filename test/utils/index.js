@@ -75,3 +75,5 @@ export const createSSRApp = props => {
 };
 
 export const nextTick = () => (isVue3 ? _nextTick() : Vue2.nextTick());
+
+export const wait = ms => new Promise(resolve => setTimeout(resolve, ms));

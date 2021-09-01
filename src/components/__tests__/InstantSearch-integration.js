@@ -1,11 +1,9 @@
-import { mount, nextTick } from '../../../test/utils';
+import { mount, nextTick, wait } from '../../../test/utils';
 import InstantSearch from '../InstantSearch';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../../util/testutils/client';
 import SearchBox from '../SearchBox.vue';
 jest.unmock('instantsearch.js/es');
-
-const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 it('child widgets get added to its parent instantsearch', () => {
   const widgetInstance = {
