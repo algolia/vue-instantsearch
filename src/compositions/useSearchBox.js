@@ -1,7 +1,6 @@
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
+import { noop } from '../util/noop';
 import { useConnector } from './useConnector';
-
-const noop = () => {};
 
 export function useSearchBox(props) {
   return useConnector(connectSearchBox, props, {
