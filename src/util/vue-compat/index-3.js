@@ -16,6 +16,7 @@ export {
   watch,
   onMounted,
   onUnmounted,
+  computed,
 } from 'vue';
 export { Vue, Vue2, isVue2, isVue3 };
 
