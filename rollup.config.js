@@ -7,6 +7,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
 import json from 'rollup-plugin-json';
+import fs from 'fs';
 
 const isVue2 = process.env.VUE_VERSION === 'vue2';
 const isVue3 = process.env.VUE_VERSION === 'vue3';
@@ -29,6 +30,30 @@ const excludeCompositionsAPI = {
   load(id) {
     if (id.endsWith('/src/compositions/index.js')) {
       return '';
+    }
+    return null;
+  },
+};
+
+const applyVueCompat = {
+  load(id) {
+    if (id.endsWith('src/util/vue-compat/index.js')) {
+      if (isVue2) {
+        return fs.readFileSync('./src/util/vue-compat/index-2.js').toString();
+      } else if (isVue3) {
+        return fs.readFileSync('./src/util/vue-compat/index-3.js').toString();
+      }
+    }
+    return null;
+  },
+};
+
+const applyVueCompatForVue2Compositions = {
+  load(id) {
+    if (id.endsWith('src/util/vue-compat/index.js')) {
+      return fs
+        .readFileSync('./src/util/vue-compat/index-2-compositions.js')
+        .toString();
     }
     return null;
   },
@@ -67,7 +92,11 @@ export default [
         exports: 'named',
       },
     ],
-    plugins: [isVue2 && excludeCompositionsAPI, ...plugins].filter(Boolean),
+    plugins: [
+      isVue2 && excludeCompositionsAPI,
+      applyVueCompat,
+      ...plugins,
+    ].filter(Boolean),
   },
   {
     input: 'src/instantsearch.js',
@@ -80,7 +109,11 @@ export default [
       },
     ],
     preserveModules: true,
-    plugins: [isVue2 && excludeCompositionsAPI, ...plugins].filter(Boolean),
+    plugins: [
+      isVue2 && excludeCompositionsAPI,
+      applyVueCompat,
+      ...plugins,
+    ].filter(Boolean),
   },
   {
     input: 'src/instantsearch.umd.js',
@@ -98,6 +131,7 @@ export default [
       },
     ],
     plugins: [
+      applyVueCompat,
       ...plugins,
       resolve({
         browser: true,
@@ -118,7 +152,7 @@ export default [
               exports: 'named',
             },
           ],
-          plugins,
+          plugins: [applyVueCompatForVue2Compositions, ...plugins],
         },
         {
           input: 'src/compositions-for-vue2.js',
@@ -131,7 +165,7 @@ export default [
             },
           ],
           // preserveModules: true,
-          plugins,
+          plugins: [applyVueCompatForVue2Compositions, ...plugins],
         },
       ]
     : []),

@@ -72,6 +72,7 @@
     "@storybook/addon-options": "3.4.11",
     "@storybook/vue": "3.4.11",
     "@vue/compiler-sfc": "3.0.11",
+    "@vue/composition-api": "1.1.4",
     "@vue/test-utils": "1.2.1",
     "@vue/test-utils2": "npm:@vue/test-utils@2.0.0-rc.11",
     "@wdio/cli": "^5.11.13",
