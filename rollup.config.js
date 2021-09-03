@@ -35,7 +35,6 @@ const excludeCompositionsAPI = {
 };
 
 const plugins = [
-  isVue2 && excludeCompositionsAPI,
   vuePlugin({ compileTemplate: true, css: false }),
   commonjs(),
   json(),
@@ -68,7 +67,7 @@ export default [
         exports: 'named',
       },
     ],
-    plugins: [...plugins],
+    plugins: [isVue2 && excludeCompositionsAPI, ...plugins].filter(Boolean),
   },
   {
     input: 'src/instantsearch.js',
@@ -81,7 +80,7 @@ export default [
       },
     ],
     preserveModules: true,
-    plugins: [...plugins],
+    plugins: [isVue2 && excludeCompositionsAPI, ...plugins].filter(Boolean),
   },
   {
     input: 'src/instantsearch.umd.js',
@@ -106,4 +105,34 @@ export default [
       }),
     ],
   },
+  ...(isVue2
+    ? [
+        {
+          input: 'src/compositions-for-vue2.js',
+          external,
+          output: [
+            {
+              sourcemap: true,
+              file: `${outputDir}/cjs/compositions.js`,
+              format: 'cjs',
+              exports: 'named',
+            },
+          ],
+          plugins,
+        },
+        {
+          input: 'src/compositions-for-vue2.js',
+          external,
+          output: [
+            {
+              sourcemap: true,
+              file: `${outputDir}/es/compositions.js`,
+              format: 'es',
+            },
+          ],
+          // preserveModules: true,
+          plugins,
+        },
+      ]
+    : []),
 ];
