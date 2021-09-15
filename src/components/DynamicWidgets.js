@@ -54,6 +54,10 @@ export default {
   render: renderCompat(function(h) {
     const components = new Map();
 
+    const fallbackComponent =
+      (isVue3 ? this.$slots : this.$scopedSlots)['fallback-component'] ||
+      (() => undefined);
+
     (getDefaultSlot(this) || []).forEach(vnode => {
       const attribute = getWidgetAttribute(vnode);
       if (attribute) {
@@ -65,6 +69,7 @@ export default {
     });
 
     // by default, render everything, but hidden so that the routing doesn't disappear
+    // TODO: make sure fallback component gets rendered here too, but how do we know which attributes?
     if (!this.state) {
       const allComponents = [];
       components.forEach(component => allComponents.push(component));
@@ -84,7 +89,10 @@ export default {
     return h(
       'div',
       { class: [this.suit()] },
-      this.state.attributesToRender.map(attribute => components.get(attribute))
+      this.state.attributesToRender.map(
+        attribute =>
+          components.get(attribute) || fallbackComponent({ attribute })
+      )
     );
   }),
   computed: {
