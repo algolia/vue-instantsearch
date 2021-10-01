@@ -6,39 +6,43 @@ import {
   onMounted,
   onUnmounted,
 } from '../util/vue-compat';
+import { addWidget, removeWidget, forceRender } from '../util/widget';
 
-export function useConnector(connector, widgetParams, initialState) {
+export function useConnector(connector, widgetParams) {
   const instantSearchInstance = inject('$_ais_instantSearchInstance');
   const getParentIndex = inject('$_ais_getParentIndex', undefined);
   const indexWidget = getParentIndex && getParentIndex();
   const parent = indexWidget || instantSearchInstance;
-  const state = ref(initialState);
+  const state = ref(null);
   const widget = ref(null);
 
-  const addWidget = () => {
-    const createWidget = connector(newState => {
-      state.value = newState;
-    });
-    widget.value = createWidget(
-      isRef(widgetParams) ? widgetParams.value : widgetParams
-    );
-    parent.addWidgets([widget.value]);
-  };
+  const render = (newState, isFirstRender) => {
+    if (isFirstRender) return;
 
-  const removeWidget = () => {
-    if (widget.value) {
-      parent.removeWidgets([widget.value]);
-      widget.value = null;
-    }
+    // Avoid updating the state on first render
+    // otherwise there will be a flash of placeholder data
+    state.value = newState;
   };
 
   const updateWidget = () => {
-    removeWidget();
-    addWidget();
+    removeWidget(widget.value, parent);
+    state.value = null;
+    widget.value = addWidget(connector, parent, widgetParams.value, render);
   };
 
-  onMounted(addWidget);
-  onUnmounted(removeWidget);
+  onMounted(() => {
+    widget.value = addWidget(
+      connector,
+      parent,
+      isRef(widgetParams) ? widgetParams.value : widgetParams,
+      render
+    );
+    forceRender(widget.value, parent, instantSearchInstance);
+  });
+  onUnmounted(() => {
+    removeWidget(widget.value, parent);
+    widget.value = null;
+  });
 
   if (isRef(widgetParams)) {
     watch(widgetParams, updateWidget);

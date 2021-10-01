@@ -1,5 +1,6 @@
 import { isVue3 } from '../util/vue-compat';
 import { warn } from '../util/warn';
+import { addWidget, forceRender, removeWidget } from '../util/widget';
 
 export const createWidgetMixin = ({ connector } = {}) => ({
   inject: {
@@ -26,24 +27,17 @@ export const createWidgetMixin = ({ connector } = {}) => ({
   },
   created() {
     if (typeof connector === 'function') {
-      this.factory = connector(this.updateState, () => {});
-      this.widget = this.factory(this.widgetParams);
-      this.getParentIndex().addWidgets([this.widget]);
-
-      if (
-        this.instantSearchInstance.__initialSearchResults &&
-        !this.instantSearchInstance.started
-      ) {
-        if (typeof this.instantSearchInstance.__forceRender !== 'function') {
-          throw new Error(
-            'You are using server side rendering with <ais-instant-search> instead of <ais-instant-search-ssr>.'
-          );
-        }
-        this.instantSearchInstance.__forceRender(
-          this.widget,
-          this.getParentIndex()
-        );
-      }
+      this.widget = addWidget(
+        connector,
+        this.getParentIndex(),
+        this.widgetParams,
+        this.updateState.bind(this)
+      );
+      forceRender(
+        this.widget,
+        this.getParentIndex(),
+        this.instantSearchInstance
+      );
     } else if (connector !== true) {
       warn(
         `You are using the InstantSearch widget mixin, but didn't provide a connector.
@@ -57,17 +51,20 @@ Read more on using connectors: https://alg.li/vue-custom`
     }
   },
   [isVue3 ? 'beforeUnmount' : 'beforeDestroy']() {
-    if (this.widget) {
-      this.getParentIndex().removeWidgets([this.widget]);
-    }
+    removeWidget(this.widget, this.getParentIndex());
   },
   watch: {
     widgetParams: {
       handler(nextWidgetParams) {
+        removeWidget(this.widget, this.getParentIndex());
         this.state = null;
-        this.getParentIndex().removeWidgets([this.widget]);
-        this.widget = this.factory(nextWidgetParams);
-        this.getParentIndex().addWidgets([this.widget]);
+        this.widget = addWidget(
+          connector,
+          this.getParentIndex(),
+          this.instantSearchInstance,
+          nextWidgetParams,
+          this.updateState.bind(this)
+        );
       },
       deep: true,
     },
