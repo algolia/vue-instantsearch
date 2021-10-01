@@ -164,7 +164,6 @@ export default [
               format: 'es',
             },
           ],
-          // preserveModules: true,
           plugins: [applyVueCompatForVue2Compositions, ...plugins],
         },
       ]
