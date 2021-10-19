@@ -10,11 +10,13 @@ import { addWidget, removeWidget, forceRender } from '../util/widget';
 
 export function useConnector(connector, widgetParams) {
   const instantSearchInstance = inject('$_ais_instantSearchInstance');
-  const getParentIndex = inject('$_ais_getParentIndex', undefined);
-  const indexWidget = getParentIndex && getParentIndex();
-  const parent = indexWidget || instantSearchInstance;
+  const parent = inject(
+    '$_ais_getParentIndex',
+    () => instantSearchInstance.mainIndex
+  )();
+
   const state = ref(null);
-  const widget = ref(null);
+  let widget;
 
   const render = (newState, isFirstRender) => {
     if (isFirstRender) return;
@@ -25,23 +27,24 @@ export function useConnector(connector, widgetParams) {
   };
 
   const updateWidget = () => {
-    removeWidget(widget.value, parent);
+    removeWidget(widget, parent);
     state.value = null;
-    widget.value = addWidget(connector, parent, widgetParams.value, render);
+    widget = addWidget(connector, parent, widgetParams.value, render);
   };
 
   onMounted(() => {
-    widget.value = addWidget(
+    widget = addWidget(
       connector,
       parent,
       isRef(widgetParams) ? widgetParams.value : widgetParams,
       render
     );
-    forceRender(widget.value, parent, instantSearchInstance);
+    forceRender(widget, parent, instantSearchInstance);
   });
+
   onUnmounted(() => {
-    removeWidget(widget.value, parent);
-    widget.value = null;
+    removeWidget(widget, parent);
+    widget = null;
   });
 
   if (isRef(widgetParams)) {
