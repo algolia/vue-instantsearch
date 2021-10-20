@@ -61,7 +61,6 @@ Read more on using connectors: https://alg.li/vue-custom`
         this.widget = addWidget(
           connector,
           this.getParentIndex(),
-          this.instantSearchInstance,
           nextWidgetParams,
           this.updateState.bind(this)
         );
