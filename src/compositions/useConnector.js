@@ -8,7 +8,7 @@ import {
 } from '../util/vue-compat';
 import { addWidget, removeWidget, forceRender } from '../util/widget';
 
-export function useConnector(connector, widgetParams) {
+export function useConnector(connector, props) {
   const instantSearchInstance = inject('$_ais_instantSearchInstance');
   const parent = inject(
     '$_ais_getParentIndex',
@@ -19,24 +19,26 @@ export function useConnector(connector, widgetParams) {
   let widget;
 
   const render = (newState, isFirstRender) => {
-    if (isFirstRender) return;
-
     // Avoid updating the state on first render
     // otherwise there will be a flash of placeholder data
-    state.value = newState;
+    if (isFirstRender) return;
+
+    const copy = Object.assign({}, newState);
+    delete copy.widgetParams;
+    state.value = copy;
   };
 
   const updateWidget = () => {
     removeWidget(widget, parent);
     state.value = null;
-    widget = addWidget(connector, parent, widgetParams.value, render);
+    widget = addWidget(connector, parent, props.value, render);
   };
 
   onMounted(() => {
     widget = addWidget(
       connector,
       parent,
-      isRef(widgetParams) ? widgetParams.value : widgetParams,
+      isRef(props) ? props.value : props,
       render
     );
     forceRender(widget, parent, instantSearchInstance);
@@ -47,8 +49,8 @@ export function useConnector(connector, widgetParams) {
     widget = null;
   });
 
-  if (isRef(widgetParams)) {
-    watch(widgetParams, updateWidget);
+  if (isRef(props)) {
+    watch(props, updateWidget);
   }
 
   return state;

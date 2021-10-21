@@ -77,23 +77,23 @@ if (isVue2) {
     });
 
     it('returns correct state', async () => {
-      const connector = jest.fn(renderFn => widgetParams => ({
+      const connector = jest.fn(renderFn => props => ({
         render() {
-          renderFn({ widgetParams });
+          renderFn({ props });
         },
         dispose() {},
       }));
 
-      const widgetParams = {
+      const props = {
         attribute: 'brand',
       };
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, widgetParams);
+          const state = useConnector(connector, props);
           return { state };
         },
-        template: '<div>{{ state && state.widgetParams.attribute }}</div>',
+        template: '<div>{{ state && state.props.attribute }}</div>',
       };
 
       const { wrapper } = setup({ ChildComponent });
@@ -107,24 +107,55 @@ if (isVue2) {
       `);
     });
 
-    it('updates widget on widget params change', async () => {
-      const connector = jest.fn(renderFn => widgetParams => ({
+    it('removes widgetParams', async () => {
+      const connector = jest.fn(renderFn => props => ({
         render() {
-          renderFn({ widgetParams });
+          renderFn({ props, widgetParams: props });
         },
         dispose() {},
       }));
 
-      const widgetParams = ref({
+      const props = {
+        attribute: 'brand',
+      };
+
+      const ChildComponent = {
+        setup() {
+          const state = useConnector(connector, props);
+          return { state };
+        },
+        template:
+          '<div>{{ state && state.widgetParams && state.widgetParams.attribute }}</div>',
+      };
+
+      const { wrapper } = setup({ ChildComponent });
+
+      await wait(0);
+      expect(wrapper.findComponent(ChildComponent).html())
+        .toMatchInlineSnapshot(`
+        <div>
+        </div>
+      `);
+    });
+
+    it('updates widget on props change', async () => {
+      const connector = jest.fn(renderFn => props => ({
+        render() {
+          renderFn({ props });
+        },
+        dispose() {},
+      }));
+
+      const props = ref({
         attribute: 'brand',
       });
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, widgetParams);
+          const state = useConnector(connector, props);
           return { state };
         },
-        template: '<div>{{ state && state.widgetParams.attribute }}</div>',
+        template: '<div>{{ state && state.props.attribute }}</div>',
       };
 
       const { wrapper } = setup({ ChildComponent });
@@ -137,7 +168,7 @@ if (isVue2) {
         </div>
       `);
 
-      widgetParams.value = { attribute: 'color' };
+      props.value = { attribute: 'color' };
       await wait(0);
       expect(wrapper.findComponent(ChildComponent).html())
         .toMatchInlineSnapshot(`
@@ -215,23 +246,23 @@ if (isVue2) {
     });
 
     it('returns correct state', async () => {
-      const connector = jest.fn(renderFn => widgetParams => ({
+      const connector = jest.fn(renderFn => props => ({
         render() {
-          renderFn({ widgetParams });
+          renderFn({ props });
         },
         dispose() {},
       }));
 
-      const widgetParams = {
+      const props = {
         attribute: 'brand',
       };
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, widgetParams);
+          const state = useConnector(connector, props);
           return { state };
         },
-        template: '<div>{{ state && state.widgetParams.attribute }}</div>',
+        template: '<div>{{ state && state.props.attribute }}</div>',
       };
 
       const { wrapper } = setup({ ChildComponent });
@@ -245,24 +276,55 @@ if (isVue2) {
       `);
     });
 
-    it('updates widget on widget params change', async () => {
-      const connector = jest.fn(renderFn => widgetParams => ({
+    it('removes widgetParams', async () => {
+      const connector = jest.fn(renderFn => props => ({
         render() {
-          renderFn({ widgetParams });
+          renderFn({ props, widgetParams: props });
         },
         dispose() {},
       }));
 
-      const widgetParams = ref({
+      const props = {
+        attribute: 'brand',
+      };
+
+      const ChildComponent = {
+        setup() {
+          const state = useConnector(connector, props);
+          return { state };
+        },
+        template:
+          '<div>{{ state && state.widgetParams && state.widgetParams.attribute }}</div>',
+      };
+
+      const { wrapper } = setup({ ChildComponent });
+
+      await wait(0);
+      expect(wrapper.findComponent(ChildComponent).html())
+        .toMatchInlineSnapshot(`
+        <div>
+        </div>
+      `);
+    });
+
+    it('updates widget on props change', async () => {
+      const connector = jest.fn(renderFn => props => ({
+        render() {
+          renderFn({ props });
+        },
+        dispose() {},
+      }));
+
+      const props = ref({
         attribute: 'brand',
       });
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, widgetParams);
+          const state = useConnector(connector, props);
           return { state };
         },
-        template: '<div>{{ state && state.widgetParams.attribute }}</div>',
+        template: '<div>{{ state && state.props.attribute }}</div>',
       };
 
       const { wrapper } = setup({ ChildComponent });
@@ -275,7 +337,7 @@ if (isVue2) {
         </div>
       `);
 
-      widgetParams.value = { attribute: 'color' };
+      props.value = { attribute: 'color' };
       await wait(0);
       expect(wrapper.findComponent(ChildComponent).html())
         .toMatchInlineSnapshot(`
