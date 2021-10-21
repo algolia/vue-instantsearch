@@ -40,7 +40,7 @@ if (isVue2) {
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, {}, {});
+          const state = useConnector(connector, {});
           return { state };
         },
         template: '<div></div>',
@@ -61,7 +61,7 @@ if (isVue2) {
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, {}, {});
+          const state = useConnector(connector, {});
           return { state };
         },
         template: '<div></div>',
@@ -90,7 +90,7 @@ if (isVue2) {
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, widgetParams, null);
+          const state = useConnector(connector, widgetParams);
           return { state };
         },
         template: '<div>{{ state && state.widgetParams.attribute }}</div>',
@@ -121,7 +121,7 @@ if (isVue2) {
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, widgetParams, null);
+          const state = useConnector(connector, widgetParams);
           return { state };
         },
         template: '<div>{{ state && state.widgetParams.attribute }}</div>',
@@ -179,7 +179,7 @@ if (isVue2) {
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, {}, {});
+          const state = useConnector(connector, {});
           return { state };
         },
         template: '<div></div>',
@@ -199,7 +199,7 @@ if (isVue2) {
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, {}, {});
+          const state = useConnector(connector, {});
           return { state };
         },
         template: '<div></div>',
@@ -228,7 +228,7 @@ if (isVue2) {
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, widgetParams, null);
+          const state = useConnector(connector, widgetParams);
           return { state };
         },
         template: '<div>{{ state && state.widgetParams.attribute }}</div>',
@@ -259,7 +259,7 @@ if (isVue2) {
 
       const ChildComponent = {
         setup() {
-          const state = useConnector(connector, widgetParams, null);
+          const state = useConnector(connector, widgetParams);
           return { state };
         },
         template: '<div>{{ state && state.widgetParams.attribute }}</div>',
