@@ -1248,10 +1248,10 @@ ajv@^6.5.5, ajv@^6.9.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-algoliasearch-helper@^3.5.5:
-  version "3.5.5"
-  resolved "https://registry.yarnpkg.com/algoliasearch-helper/-/algoliasearch-helper-3.5.5.tgz#05263869d3c8a7292278d7e49630f52520f204d7"
-  integrity sha512-JDH14gMpSj8UzEaKwVkrqKOeAOyK0dDWsFlKvWhk0Xl5yw9FyafYf1xZPb4uSXaPBAFQtUouFlR1Zt68BCY0/w==
+algoliasearch-helper@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/algoliasearch-helper/-/algoliasearch-helper-3.6.2.tgz#45e19b12589cfa0c611b573287f65266ea2cc14a"
+  integrity sha512-Xx0NOA6k4ySn+R2l3UMSONAaMkyfmrZ3AP1geEMo32MxDJQJesZABZYsldO9fa6FKQxH91afhi4hO1G0Zc2opg==
   dependencies:
     events "^1.1.1"
 
@@ -8117,20 +8117,21 @@ instantsearch.css@7.3.1:
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.3.1.tgz#7ab74a8f355091ae040947a9cf5438f379026622"
   integrity sha512-/kaMDna5D+Q9mImNBHEhb9HgHATDOFKYii7N1Iwvrj+lmD9gBJLqVhUw67gftq2O0QI330pFza+CRscIwB1wQQ==
 
-instantsearch.js@^4.30.0:
-  version "4.30.1"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.30.1.tgz#57b9cb2a3c9fc64ce3b12f38d4a81f641e212941"
-  integrity sha512-msdTQsavHhqGir+dzwdsocm5cCuRVIDNdXCMHAJuy023bRby7SYJADWpSlQnkE6tCehxYeT5GbkomtKkyanU1g==
+instantsearch.js@^4.32.0:
+  version "4.32.0"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.32.0.tgz#76763fe781a1f81934f63b965b675c4ffe511714"
+  integrity sha512-sWLjSDweIf4dv75z/JrhPfW26z+lHNPDBNSGBCI7QiTfaMZi9R8+xeqIKJlbcBCkGjOGKINEmh4s6PiPLVOTTQ==
   dependencies:
     "@types/google.maps" "^3.45.3"
     "@types/hogan.js" "^3.0.0"
     "@types/qs" "^6.5.3"
-    algoliasearch-helper "^3.5.5"
+    algoliasearch-helper "^3.6.2"
     classnames "^2.2.5"
     events "^1.1.0"
     hogan.js "^3.0.2"
     preact "^10.0.0"
     qs "^6.5.1 < 6.10"
+    search-insights "^2.0.5"
 
 interpret@^1.0.0:
   version "1.0.4"
@@ -13979,6 +13980,11 @@ scss-tokenizer@^0.2.3:
   dependencies:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
+
+search-insights@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/search-insights/-/search-insights-2.0.5.tgz#42fbe4d42d9f68f58bfc7c6e4519e8961b07dd2b"
+  integrity sha512-Mx3PmspHRhiW8eMFrT0coYCtoK6QqUjyNGqtlCpZcKTYflQEzYngx4obIRahc0arXBDzOR2tE/t8k8VgzfJe/g==
 
 seek-bzip@^1.0.5:
   version "1.0.5"
