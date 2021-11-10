@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils';
+import { mount } from '../../../test/utils';
 import ExperimentalDynamicWidgets from '../ExperimentalDynamicWidgets';
 import { warn } from '../../util/warn';
 import { __setState } from '../../mixins/widget';
