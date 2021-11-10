@@ -5,6 +5,6 @@ import { warn } from '../util/warn';
 export default Object.assign({}, AisDynamicWidgets, {
   name: 'AisExperimentalDynamicWidgets',
   mounted() {
-    warn('use AisDynamicWidgets instead of AisExperimentalDynamicWidgets');
+    warn('Use AisDynamicWidgets instead of AisExperimentalDynamicWidgets.');
   },
 });
