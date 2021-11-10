@@ -18,7 +18,7 @@ it('warns on mount', () => {
   });
   expect(warn).toHaveBeenCalledTimes(1);
   expect(warn.mock.calls[0][0]).toMatchInlineSnapshot(
-    `"use AisDynamicWidgets instead of AisExperimentalDynamicWidgets"`
+    `"Use AisDynamicWidgets instead of AisExperimentalDynamicWidgets."`
   );
 });
 
