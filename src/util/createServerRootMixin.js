@@ -1,7 +1,6 @@
 import instantsearch from 'instantsearch.js/es';
 import algoliaHelper from 'algoliasearch-helper';
 import { isVue3, isVue2, Vue2, createSSRApp } from '../util/vue-compat';
-const { SearchResults, SearchParameters } = algoliaHelper;
 import { warn } from './warn';
 
 function walkIndex(indexWidget, visit) {
@@ -168,16 +167,15 @@ function augmentInstantSearch(
    * @returns {void}
    */
   search.__forceRender = function(widget, parent) {
-    const localHelper = parent.getHelper();
-    const indexInitialResults = search._initialResults[parent.getIndexId()];
     // this happens when a different InstantSearch gets rendered initially,
     // after the hydrate finished. There's thus no initial results available.
-    if (!indexInitialResults) {
+    if (parent.getResults() === null) {
       return;
     }
-    const state = new SearchParameters(indexInitialResults.state);
-    const results = new SearchResults(state, indexInitialResults.results);
+    const results = parent.getResults();
+    const state = results._state;
 
+    const localHelper = parent.getHelper();
     // helper gets created in init, but that means it doesn't get the injected
     // parameters, because those are from the lastResults
     localHelper.state = state;
@@ -185,14 +183,7 @@ function augmentInstantSearch(
     widget.render({
       helper: localHelper,
       results,
-      scopedResults: parent.getScopedResults().map(result =>
-        Object.assign(result, {
-          results: new SearchResults(
-            new SearchParameters(search._initialResults[result.indexId].state),
-            search._initialResults[result.indexId].results
-          ),
-        })
-      ),
+      scopedResults: parent.getScopedResults(),
       parent,
       state,
       templatesConfig: {},
