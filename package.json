@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "algoliasearch-helper": "^3.6.2",
-    "instantsearch.js": "^4.32.0",
+    "instantsearch.js": "https://pkg.csb.dev/algolia/instantsearch.js/commit/3f954126/instantsearch.js",
     "mitt": "^2.1.0"
   },
   "peerDependencies": {

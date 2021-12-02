@@ -104,7 +104,7 @@ function augmentInstantSearch(
     }
 
     let app;
-    let renderedComponent;
+    let instance;
 
     return Promise.resolve()
       .then(() => {
@@ -113,7 +113,7 @@ function augmentInstantSearch(
             {
               created() {
                 // eslint-disable-next-line consistent-this
-                renderedComponent = this;
+                instance = this.instantsearch;
                 this.instantsearch.helper = helper;
                 this.instantsearch.mainHelper = helper;
 
@@ -130,37 +130,21 @@ function augmentInstantSearch(
       .then(() => renderToString(app))
       .then(() => searchOnlyWithDerivedHelpers(helper))
       .then(() => {
-        const results = {};
-        walkIndex(renderedComponent.instantsearch.mainIndex, widget => {
-          results[widget.getIndexId()] = widget.getResults();
+        resultsState = {};
+        walkIndex(instance.mainIndex, widget => {
+          const { _state, _rawResults } = widget.getResults();
+
+          resultsState[widget.getIndexId()] = {
+            // copy just the values of SearchParameters, not the functions
+            state: Object.keys(_state).reduce((acc, key) => {
+              acc[key] = _state[key];
+              return acc;
+            }, {}),
+            results: _rawResults,
+          };
         });
 
-        search.hydrate(results);
-
-        resultsState = Object.keys(results)
-          .map(indexId => {
-            const { _state, _rawResults } = results[indexId];
-            return [
-              indexId,
-              {
-                // copy just the values of SearchParameters, not the functions
-                _state: Object.keys(_state).reduce((acc, key) => {
-                  acc[key] = _state[key];
-                  return acc;
-                }, {}),
-                _rawResults,
-              },
-            ];
-          })
-          .reduce(
-            (acc, [key, val]) => {
-              acc[key] = val;
-              return acc;
-            },
-            {
-              __identifier: 'stringified',
-            }
-          );
+        search.hydrate(resultsState);
         return search.getState();
       });
   };
@@ -185,16 +169,14 @@ function augmentInstantSearch(
    */
   search.__forceRender = function(widget, parent) {
     const localHelper = parent.getHelper();
-
-    const results = search.__initialSearchResults[parent.getIndexId()];
-
+    const indexInitialResults = search._initialResults[parent.getIndexId()];
     // this happens when a different InstantSearch gets rendered initially,
     // after the hydrate finished. There's thus no initial results available.
-    if (!results) {
+    if (!indexInitialResults) {
       return;
     }
-
-    const state = results._state;
+    const state = new SearchParameters(indexInitialResults.state);
+    const results = new SearchResults(state, indexInitialResults.results);
 
     // helper gets created in init, but that means it doesn't get the injected
     // parameters, because those are from the lastResults
@@ -205,7 +187,10 @@ function augmentInstantSearch(
       results,
       scopedResults: parent.getScopedResults().map(result =>
         Object.assign(result, {
-          results: search.__initialSearchResults[result.indexId],
+          results: new SearchResults(
+            new SearchParameters(search._initialResults[result.indexId].state),
+            search._initialResults[result.indexId].results
+          ),
         })
       ),
       parent,
@@ -232,21 +217,7 @@ function augmentInstantSearch(
       return;
     }
 
-    const initialResults =
-      results.__identifier === 'stringified'
-        ? Object.keys(results).reduce((acc, indexId) => {
-            if (indexId === '__identifier') {
-              return acc;
-            }
-            acc[indexId] = new SearchResults(
-              new SearchParameters(results[indexId]._state),
-              results[indexId]._rawResults
-            );
-            return acc;
-          }, {})
-        : results;
-
-    search.__initialSearchResults = initialResults;
+    search._initialResults = results;
 
     search.helper = helper;
     search.mainHelper = helper;
