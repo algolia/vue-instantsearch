@@ -10,11 +10,7 @@ import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
 import { isVue3, isVue2, Vue2, renderCompat } from '../vue-compat';
-import {
-  SearchResults,
-  SearchParameters,
-  AlgoliaSearchHelper,
-} from 'algoliasearch-helper';
+import { AlgoliaSearchHelper } from 'algoliasearch-helper';
 
 jest.unmock('instantsearch.js/es');
 
@@ -301,14 +297,13 @@ Array [
             renderToString,
           });
           expect(state).toEqual({
-            __identifier: 'stringified',
             hello: {
-              _rawResults: [
+              results: [
                 {
                   query: '',
                 },
               ],
-              _state: {
+              state: {
                 disjunctiveFacets: [],
                 disjunctiveFacetsRefinements: {},
                 facets: [],
@@ -534,7 +529,7 @@ Array [
                     this.instantsearch.mainIndex.getWidgets().map(w => w.$$type)
                   ).toEqual(['ais.configure']);
 
-                  expect(res.hello._state.hitsPerPage).toBe(100);
+                  expect(res.hello.state.hitsPerPage).toBe(100);
                 })
                 // jest throws an error we need to catch, since stuck in the flow
                 .catch(e => {
@@ -660,7 +655,7 @@ Array [
   });
 
   describe('hydrate', () => {
-    it('sets __initialSearchResults', () => {
+    it('sets _initialResults', () => {
       const serialized = createSerializedState();
 
       const app = {
@@ -683,7 +678,6 @@ Array [
         // in test, beforeCreated doesn't have $data yet, but IRL it does
         created() {
           this.instantsearch.hydrate({
-            __identifier: 'stringified',
             hello: serialized,
           });
         },
@@ -693,55 +687,18 @@ Array [
         vm: { instantsearch },
       } = mount(app);
 
-      expect(instantsearch.__initialSearchResults).toEqual(
-        expect.objectContaining({ hello: expect.any(SearchResults) })
+      expect(instantsearch._initialResults).toEqual(
+        expect.objectContaining({
+          hello: {
+            state: expect.any(Object),
+            results: expect.any(Object),
+          },
+        })
       );
 
-      expect(instantsearch.__initialSearchResults.hello).toEqual(
+      expect(instantsearch._initialResults.hello).toEqual(
         expect.objectContaining(serialized)
       );
-    });
-
-    it('accepts non-stringified results', () => {
-      const serialized = createSerializedState();
-      const nonSerialized = new SearchResults(
-        new SearchParameters(serialized._state),
-        serialized._rawResults
-      );
-
-      const app = {
-        mixins: [
-          createServerRootMixin({
-            searchClient: createFakeClient(),
-            indexName: 'movies',
-          }),
-        ],
-        render: renderCompat(h =>
-          h(InstantSearchSsr, {}, [
-            h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
-            }),
-            h(SearchBox),
-          ])
-        ),
-        created() {
-          this.instantsearch.hydrate({
-            movies: nonSerialized,
-          });
-
-          expect(this.instantsearch.__initialSearchResults).toEqual(
-            expect.objectContaining({ movies: expect.any(SearchResults) })
-          );
-
-          expect(this.instantsearch.__initialSearchResults.movies).toEqual(
-            nonSerialized
-          );
-        },
-      };
-
-      mount(app);
     });
 
     it('inits the main index', () => {
@@ -773,7 +730,6 @@ Array [
       expect(instantsearch.mainIndex.getHelper()).toBe(null);
 
       instantsearch.hydrate({
-        __identifier: 'stringified',
         hello: serialized,
       });
 
@@ -812,7 +768,6 @@ Array [
       expect(instantsearch.mainHelper).toBe(null);
 
       instantsearch.hydrate({
-        __identifier: 'stringified',
         hello: serialized,
       });
 
@@ -834,6 +789,7 @@ Array [
         created() {
           instantSearchInstance = this.instantsearch;
         },
+        render() {},
       });
 
       const widget = {
@@ -907,6 +863,7 @@ Object {
           created() {
             instantSearchInstance = this.instantsearch;
           },
+          render() {},
         });
 
         const widget = {
@@ -940,6 +897,7 @@ Object {
           created() {
             instantSearchInstance = this.instantsearch;
           },
+          render() {},
         });
 
         const widget = {
