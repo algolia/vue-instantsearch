@@ -199,11 +199,6 @@ See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsear
 
     it('detects child widgets', async () => {
       const searchClient = createFakeClient();
-      // const oldSearch = searchClient.search;
-      // searchClient.search = function search(args) {
-      //   console.trace('called');
-      //   return oldSearch(args);
-      // };
       let mainIndex;
 
       const app = {
@@ -262,7 +257,7 @@ Object {
   },
 }
 `);
-      // TODO: find out why search isn't debounced
+
       expect(searchClient.search).toHaveBeenCalledTimes(1);
       expect(searchClient.search.mock.calls[0][0]).toMatchInlineSnapshot(`
 Array [
