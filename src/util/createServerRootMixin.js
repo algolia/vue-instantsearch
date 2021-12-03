@@ -1,5 +1,4 @@
 import instantsearch from 'instantsearch.js/es';
-import algoliaHelper from 'algoliasearch-helper';
 import { isVue3, isVue2, Vue2, createSSRApp } from '../util/vue-compat';
 import { warn } from './warn';
 
@@ -75,15 +74,7 @@ function defaultCloneComponent(componentInstance, { mixins = [] } = {}) {
   return app;
 }
 
-function augmentInstantSearch(
-  instantSearchOptions,
-  searchClient,
-  indexName,
-  cloneComponent
-) {
-  /* eslint-disable no-param-reassign */
-
-  const helper = algoliaHelper(searchClient, indexName);
+function augmentInstantSearch(instantSearchOptions, cloneComponent) {
   const search = instantsearch(instantSearchOptions);
 
   let resultsState;
@@ -111,23 +102,19 @@ function augmentInstantSearch(
           mixins: [
             {
               created() {
-                // eslint-disable-next-line consistent-this
                 instance = this.instantsearch;
-                this.instantsearch.helper = helper;
-                this.instantsearch.mainHelper = helper;
 
-                this.instantsearch.mainIndex.init({
-                  instantSearchInstance: this.instantsearch,
-                  parent: null,
-                  uiState: this.instantsearch._initialUiState,
-                });
+                instance.start();
+                // although we use start for initializing the main index,
+                // we don't want to send search requests yet
+                instance.started = false;
               },
             },
           ],
         });
       })
       .then(() => renderToString(app))
-      .then(() => searchOnlyWithDerivedHelpers(helper))
+      .then(() => searchOnlyWithDerivedHelpers(instance.mainHelper))
       .then(() => {
         resultsState = {};
         walkIndex(instance.mainIndex, widget => {
@@ -136,6 +123,7 @@ function augmentInstantSearch(
           resultsState[widget.getIndexId()] = {
             // copy just the values of SearchParameters, not the functions
             state: Object.keys(_state).reduce((acc, key) => {
+              // eslint-disable-next-line no-param-reassign
               acc[key] = _state[key];
               return acc;
             }, {}),
@@ -210,39 +198,16 @@ function augmentInstantSearch(
 
     search._initialResults = results;
 
-    search.helper = helper;
-    search.mainHelper = helper;
-
-    search.mainIndex.init({
-      instantSearchInstance: search,
-      parent: null,
-      uiState: search._initialUiState,
-    });
+    search.start();
+    search.started = false;
   };
-
-  /* eslint-enable no-param-reassign */
   return search;
 }
 
 export function createServerRootMixin(instantSearchOptions = {}) {
-  const {
-    searchClient,
-    indexName,
-    $cloneComponent = defaultCloneComponent,
-  } = instantSearchOptions;
+  const { $cloneComponent = defaultCloneComponent } = instantSearchOptions;
 
-  if (!searchClient || !indexName) {
-    throw new Error(
-      'createServerRootMixin requires `searchClient` and `indexName` in the first argument'
-    );
-  }
-
-  const search = augmentInstantSearch(
-    instantSearchOptions,
-    searchClient,
-    indexName,
-    $cloneComponent
-  );
+  const search = augmentInstantSearch(instantSearchOptions, $cloneComponent);
 
   // put this in the user's root Vue instance
   // we can then reuse that InstantSearch instance seamlessly from `ais-instant-search-ssr`
@@ -254,7 +219,7 @@ export function createServerRootMixin(instantSearchOptions = {}) {
     },
     data() {
       return {
-        // this is in data, so that the real & duplicated render do not share
+        // this is in data, so that the real & cloned render do not share
         // the same instantsearch instance.
         instantsearch: search,
       };

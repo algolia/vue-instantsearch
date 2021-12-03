@@ -53,9 +53,11 @@ describe('createServerRootMixin', () => {
             }),
           ],
         })
-      ).toThrowErrorMatchingInlineSnapshot(
-        `"createServerRootMixin requires \`searchClient\` and \`indexName\` in the first argument"`
-      );
+      ).toThrowErrorMatchingInlineSnapshot(`
+"The \`searchClient\` option is required.
+
+See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsearch/js/"
+`);
     });
 
     it('requires indexName', () => {
@@ -68,9 +70,11 @@ describe('createServerRootMixin', () => {
             }),
           ],
         })
-      ).toThrowErrorMatchingInlineSnapshot(
-        `"createServerRootMixin requires \`searchClient\` and \`indexName\` in the first argument"`
-      );
+      ).toThrowErrorMatchingInlineSnapshot(`
+"The \`indexName\` option is required.
+
+See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsearch/js/"
+`);
     });
 
     it('creates an instantsearch instance on "data"', () => {
@@ -195,6 +199,11 @@ describe('createServerRootMixin', () => {
 
     it('detects child widgets', async () => {
       const searchClient = createFakeClient();
+      // const oldSearch = searchClient.search;
+      // searchClient.search = function search(args) {
+      //   console.trace('called');
+      //   return oldSearch(args);
+      // };
       let mainIndex;
 
       const app = {
@@ -253,7 +262,7 @@ Object {
   },
 }
 `);
-
+      // TODO: find out why search isn't debounced
       expect(searchClient.search).toHaveBeenCalledTimes(1);
       expect(searchClient.search.mock.calls[0][0]).toMatchInlineSnapshot(`
 Array [
