@@ -48,7 +48,7 @@
     "release": "shipjs prepare"
   },
   "dependencies": {
-    "instantsearch.js": "https://pkg.csb.dev/algolia/instantsearch.js/commit/3f954126/instantsearch.js",
+    "instantsearch.js": "^4.34.0",
     "mitt": "^2.1.0"
   },
   "peerDependencies": {
