@@ -77,7 +77,7 @@ function defaultCloneComponent(componentInstance, { mixins = [] } = {}) {
 function augmentInstantSearch(instantSearchOptions, cloneComponent) {
   const search = instantsearch(instantSearchOptions);
 
-  let resultsState;
+  let initialResults;
 
   /**
    * main API for SSR, called in serverPrefetch of a root component which contains instantsearch
@@ -116,11 +116,11 @@ function augmentInstantSearch(instantSearchOptions, cloneComponent) {
       .then(() => renderToString(app))
       .then(() => searchOnlyWithDerivedHelpers(instance.mainHelper))
       .then(() => {
-        resultsState = {};
+        initialResults = {};
         walkIndex(instance.mainIndex, widget => {
           const { _state, _rawResults } = widget.getResults();
 
-          resultsState[widget.getIndexId()] = {
+          initialResults[widget.getIndexId()] = {
             // copy just the values of SearchParameters, not the functions
             state: Object.keys(_state).reduce((acc, key) => {
               // eslint-disable-next-line no-param-reassign
@@ -131,7 +131,7 @@ function augmentInstantSearch(instantSearchOptions, cloneComponent) {
           };
         });
 
-        search.hydrate(resultsState);
+        search.hydrate(initialResults);
         return search.getState();
       });
   };
@@ -140,10 +140,10 @@ function augmentInstantSearch(instantSearchOptions, cloneComponent) {
    * @returns {Promise} result state to serialize and enter into .hydrate
    */
   search.getState = function() {
-    if (!resultsState) {
+    if (!initialResults) {
       throw new Error('You need to wait for findResultsState to finish');
     }
-    return resultsState;
+    return initialResults;
   };
 
   /**
@@ -155,12 +155,14 @@ function augmentInstantSearch(instantSearchOptions, cloneComponent) {
    * @returns {void}
    */
   search.__forceRender = function(widget, parent) {
+    const results = parent.getResults();
+
     // this happens when a different InstantSearch gets rendered initially,
     // after the hydrate finished. There's thus no initial results available.
-    if (parent.getResults() === null) {
+    if (results === null) {
       return;
     }
-    const results = parent.getResults();
+
     const state = results._state;
 
     const localHelper = parent.getHelper();
