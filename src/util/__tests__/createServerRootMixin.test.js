@@ -10,7 +10,11 @@ import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
 import { isVue3, isVue2, Vue2, renderCompat } from '../vue-compat';
-import { AlgoliaSearchHelper } from 'algoliasearch-helper';
+import {
+  AlgoliaSearchHelper,
+  SearchParameters,
+  SearchResults,
+} from 'algoliasearch-helper';
 
 jest.unmock('instantsearch.js/es');
 
@@ -655,6 +659,68 @@ Array [
 
         await renderToString(wrapper);
       });
+
+      it('searches only once', async () => {
+        const searchClient = createFakeClient();
+        const app = {
+          mixins: [
+            forceIsServerMixin,
+            createServerRootMixin({
+              searchClient,
+              indexName: 'hello',
+            }),
+          ],
+          render: renderCompat(h =>
+            /**
+             * This code triggers this warning in Vue 3:
+             * > Non-function value encountered for default slot. Prefer function slots for better performance.
+             *
+             * To fix it, replace the third argument
+             * > [h(...), h(...)]
+             * with
+             * > { default: () => [h(...), h(...)] }
+             *
+             * but it's not important (and not compatible in vue2), we're leaving it as-is.
+             */
+            h(InstantSearchSsr, {}, [
+              h(Configure, {
+                attrs: {
+                  hitsPerPage: 100,
+                },
+              }),
+              h(SearchBox),
+            ])
+          ),
+          serverPrefetch() {
+            return this.instantsearch.findResultsState({
+              component: this,
+              renderToString,
+            });
+          },
+        };
+
+        const wrapper = createSSRApp({
+          mixins: [forceIsServerMixin],
+          render: renderCompat(h => h(app)),
+        });
+
+        await renderToString(wrapper);
+
+        expect(searchClient.search).toHaveBeenCalledTimes(1);
+        expect(searchClient.search.mock.calls[0][0]).toMatchInlineSnapshot(`
+Array [
+  Object {
+    "indexName": "hello",
+    "params": Object {
+      "facets": Array [],
+      "hitsPerPage": 100,
+      "query": "",
+      "tagFilters": "",
+    },
+  },
+]
+`);
+      });
     }
   });
 
@@ -851,6 +917,58 @@ Object {
   "templatesConfig": Object {},
 }
 `
+      );
+    });
+
+    it('uses the results passed to hydrate for rendering', () => {
+      let instantSearchInstance;
+      mount({
+        mixins: [
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'lol',
+          }),
+        ],
+        created() {
+          instantSearchInstance = this.instantsearch;
+        },
+        render() {},
+      });
+
+      const widget = {
+        init: jest.fn(),
+        render: jest.fn(),
+      };
+
+      const resultsState = createSerializedState();
+      const state = new SearchParameters(resultsState.state);
+      const results = new SearchResults(state, resultsState.results);
+
+      instantSearchInstance.hydrate({
+        lol: resultsState,
+      });
+
+      instantSearchInstance.__forceRender(
+        widget,
+        instantSearchInstance.mainIndex
+      );
+
+      expect(widget.init).toHaveBeenCalledTimes(0);
+      expect(widget.render).toHaveBeenCalledTimes(1);
+
+      const renderArgs = widget.render.mock.calls[0][0];
+
+      expect(renderArgs).toEqual(
+        expect.objectContaining({
+          state,
+          results,
+          scopedResults: [
+            expect.objectContaining({
+              indexId: 'lol',
+              results,
+            }),
+          ],
+        })
       );
     });
 
