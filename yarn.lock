@@ -8122,10 +8122,10 @@ instantsearch.css@7.3.1:
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.3.1.tgz#7ab74a8f355091ae040947a9cf5438f379026622"
   integrity sha512-/kaMDna5D+Q9mImNBHEhb9HgHATDOFKYii7N1Iwvrj+lmD9gBJLqVhUw67gftq2O0QI330pFza+CRscIwB1wQQ==
 
-instantsearch.js@^4.35.0:
-  version "4.35.0"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.35.0.tgz#188a5b9f91c36e84ab912dc869794b51c9eea638"
-  integrity sha512-2s1GlSYqy6c+I8MrE43iYnpmP5PbL8q3VSYPvLfuJaPF4MX0I8R/8bYVVG7cm6btg+BXT1ZbryG8aHPZTkaVKQ==
+instantsearch.js@^4.36.0:
+  version "4.36.0"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.36.0.tgz#70baaa7ea745992b2220f1c553e310cef552f7b8"
+  integrity sha512-o0PRCir8AvMHo9idMEh6ERPXlSMn6auUbq2niW5t//03Kn+EPYDP8uXyKQtSRHLxd9T0gTU6PNJ3vM0VV76VgA==
   dependencies:
     "@algolia/events" "^4.0.1"
     "@types/google.maps" "^3.45.3"
