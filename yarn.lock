@@ -8122,10 +8122,10 @@ instantsearch.css@7.3.1:
   resolved "https://registry.yarnpkg.com/instantsearch.css/-/instantsearch.css-7.3.1.tgz#7ab74a8f355091ae040947a9cf5438f379026622"
   integrity sha512-/kaMDna5D+Q9mImNBHEhb9HgHATDOFKYii7N1Iwvrj+lmD9gBJLqVhUw67gftq2O0QI330pFza+CRscIwB1wQQ==
 
-instantsearch.js@^4.36.0:
-  version "4.36.0"
-  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.36.0.tgz#70baaa7ea745992b2220f1c553e310cef552f7b8"
-  integrity sha512-o0PRCir8AvMHo9idMEh6ERPXlSMn6auUbq2niW5t//03Kn+EPYDP8uXyKQtSRHLxd9T0gTU6PNJ3vM0VV76VgA==
+instantsearch.js@^4.37.2:
+  version "4.37.2"
+  resolved "https://registry.yarnpkg.com/instantsearch.js/-/instantsearch.js-4.37.2.tgz#e5efed415f68ae934ce48db8c6bd3e3947d6650e"
+  integrity sha512-xlzjXQ3ZlDUA9tSsg8oUT4EINTC7MB3j0JJ029st56ZSJ6EXoT4rlzISFXVAuc0aGbbhBlxpXrjyOYD2M/Hrow==
   dependencies:
     "@algolia/events" "^4.0.1"
     "@types/google.maps" "^3.45.3"
@@ -8134,7 +8134,7 @@ instantsearch.js@^4.36.0:
     algoliasearch-helper "^3.7.0"
     classnames "^2.2.5"
     hogan.js "^3.0.2"
-    preact "^10.0.0"
+    preact "^10.6.0"
     qs "^6.5.1 < 6.10"
     search-insights "^2.1.0"
 
@@ -12096,10 +12096,10 @@ posthtml@^0.10.1:
     posthtml-parser "^0.3.0"
     posthtml-render "^1.0.5"
 
-preact@^10.0.0:
-  version "10.0.4"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.0.4.tgz#7c1a2e074ea64a2d3c83349f7f55304ed0e017a7"
-  integrity sha512-x9QW91LVQZ4lkMZ8gOucyaW1414MEtgSC//JwlxR0nfq/QEdbaLQZrWFFWgjtGyNBBXg2P0TZ6u6W+XlpjcK2Q==
+preact@^10.6.0:
+  version "10.6.4"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.6.4.tgz#ad12c409ff1b4316158486e0a7b8d43636f7ced8"
+  integrity sha512-WyosM7pxGcndU8hY0OQlLd54tOU+qmG45QXj2dAYrL11HoyU/EzOSTlpJsirbBr1QW7lICxSsVJJmcmUglovHQ==
 
 prelude-ls@~1.1.2:
   version "1.1.2"
