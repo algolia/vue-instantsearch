@@ -85,6 +85,8 @@ jobs:
           command: |
             yarn examples:build e-commerce
             yarn run test:e2e:saucelabs
+      - store_test_results:
+          path: junit/wdio
 
   shipjs_trigger:
     <<: *defaults
