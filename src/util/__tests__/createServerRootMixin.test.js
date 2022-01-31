@@ -722,7 +722,7 @@ Array [
 `);
       });
 
-      it('works if component has no $vnode', async () => {
+      it('works when component is at root (and therefore has no $vnode)', async () => {
         const searchClient = createFakeClient();
         let mainIndex;
 
