@@ -683,7 +683,7 @@ Array [
       expect(instantsearch.mainHelper).toEqual(expect.any(AlgoliaSearchHelper));
     });
 
-    it('works when component is at root (and therefore has no $vnode)vnode', async () => {
+    it('works when component is at root (and therefore has no $vnode)', async () => {
       const searchClient = createFakeClient();
       let mainIndex;
 
