@@ -53,7 +53,10 @@ function defaultCloneComponent(componentInstance) {
 
   const Extended = componentInstance.$vnode
     ? componentInstance.$vnode.componentOptions.Ctor.extend(options)
-    : Vue.component(Object.assign({}, componentInstance.$options, options));
+    : Vue.component(
+        options.name,
+        Object.assign({}, componentInstance.$options, options)
+      );
 
   const app = new Extended({
     propsData: componentInstance.$options.propsData,
