@@ -682,6 +682,78 @@ Array [
       expect(instantsearch.helper).toEqual(expect.any(AlgoliaSearchHelper));
       expect(instantsearch.mainHelper).toEqual(expect.any(AlgoliaSearchHelper));
     });
+
+    it('works if component has no $vnode', async () => {
+      const searchClient = createFakeClient();
+      let mainIndex;
+
+      const app = {
+        render: h =>
+          /**
+           * This code triggers this warning in Vue 3:
+           * > Non-function value encountered for default slot. Prefer function slots for better performance.
+           *
+           * To fix it, replace the third argument
+           * > [h(...), h(...)]
+           * with
+           * > { default: () => [h(...), h(...)] }
+           *
+           * but it's not important (and not compatible in vue2), we're leaving it as-is.
+           */
+          h(InstantSearchSsr, {}, [
+            h(Configure, {
+              attrs: {
+                hitsPerPage: 100,
+              },
+            }),
+            h(SearchBox),
+          ]),
+      };
+
+      const wrapper = {
+        mixins: [
+          forceIsServerMixin,
+          createServerRootMixin({
+            searchClient,
+            indexName: 'hello',
+          }),
+        ],
+        serverPrefetch() {
+          return this.instantsearch.findResultsState(this);
+        },
+        created() {
+          mainIndex = this.instantsearch.mainIndex;
+        },
+        render: h => h(app),
+      };
+
+      await renderToString(wrapper);
+
+      expect(mainIndex.getWidgetState()).toMatchInlineSnapshot(`
+      Object {
+        "hello": Object {
+          "configure": Object {
+            "hitsPerPage": 100,
+          },
+        },
+      }
+      `);
+
+      expect(searchClient.search).toHaveBeenCalledTimes(1);
+      expect(searchClient.search.mock.calls[0][0]).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "indexName": "hello",
+          "params": Object {
+            "facets": Array [],
+            "hitsPerPage": 100,
+            "query": "",
+            "tagFilters": "",
+          },
+        },
+      ]
+      `);
+    });
   });
 
   describe('__forceRender', () => {
