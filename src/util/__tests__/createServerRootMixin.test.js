@@ -10,11 +10,7 @@ import SearchBox from '../../components/SearchBox.vue';
 import { createWidgetMixin } from '../../mixins/widget';
 import { createFakeClient } from '../testutils/client';
 import { createSerializedState } from '../testutils/helper';
-import {
-  SearchResults,
-  SearchParameters,
-  AlgoliaSearchHelper,
-} from 'algoliasearch-helper';
+import { SearchParameters, SearchResults } from 'algoliasearch-helper';
 
 jest.unmock('instantsearch.js/es');
 
@@ -54,9 +50,11 @@ describe('createServerRootMixin', () => {
               }),
             ],
           })
-      ).toThrowErrorMatchingInlineSnapshot(
-        `"createServerRootMixin requires \`searchClient\` and \`indexName\` in the first argument"`
-      );
+      ).toThrowErrorMatchingInlineSnapshot(`
+"The \`searchClient\` option is required.
+
+See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsearch/js/"
+`);
     });
 
     it('requires indexName', () => {
@@ -70,9 +68,11 @@ describe('createServerRootMixin', () => {
               }),
             ],
           })
-      ).toThrowErrorMatchingInlineSnapshot(
-        `"createServerRootMixin requires \`searchClient\` and \`indexName\` in the first argument"`
-      );
+      ).toThrowErrorMatchingInlineSnapshot(`
+"The \`indexName\` option is required.
+
+See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsearch/js/"
+`);
     });
 
     it('creates an instantsearch instance on "data"', () => {
@@ -246,6 +246,7 @@ Array [
             h(SearchBox),
           ]);
         },
+
         serverPrefetch() {
           return this.instantsearch.findResultsState(this);
         },
@@ -388,7 +389,7 @@ Array [
                   this.instantsearch.mainIndex.getWidgets().map(w => w.$$type)
                 ).toEqual(['ais.configure']);
 
-                expect(res.hello._state.hitsPerPage).toBe(100);
+                expect(res.hello.state.hitsPerPage).toBe(100);
               })
               // jest throws an error we need to catch, since stuck in the flow
               .catch(e => {
@@ -423,7 +424,7 @@ Array [
 
       expect.assertions(2);
 
-      const App = Vue.component('App', {
+      const App = {
         mixins: [
           forceIsServerMixin,
           createServerRootMixin({
@@ -431,11 +432,8 @@ Array [
             indexName: 'hello',
           }),
         ],
-        render(h) {
-          return h(InstantSearchSsr, {}, [
-            this.$scopedSlots.default({ test: true }),
-          ]);
-        },
+        render: h =>
+          h(InstantSearchSsr, {}, [this.$scopedSlots.default({ test: true })]),
         serverPrefetch() {
           return (
             this.instantsearch
@@ -453,26 +451,23 @@ Array [
               })
           );
         },
-      });
+      };
 
       const wrapper = new Vue({
         mixins: [forceIsServerMixin],
-        render(h) {
-          return h(App, {
+        render: h =>
+          h(App, {
             scopedSlots: {
               default({ test }) {
                 if (test) {
                   return h(Configure, {
-                    attrs: {
-                      hitsPerPage: 100,
-                    },
+                    hitsPerPage: 100,
                   });
                 }
                 return null;
               },
             },
-          });
-        },
+          }),
       });
 
       await renderToString(wrapper);
@@ -519,13 +514,72 @@ Array [
 
       await renderToString(wrapper);
     });
+
+    it('searches only once', async () => {
+      const searchClient = createFakeClient();
+      const app = {
+        mixins: [
+          forceIsServerMixin,
+          createServerRootMixin({
+            searchClient,
+            indexName: 'hello',
+          }),
+        ],
+        render: h =>
+          /**
+           * This code triggers this warning in Vue 3:
+           * > Non-function value encountered for default slot. Prefer function slots for better performance.
+           *
+           * To fix it, replace the third argument
+           * > [h(...), h(...)]
+           * with
+           * > { default: () => [h(...), h(...)] }
+           *
+           * but it's not important (and not compatible in vue2), we're leaving it as-is.
+           */
+          h(InstantSearchSsr, {}, [
+            h(Configure, {
+              attrs: {
+                hitsPerPage: 100,
+              },
+            }),
+            h(SearchBox),
+          ]),
+        serverPrefetch() {
+          return this.instantsearch.findResultsState(this);
+        },
+      };
+
+      const wrapper = new Vue({
+        mixins: [forceIsServerMixin],
+        render: h => h(app),
+      });
+
+      await renderToString(wrapper);
+
+      expect(searchClient.search).toHaveBeenCalledTimes(1);
+      expect(searchClient.search.mock.calls[0][0]).toMatchInlineSnapshot(`
+Array [
+  Object {
+    "indexName": "hello",
+    "params": Object {
+      "facets": Array [],
+      "hitsPerPage": 100,
+      "query": "",
+      "tagFilters": "",
+    },
+  },
+]
+`);
+    });
   });
 
   describe('hydrate', () => {
-    it('sets __initialSearchResults', () => {
+    it('sets _initialResults', () => {
       const serialized = createSerializedState();
 
-      const app = {
+      let instantsearch;
+      const app = new Vue({
         mixins: [
           createServerRootMixin({
             searchClient: createFakeClient(),
@@ -544,73 +598,35 @@ Array [
         },
         // in test, beforeCreated doesn't have $data yet, but IRL it does
         created() {
+          instantsearch = this.instantsearch;
           this.instantsearch.hydrate({
-            __identifier: 'stringified',
             hello: serialized,
           });
         },
-      };
+      });
 
-      const {
-        vm: { instantsearch },
-      } = mount(app);
+      mount(app);
 
-      expect(instantsearch.__initialSearchResults).toEqual(
-        expect.objectContaining({ hello: expect.any(SearchResults) })
+      expect(instantsearch._initialResults).toEqual(
+        expect.objectContaining({
+          hello: {
+            state: expect.any(Object),
+            results: expect.any(Object),
+          },
+        })
       );
 
-      expect(instantsearch.__initialSearchResults.hello).toEqual(
+      expect(instantsearch._initialResults.hello).toEqual(
         expect.objectContaining(serialized)
       );
-    });
-
-    it('accepts non-stringified results', () => {
-      const serialized = createSerializedState();
-      const nonSerialized = new SearchResults(
-        new SearchParameters(serialized._state),
-        serialized._rawResults
-      );
-
-      const app = {
-        mixins: [
-          createServerRootMixin({
-            searchClient: createFakeClient(),
-            indexName: 'movies',
-          }),
-        ],
-        render(h) {
-          return h(InstantSearchSsr, {}, [
-            h(Configure, {
-              attrs: {
-                hitsPerPage: 100,
-              },
-            }),
-            h(SearchBox),
-          ]);
-        },
-        // in test, beforeCreated doesn't have $data yet, but IRL it does
-        created() {
-          this.instantsearch.hydrate({
-            movies: nonSerialized,
-          });
-        },
-      };
-
-      const {
-        vm: { instantsearch },
-      } = mount(app);
-
-      expect(instantsearch.__initialSearchResults).toEqual(
-        expect.objectContaining({ movies: expect.any(SearchResults) })
-      );
-
-      expect(instantsearch.__initialSearchResults.movies).toBe(nonSerialized);
     });
 
     it('inits the main index', () => {
       const serialized = createSerializedState();
 
-      const app = {
+      let instantsearch;
+
+      const app = new Vue({
         mixins: [
           createServerRootMixin({
             searchClient: createFakeClient(),
@@ -627,28 +643,30 @@ Array [
             h(SearchBox),
           ]);
         },
-      };
+        created() {
+          instantsearch = this.instantsearch;
+        },
+      });
 
-      const {
-        vm: { instantsearch },
-      } = mount(app);
+      mount(app);
 
       expect(instantsearch.mainIndex.getHelper()).toBe(null);
 
       instantsearch.hydrate({
-        __identifier: 'stringified',
         hello: serialized,
       });
 
-      // TODO: assert that this is expect.any(AlgoliaSearchHelper), but test fails
-      // even though it's an object with all the right properties (including constructor)
-      expect(instantsearch.mainIndex.getHelper()).not.toBeNull();
+      expect(instantsearch.mainIndex.getHelper().constructor.name).toBe(
+        'AlgoliaSearchHelper'
+      );
     });
 
     it('sets helper & mainHelper', () => {
       const serialized = createSerializedState();
 
-      const app = {
+      let instantsearch;
+
+      const app = new Vue({
         mixins: [
           createServerRootMixin({
             searchClient: createFakeClient(),
@@ -665,22 +683,24 @@ Array [
             h(SearchBox),
           ]);
         },
-      };
+        created() {
+          instantsearch = this.instantsearch;
+        },
+      });
 
-      const {
-        vm: { instantsearch },
-      } = mount(app);
+      mount(app);
 
       expect(instantsearch.helper).toBe(null);
       expect(instantsearch.mainHelper).toBe(null);
 
       instantsearch.hydrate({
-        __identifier: 'stringified',
         hello: serialized,
       });
 
-      expect(instantsearch.helper).toEqual(expect.any(AlgoliaSearchHelper));
-      expect(instantsearch.mainHelper).toEqual(expect.any(AlgoliaSearchHelper));
+      expect(instantsearch.helper.constructor.name).toBe('AlgoliaSearchHelper');
+      expect(instantsearch.mainHelper.constructor.name).toBe(
+        'AlgoliaSearchHelper'
+      );
     });
 
     it('works when component is at root (and therefore has no $vnode)', async () => {
@@ -799,6 +819,7 @@ Array [
               results: expect.anything(),
             }),
           ]),
+          parent: expect.anything(),
           state: expect.anything(),
           instantSearchInstance: expect.anything(),
         },
@@ -807,6 +828,7 @@ Object {
   "createURL": [Function],
   "helper": Anything,
   "instantSearchInstance": Anything,
+  "parent": Anything,
   "results": Anything,
   "scopedResults": ArrayContaining [
     ObjectContaining {
@@ -822,6 +844,58 @@ Object {
   "templatesConfig": Object {},
 }
 `
+      );
+    });
+
+    it('uses the results passed to hydrate for rendering', () => {
+      let instantSearchInstance;
+      mount({
+        mixins: [
+          createServerRootMixin({
+            searchClient: createFakeClient(),
+            indexName: 'lol',
+          }),
+        ],
+        created() {
+          instantSearchInstance = this.instantsearch;
+        },
+        render() {},
+      });
+
+      const widget = {
+        init: jest.fn(),
+        render: jest.fn(),
+      };
+
+      const resultsState = createSerializedState();
+      const state = new SearchParameters(resultsState.state);
+      const results = new SearchResults(state, resultsState.results);
+
+      instantSearchInstance.hydrate({
+        lol: resultsState,
+      });
+
+      instantSearchInstance.__forceRender(
+        widget,
+        instantSearchInstance.mainIndex
+      );
+
+      expect(widget.init).toHaveBeenCalledTimes(0);
+      expect(widget.render).toHaveBeenCalledTimes(1);
+
+      const renderArgs = widget.render.mock.calls[0][0];
+
+      expect(renderArgs).toEqual(
+        expect.objectContaining({
+          state,
+          results,
+          scopedResults: [
+            expect.objectContaining({
+              indexId: 'lol',
+              results,
+            }),
+          ],
+        })
       );
     });
 
