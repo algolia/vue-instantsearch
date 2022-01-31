@@ -242,8 +242,6 @@ function augmentInstantSearch(
       parent: null,
       uiState: search._initialUiState,
     });
-
-    search.middleware.forEach(({ instance }) => instance.subscribe());
   };
 
   /* eslint-enable no-param-reassign */
