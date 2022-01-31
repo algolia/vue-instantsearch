@@ -16,7 +16,7 @@
     "autocomplete"
   ],
   "license": "MIT",
-  "version": "3.8.1",
+  "version": "3.9.0",
   "files": [
     "dist",
     "src",

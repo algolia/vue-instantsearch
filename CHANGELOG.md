@@ -1,3 +1,17 @@
+# [3.9.0](https://github.com/algolia/vue-instantsearch/compare/v3.8.1...v3.9.0) (2022-01-31)
+
+
+### Bug Fixes
+
+* **server:** extend component correctly if at root ([#1105](https://github.com/algolia/vue-instantsearch/issues/1105)) ([4b0d295](https://github.com/algolia/vue-instantsearch/commit/4b0d2951c22b4ddb66a99d7a6881c5f2567b4c19)), closes [#1104](https://github.com/algolia/vue-instantsearch/issues/1104) [#1054](https://github.com/algolia/vue-instantsearch/issues/1054) [#1104](https://github.com/algolia/vue-instantsearch/issues/1104)
+
+
+### Features
+
+* **ssr:** prevent initial network request ([#1106](https://github.com/algolia/vue-instantsearch/issues/1106)) ([9285325](https://github.com/algolia/vue-instantsearch/commit/92853255e1860940dcd3b2a329bb9e0cf9ea85da)), closes [#1090](https://github.com/algolia/vue-instantsearch/issues/1090)
+
+
+
 ## [3.8.1](https://github.com/algolia/vue-instantsearch/compare/v3.8.0...v3.8.1) (2021-07-12)
 
 
