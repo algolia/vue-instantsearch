@@ -710,7 +710,7 @@ Array [
           ]),
       };
 
-      const wrapper = {
+      const wrapper = new Vue({
         mixins: [
           forceIsServerMixin,
           createServerRootMixin({
@@ -725,34 +725,34 @@ Array [
           mainIndex = this.instantsearch.mainIndex;
         },
         render: h => h(app),
-      };
+      });
 
       await renderToString(wrapper);
 
       expect(mainIndex.getWidgetState()).toMatchInlineSnapshot(`
-      Object {
-        "hello": Object {
-          "configure": Object {
-            "hitsPerPage": 100,
-          },
-        },
-      }
-      `);
+Object {
+  "hello": Object {
+    "configure": Object {
+      "hitsPerPage": 100,
+    },
+  },
+}
+`);
 
       expect(searchClient.search).toHaveBeenCalledTimes(1);
       expect(searchClient.search.mock.calls[0][0]).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "indexName": "hello",
-          "params": Object {
-            "facets": Array [],
-            "hitsPerPage": 100,
-            "query": "",
-            "tagFilters": "",
-          },
-        },
-      ]
-      `);
+Array [
+  Object {
+    "indexName": "hello",
+    "params": Object {
+      "facets": Array [],
+      "hitsPerPage": 100,
+      "query": "",
+      "tagFilters": "",
+    },
+  },
+]
+`);
     });
   });
 
