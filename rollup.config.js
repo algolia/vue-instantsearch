@@ -81,7 +81,16 @@ function outputs(vueVersion) {
           exports: 'named',
         },
       ],
-      plugins: [...plugins],
+      plugins: [
+        ...plugins,
+        replace({
+          'instantsearch.js/es': 'instantsearch.js/cjs',
+        }),
+        createFile(
+          'package.json',
+          JSON.stringify({ type: 'commonjs', sideEffects: true })
+        ),
+      ],
     },
     {
       input: 'src/instantsearch.js',
@@ -101,6 +110,10 @@ function outputs(vueVersion) {
           `import InstantSearch from './src/instantsearch.js';
 export default InstantSearch;
 export * from './src/instantsearch.js';`
+        ),
+        createFile(
+          'package.json',
+          JSON.stringify({ type: 'module', sideEffects: true })
         ),
         babel({
           extensions: ['.js', '.jsx', '.es6', '.es', '.mjs', '.vue'],
