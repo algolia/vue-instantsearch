@@ -162,7 +162,7 @@ describe('babel-plugin-extension-resolver', () => {
         options
       )
     ).rejects.toThrow(
-      "/path/to/src/file.js: Cannot find module 'instantsearch.js/non-existing-folder-this-can-never-exist/qsdf/gh/jklm' from 'babel-plugin-extension-resolver.js'"
+      /\/path\/to\/src\/file.js: Cannot find module 'instantsearch.js\/non-existing-folder-this-can-never-exist\/qsdf\/gh\/jklm' from '/
     );
   });
 });
