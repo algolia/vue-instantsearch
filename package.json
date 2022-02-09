@@ -34,7 +34,7 @@
     "examples:build": "yarn build && ./examples/build.sh",
     "website:build": "yarn storybook:build && yarn examples:build && ./scripts/clean-node-modules.sh",
     "test": "jest",
-    "test:build": "yarn build && bundlesize && node test/modules/package-is-es-module.mjs && node test/modules/package-is-cjs-module.cjs",
+    "test:build": "yarn build && bundlesize",
     "test:update": "jest --updateSnapshot",
     "test:watch": "jest --watch",
     "test:e2e": "yarn test:e2e:local",
