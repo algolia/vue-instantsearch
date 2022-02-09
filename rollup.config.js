@@ -8,6 +8,8 @@ import commonjs from 'rollup-plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
 import json from 'rollup-plugin-json';
+import babel from 'rollup-plugin-babel';
+import { extensionResolver } from './scripts/babel-plugin-extension-resolver';
 
 const processEnv = conf => ({
   // parenthesis to avoid syntax errors in places where {} is interpreted as a block
@@ -100,6 +102,22 @@ function outputs(vueVersion) {
 export default InstantSearch;
 export * from './src/instantsearch.js';`
         ),
+        babel({
+          extensions: ['.js', '.jsx', '.es6', '.es', '.mjs', '.vue'],
+          babelrc: false,
+          plugins: [
+            [
+              extensionResolver,
+              {
+                // For verification, see test/module/packages-are-es-modules.mjs
+                modulesToResolve: [
+                  // InstantSearch.js/es is an ES Module, so needs complete paths,
+                  'instantsearch.js',
+                ],
+              },
+            ],
+          ],
+        }),
       ],
     },
     {
