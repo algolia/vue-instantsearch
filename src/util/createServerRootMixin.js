@@ -105,9 +105,11 @@ function augmentInstantSearch(instantSearchOptions, cloneComponent) {
           mixins: [
             {
               beforeCreate() {
-                // In case of Nuxt (3), we ensure the context is shared
-                // Note that this has no effect outside of Nuxt
-                this.$nuxt = component.$nuxt;
+                if (component.$nuxt) {
+                  // In case of Nuxt (3), we ensure the context is shared between
+                  // the real and cloned component
+                  this.$nuxt = component.$nuxt;
+                }
               },
               created() {
                 instance = this.instantsearch;
