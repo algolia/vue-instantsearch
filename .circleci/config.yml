@@ -38,6 +38,19 @@ jobs:
       - run:
           name: Build & Test packages size
           command: yarn test:build
+      - run:
+          name: Test module format Vue 2
+          command: |
+            node test/modules/vue2/package-is-es-module.mjs
+            node test/modules/vue2/package-is-cjs-module.cjs
+      - run:
+          name: Install Vue 3
+          command: ./scripts/test-vue3.sh
+      - run:
+          name: Test module format Vue 3
+          command: |
+            node test/modules/vue3/package-is-es-module.mjs
+            node test/modules/vue3/package-is-cjs-module.cjs
 
   test_unit_vue2:
     <<: *defaults
@@ -59,12 +72,9 @@ jobs:
     steps:
       - checkout
       - run: *install_yarn_version
-      - restore_cache: *restore_yarn_cache
-      - run: *run_yarn_install
       - run:
-          name: Install Vue3
+          name: Install Vue 3
           command: ./scripts/test-vue3.sh
-      - save_cache: *save_yarn_cache
       - run:
           name: Lint & Code styles
           command: yarn lint
@@ -115,4 +125,3 @@ workflows:
             branches:
               only:
                 - master
-                - feat/vue3-compat
