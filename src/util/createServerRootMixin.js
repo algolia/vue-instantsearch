@@ -77,7 +77,10 @@ function defaultCloneComponent(componentInstance, { mixins = [] } = {}) {
   return app;
 }
 
-function augmentInstantSearch(instantSearchOptions, cloneComponent) {
+function augmentInstantSearch(instantSearchOptions) {
+  const {
+    $cloneComponent: cloneComponent = defaultCloneComponent,
+  } = instantSearchOptions;
   const search = instantsearch(instantSearchOptions);
 
   let initialResults;
@@ -226,9 +229,16 @@ function augmentInstantSearch(instantSearchOptions, cloneComponent) {
 }
 
 export function createServerRootMixin(instantSearchOptions = {}) {
-  const { $cloneComponent = defaultCloneComponent } = instantSearchOptions;
+  if (!instantSearchOptions.searchClient) {
+    throw new Error(`The \`searchClient\` option is required.
 
-  const search = augmentInstantSearch(instantSearchOptions, $cloneComponent);
+See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsearch/js/`);
+  }
+  if (!instantSearchOptions.indexName) {
+    throw new Error(`The \`indexName\` option is required.
+
+See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsearch/js/`);
+  }
 
   // put this in the user's root Vue instance
   // we can then reuse that InstantSearch instance seamlessly from `ais-instant-search-ssr`
@@ -242,7 +252,7 @@ export function createServerRootMixin(instantSearchOptions = {}) {
       return {
         // this is in data, so that the real & cloned render do not share
         // the same instantsearch instance.
-        instantsearch: search,
+        instantsearch: augmentInstantSearch(instantSearchOptions),
       };
     },
   };

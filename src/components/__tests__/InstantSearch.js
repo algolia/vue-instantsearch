@@ -274,7 +274,7 @@ it('does not warn when `routing` have either `router` or `stateMapping`', () => 
   expect(warn).toHaveBeenCalledTimes(0);
 });
 
-it('Does not allow a change in `routing`', () => {
+it('Does not allow a change in `routing`', async () => {
   const wrapper = mount(InstantSearch, {
     propsData: {
       searchClient: {},
@@ -282,9 +282,9 @@ it('Does not allow a change in `routing`', () => {
     },
   });
 
-  expect(
+  await expect(
     wrapper.setProps({
-      routing: false,
+      routing: { stateMapping: {} },
     })
   ).rejects.toMatchInlineSnapshot(`
 [Error: routing configuration can not be changed dynamically at this point.

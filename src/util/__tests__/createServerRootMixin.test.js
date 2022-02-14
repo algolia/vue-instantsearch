@@ -214,17 +214,6 @@ See documentation: https://www.algolia.com/doc/api-reference/widgets/instantsear
           }),
         ],
         render: renderCompat(h =>
-          /**
-           * This code triggers this warning in Vue 3:
-           * > Non-function value encountered for default slot. Prefer function slots for better performance.
-           *
-           * To fix it, replace the third argument
-           * > [h(...), h(...)]
-           * with
-           * > { default: () => [h(...), h(...)] }
-           *
-           * but it's not important (and not compatible in vue2), we're leaving it as-is.
-           */
           h(InstantSearchSsr, {}, [
             h(Configure, {
               attrs: {
@@ -509,10 +498,10 @@ Array [
         await renderToString(wrapper);
       });
 
-      it('forwards slots', async done => {
+      it('forwards slots', async () => {
         const searchClient = createFakeClient();
 
-        expect.assertions(2);
+        let res;
 
         const App = {
           mixins: [
@@ -529,21 +518,11 @@ Array [
             </InstantSearchSsr>
           `,
           serverPrefetch() {
-            return (
-              this.instantsearch
-                .findResultsState({ component: this, renderToString })
-                .then(res => {
-                  expect(
-                    this.instantsearch.mainIndex.getWidgets().map(w => w.$$type)
-                  ).toEqual(['ais.configure']);
-
-                  expect(res.hello.state.hitsPerPage).toBe(100);
-                })
-                // jest throws an error we need to catch, since stuck in the flow
-                .catch(e => {
-                  done.fail(e);
-                })
-            );
+            return this.instantsearch
+              .findResultsState({ component: this, renderToString })
+              .then(result => {
+                res = result;
+              });
           },
         };
 
@@ -558,7 +537,8 @@ Array [
         });
 
         await renderToString(wrapper);
-        done();
+
+        expect(res.hello.state.hitsPerPage).toBe(100);
       });
 
       // TODO: forwarding of scoped slots doesn't yet work.
@@ -725,17 +705,6 @@ Array [
             }),
           ],
           render: renderCompat(h =>
-            /**
-             * This code triggers this warning in Vue 3:
-             * > Non-function value encountered for default slot. Prefer function slots for better performance.
-             *
-             * To fix it, replace the third argument
-             * > [h(...), h(...)]
-             * with
-             * > { default: () => [h(...), h(...)] }
-             *
-             * but it's not important (and not compatible in vue2), we're leaving it as-is.
-             */
             h(InstantSearchSsr, {}, [
               h(Configure, {
                 attrs: {
@@ -778,21 +747,10 @@ Array [
 
       it('works when component is at root (and therefore has no $vnode)', async () => {
         const searchClient = createFakeClient();
-        let mainIndex;
+        let res;
 
         const app = {
           render: renderCompat(h =>
-            /**
-             * This code triggers this warning in Vue 3:
-             * > Non-function value encountered for default slot. Prefer function slots for better performance.
-             *
-             * To fix it, replace the third argument
-             * > [h(...), h(...)]
-             * with
-             * > { default: () => [h(...), h(...)] }
-             *
-             * but it's not important (and not compatible in vue2), we're leaving it as-is.
-             */
             h(InstantSearchSsr, {}, [
               h(Configure, {
                 attrs: {
@@ -813,28 +771,21 @@ Array [
             }),
           ],
           serverPrefetch() {
-            return this.instantsearch.findResultsState({
-              component: this,
-              renderToString,
-            });
-          },
-          created() {
-            mainIndex = this.instantsearch.mainIndex;
+            return this.instantsearch
+              .findResultsState({
+                component: this,
+                renderToString,
+              })
+              .then(result => {
+                res = result;
+              });
           },
           render: renderCompat(h => h(app)),
         });
 
         await renderToString(wrapper);
 
-        expect(mainIndex.getWidgetState()).toMatchInlineSnapshot(`
-Object {
-  "hello": Object {
-    "configure": Object {
-      "hitsPerPage": 100,
-    },
-  },
-}
-`);
+        expect(res.hello.state.hitsPerPage).toBe(100);
 
         expect(searchClient.search).toHaveBeenCalledTimes(1);
         expect(searchClient.search.mock.calls[0][0]).toMatchInlineSnapshot(`
