@@ -1,4 +1,10 @@
-import { isVue3, Vue2, createApp, Vue, renderCompat } from '../util/vue-compat';
+import {
+  isVue3,
+  isVue2,
+  Vue2,
+  createApp,
+  renderCompat,
+} from '../util/vue-compat';
 import InstantSearch from '../instantsearch';
 import { AisInstantSearch } from '../widgets';
 
@@ -42,7 +48,33 @@ function getAllComponents() {
       if (nonWidgetComponents.includes(name)) {
         throw new Error('not a widget');
       }
-      const vm = new Vue({
+
+      const props = {};
+      if (name === 'AisHierarchicalMenu' || name === 'AisBreadcrumb') {
+        props.attributes = ['attr'];
+      } else if (name === 'AisExperimentalConfigureRelatedItems') {
+        props.hit = {};
+        props.matchingPatterns = {};
+      } else if (name === 'AisToggleRefinement') {
+        props.attribute = 'attr';
+        props.label = 'label';
+        props.value = 'value';
+      } else if (name === 'AisSortBy') {
+        props.items = [];
+      } else if (name === 'AisNumericMenu') {
+        props.items = [{ label: 'start', start: 1 }];
+        props.attribute = 'attr';
+      } else if (name === 'AisHitsPerPage') {
+        props.items = [{ default: true, label: 'ten', value: 10 }];
+      } else if (name === 'AisQueryRuleContext') {
+        props.trackedFilters = {};
+      } else if (name === 'AisIndex') {
+        props.indexName = 'indexName';
+      } else {
+        props.attribute = 'attr';
+      }
+
+      const Component = {
         render: renderCompat(h =>
           h(
             AisInstantSearch,
@@ -58,22 +90,20 @@ function getAllComponents() {
             },
             [
               h(call, {
-                props: {
-                  indexName: 'index',
-                  attribute: 'attr',
-                  attributes: ['attr'],
-                  hit: {},
-                  label: '',
-                  items: [{ default: true, value: 1, label: 'one' }],
-                  trackedFilters: {},
-                  matchingPatterns: {},
-                },
+                props,
                 ref: 'widgetComponent',
               }),
             ]
           )
         ),
-      }).$mount();
+      };
+
+      let vm;
+      if (isVue2) {
+        vm = new Vue2(Component).$mount();
+      } else if (isVue3) {
+        vm = createApp(Component).mount(document.createElement('div'));
+      }
       widget = vm.$refs.widgetComponent.widget;
     } catch (e) {
       /* no widget, so will fail the assertions */
