@@ -149,8 +149,7 @@
     }
   ],
   "resolutions": {
-    "brotli-size": "4.0.0",
-    "fsevents": "1.2.13"
+    "brotli-size": "4.0.0"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./jest.setup.js",
