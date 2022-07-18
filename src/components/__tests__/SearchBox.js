@@ -151,9 +151,9 @@ test('keep local query when out of sync and input is focused', async () => {
   const state = { ...defaultState, refine: jest.fn() };
   __setState(state);
 
-  const wrapper = mount(SearchBox);
+  const wrapper = mount(SearchBox, { attachTo: document.body });
   const input = wrapper.find('.ais-SearchBox-input');
-  await input.trigger('focus');
+  input.element.focus();
   await input.setValue('hello');
 
   await wrapper.setData({ state: { query: 'hel' } });
