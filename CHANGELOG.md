@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* **components:** forward missing props in SearchBox and VoiceSearch ([#1136](https://github.com/algolia/vue-instantsearch/issues/1136)) ([7f8754d](https://github.com/algolia/vue-instantsearch/commit/7f8754dad73542c976b5218bda9a2db0c21c36a1)), closes [#1135](https://github.com/algolia/vue-instantsearch/issues/1135)
+* **SearchBox:** forward missing prop queryHook ([#1136](https://github.com/algolia/vue-instantsearch/issues/1136)) ([7f8754d](https://github.com/algolia/vue-instantsearch/commit/7f8754dad73542c976b5218bda9a2db0c21c36a1))
+* **VoiceSearch:** forward missing props language and additionalQueryParameters ([#1136](https://github.com/algolia/vue-instantsearch/issues/1136)) ([7f8754d](https://github.com/algolia/vue-instantsearch/commit/7f8754dad73542c976b5218bda9a2db0c21c36a1)), closes [#1135](https://github.com/algolia/vue-instantsearch/issues/1135)
 
 
 
