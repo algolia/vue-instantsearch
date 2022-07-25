@@ -1,3 +1,12 @@
+## [4.4.2](https://github.com/algolia/vue-instantsearch/compare/v4.4.1...v4.4.2) (2022-07-25)
+
+
+### Bug Fixes
+
+* **components:** forward missing props in SearchBox and VoiceSearch ([#1136](https://github.com/algolia/vue-instantsearch/issues/1136)) ([7f8754d](https://github.com/algolia/vue-instantsearch/commit/7f8754dad73542c976b5218bda9a2db0c21c36a1)), closes [#1135](https://github.com/algolia/vue-instantsearch/issues/1135)
+
+
+
 ## [4.4.1](https://github.com/algolia/vue-instantsearch/compare/v4.4.0...v4.4.1) (2022-07-19)
 
 
