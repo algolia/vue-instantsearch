@@ -1,11 +1,11 @@
 <template>
   <div
     v-if="state"
-    :class="[suit(), !canRefine && suit('', 'noRefinement')]"
+    :class="[suit(), !state.canRefine && suit('', 'noRefinement')]"
   >
     <slot
       :items="state.items"
-      :can-refine="canRefine"
+      :can-refine="state.canRefine"
       :refine="state.refine"
       :createURL="state.createURL"
       :send-event="state.sendEvent"
@@ -52,7 +52,7 @@ export default {
     ),
     createSuitMixin({ name: 'NumericMenu' }),
     createPanelConsumerMixin({
-      mapStateToCanRefine: state => state.hasNoResults === false,
+      mapStateToCanRefine: state => Boolean(state.canRefine),
     }),
   ],
   props: {
@@ -76,9 +76,6 @@ export default {
         transformItems: this.transformItems,
         items: this.items,
       };
-    },
-    canRefine() {
-      return !this.state.hasNoResults;
     },
   },
 };

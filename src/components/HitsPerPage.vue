@@ -7,6 +7,7 @@
       :items="state.items"
       :refine="state.refine"
       :hasNoResults="state.hasNoResults"
+      :canRefine="state.canRefine"
     >
       <select
         :class="suit('select')"
@@ -43,7 +44,7 @@ export default {
       }
     ),
     createPanelConsumerMixin({
-      mapStateToCanRefine: state => state.hasNoResults === false,
+      mapStateToCanRefine: state => Boolean(state.canRefine),
     }),
   ],
   props: {

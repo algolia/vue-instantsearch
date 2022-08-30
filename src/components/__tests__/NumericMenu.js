@@ -41,6 +41,7 @@ const moreThan500 = {
 const defaultState = {
   items: [all, lessThan10, from10to100, from100to500, moreThan500],
   hasNoResults: false,
+  canRefine: true,
   createURL: () => {},
   refine: () => {},
 };
@@ -125,7 +126,7 @@ describe('default render', () => {
   it('renders correctly without refinement', () => {
     __setState({
       ...defaultState,
-      hasNoResults: true,
+      canRefine: false,
     });
 
     const props = {
@@ -190,7 +191,7 @@ describe('default render', () => {
   });
 });
 
-it('calls the Panel mixin with `hasNoResults`', async () => {
+it('calls the Panel mixin with `canRefine`', async () => {
   __setState({ ...defaultState });
 
   const wrapper = mount(NumericMenu, {
@@ -204,7 +205,7 @@ it('calls the Panel mixin with `hasNoResults`', async () => {
 
   await wrapper.setData({
     state: {
-      hasNoResults: true,
+      canRefine: false,
     },
   });
 
@@ -281,7 +282,7 @@ describe('custom default render', () => {
   it('renders correctly without refinement', () => {
     __setState({
       ...defaultState,
-      hasNoResults: true,
+      canRefine: false,
     });
 
     const wrapper = mount({

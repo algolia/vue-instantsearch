@@ -77,10 +77,10 @@ it('calls `refine` with the `value` on `change`', async () => {
   expect(wrapper.vm.state.refine).toHaveBeenLastCalledWith(20);
 });
 
-it('calls the Panel mixin with `hasNoResults`', async () => {
+it('calls the Panel mixin with `canRefine`', async () => {
   __setState({
     ...defaultState,
-    hasNoResults: false,
+    canRefine: true,
   });
 
   const wrapper = mount(HitsPerPage, {
@@ -94,7 +94,7 @@ it('calls the Panel mixin with `hasNoResults`', async () => {
 
   await wrapper.setData({
     state: {
-      hasNoResults: true,
+      canRefine: false,
     },
   });
 

@@ -126,8 +126,8 @@ it('calls refine when clicked on link', async () => {
   expect(wrapper.vm.state.refine).toHaveBeenLastCalledWith('1');
 });
 
-it('calls the Panel mixin with `hasNoResults`', async () => {
-  __setState({ hasNoResults: false });
+it('calls the Panel mixin with `canRefine`', async () => {
+  __setState({ canRefine: true });
 
   const wrapper = mount(RatingMenu, {
     propsData: defaultProps,
@@ -140,7 +140,7 @@ it('calls the Panel mixin with `hasNoResults`', async () => {
 
   await wrapper.setData({
     state: {
-      hasNoResults: true,
+      canRefine: false,
     },
   });
 
