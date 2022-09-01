@@ -133,7 +133,7 @@
   "bundlesize": [
     {
       "path": "./vue2/umd/index.js",
-      "maxSize": "56.50 kB"
+      "maxSize": "56.75 kB"
     },
     {
       "path": "./vue3/umd/index.js",
