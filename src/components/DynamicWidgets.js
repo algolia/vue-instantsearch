@@ -96,10 +96,18 @@ export default {
       );
     }
 
+    const fallbackSlot = isVue3
+      ? this.$slots.fallback
+      : this.$scopedSlots.fallback;
+
     return h(
       'div',
       { class: [this.suit()] },
-      this.state.attributesToRender.map(attribute => components.get(attribute))
+      this.state.attributesToRender.map(
+        attribute =>
+          components.get(attribute) ||
+          (fallbackSlot && fallbackSlot({ attribute }))
+      )
     );
   }),
   computed: {

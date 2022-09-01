@@ -443,3 +443,50 @@ it('updates DOM when attributesToRender changes', async () => {
 </div>
 `);
 });
+
+it('renders fallback slot for attributes without matching component', () => {
+  __setState({
+    attributesToRender: ['test1', 'test2', 'test3'],
+  });
+
+  const wrapper = mount({
+    template: `
+      <DynamicWidgets :transformItems="items => items">
+        <MockRefinementList attribute="test1" />
+
+        <template v-slot:fallback="{ attribute }">
+          <MockRefinementList :attribute="attribute" />
+        </template>
+      </DynamicWidgets>
+    `,
+    components: {
+      DynamicWidgets,
+      MockRefinementList,
+    },
+  });
+
+  expect(wrapper.html()).toMatchInlineSnapshot(`
+<div class="ais-DynamicWidgets">
+  <div class="ais-DynamicWidgets-widget">
+    <div>
+      {
+      "widgetName": "ais-refinement-list",
+      "attribute": "test1"
+      }
+    </div>
+  </div>
+  <div>
+    {
+    "widgetName": "ais-refinement-list",
+    "attribute": "test2"
+    }
+  </div>
+  <div>
+    {
+    "widgetName": "ais-refinement-list",
+    "attribute": "test3"
+    }
+  </div>
+</div>
+`);
+});
