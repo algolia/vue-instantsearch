@@ -20,6 +20,7 @@
         :reset-title="resetTitle"
         :class-names="classNames"
         v-model="currentRefinement"
+        ref="searchInput"
       >
         <template
           v-slot:loading-indicator
@@ -77,7 +78,14 @@ import SearchInput from './SearchInput.vue';
 export default {
   name: 'AisSearchBox',
   mixins: [
-    createWidgetMixin({ connector: connectSearchBox }),
+    createWidgetMixin(
+      {
+        connector: connectSearchBox,
+      },
+      {
+        $$widgetType: 'ais.searchBox',
+      }
+    ),
     createSuitMixin({ name: 'SearchBox' }),
   ],
   components: {
@@ -112,6 +120,10 @@ export default {
       type: String,
       default: undefined,
     },
+    queryHook: {
+      type: Function,
+      default: undefined,
+    },
   },
   data() {
     return {
@@ -121,6 +133,11 @@ export default {
     };
   },
   computed: {
+    widgetParams() {
+      return {
+        queryHook: this.queryHook,
+      };
+    },
     isControlled() {
       return (
         typeof this.value !== 'undefined' ||
@@ -141,6 +158,14 @@ export default {
           this.$emit('update:modelValue', this.model);
           this.state.refine(this.model);
         }
+
+        // we return the local value if the input is focused to avoid
+        // concurrent updates when typing
+        const { searchInput } = this.$refs;
+        if (searchInput && searchInput.isFocused()) {
+          return this.localValue;
+        }
+
         return this.model || this.state.query || '';
       },
       set(val) {
