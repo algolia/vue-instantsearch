@@ -107,26 +107,3 @@ it('calls `refine` when the selection changes with the `value`', async () => {
   expect(refine).toHaveBeenLastCalledWith('some_index_quality');
   expect(selectedOption.element.selected).toBe(true);
 });
-
-it('calls the Panel mixin with `canRefine`', async () => {
-  __setState({ ...defaultState });
-
-  const wrapper = mount(SortBy, {
-    propsData: defaultProps,
-  });
-
-  const mapStateToCanRefine = () =>
-    wrapper.vm.mapStateToCanRefine(wrapper.vm.state);
-
-  expect(mapStateToCanRefine()).toBe(true);
-
-  await wrapper.setData({
-    state: {
-      canRefine: false,
-    },
-  });
-
-  expect(mapStateToCanRefine()).toBe(false);
-
-  expect(wrapper.vm.mapStateToCanRefine({})).toBe(false);
-});

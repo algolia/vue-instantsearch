@@ -96,9 +96,7 @@ export default {
         $$widgetType: 'ais.ratingMenu',
       }
     ),
-    createPanelConsumerMixin({
-      mapStateToCanRefine: state => Boolean(state.canRefine),
-    }),
+    createPanelConsumerMixin(),
   ],
   props: {
     attribute: {

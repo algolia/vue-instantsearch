@@ -43,9 +43,7 @@ export default {
         $$widgetType: 'ais.hitsPerPage',
       }
     ),
-    createPanelConsumerMixin({
-      mapStateToCanRefine: state => Boolean(state.canRefine),
-    }),
+    createPanelConsumerMixin(),
   ],
   props: {
     items: {

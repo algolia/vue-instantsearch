@@ -51,9 +51,7 @@ export default {
       }
     ),
     createSuitMixin({ name: 'NumericMenu' }),
-    createPanelConsumerMixin({
-      mapStateToCanRefine: state => Boolean(state.canRefine),
-    }),
+    createPanelConsumerMixin(),
   ],
   props: {
     attribute: {

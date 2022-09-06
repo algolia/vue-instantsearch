@@ -43,9 +43,7 @@ export default {
       }
     ),
 
-    createPanelConsumerMixin({
-      mapStateToCanRefine: state => Boolean(state.canRefine),
-    }),
+    createPanelConsumerMixin(),
   ],
   props: {
     items: {
