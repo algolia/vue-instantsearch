@@ -39,7 +39,7 @@ export const createPanelProviderMixin = () => ({
   },
 });
 
-export const createPanelConsumerMixin = () => ({
+export const createPanelConsumerMixin = ({ mapStateToCanRefine = state => Boolean(state.canRefine) }) => ({
   inject: {
     emitter: {
       from: PANEL_EMITTER_NAMESPACE,
@@ -64,10 +64,8 @@ export const createPanelConsumerMixin = () => ({
           return;
         }
 
-        const previousCanRefine = previousState
-          ? previousState.canRefine
-          : false;
-        const nextCanRefine = nextState.canRefine;
+        const previousCanRefine = mapStateToCanRefine(previousState || {});
+        const nextCanRefine = mapStateToCanRefine(nextState);
 
         if (!this.hasAlreadyEmitted || previousCanRefine !== nextCanRefine) {
           this.emitter.emit(PANEL_CHANGE_EVENT, nextCanRefine);
