@@ -106,7 +106,7 @@ function augmentInstantSearch(instantSearchOptions, cloneComponent) {
             {
               beforeCreate() {
                 const descriptor = Object.getOwnPropertyDescriptor(
-                  this,
+                  component,
                   '$nuxt'
                 );
 
