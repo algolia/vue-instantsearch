@@ -112,7 +112,7 @@ function augmentInstantSearch(instantSearchOptions, cloneComponent) {
 
                 const isWritable = descriptor
                   ? descriptor.writable || descriptor.set
-                  : true;
+                  : false;
 
                 if (component.$nuxt && isWritable) {
                   // In case of Nuxt (3), we ensure the context is shared between
