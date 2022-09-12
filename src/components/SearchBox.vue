@@ -161,7 +161,12 @@ export default {
 
         // we return the local value if the input is focused to avoid
         // concurrent updates when typing
-        const { searchInput } = this.$refs;
+        const { searchInput } =
+          (this.$scopedSlots.default &&
+            this.$scopedSlots.default()[0] &&
+            this.$scopedSlots.default()[0].context.$refs) ||
+          this.$refs;
+
         if (searchInput && searchInput.isFocused()) {
           return this.localValue;
         }
