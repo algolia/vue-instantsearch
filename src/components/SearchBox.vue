@@ -6,11 +6,12 @@
     <slot
       :current-refinement="currentRefinement"
       :is-search-stalled="state.isSearchStalled"
+      :set-is-focused="setIsFocused"
       :refine="state.refine"
     >
       <search-input
-        @focus="$emit('focus', $event)"
-        @blur="$emit('blur', $event)"
+        @focus="$emit('focus', $event); setIsFocused(true)"
+        @blur="$emit('blur', $event); setIsFocused(false)"
         @reset="$emit('reset')"
         :placeholder="placeholder"
         :autofocus="autofocus"
@@ -130,6 +131,7 @@ export default {
       localValue: '',
       isVue2,
       isVue3,
+      isFocused: false,
     };
   },
   computed: {
@@ -161,13 +163,7 @@ export default {
 
         // we return the local value if the input is focused to avoid
         // concurrent updates when typing
-        const { searchInput } =
-          (this.$scopedSlots.default &&
-            this.$scopedSlots.default()[0] &&
-            this.$scopedSlots.default()[0].context.$refs) ||
-          this.$refs;
-
-        if (searchInput && searchInput.isFocused()) {
+        if (this.isFocused) {
           return this.localValue;
         }
 
@@ -181,6 +177,12 @@ export default {
           this.$emit('update:modelValue', val);
         }
       },
+    },
+  },
+
+  methods: {
+    setIsFocused(isFocused) {
+      this.isFocused = isFocused;
     },
   },
 };
