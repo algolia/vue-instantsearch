@@ -1,4 +1,5 @@
 / https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/vue/ 301!
 
 # Examples
-/examples/:name/search/*   /examples/:name/index.html   200
+/examples/:name/*   https://instantsearchjs.netlify.app/examples/vue/:name/:splat   301!
+/stories/*  https://instantsearchjs.netlify.app/stories/vue/:splat   301!

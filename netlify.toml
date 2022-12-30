@@ -1,5 +1,5 @@
 [build]
-    command = "yarn website:build"
+    command = "echo 'no build needed'"
     publish = "website"
   [build.environment]
     YARN_VERSION = "1.6.0"

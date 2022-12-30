@@ -1,54 +1,5 @@
-[![Vue InstantSearch logo][logo]][website]
+# Vue InstantSearch has a new home 👋
 
-InstantSearch projects: **Vue InstantSearch**
-| [InstantSearch.js][instantsearch.js-github]
-| [React InstantSearch][react-instantsearch-github]
-| [Angular InstantSearch][angular-instantsearch-github]
-| [InstantSearch Android][instantsearch-android-github]
-| [InstantSearch iOS][instantsearch-ios-github].
+This project has moved and is now part of the [InstantSearch monorepo](https://github.com/algolia/instantsearch)! **The library remains unchanged and is still available on npm and CDNs like jsDelivr.**
 
-## Vue InstantSearch
-
-> ⚡ Lightning-fast search for Vue.js apps
-
-Built by [Algolia][algolia-website].
-
-This repository holds the code for the Vue InstantSearch project.
-
-## Documentation
-
-There's a dedicated documentation available at [www.algolia.com/doc/guides/building-search-ui/getting-started/vue][website].
-
-## Installation
-
-Vue InstantSearch is available in the npm registry. Install it:
-
-```sh
-# with npm
-npm install --save vue-instantsearch
-
-# with yarn
-yarn add vue-instantsearch
-```
-
-To learn more about the usage, follow our [getting started guide][getting-started-guide].
-
-## Troubleshooting
-
-Encountering an issue? Before reaching out to support, we recommend heading to our [FAQ](https://www.algolia.com/doc/guides/building-search-ui/troubleshooting/faq/vue/) where you will find answers for the most common issues and gotchas with the library.
-
-## Contributing, dev, release
-
-We welcome all contributors, from casual to regular. You are only
-one command away to start the developer environment,
-[read our CONTRIBUTING guide](.github/CONTRIBUTING.md).
-
-[logo]: .github/vue-instantsearch-readme.png
-[website]: https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/vue/
-[getting-started-guide]: https://www.algolia.com/doc/guides/building-search-ui/getting-started/vue/
-[algolia-website]: https://www.algolia.com/
-[instantsearch.js-github]: https://github.com/algolia/instantsearch.js
-[react-instantsearch-github]: https://github.com/algolia/react-instantsearch
-[instantsearch-android-github]: https://github.com/algolia/instantsearch-android
-[instantsearch-ios-github]: https://github.com/algolia/instantsearch-ios
-[angular-instantsearch-github]: https://github.com/algolia/angular-instantsearch
+You can [browse the code](https://github.com/algolia/instantsearch/tree/master/packages), find [existing issues](https://github.com/algolia/instantsearch/issues?q=is%3Aissue+is%3Aopen+label%3A%22Library%3A+Vue+InstantSearch%22) and follow [new releases](https://github.com/algolia/instantsearch/releases) over there.
